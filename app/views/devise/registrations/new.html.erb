@@ -1,0 +1,26 @@
+<style>
+  div.user_subjects {
+    display: block;
+  }
+</style>
+
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+    <%= f.input :type, label: 'Why are you using GrowthValley?', collection: User::USER_ROLES, required: true %>
+    <%= f.association :subjects, label: 'Please choose the subject you are most equipped to teach. (Choose upto 3)', include_blank: false, required: true %>
+    <%= f.input :description, label: 'Please share a bit about your self with the Growth Valley community' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
