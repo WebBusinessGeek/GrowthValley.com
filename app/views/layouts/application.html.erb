@@ -22,14 +22,14 @@
 
     <%= nav_bar :responsive => true do %>
       <%= menu_group do %>
-        <%= menu_item "Home", '/' %>
+        <%= menu_item "Home", root_path %>
       <% end %>
 
       <%= menu_group :pull => :right do %>
         <% if current_user %>
           <p class='navbar-text pull-right'>
             Signed in as <b><%= current_user.email %></b>
-            <%= link_to "Log Out", destroy_user_session_path %>
+            <%= link_to "Log Out", destroy_user_session_path, method: 'delete' %>
           </p>
         <% else %>
           <%= menu_item "SignUp", new_user_registration_path %>
