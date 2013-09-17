@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :subjects
 
-  validates :subjects, :presence => true, :length => { :maximum => 3 }
   validates_presence_of :type
+  validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?"
 
   accepts_nested_attributes_for :subjects, :limit => 3
 
