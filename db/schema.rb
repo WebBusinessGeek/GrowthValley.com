@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20130916122308) do
     t.string   "full_name"
     t.text     "description"
     t.string   "type"
+    t.integer  "age"
+    t.boolean  "sex"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
