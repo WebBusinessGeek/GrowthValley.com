@@ -1,0 +1,11 @@
+<%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :sections_count, label: 'How many sections are in your course?', as: :integer, required: true %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Proceed', :class => 'btn-primary' %>
+    <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
+  </div>
+<% end %>

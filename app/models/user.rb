@@ -5,15 +5,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :description, :type, :age, :sex, :subject_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :description, :type, :age, :sex, :subject_ids, :course_ids
 
   has_and_belongs_to_many :subjects
   before_destroy { subjects.clear }
+
+  has_and_belongs_to_many :courses
+  before_destroy { courses.clear }
 
   validates_presence_of :type, on: :create
   validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?", on: :create
 
   accepts_nested_attributes_for :subjects, :limit => 3
+  accepts_nested_attributes_for :courses
 
   USER_ROLES = [
     ['Im here to learn', 'Learner'],

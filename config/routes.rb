@@ -1,6 +1,13 @@
 GrowthValley::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :subjects
+  resources :courses do
+    member do
+      get 'sections'
+    end
+  end
+  resources :course_steps
+  resources :sections
   resources :homes, only: :index
 
   root to: 'homes#index'
