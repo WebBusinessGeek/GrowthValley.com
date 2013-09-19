@@ -86,9 +86,4 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def sections
-    @course = Course.find_by_id(params[:id])
-    @course.sections.build
-  end
 end
