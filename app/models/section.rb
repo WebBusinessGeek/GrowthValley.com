@@ -6,4 +6,5 @@ class Section < ActiveRecord::Base
   mount_uploader :attachment, AttachmentUploader
 
   validates :attachment, presence: true
+  validates_associated :course
 end

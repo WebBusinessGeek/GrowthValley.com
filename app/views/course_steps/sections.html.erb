@@ -2,10 +2,9 @@
   <%= f.error_notification %>
 
   <%= f.simple_fields_for :sections do |s| %>
-    <% @course.sections_count.times do %>
-      <%= s.input :attachment, required: true %>
-      <%= s.input :title, required: true %>
-    <% end %>
+    <%= s.input :attachment, required: false %>
+    <%= s.input :title, required: false %>
+    <%= s.input :remove_attachment, as: :boolean, default: false %>
   <% end %>
 
   <div class="form-actions">

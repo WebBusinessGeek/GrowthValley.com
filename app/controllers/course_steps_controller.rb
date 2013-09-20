@@ -4,7 +4,12 @@ class CourseStepsController < ApplicationController
 
   def show
     @course = Course.find_by_id(session[:course_id])
-    @course.sections.build
+
+    if @course.sections_count.present?
+      @course.sections_count.times do
+        @course.sections.build
+      end
+    end
 
     case step
     when 'wicked_finish'
