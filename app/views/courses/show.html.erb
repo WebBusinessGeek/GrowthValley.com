@@ -4,22 +4,48 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dt><strong>Course Title:</strong></dt>
   <dd><%= @course.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @course.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:is_published) %>:</strong></dt>
-  <dd><%= @course.is_published %></dd>
+  <dt><strong>Course Type:</strong></dt>
+  <dd><%= @course.content_type %></dd>
+  <% if @course.sections.present? %>
+    <dt><strong>Course Sections:</strong></dt>
+    </br>
+    </br>
+    <% @course.sections.each do |section| %>
+      <div class='section'>
+        <div class='section_title'>
+          <% if section.title.present? %>
+            <strong>Section Title:</strong> <%= section.title %>
+          <% end %>
+        </div>
+        <div class='section_description'>
+          <% if section.description.present? %>
+            <strong>Section Description:</strong> <%= section.description %>
+          <% end %>
+        </div>
+        <div class='section_attachment'>
+          <% if section.attachment.present? %>
+            <strong>Section Attachment:</strong> <%= section.attachment_url %>
+          <% end %>
+        </div>
+        <div class='section_quiz'>
+          <% if section.quiz.present? %>
+            <strong>Test Name:</strong> <%= section.quiz.title %>
+          <% else %>
+            <%= link_to 'Add test/quiz', new_quiz_path(@course, section), class: 'btn' %>
+          <% end %>
+        </div>
+      </div>
+      </br>
+    <% end %>
+  <% else %>
+    <%= link_to 'Add new section', new_sections_path(@course) %>
+  <% end %>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              courses_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_course_path(@course), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              course_path(@course),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), courses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_path(@course), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(@course), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' %>
 </div>

@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919110719) do
+ActiveRecord::Schema.define(:version => 20130923102529) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "title"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "content_type"
-    t.integer  "sections_count"
+    t.integer  "sections_count", :default => 0
     t.boolean  "is_published",   :default => false, :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
@@ -31,6 +38,20 @@ ActiveRecord::Schema.define(:version => 20130919110719) do
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "user_id",   :null => false
     t.integer "course_id", :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.text     "title"
+    t.integer  "quiz_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "quizzes", :force => true do |t|
+    t.string   "title"
+    t.integer  "section_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sections", :force => true do |t|
