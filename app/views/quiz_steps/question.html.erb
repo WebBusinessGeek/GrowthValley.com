@@ -1,0 +1,13 @@
+<%= simple_form_for @quiz, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.simple_fields_for :questions do |q| %>
+    <%= q.input :title, required: true %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
+    <%= link_to t('.back', :default => t("helpers.links.back")), new_quiz_path(section_id: @quiz.section.id), :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_path(@quiz.section.course), :class => 'btn' %>
+  </div>
+<% end %>

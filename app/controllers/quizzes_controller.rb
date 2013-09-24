@@ -24,6 +24,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   # GET /quizzes/new.json
   def new
+    @section = Section.find_by_id(params[:section_id])
     @quiz = Quiz.new
     @quiz.questions.build
 
@@ -36,17 +37,20 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     @quiz = Quiz.find(params[:id])
+    @section = Section.find_by_id(@quiz.section.id)
     @quiz.questions.build
   end
 
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = Quiz.new(params[:quiz])
+    @section = Section.find_by_id(params[:quiz][:section_id])
+    @quiz = @section.build_quiz(params[:quiz])
 
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
+        session[:quiz_id] = @quiz.id
+        format.html { redirect_to quiz_steps_path }
         format.json { render json: @quiz, status: :created, location: @quiz }
       else
         format.html { render action: "new" }
