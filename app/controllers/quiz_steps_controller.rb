@@ -1,11 +1,11 @@
 class QuizStepsController < ApplicationController
   include Wicked::Wizard
-  steps :question, :answers
+  steps :questions, :answers
 
   def show
     @quiz = Quiz.find_by_id(session[:quiz_id])
     @quiz.questions.build
-    @quiz.answers.build
+    @quiz.questions.last.answers.build
 
     case step
     when 'wicked_finish'

@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessible :title, :answers_attributes
 
   belongs_to :quiz
   has_many :answers, dependent: :destroy

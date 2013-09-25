@@ -1,5 +1,5 @@
 class Quiz < ActiveRecord::Base
-  attr_accessible :title, :section_id, :questions_attributes, :answers_attributes
+  attr_accessible :title, :section_id, :questions_attributes
 
   belongs_to :section
   has_many :questions, dependent: :destroy
