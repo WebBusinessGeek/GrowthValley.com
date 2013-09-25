@@ -1,10 +1,17 @@
 <%= simple_form_for @section, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
-  <%= f.input :attachment %>
+
+  <% if !@section.new_record? && @section.attachment.present? %>
+    <%= f.input :attachment, required: false %>
+    <%= f.label 'existing_attachment', raw("<strong>Existing Attachment:</strong> #{@section.attachment_url}") %>
+    <%= f.input :remove_attachment, as: :radio %>
+  <% else %>
+    <%= f.input :attachment %>
+  <% end %>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                sections_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), sections_path, :class => 'btn' %>
   </div>
 <% end %>

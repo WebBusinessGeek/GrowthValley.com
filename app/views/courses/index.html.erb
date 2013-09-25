@@ -18,20 +18,13 @@
         <td><%= course.description %></td>
         <td><%= course.is_published %></td>
         <td>
-          <%= link_to t('.view', :default => t("helpers.links.view")), course_path(course), :class => 'btn btn-mini' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_course_path(course), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      course_path(course),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <%= link_to t('.view', :default => 'Add Test/Quiz'), course_path(course), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_path(course), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(course), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_course_path,
-            :class => 'btn btn-primary' %>
+<%= link_to t('.new', :default => t("helpers.links.new")), new_course_path, :class => 'btn btn-primary' %>

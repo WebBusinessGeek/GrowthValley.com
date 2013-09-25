@@ -2,9 +2,15 @@
   <%= f.error_notification %>
 
   <%= f.simple_fields_for :sections do |s| %>
-    <%= s.input :attachment, required: false %>
     <%= s.input :title, required: false %>
-    <%= s.input :remove_attachment, as: :boolean, default: false %>
+
+    <% if !s.object.new_record? && s.object.attachment.present? %>
+      <%= s.input :attachment, required: false %>
+      <%= s.label 'existing_attachment', raw("<strong>Existing Attachment:</strong> #{s.object.attachment_url}") %>
+      <%= s.input :remove_attachment, as: :radio %>
+    <% else %>
+      <%= s.input :attachment %>
+    <% end %>
   <% end %>
 
   <div class="form-actions">

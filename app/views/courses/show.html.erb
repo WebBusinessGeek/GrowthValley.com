@@ -31,9 +31,9 @@
         </div>
         <div class='section_quiz'>
           <% if section.quiz.present? %>
-            <strong>Test Name:</strong> <%= section.quiz.title %>
+            <strong>Test Name:</strong> <%= section.quiz.title %> (<%= link_to 'edit', edit_quiz_path(section.quiz) %>)
           <% else %>
-            <%= link_to 'Add test/quiz', new_quiz_path(section_id: section.id), class: 'btn' %>
+            No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_quiz_path(section_id: section.id) %>
           <% end %>
         </div>
       </div>

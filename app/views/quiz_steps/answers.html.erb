@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <%= f.simple_fields_for :answers do |a| %>
-    <%= a.input :title %>
+    <%= a.input :title, label: 'Enter your answer', required: true %>
   <% end %>
 
   <div class="form-actions">

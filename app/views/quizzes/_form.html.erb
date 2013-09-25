@@ -1,9 +1,9 @@
 <%= simple_form_for @quiz, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title, required: true %>
   <%= f.hidden_field :section_id, value: @section.id %>
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), quizzes_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_path(@section.course), :class => 'btn' %>
   </div>
 <% end %>

@@ -25,7 +25,6 @@ class SectionsController < ApplicationController
   # GET /sections/new.json
   def new
     @section = Section.new
-    @section.quizzes.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +35,6 @@ class SectionsController < ApplicationController
   # GET /sections/1/edit
   def edit
     @section = Section.find(params[:id])
-    @section.quizzes.build
   end
 
   # POST /sections

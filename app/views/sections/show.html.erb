@@ -4,12 +4,18 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @section.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @section.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:attachment) %>:</strong></dt>
-  <dd><%= @section.attachment %></dd>
+  <% if @section.title.present? %>
+    <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+    <dd><%= @section.title %></dd>
+  <% end %>
+  <% if @section.description.present? %>
+    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @section.description %></dd>
+  <% end %>
+  <% if @section.attachment.present? %>
+    <dt><strong><%= model_class.human_attribute_name(:attachment) %>:</strong></dt>
+    <dd><%= @section.attachment %></dd>
+  <% end %>
 </dl>
 
 <div class="form-actions">
