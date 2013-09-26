@@ -18,4 +18,21 @@ class Course < ActiveRecord::Base
   validates :title, uniqueness: true
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, allow_blank: true
   validates :sections_count, inclusion: { in: 0..5 }, allow_blank: true
+
+  def togglePublish
+    self.is_published == true ? self.update_attributes(is_published: false) : self.update_attributes(is_published: true)
+  end
+
+  def isCourseLive?
+    if self.is_published == true && self.sections.present?
+      self.sections.each do |section|
+        if !section.quiz.present?
+          return false
+        end
+      end
+      return true
+    else
+      return false
+    end
+  end
 end

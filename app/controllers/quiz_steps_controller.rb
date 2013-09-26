@@ -5,7 +5,9 @@ class QuizStepsController < ApplicationController
   def show
     @quiz = Quiz.find_by_id(session[:quiz_id])
     @quiz.questions.build
-    @quiz.questions.last.answers.build
+    2.times do
+      @quiz.questions.last.answers.build
+    end
 
     case step
     when 'wicked_finish'

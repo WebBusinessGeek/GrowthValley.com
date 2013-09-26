@@ -86,4 +86,10 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def publish_unpublish
+    course = Course.find_by_id(params[:id])
+    course.togglePublish
+    render json: course.is_published
+  end
 end

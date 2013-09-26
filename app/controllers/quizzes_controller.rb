@@ -66,6 +66,7 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz.update_attributes(params[:quiz])
+        session[:quiz_id] = @quiz.id
         format.html { redirect_to quiz_steps_path }
         format.json { head :no_content }
       else
