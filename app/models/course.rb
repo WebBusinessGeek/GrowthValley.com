@@ -20,16 +20,34 @@ class Course < ActiveRecord::Base
   validates :sections_count, inclusion: { in: 0..5 }, allow_blank: true
 
   def togglePublish
-    self.is_published == true ? self.update_attributes(is_published: false) : self.update_attributes(is_published: true)
+    if self.is_published == false
+      if eachSectionHasTest?
+        self.update_attributes(is_published: true)
+      else
+        return false
+      end
+      return true
+    else
+      self.update_attributes(is_published: false)
+      return true
+    end
   end
 
-  def isCourseLive?
-    if self.is_published == true && self.sections.present?
+  def eachSectionHasTest?
+    if self.sections.present?
       self.sections.each do |section|
-        if !section.quiz.present?
+        if !section.quiz.present? || section.quiz.complete? == false
           return false
         end
       end
+      return true
+    else
+      return false
+    end
+  end
+
+  def isCourseLive?
+    if self.is_published == true && eachSectionHasTest?
       return true
     else
       return false

@@ -10,4 +10,12 @@ class Quiz < ActiveRecord::Base
 
   accepts_nested_attributes_for :questions, limit: 10
   accepts_nested_attributes_for :answers
+
+  def complete?
+    if self.questions.present? && self.answers.present?
+      return true
+    else
+      return false
+    end
+  end
 end

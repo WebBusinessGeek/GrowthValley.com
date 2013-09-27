@@ -89,7 +89,14 @@ class CoursesController < ApplicationController
 
   def publish_unpublish
     course = Course.find_by_id(params[:id])
-    course.togglePublish
-    render json: course.is_published
+    if course.present?
+      if course.togglePublish == true
+        render json: { status: 'success', data: course.is_published }
+      else
+        render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test...' }
+      end
+    else
+      render json: { status: 'error', errorCode: '404', data: 'Course not found!' }
+    end
   end
 end
