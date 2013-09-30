@@ -7,11 +7,13 @@ GrowthValley::Application.routes.draw do
     end
   end
   resources :course_steps
-  resources :sections
+  resources :sections do
+    resources :questions do
+      resources :answers
+    end
+  end
   resources :quizzes
   resources :quiz_steps
-  resources :questions
-  resources :answers
   resources :homes, only: :index
 
   root to: 'homes#index'

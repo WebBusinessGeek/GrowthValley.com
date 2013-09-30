@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   before_destroy { subjects.clear }
 
   has_many :sections, dependent: :destroy
-  validates :sections, :length => { maximum: 5 }, allow_blank: true
+  validates :sections, :length => { minimum: 1, maximum: 5 }, allow_blank: true
 
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :subjects
@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
 
   validates :title, uniqueness: true
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, allow_blank: true
-  validates :sections_count, inclusion: { in: 0..5 }, allow_blank: true
+  validates :sections_count, inclusion: { in: 1..5 }, allow_blank: true
 
   def togglePublish
     if self.is_published == false
@@ -36,7 +36,7 @@ class Course < ActiveRecord::Base
   def eachSectionHasTest?
     if self.sections.present?
       self.sections.each do |section|
-        if !section.quiz.present? || section.quiz.complete? == false
+        if section.complete? == false
           return false
         end
       end

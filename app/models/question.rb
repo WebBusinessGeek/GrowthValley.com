@@ -1,11 +1,10 @@
 class Question < ActiveRecord::Base
-  attr_accessible :title, :answers_attributes
+  attr_accessible :title, :answers_attributes, :section_id
 
-  belongs_to :quiz
+  belongs_to :section
   has_many :answers, dependent: :destroy
 
-  validates :title, uniqueness: true
-  validates :answers, :length => { maximum: 4 }, allow_blank: true
+  validates :title, presence: true, uniqueness: true
 
   accepts_nested_attributes_for :answers, limit: 4
 end

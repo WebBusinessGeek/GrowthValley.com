@@ -2,55 +2,70 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+      @questions = @section.questions
+    else
+      @questions = Question.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @questions }
     end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
     @question = Question.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @question }
     end
   end
 
   # GET /questions/new
   # GET /questions/new.json
   def new
-    @question = Question.new
-    @question.answers.build
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+      @question = @section.questions.build
+    else
+      @question = Question.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @question }
     end
   end
 
   # GET /questions/1/edit
   def edit
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
     @question = Question.find(params[:id])
-    @quiz.questions.build
   end
 
   # POST /questions
   # POST /questions.json
   def create
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
     @question = Question.new(params[:question])
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render json: @question, status: :created, location: @question }
+        format.html { redirect_to new_section_question_answer_path(@question.section_id, @question) }
       else
         format.html { render action: "new" }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,15 +73,17 @@ class QuestionsController < ApplicationController
   # PUT /questions/1
   # PUT /questions/1.json
   def update
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
     @question = Question.find(params[:id])
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to section_question_answers_path(@section, @question) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,11 +92,11 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.json
   def destroy
     @question = Question.find(params[:id])
+    section = @question.section_id
     @question.destroy
 
     respond_to do |format|
-      format.html { redirect_to questions_url }
-      format.json { head :no_content }
+      format.html { redirect_to section_questions_path(section) }
     end
   end
 end

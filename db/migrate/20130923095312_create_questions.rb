@@ -2,7 +2,7 @@ class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
       t.text :title
-      t.references :quiz
+      t.references :section
 
       t.timestamps
     end

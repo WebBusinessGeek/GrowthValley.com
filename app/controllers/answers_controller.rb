@@ -2,53 +2,90 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+      @answers = @question.answers
+    else
+      @answers = Answer.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @answers }
     end
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+    end
+
     @answer = Answer.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @answer }
     end
   end
 
   # GET /answers/new
   # GET /answers/new.json
   def new
-    @answer = Answer.new
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+      @answer = @question.answers.build
+    else
+      @answer = Answer.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @answer }
     end
   end
 
   # GET /answers/1/edit
   def edit
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+    end
+
     @answer = Answer.find(params[:id])
   end
 
   # POST /answers
   # POST /answers.json
   def create
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+    end
+
     @answer = Answer.new(params[:answer])
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render json: @answer, status: :created, location: @answer }
+        format.html { redirect_to course_path(@section.course_id), notice: 'Answer was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,15 +93,21 @@ class AnswersController < ApplicationController
   # PUT /answers/1
   # PUT /answers/1.json
   def update
+    if params[:section_id].present?
+      @section = Section.find_by_id(params[:section_id])
+    end
+
+    if params[:question_id].present?
+      @question = Question.find_by_id(params[:question_id])
+    end
+
     @answer = Answer.find(params[:id])
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to course_path(@section.course_id), notice: 'Answer was successfully updated.' }
       else
         format.html { render action: "edit" }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -73,11 +116,12 @@ class AnswersController < ApplicationController
   # DELETE /answers/1.json
   def destroy
     @answer = Answer.find(params[:id])
+    question = @answer.question_id
+    section = Question.find_by_id(question).section_id
     @answer.destroy
 
     respond_to do |format|
-      format.html { redirect_to answers_url }
-      format.json { head :no_content }
+      format.html { redirect_to section_question_answers_path(section, question) }
     end
   end
 end

@@ -1,8 +1,13 @@
-<%= simple_form_for @answer, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
+<%= simple_form_for @answer, url: @answer.new_record? ? section_question_answers_path(@section, @question) : section_question_answer_path(@section, @question, @answer), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :option_1 %>
+  <%= f.input :option_2 %>
+  <%= f.input :option_3 %>
+  <%= f.input :option_4 %>
+  <%= f.input :correct_option, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 3', 4] ] %>
+  <%= f.hidden_field :question_id if @answer.new_record? %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), answers_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), section_question_answers_path(@section, @question), :class => 'btn' %>
   </div>
 <% end %>
