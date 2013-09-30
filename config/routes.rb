@@ -6,14 +6,12 @@ GrowthValley::Application.routes.draw do
       get 'publish_unpublish'
     end
   end
-  resources :course_steps
+  resources :course_steps, only: [:index, :show, :update]
   resources :sections do
     resources :questions do
       resources :answers
     end
   end
-  resources :quizzes
-  resources :quiz_steps
   resources :homes, only: :index
 
   root to: 'homes#index'
