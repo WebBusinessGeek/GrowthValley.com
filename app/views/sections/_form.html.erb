@@ -10,8 +10,16 @@
     <%= f.input :attachment %>
   <% end %>
 
+  <% if @section.new_record? %>
+    <%= f.hidden_field :course_id, value: @course.id %>
+  <% end %>  
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), sections_path, :class => 'btn' %>
+    <% if @section.new_record? %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), sections_path(course_id: @course), :class => 'btn' %>
+    <% else %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), sections_path(course_id: @section.course_id), :class => 'btn' %>
+    <% end %>
   </div>
 <% end %>

@@ -2,11 +2,15 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    if params[:course_id].present?
+      @course = Course.find_by_id(params[:course_id])
+      @sections = @course.sections
+    else
+      @sections = Section.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @sections }
     end
   end
 
@@ -17,18 +21,21 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @section }
     end
   end
 
   # GET /sections/new
   # GET /sections/new.json
   def new
-    @section = Section.new
+    if params[:course_id].present?
+      @course = Course.find_by_id(params[:course_id])
+      @section = @course.sections.build
+    else
+      @section = Section.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @section }
     end
   end
 
@@ -45,10 +52,8 @@ class SectionsController < ApplicationController
     respond_to do |format|
       if @section.save
         format.html { redirect_to @section, notice: 'Section was successfully created.' }
-        format.json { render json: @section, status: :created, location: @section }
       else
         format.html { render action: "new" }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,10 +66,8 @@ class SectionsController < ApplicationController
     respond_to do |format|
       if @section.update_attributes(params[:section])
         format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,12 +75,15 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
+    if params[:course_id].present?
+      @course = Course.find_by_id(params[:course_id])
+    end
+
     @section = Section.find(params[:id])
     @section.destroy
 
     respond_to do |format|
-      format.html { redirect_to sections_url }
-      format.json { head :no_content }
+      format.html { redirect_to sections_path(course_id: @course) }
     end
   end
 end

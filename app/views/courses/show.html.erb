@@ -10,39 +10,41 @@
   <dd><%= @course.content_type %></dd>
   <% if @course.sections.present? %>
     <dt><strong>Course Sections:</strong></dt>
+    <dd><%= link_to 'Manage Sections', sections_path(course_id: @course) %></dd>
     </br>
-    </br>
-    <% @course.sections.each do |section| %>
-      <div class='section'>
-        <div class='section_title'>
-          <% if section.title.present? %>
-            <strong>Section Title:</strong> <%= section.title %>
-          <% end %>
+    <dd>
+      <% @course.sections.each do |section| %>
+        <div class='section'>
+          <div class='section_title'>
+            <% if section.title.present? %>
+              <strong>Section Title:</strong> <%= section.title %>
+            <% end %>
+          </div>
+          <div class='section_description'>
+            <% if section.description.present? %>
+              <strong>Section Description:</strong> <%= section.description %>
+            <% end %>
+          </div>
+          <div class='section_attachment'>
+            <% if section.attachment.present? %>
+              <strong>Section Attachment:</strong> <%= section.attachment_url %>
+            <% end %>
+          </div>
+          <div class='section_quiz'>
+            <% if section.questions.present? %>
+              <%= link_to raw("<strong>Manage Test</strong>"), section_questions_path(section) %>
+            <% else %>
+              No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_section_question_path(section) %>
+            <% end %>
+          </div>
         </div>
-        <div class='section_description'>
-          <% if section.description.present? %>
-            <strong>Section Description:</strong> <%= section.description %>
-          <% end %>
-        </div>
-        <div class='section_attachment'>
-          <% if section.attachment.present? %>
-            <strong>Section Attachment:</strong> <%= section.attachment_url %>
-          <% end %>
-        </div>
-        <div class='section_quiz'>
-          <% if section.questions.present? %>
-            <%= link_to raw("<strong>Manage Test</strong>"), section_questions_path(section) %>
-          <% else %>
-            No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_section_question_path(section) %>
-          <% end %>
-        </div>
-      </div>
-      </br>
-    <% end %>
+        </br>
+      <% end %>
+    </dd>
   <% else %>
-    <dt>
+    <dd>
       <%= link_to 'Add new section', course_step_path('type') %>
-    </dt>
+    </dd>
   <% end %>
 </dl>
 

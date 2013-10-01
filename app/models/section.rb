@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  attr_accessible :description, :title, :attachment, :attachment_cache, :remove_attachment
+  attr_accessible :description, :title, :course_id, :attachment, :attachment_cache, :remove_attachment
 
   belongs_to :course
   has_many :questions, dependent: :destroy
