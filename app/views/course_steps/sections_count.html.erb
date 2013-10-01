@@ -1,7 +1,7 @@
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :sections_count, label: 'How many sections are in your course?', as: :integer, required: true %>
+  <%= f.input :sections_count, label: 'How many sections do you want to add?', as: :integer, required: true %>
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', :class => 'btn-primary' %>

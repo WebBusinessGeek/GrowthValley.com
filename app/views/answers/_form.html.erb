@@ -3,7 +3,7 @@
   <%= f.input :option_2 %>
   <%= f.input :option_3 %>
   <%= f.input :option_4 %>
-  <%= f.input :correct_option, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 3', 4] ] %>
+  <%= f.input :correct_option, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 4', 4] ], :include_blank => false %>
   <%= f.hidden_field :question_id if @answer.new_record? %>
 
   <div class="form-actions">

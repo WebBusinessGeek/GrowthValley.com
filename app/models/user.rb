@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   validates_presence_of :type, on: :create
   validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?", on: :create
 
-  accepts_nested_attributes_for :subjects, :limit => 3
-  accepts_nested_attributes_for :courses
+  accepts_nested_attributes_for :subjects, :allow_destroy => true, :limit => 3
+  accepts_nested_attributes_for :courses, :allow_destroy => true
 
   USER_ROLES = [
     ['Im here to learn', 'Learner'],

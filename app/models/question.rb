@@ -6,5 +6,5 @@ class Question < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
 
-  accepts_nested_attributes_for :answers, limit: 4
+  accepts_nested_attributes_for :answers, :allow_destroy => true, limit: 4
 end

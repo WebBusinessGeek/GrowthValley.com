@@ -15,7 +15,7 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.title %></td>
+        <td><%= link_to course.title, course_path(course) %></td>
         <td><%= course.description %></td>
         <td>
           <% if course.is_published %>

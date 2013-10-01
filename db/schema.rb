@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923102529) do
+ActiveRecord::Schema.define(:version => 20130923095319) do
 
   create_table "answers", :force => true do |t|
-    t.string   "title"
-    t.boolean  "is_correct",  :default => false
+    t.string   "option_1"
+    t.string   "option_2"
+    t.string   "option_3"
+    t.string   "option_4"
+    t.integer  "correct_option"
     t.integer  "question_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "courses", :force => true do |t|
@@ -43,13 +46,6 @@ ActiveRecord::Schema.define(:version => 20130923102529) do
 
   create_table "questions", :force => true do |t|
     t.text     "title"
-    t.integer  "quiz_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "quizzes", :force => true do |t|
-    t.string   "title"
     t.integer  "section_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

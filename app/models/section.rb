@@ -9,8 +9,8 @@ class Section < ActiveRecord::Base
   validates_associated :course
   validates :questions, :length => { minimum: 3, maximum: 10 }, allow_blank: true
 
-  accepts_nested_attributes_for :questions, limit: 10
-  accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :questions, :allow_destroy => true, limit: 10
+  accepts_nested_attributes_for :answers, :allow_destroy => true
 
   mount_uploader :attachment, AttachmentUploader
 

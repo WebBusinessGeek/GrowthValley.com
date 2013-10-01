@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :title, :description, :is_published, :content_type, :sections_count, :subject_ids, :sections_attributes
+  attr_accessible :title, :description, :is_published, :content_type, :sections_count, :status, :subject_ids, :sections_attributes
 
   has_and_belongs_to_many :users
 
@@ -7,17 +7,17 @@ class Course < ActiveRecord::Base
   before_destroy { subjects.clear }
 
   has_many :sections, dependent: :destroy
-  validates :sections, :length => { minimum: 1, maximum: 5 }, allow_blank: true
+  validates :sections, :length => { minimum: 1, maximum: 5 }, if: :active_or_on_sections_step?
 
-  accepts_nested_attributes_for :users
-  accepts_nested_attributes_for :subjects
-  accepts_nested_attributes_for :sections, limit: 5
+  accepts_nested_attributes_for :users, :allow_destroy => true
+  accepts_nested_attributes_for :subjects, :allow_destroy => true
+  accepts_nested_attributes_for :sections, :allow_destroy => true
 
   CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'] ]
 
-  validates :title, uniqueness: true
-  validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, allow_blank: true
-  validates :sections_count, inclusion: { in: 1..5 }, allow_blank: true
+  validates :title, presence: true, uniqueness: true
+  validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
+  validate :sections_count_range, if: :active_or_on_sections_count_step?
 
   def togglePublish
     if self.is_published == false
@@ -51,6 +51,31 @@ class Course < ActiveRecord::Base
       return true
     else
       return false
+    end
+  end
+
+  private
+
+  def active?
+    status == :active
+  end
+
+  def active_or_on_type_step?
+    status == :type || active?
+  end
+
+  def active_or_on_sections_count_step?
+    status == :sections_count || active?
+  end
+
+  def active_or_on_sections_step?
+    status == :sections || active?
+  end
+
+  def sections_count_range
+    upper_limit = (5 - self.sections.count)
+    if self.sections_count < 1 || self.sections_count > upper_limit
+      self.errors.add(:sections_count, "Invalid range. Valid range is between #{1..upper_limit}")
     end
   end
 end

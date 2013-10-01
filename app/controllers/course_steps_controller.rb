@@ -22,6 +22,11 @@ class CourseStepsController < ApplicationController
   def update
     @course = Course.find_by_id(session[:course_id])
     @course.attributes = params[:course]
+    if step == :sections
+      @course.status = :active
+    else
+      @course.status = step
+    end
     render_wizard @course
   end
 end

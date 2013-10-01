@@ -7,7 +7,7 @@
     <% if !s.object.new_record? && s.object.attachment.present? %>
       <%= s.input :attachment, required: false %>
       <%= s.label 'existing_attachment', raw("<strong>Existing Attachment:</strong> #{s.object.attachment_url}") %>
-      <%= s.input :remove_attachment, as: :radio %>
+      <%= s.input :_destroy, label: 'Remove attachment', as: :radio %>
     <% else %>
       <%= s.input :attachment %>
     <% end %>
