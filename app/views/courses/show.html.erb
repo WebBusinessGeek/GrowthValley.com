@@ -10,7 +10,6 @@
   <dd><%= @course.content_type %></dd>
   <% if @course.sections.present? %>
     <dt><strong>Course Sections:</strong></dt>
-    <dd><%= link_to 'Manage Sections', sections_path(course_id: @course) %></dd>
     </br>
     <dd>
       <% @course.sections.each do |section| %>
@@ -31,10 +30,10 @@
             <% end %>
           </div>
           <div class='section_quiz'>
-            <% if section.questions.present? %>
-              <%= link_to raw("<strong>Manage Test</strong>"), section_questions_path(section) %>
+            <% if section.quizzes.present? %>
+              <%= link_to raw("<strong>Manage Tests/Quizzes</strong>"), section_quizzes_path(section) %>
             <% else %>
-              No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_section_question_path(section) %>
+              No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_section_quiz_path(section) %>
             <% end %>
           </div>
         </div>

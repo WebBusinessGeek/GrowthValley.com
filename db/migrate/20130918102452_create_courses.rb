@@ -5,7 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.text :description
       t.string :content_type
       t.integer :sections_count, default: 1
-      t.boolean :is_published, null: false, default: false
+      t.boolean :is_published, default: false
       t.string :status
 
       t.timestamps

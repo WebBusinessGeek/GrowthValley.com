@@ -51,7 +51,7 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
+        format.html { redirect_to section_quizzes_path(@section), notice: 'Section was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -65,7 +65,7 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       if @section.update_attributes(params[:section])
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+        format.html { redirect_to section_quizzes_path(@section), notice: 'Section was successfully updated.' }
       else
         format.html { render action: "edit" }
       end

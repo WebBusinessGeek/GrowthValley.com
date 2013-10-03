@@ -8,9 +8,7 @@ GrowthValley::Application.routes.draw do
   end
   resources :course_steps, only: [:index, :show, :update]
   resources :sections do
-    resources :questions do
-      resources :answers
-    end
+    resources :quizzes
   end
   resources :homes, only: :index
 

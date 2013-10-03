@@ -1,16 +1,12 @@
 class Section < ActiveRecord::Base
-  attr_accessible :description, :title, :course_id, :attachment, :attachment_cache, :remove_attachment
+  attr_accessible :title, :description, :course_id, :attachment, :attachment_cache, :remove_attachment, :quizzes_attributes
 
   belongs_to :course
-  has_many :questions, dependent: :destroy
-  has_many :answers, through: :questions
-
-  validates :attachment, presence: true
   validates_associated :course
-  validates :questions, :length => { minimum: 3, maximum: 10 }, allow_blank: true
 
-  accepts_nested_attributes_for :questions, :allow_destroy => true, limit: 10
-  accepts_nested_attributes_for :answers, :allow_destroy => true
+  has_many :quizzes, dependent: :destroy
+  validates :quizzes, :length => { minimum: 3, maximum: 10 }, allow_blank: true
+  accepts_nested_attributes_for :quizzes, :allow_destroy => true, limit: 10
 
   mount_uploader :attachment, AttachmentUploader
 

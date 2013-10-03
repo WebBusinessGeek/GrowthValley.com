@@ -11,44 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923095319) do
-
-  create_table "answers", :force => true do |t|
-    t.string   "option_1"
-    t.string   "option_2"
-    t.string   "option_3"
-    t.string   "option_4"
-    t.integer  "correct_option"
-    t.integer  "question_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
+ActiveRecord::Schema.define(:version => 20131003104241) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "content_type"
-    t.integer  "sections_count", :default => 0
-    t.boolean  "is_published",   :default => false, :null => false
+    t.integer  "sections_count", :default => 1
+    t.boolean  "is_published",   :default => false
+    t.string   "status"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
-    t.integer "course_id",  :null => false
-    t.integer "subject_id", :null => false
+    t.integer "course_id"
+    t.integer "subject_id"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|
-    t.integer "user_id",   :null => false
-    t.integer "course_id", :null => false
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
-  create_table "questions", :force => true do |t|
-    t.text     "title"
+  create_table "quizzes", :force => true do |t|
+    t.text     "question"
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.string   "option4"
+    t.integer  "correct_answer"
     t.integer  "section_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "sections", :force => true do |t|
@@ -61,14 +56,14 @@ ActiveRecord::Schema.define(:version => 20130923095319) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "subjects_users", :id => false, :force => true do |t|
-    t.integer "user_id",    :null => false
-    t.integer "subject_id", :null => false
+    t.integer "user_id"
+    t.integer "subject_id"
   end
 
   create_table "users", :force => true do |t|

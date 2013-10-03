@@ -1,9 +1,0 @@
-<%= simple_form_for @question, url: @question.new_record? ? section_questions_path(@section) : section_question_path(@section, @question), :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title, label: 'Enter your question' %>
-  <%= f.hidden_field :section_id, value: @section.id if @question.new_record? %>
-
-  <div class="form-actions">
-    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), section_questions_path(@section), :class => 'btn' %>
-  </div>
-<% end %>
