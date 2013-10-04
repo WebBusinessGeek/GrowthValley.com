@@ -110,7 +110,13 @@ class QuizzesController < ApplicationController
     end
 
     @quiz = Quiz.find(params[:id])
-    @quiz.destroy
+
+    if @section.quizzes.count == 3
+      redirect_to section_quizzes_path(@section), alert: 'Atleast 3 questions are required...'
+      return
+    else
+      @quiz.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to section_quizzes_path(@section) }
