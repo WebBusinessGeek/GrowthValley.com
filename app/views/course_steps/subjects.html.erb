@@ -1,7 +1,7 @@
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
-  <%= f.association :subjects, include_blank: false, required: true %>
+  <%= f.association :subjects, collection: current_user.subjects, include_blank: false, required: true, input_html: { multiple: false } %>
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', :class => 'btn-primary' %>

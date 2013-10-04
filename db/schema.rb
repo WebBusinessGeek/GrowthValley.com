@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20131003104241) do
     t.integer  "sections_count", :default => 1
     t.boolean  "is_published",   :default => false
     t.string   "status"
+    t.boolean  "is_paid",        :default => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
@@ -72,18 +73,19 @@ ActiveRecord::Schema.define(:version => 20131003104241) do
     t.string   "type"
     t.integer  "age"
     t.boolean  "sex"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "subscription_type",      :default => "free"
+    t.string   "email",                  :default => "",     :null => false
+    t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",          :default => 0,      :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

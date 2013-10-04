@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :type, :default => nil
       t.integer :age
       t.boolean :sex
+      t.string :subscription_type, :default => 'free'
 
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""

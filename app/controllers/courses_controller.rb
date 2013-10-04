@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = current_user.courses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find_by_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        # format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        current_user.courses << @course
         session[:course_id] = @course.id
         format.html { redirect_to course_steps_path }
       else
@@ -55,11 +55,10 @@ class CoursesController < ApplicationController
   # PUT /courses/1
   # PUT /courses/1.json
   def update
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find_by_id(params[:id])
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        # format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         session[:course_id] = @course.id
         format.html { redirect_to course_steps_path }
       else
@@ -71,7 +70,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find_by_id(params[:id])
     @course.destroy
 
     respond_to do |format|
@@ -80,12 +79,17 @@ class CoursesController < ApplicationController
   end
 
   def publish_unpublish
-    course = Course.find_by_id(params[:id])
+    course = current_user.courses.find_by_id(params[:id])
+
     if course.present?
-      if course.togglePublish == true
-        render json: { status: 'success', data: course.is_published }
+      if Course.published_courses(current_user).count <= ENV['FREE_USER_MAX_FREE_COURSES_COUNT'].to_i
+        if course.togglePublish == true
+          render json: { status: 'success', data: course.is_published }
+        else
+          render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test...' }
+        end
       else
-        render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test...' }
+        render json: { status: 'error', errorCode: '400', data: "Error! Free user can only publish a maximum of #{ENV['FREE_USER_MAX_FREE_COURSES_COUNT']} courses..." }
       end
     else
       render json: { status: 'error', errorCode: '404', data: 'Course not found!' }

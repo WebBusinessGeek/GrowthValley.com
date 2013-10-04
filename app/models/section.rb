@@ -11,7 +11,7 @@ class Section < ActiveRecord::Base
   mount_uploader :attachment, AttachmentUploader
 
   def complete?
-    if self.questions.present? && self.answers.present?
+    if self.quizzes.present?
       return true
     else
       return false

@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :title, :description, :is_published, :content_type, :sections_count, :status, :subject_ids, :sections_attributes
+  attr_accessible :title, :description, :is_published, :content_type, :sections_count, :status, :is_paid, :subject_ids, :sections_attributes
 
   has_and_belongs_to_many :users
 
@@ -18,6 +18,8 @@ class Course < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_range, if: :active_or_on_sections_count_step?
+
+  scope :published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ?", user_id, 'Teacher', 'free') }
 
   def togglePublish
     if self.is_published == false
