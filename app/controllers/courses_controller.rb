@@ -82,7 +82,7 @@ class CoursesController < ApplicationController
     course = current_user.courses.find_by_id(params[:id])
 
     if course.present?
-      if Course.published_courses(current_user).count <= ENV['FREE_USER_MAX_FREE_COURSES_COUNT'].to_i
+      if course.is_published == true || Course.published_courses(current_user).count < ENV['FREE_USER_MAX_FREE_COURSES_COUNT'].to_i
         if course.togglePublish == true
           render json: { status: 'success', data: course.is_published }
         else

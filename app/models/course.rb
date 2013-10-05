@@ -19,7 +19,7 @@ class Course < ActiveRecord::Base
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_range, if: :active_or_on_sections_count_step?
 
-  scope :published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ?", user_id, 'Teacher', 'free') }
+  scope :published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_published = ?", user_id, 'Teacher', 'free', true) }
 
   def togglePublish
     if self.is_published == false

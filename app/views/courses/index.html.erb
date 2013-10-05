@@ -19,9 +19,9 @@
         <td><%= course.description %></td>
         <td>
           <% if course.is_published %>
-            <%= check_box_tag :is_published, true, true, { id: "#{course.id}", class: 'is_published' } %>
+            <%= check_box_tag :is_published, true, true, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
           <% else %>
-            <%= check_box_tag :is_published, false, false, { id: "#{course.id}", class: 'is_published' } %>
+            <%= check_box_tag :is_published, false, false, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
           <% end %>
         </td>
         <td><%= course.isCourseLive? %></td>
@@ -33,31 +33,27 @@
       </tr>
 
       <%= javascript_tag do %>
-        $(function() {
-          $('.is_published').change(function() {
-            var obj = $(this);
-
-            $.ajax({
-              url: "<%= publish_unpublish_course_path(course.id) %>",
-              cache: false,
-              success: function(resp) {
-                if(resp.status == 'success') {
-                  $(obj).val(resp.data);
-                  $(obj).attr('checked', resp.data);
-                  $(obj).parent().next().text(resp.data);
-                }
-                else if(resp.errorCode == '400') {
-                  $(obj).val("false");
-                  $(obj).removeAttr('checked');
-                  alert(resp.data);
-                }
-                else {
-                  alert(resp.data);
-                }
+        function toggle_publish(course_id) {
+          $.ajax({
+            url: "/courses/" + course_id + "/publish_unpublish",
+            cache: false,
+            success: function(resp) {
+              if(resp.status == 'success') {
+                $('#'+course_id).val(resp.data);
+                $('#'+course_id).attr('checked', resp.data);
+                $('#'+course_id).parent().next().text(resp.data);
               }
-            });
+              else if(resp.errorCode == '400') {
+                $('#'+course_id).val("false");
+                $('#'+course_id).removeAttr('checked');
+                alert(resp.data);
+              }
+              else {
+                alert(resp.data);
+              }
+            }
           });
-        });
+        }
       <% end %>
 
     <% end %>

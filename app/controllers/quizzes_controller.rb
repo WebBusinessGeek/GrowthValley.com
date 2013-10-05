@@ -39,7 +39,7 @@ class QuizzesController < ApplicationController
         end
       else
         if @section.quizzes.size == 10
-          redirect_to section_quizzes_path(@section), notice: 'Maximum 10 questions are allowed!'
+          redirect_to section_quizzes_path(@section), alert: 'Maximum 10 questions are allowed!'
           return
         else
           @quiz = @section.quizzes.build
