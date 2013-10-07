@@ -10,6 +10,7 @@ GrowthValley::Application.routes.draw do
   resources :sections do
     resources :quizzes
   end
+  resources :charges
   resources :homes, only: :index
 
   root to: 'homes#index'

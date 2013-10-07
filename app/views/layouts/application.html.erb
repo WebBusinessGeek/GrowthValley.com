@@ -25,12 +25,19 @@
         <%= menu_item "Home", root_path %>
         <%= menu_item "Subjects", subjects_path %>
         <%= menu_item "Courses", courses_path %>
+        <% if current_user %>
+          <% if current_user.subscription_type == 'free' %>
+            <%= menu_item "Upgrade to Premium Account", new_charge_path %>
+          <% else %>
+            <%= menu_item raw("<span class='label label-default'>Premium Member</span>"), "javascript:void(0);" %>
+          <% end %>
+        <% end %>
       <% end %>
 
       <%= menu_group :pull => :right do %>
         <% if current_user %>
           <p class='navbar-text pull-right'>
-            Signed in as <b><%= current_user.email %></b>
+            Signed in as <b><%= link_to current_user.email, edit_user_registration_path %></b>
             <%= link_to "Log Out", destroy_user_session_path, method: 'delete' %>
           </p>
         <% else %>
