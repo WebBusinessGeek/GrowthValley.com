@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
-  attr_accessible :title, :description, :is_published, :content_type, :sections_count, :status, :is_paid, :subject_ids, :sections_attributes
+  attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
+  :sections_count, :status, :is_paid, :subject_ids, :sections_attributes
 
   has_and_belongs_to_many :users
 
@@ -12,6 +13,8 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :users, :allow_destroy => true
   accepts_nested_attributes_for :subjects, :allow_destroy => true
   accepts_nested_attributes_for :sections, :allow_destroy => true
+
+  mount_uploader :course_cover_pic, CourseCoverPicUploader
 
   CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'] ]
 

@@ -2,6 +2,7 @@ class CreateCourses < ActiveRecord::Migration
   def change
     create_table :courses do |t|
       t.string :title, unique: true
+      t.string :course_cover_pic
       t.text :description
       t.string :content_type
       t.integer :sections_count, default: 1

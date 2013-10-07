@@ -2,6 +2,13 @@
   <%= f.error_notification %>
 
   <%= f.input :title %>
+  <% if !@course.new_record? && @course.course_cover_pic.present? %>
+    <%= f.input :course_cover_pic, required: false %>
+    <%= f.label 'existing_course_cover_pic', raw("<strong>Existing Course Cover Pic:</strong> #{image_tag(@course.course_cover_pic_url, size: '200x200', class: 'img-rounded')}") %>
+    <%= f.input :remove_course_cover_pic, label: 'Remove Cover Pic', as: :radio %>
+  <% else %>
+    <%= f.input :course_cover_pic, required: true %>
+  <% end %>
   <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons if current_user.subscription_type.downcase == 'paid' %>
 
   <div class="form-actions">
