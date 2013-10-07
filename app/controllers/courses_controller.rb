@@ -82,14 +82,20 @@ class CoursesController < ApplicationController
     course = current_user.courses.find_by_id(params[:id])
 
     if course.present?
-      if course.is_published == true || Course.published_courses(current_user).count < ENV['FREE_USER_MAX_FREE_COURSES_COUNT'].to_i
+      if course.is_published == true || current_user.allowed_to_publish?(course.id)
         if course.togglePublish == true
           render json: { status: 'success', data: course.is_published }
         else
           render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test...' }
         end
       else
-        render json: { status: 'error', errorCode: '400', data: "Error! Free user can only publish a maximum of #{ENV['FREE_USER_MAX_FREE_COURSES_COUNT']} courses..." }
+        if current_user.subscription_type == 'free'
+          render json: { status: 'error', errorCode: '400', data: "Error! Free user can only publish a maximum of #{ENV['FREE_USER_MAX_FREE_COURSES_COUNT']} courses..." }
+        elsif current_user.subscription_type == 'paid' && course.is_paid == false
+          render json: { status: 'error', errorCode: '400', data: "Error! Premium user can only publish a maximum of #{ENV['PAID_USER_MAX_FREE_COURSES_COUNT']} free courses..." }
+        elsif current_user.subscription_type == 'paid' && course.is_paid == true
+          render json: { status: 'error', errorCode: '400', data: "Error! Premium user can only publish a maximum of #{ENV['PAID_USER_MAX_PAID_COURSES_COUNT']} paid courses..." }
+        end
       end
     else
       render json: { status: 'error', errorCode: '404', data: 'Course not found!' }
