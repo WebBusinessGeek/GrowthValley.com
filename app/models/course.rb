@@ -3,16 +3,18 @@ class Course < ActiveRecord::Base
   :sections_count, :status, :is_paid, :subject_ids, :sections_attributes
 
   has_and_belongs_to_many :users
+  accepts_nested_attributes_for :users, :allow_destroy => true
 
   has_and_belongs_to_many :subjects
   before_destroy { subjects.clear }
+  accepts_nested_attributes_for :subjects, :allow_destroy => true
 
   has_many :sections, dependent: :destroy
+  accepts_nested_attributes_for :sections, :allow_destroy => true
   validates :sections, :length => { minimum: 1, maximum: 5 }, if: :active_or_on_sections_step?
 
-  accepts_nested_attributes_for :users, :allow_destroy => true
-  accepts_nested_attributes_for :subjects, :allow_destroy => true
-  accepts_nested_attributes_for :sections, :allow_destroy => true
+  has_one :exam, dependent: :destroy
+  accepts_nested_attributes_for :exam, :allow_destroy => true
 
   mount_uploader :course_cover_pic, CourseCoverPicUploader
 

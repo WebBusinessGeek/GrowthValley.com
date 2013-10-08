@@ -1,0 +1,28 @@
+<%- model_class = Exam -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:question) %></th>
+      <th><%= model_class.human_attribute_name(:course_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <% if @exam.present? %>
+    <tbody>
+      <tr>
+        <td><%= link_to @exam.question, course_exam_path(@course, @exam) %></td>
+        <td><%= @exam.course.title %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_exam_path(@course, @exam), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_exam_path(@course, @exam), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")), new_course_exam_path(@course), :class => 'btn btn-primary' unless @exam.present? %>
+<%= link_to t('.back', :default => 'Back to courses'), courses_path, :class => 'btn'  %>

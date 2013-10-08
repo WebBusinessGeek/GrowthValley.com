@@ -1,0 +1,8 @@
+<%= simple_form_for [@course, @exam], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :question, required: true %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exams_path(@course), :class => 'btn' %>
+  </div>
+<% end %>

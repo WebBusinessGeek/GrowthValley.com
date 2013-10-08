@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003104241) do
+ActiveRecord::Schema.define(:version => 20131008055025) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "content_type"
-    t.integer  "sections_count", :default => 1
-    t.boolean  "is_published",   :default => false
+    t.integer  "sections_count",   :default => 1
+    t.boolean  "is_published",     :default => false
     t.string   "status"
-    t.boolean  "is_paid",        :default => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.boolean  "is_paid",          :default => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "course_cover_pic"
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
@@ -33,6 +34,18 @@ ActiveRecord::Schema.define(:version => 20131003104241) do
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "course_id"
+  end
+
+  create_table "exams", :force => true do |t|
+    t.text     "question"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "quizzes", :force => true do |t|
