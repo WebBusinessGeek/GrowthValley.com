@@ -2,7 +2,10 @@ GrowthValley::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :subjects
   resources :courses do
-    resources :exams
+    resources :exams do
+      resources :exam_questions
+    end
+
     member do
       get 'publish_unpublish'
     end

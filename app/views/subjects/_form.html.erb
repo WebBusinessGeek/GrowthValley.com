@@ -1,4 +1,6 @@
 <%= simple_form_for @subject, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
   <%= f.input :name %>
 
   <div class="form-actions">
