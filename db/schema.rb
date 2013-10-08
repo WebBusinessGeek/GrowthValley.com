@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20131008055025) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
+    t.string   "course_cover_pic"
     t.text     "description"
     t.string   "content_type"
     t.integer  "sections_count",   :default => 1
@@ -23,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20131008055025) do
     t.boolean  "is_paid",          :default => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
-    t.string   "course_cover_pic"
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
@@ -39,11 +39,6 @@ ActiveRecord::Schema.define(:version => 20131008055025) do
   create_table "exams", :force => true do |t|
     t.text     "question"
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "memberships", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -87,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20131008055025) do
     t.integer  "age"
     t.boolean  "sex"
     t.string   "subscription_type",      :default => "free"
+    t.string   "profile_pic"
     t.string   "email",                  :default => "",     :null => false
     t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"

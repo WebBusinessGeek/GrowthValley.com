@@ -9,6 +9,13 @@
     <%= f.input :description %>
     <%= f.input :age %>
     <%= f.input :sex, label: 'Gender', as: :radio, collection: [['Male', true], ['Female', false]] %>
+    <% if !resource.new_record? && resource.profile_pic.present? %>
+      <%= f.label :profile_pic, raw('<strong>Existing Profile Pic</strong>') %>
+      <%= image_tag(resource.profile_pic, size: '100x100', class: 'img-rounded') %>
+      <%= f.input :profile_pic, label: raw('<strong>Change Profile Pic</strong>'), required: false %>
+    <% else %>
+      <%= f.input :profile_pic, required: true %>
+    <% end %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
