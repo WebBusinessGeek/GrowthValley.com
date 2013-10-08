@@ -3,4 +3,6 @@ class ExamQuestion < ActiveRecord::Base
 
   belongs_to :exam
   validates_associated :exam
+
+  validates :question, presence: true, uniqueness: true
 end

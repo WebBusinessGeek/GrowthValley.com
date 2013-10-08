@@ -1,4 +1,6 @@
 <%= simple_form_for @section, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
   <%= f.simple_fields_for :quizzes do |q| %>
     <%= q.error_notification %>
 

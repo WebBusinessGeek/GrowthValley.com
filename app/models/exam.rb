@@ -5,6 +5,8 @@ class Exam < ActiveRecord::Base
   validates_associated :course
 
   has_many :exam_questions, dependent: :destroy
-  validates :exam_questions, :length => { minimum: 3, maximum: 10 }, allow_blank: true
-  accepts_nested_attributes_for :exam_questions, :allow_destroy => true, limit: 10
+  validates :exam_questions, :length => { minimum: 3 }, allow_blank: true
+  accepts_nested_attributes_for :exam_questions, :allow_destroy => true
+
+  validates :title, presence: true
 end

@@ -26,8 +26,8 @@ class ExamQuestionsController < ApplicationController
   def new
     @exam = Exam.find_by_id(params[:exam_id])
 
-    if @exam.exam_questions.count == 10
-      redirect_to course_exam_exam_questions_path(@exam.course, @exam), alert: 'Maximum 10 questions are allowed!'
+    if @exam.exam_questions.count == (@exam.course.sections.count * 10)
+      redirect_to course_exam_exam_questions_path(@exam.course, @exam), alert: "Maximum #{@exam.course.sections.count * 10} questions are allowed!"
       return
     elsif @exam.exam_questions.present? && @exam.exam_questions.count >= 3
       @exam_question = @exam.exam_questions.build
