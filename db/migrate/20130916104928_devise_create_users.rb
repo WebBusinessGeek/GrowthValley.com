@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :age
       t.boolean :sex
       t.string :subscription_type, :default => 'free'
+      t.string :profile_pic
 
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""

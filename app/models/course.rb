@@ -8,6 +8,7 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   before_destroy { subjects.clear }
   accepts_nested_attributes_for :subjects, :allow_destroy => true
+  validates :subjects, presence: true, if: :active_or_on_subjects_step?
 
   has_many :sections, dependent: :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
@@ -67,6 +68,10 @@ class Course < ActiveRecord::Base
 
   def active?
     status == :active
+  end
+
+  def active_or_on_subjects_step?
+    status == :subjects || active?
   end
 
   def active_or_on_type_step?

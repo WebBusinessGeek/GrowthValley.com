@@ -1,5 +1,7 @@
 <%= simple_form_for [@course, @exam], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :question, required: true %>
+  <%= f.error_notification %>
+
+  <%= f.input :title, required: true %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

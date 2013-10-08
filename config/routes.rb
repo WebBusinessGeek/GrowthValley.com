@@ -4,7 +4,10 @@ GrowthValley::Application.routes.draw do
   
   resources :subjects
   resources :courses do
-    resources :exams
+    resources :exams do
+      resources :exam_questions
+    end
+
     member do
       get 'publish_unpublish'
     end

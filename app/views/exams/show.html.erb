@@ -4,10 +4,12 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:question) %>:</strong></dt>
-  <dd><%= @exam.question %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @exam.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @exam.course.title %></dd>
+  <dt><strong>Manage Exam Questions:</strong></dt>
+  <dd><%= link_to 'Manage Exam Questions', course_exam_exam_questions_path(@course, @exam), class: 'btn btn-mini' %></dd>
 </dl>
 
 <div class="form-actions">
