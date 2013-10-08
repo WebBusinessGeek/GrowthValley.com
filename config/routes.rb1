@@ -18,10 +18,6 @@ GrowthValley::Application.routes.draw do
 
   root to: 'homes#index'
 
-  namespace :admin do
-  	match 'change_password' => 'admin_users#edit'
-  end
-  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation:
