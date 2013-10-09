@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008091813) do
+ActiveRecord::Schema.define(:version => 20131009050902) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(:version => 20131008091813) do
     t.integer "course_id"
   end
 
+  create_table "dashboards", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "exam_questions", :force => true do |t|
     t.text     "question"
     t.integer  "exam_id"
@@ -76,8 +81,6 @@ ActiveRecord::Schema.define(:version => 20131008091813) do
     t.datetime "updated_at", :null => false
   end
 
-<<<<<<< HEAD
-=======
   create_table "exams", :force => true do |t|
     t.text     "title"
     t.integer  "course_id"
@@ -85,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20131008091813) do
     t.datetime "updated_at", :null => false
   end
 
->>>>>>> 7e7fc211416fb3d1c83c7e5d563b9218ea557700
   create_table "quizzes", :force => true do |t|
     t.text     "question"
     t.string   "option1"

@@ -43,7 +43,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     if model.course.content_type == 'pdf'
       %w(pdf)
     else
-      %w(avi flv mov mp4 m4v mkv webm webp ogg)
+      %w(avi flv mov mp4 m4v mkv webm webp ogv)
     end
   end
 

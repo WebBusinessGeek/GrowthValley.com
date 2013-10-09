@@ -28,6 +28,7 @@ class Course < ActiveRecord::Base
   scope :free_user_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'free', false, true) }
   scope :paid_user_free_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', false, true) }
   scope :paid_user_paid_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', true, true) }
+  scope :all_published_courses_for_subjects, ->(subs) { includes(:subjects).where("(subjects.id = ? or subjects.id = ? or subjects.id = ?) and is_published = ?", subs.map(&:id)[0], subs.map(&:id)[1], subs.map(&:id)[2], true) }
 
   def togglePublish
     if self.is_published == false

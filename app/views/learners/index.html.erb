@@ -1,0 +1,28 @@
+<style>
+  body {
+    background-color: rgb(244,244,244);
+  }
+
+  .thumbnail {
+    background-color: #fff;
+  }
+</style>
+
+<% @courses.each do |course| %>
+  <ul class='thumbnails'>
+    <li class="span2">
+      <div class='thumbnail'>
+        <%= link_to image_tag(course.course_cover_pic.url, width: '100%'), learner_path(course) %>
+        <h3><%= link_to course.title.titleize, learner_path(course) %></h3>
+        <p>
+          <strong>Price: </strong>
+          <%= course.is_paid ? $7 : 'Free' %>
+        </p>
+        <p>
+          <strong>Instructors: </strong>
+          <%= image_tag(course.users.find_by_type('Teacher').profile_pic.url, size: '30x30') %>
+        </p>
+      </div>
+    </li>
+  </ul>
+<% end %>

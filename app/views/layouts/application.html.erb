@@ -22,14 +22,16 @@
 
     <%= nav_bar :responsive => true do %>
       <%= menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <%= menu_item "Subjects", subjects_path %>
-        <%= menu_item "Courses", courses_path %>
-        <% if current_user %>
-          <% if current_user.subscription_type == 'free' %>
-            <%= menu_item "Upgrade to Premium Account", new_charge_path %>
-          <% else %>
-            <%= menu_item raw("<span class='label label-default'>Premium Member</span>"), "javascript:void(0);" %>
+        <% if current_user && current_user.type == 'Teacher' %>
+          <%= menu_item "Home", root_path %>
+          <%= menu_item "Subjects", subjects_path %>
+          <%= menu_item "Courses", courses_path %>
+          <% if current_user %>
+            <% if current_user.subscription_type == 'free' %>
+              <%= menu_item "Upgrade to Premium Account", new_charge_path %>
+            <% else %>
+              <%= menu_item raw("<span class='label label-default'>Premium Member</span>"), "javascript:void(0);" %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
