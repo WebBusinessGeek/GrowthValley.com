@@ -11,6 +11,10 @@ GrowthValley::Application.routes.draw do
     member do
       get 'publish_unpublish'
     end
+
+    collection do
+      get 'rate_course', as: :rate
+    end
   end
   resources :course_steps, only: [:index, :show, :update]
   resources :sections do

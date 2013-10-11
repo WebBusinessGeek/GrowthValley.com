@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009050902) do
+ActiveRecord::Schema.define(:version => 20131011094544) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(:version => 20131009050902) do
     t.boolean  "is_published",     :default => false
     t.string   "status"
     t.boolean  "is_paid",          :default => false
+    t.integer  "avg_rating"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
+    t.string   "ip_address"
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
@@ -67,11 +69,6 @@ ActiveRecord::Schema.define(:version => 20131009050902) do
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "course_id"
-  end
-
-  create_table "dashboards", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "exam_questions", :force => true do |t|
@@ -98,6 +95,14 @@ ActiveRecord::Schema.define(:version => 20131009050902) do
     t.integer  "section_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.string   "ip_address"
+    t.integer  "rate"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sections", :force => true do |t|

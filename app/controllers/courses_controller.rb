@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:rate_course]
+
   # GET /courses
   # GET /courses.json
   def index
@@ -99,6 +101,27 @@ class CoursesController < ApplicationController
       end
     else
       render json: { status: 'error', errorCode: '404', data: 'Course not found!' }
+    end
+  end
+
+  def rate_course
+    if params[:course_id].present?
+      course = Course.find_by_id(params[:course_id])
+
+      if params[:rate]
+        rating = course.ratings.where(ip_address: request.remote_ip).first_or_initialize
+        rating.rate = params[:rate]
+
+        if rating.save
+          render json: { status: 'success', data: 'Rating submitted successfully!' }
+        else
+          render json: { status: 'error', data: 'Sorry! Rating could not be saved, please try again later...' }
+        end
+      else
+        render json: { status: 'error', data: 'Error! We did not receive your rating...' }
+      end
+    else
+      render json: { status: 'error', data: 'Course not found!' }
     end
   end
 end
