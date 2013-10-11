@@ -54,7 +54,7 @@
             <% end %>
           </div>
           <div class='span4'>
-            <%= course.users.count %>
+            <%= course.users.where(type: 'Learner').count %>
           </div>
         </div>
       </div>
