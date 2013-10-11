@@ -47,7 +47,7 @@
             <%= course.is_paid ? $7 : 'Free' %>
           </div>
           <div class='span5'>
-            <% if Rating.find_by_ip_address(request.remote_ip).present? %>
+            <% if course.ratings.present? && course.ratings.find_by_ip_address(request.remote_ip).present? %>
               <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
             <% else %>
               <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="false" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
