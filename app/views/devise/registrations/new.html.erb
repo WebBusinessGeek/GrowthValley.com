@@ -1,41 +1,29 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
-    <%= f.input :type, label: 'Why are you using GrowthValley?', collection: User::USER_ROLES, required: true %>
-    <%= f.association :subjects, label: 'Please choose the subject you are most equipped to teach. (Choose upto 3)', include_blank: false, required: true %>
-    <%= f.input :description, label: 'Please share a bit about your self with the Growth Valley community' %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
+<span class="sprite fblogin"></span>
+<h2>OR</h2>
+<p class="m15">Sign Up with your email:</p>
+<p>
+  <span class='error' style='color: red; display: none;'>Signup failed!</span>
+</p>
+</br>
+<%= simple_form_for(resource, url: user_registration_path, method: :post, format: :json, remote: true) do |f| %>
+  <p>
+    <%= f.label :type, 'Learner' %>
+    <%= f.radio_button :type, 'Learner', class: 'sprite name' %>
+    <%= f.label :type, 'Teacher' %>
+    <%= f.radio_button :type, 'Teacher', class: 'sprite name' %>
+  </p>
+  <p>
+    <%= f.text_field :full_name, placeholder: 'Full Name', class: 'sprite name', required: true %>
+  </p>
+  <p>
+    <%= f.email_field :email, placeholder: 'E-mail', class: 'sprite email', required: true %>
+  </p>
+  <p>
+    <%= f.password_field :password, placeholder: 'Password', class: 'sprite pass', required: true %>
+  </p>
+  <span class="login-info">
+    <span class="fleft m1">Already have an account?&nbsp;&nbsp; <%= link_to "LOGIN", "javascript:login();" %></span>
+    <%= f.submit 'SIGN UP', class: 'sprite fright sml-btn' %>
+  </span>
 <% end %>
-
-<%= render "devise/shared/links" %>
-
-<%= javascript_tag do %>
-  $(function() {
-    if($('#user_type').val() == '') {
-      $('div.user_subjects').hide();
-    }
-    $('#user_type').change(function() {
-      if($('#user_type').val() == 'Teacher') {
-        $('div.user_subjects').find('label').html("<abbr title=\"required\">*</abbr> Please choose the subject you are most equipped to teach. (Choose upto 3)");
-        $('div.user_subjects').show();
-      }
-      else if($('#user_type').val() == 'Learner') {
-        $('div.user_subjects').find('label').html("<abbr title=\"required\">*</abbr> Please choose a subject you would like to learn more about (Choose upto 3)");
-        $('div.user_subjects').show();
-      }
-      else {
-        $('div.user_subjects').hide();
-      }
-    });
-  });
-<% end %>
+<p class="sml-font">By signing up, you agree to our <u>Terms of Use and Privacy Policy</u></p>

@@ -10,6 +10,17 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
- *= require scaffolds
+ *= require gv
  *= require rateit
  */
+
+@font-face {
+    font-family: 'arialnarrow';
+    src: url('/assets/arialn-webfont.eot');
+    src: url('/assets/arialn-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/arialn-webfont.woff') format('woff'),
+         url('/assets/arialn-webfont.ttf') format('truetype'),
+         url('/assets/arialn-webfont.svg#arialnarrow') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

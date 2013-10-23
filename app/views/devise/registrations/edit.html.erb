@@ -1,38 +1,51 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
+</br>
+<ul class="nav nav-tabs">
+  <li class='active'><a href="#personal" data-toggle="tab">Personal</a></li>
+  <li><a href="#courses" data-toggle="tab">Courses</a></li>
+  <li><a href="#subscriptions" data-toggle="tab">Subscriptions/Payment</a></li>
+</ul>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :full_name, :autofocus => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :description %>
-    <%= f.input :age %>
-    <%= f.input :sex, label: 'Gender', as: :radio, collection: [['Male', true], ['Female', false]] %>
-    <% if !resource.new_record? && resource.profile_pic.present? %>
-      <%= f.label :profile_pic, raw('<strong>Existing Profile Pic</strong>') %>
-      <%= image_tag(resource.profile_pic_url, class: 'img-rounded') %>
-      <%= f.input :profile_pic, label: raw('<strong>Change Profile Pic</strong>'), required: false %>
-    <% else %>
-      <%= f.input :profile_pic, required: true %>
+<div class="tab-content">
+  <div id='personal' class='tab-pane fade active in'>
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f| %>
+      <%= f.error_notification %>
+    
+      <div class="form-inputs">
+        <%= f.input :full_name, :autofocus => true %>
+        <%= f.input :email, :required => true %>
+        <%= f.input :description %>
+        <%= f.input :age %>
+        <%= f.input :sex, label: 'Gender', as: :radio, collection: [['Male', true], ['Female', false]] %>
+        <% if !resource.new_record? && resource.profile_pic.present? %>
+          <%= f.label :profile_pic, raw('<strong>Existing Profile Pic</strong>') %>
+          <%= image_tag(resource.profile_pic_url, class: 'img-rounded') %>
+          <%= f.input :profile_pic, label: raw('<strong>Change Profile Pic</strong>'), required: false %>
+        <% else %>
+          <%= f.input :profile_pic, required: true %>
+        <% end %>
+    
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+    
+        <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+        <%= f.input :password_confirmation, :required => false %>
+        <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+      </div>
+    
+      <div class="form-actions">
+        <%= f.button :submit, "Update" %>
+      </div>
     <% end %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+    
+    <h3>Cancel my account</h3>
+    
+    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+    
+    <%= link_to "Back", :back %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
+  
+  <div id='courses' class='tab-pane fade'>Courses</div>
+  <div id='subscriptions' class='tab-pane fade'>Subscriptions</div>
+</div>
