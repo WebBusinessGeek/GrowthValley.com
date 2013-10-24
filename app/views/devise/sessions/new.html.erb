@@ -10,8 +10,8 @@
     <%= f.password_field :password, placeholder: 'password', class: 'sprite pass', required: true %>
   </p>
   <p>
-    <%= f.label :remember_me %>
     <%= f.check_box :remember_me %>
+    <%= f.label :remember_me, style: 'display: inline;' %>
   </p>
   <span class="login-info">
     <span class="fleft m1">Not a member yet?&nbsp;&nbsp; <%= link_to "SIGN UP", "javascript:signup();" %></span>

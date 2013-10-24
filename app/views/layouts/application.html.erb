@@ -68,13 +68,7 @@
         <% end %>
     </div>
 </div>
-<div class="top-wrapper-out">
-  <div class="top-wrapper-in">
-    <%= render :partial=>"layouts/slider" %>
-    <%= render :partial=>"layouts/search_bar" %>
-  </div>
-</div>
-<div class="bottom-wrapper-out">
+<div class="bottom-wrapper-out" style="margin: -280px auto 0;">
   <div class="bottom-wrapper-in">
     <div style='padding: 5px 20px;'>
       <%= yield %>
@@ -83,7 +77,7 @@
       <div class="clear"></div>
       <div class="col-l">
         <ul class="footerlink">
-          <li><a href="javascript:void(0);">Home</a></li>
+          <li><a href="<%= root_path %>">Home</a></li>
           <li><a href="javascript:void(0);">Information</a></li>
           <li><a href="javascript:void(0);">Contact</a></li>
           <li><a href="javascript:void(0);">for organizations</a></li>

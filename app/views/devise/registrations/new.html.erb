@@ -4,14 +4,14 @@
 <p>
   <span class='error' style='color: red; display: none;'>Signup failed!</span>
 </p>
-</br>
 <%= simple_form_for(resource, url: user_registration_path, method: :post, format: :json, remote: true) do |f| %>
   <p>
-    <%= f.label :type, 'Learner' %>
-    <%= f.radio_button :type, 'Learner', class: 'sprite name' %>
-    <%= f.label :type, 'Teacher' %>
-    <%= f.radio_button :type, 'Teacher', class: 'sprite name' %>
+    <%= f.radio_button :type, 'Learner', class: 'sprite name', style: "float: left;" %>
+    <%= f.label :type, 'Learner', style: "float: left; margin: -2px 20px 0px 5px;" %>
+    <%= f.radio_button :type, 'Teacher', class: 'sprite name', style: "float: left;" %>
+    <%= f.label :type, 'Teacher', style: "float: left; margin: -2px 20px 0px 5px;" %>
   </p>
+  <p style="margin-bottom: 10px;">&nbsp;</p>
   <p>
     <%= f.text_field :full_name, placeholder: 'Full Name', class: 'sprite name', required: true %>
   </p>

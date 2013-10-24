@@ -182,7 +182,7 @@
     margin: 0 0 18px;
     width: 279px;
 }
-.login-section input[type="text"], .login-section input[type="password"] {
+.login-section input[type="text"], .login-section input[type="password"], .login-section input[type="email"] {
 	border: medium none;
 	display: inline-block;
 	font-size: 14px;
@@ -204,13 +204,13 @@
 .login-info{ overflow:hidden; display:block;}
 
 .sml-btn{
-    background-position: -301px -339px;
-    border: medium none;
-    cursor: pointer;
+  background-position: -301px -339px;
+  border: medium none;
+  cursor: pointer !important;
 	display:inline-block;
 	text-align:center;
-    height:32px;
-    width:89px;
+  height:32px;
+  width:89px !important;
 	font-size:14px;
 	color:#fff;
 	text-shadow:1px 1px 1px #000
@@ -385,8 +385,8 @@
 	margin-right: 3px;
 	width: 14px;
 }
-.btn{ display:block;  text-align:center;}
-.btn input[type="button"], .btn input[type="submit"], .btn input[type="image"] {
+.btn1{ display:block;  text-align:center;}
+.btn1 input[type="button"], .btn1 input[type="submit"], .btn1 input[type="image"] {
     background-position: -233px -181px;
     border: medium none;
     cursor: pointer;
