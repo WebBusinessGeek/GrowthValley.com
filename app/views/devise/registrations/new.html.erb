@@ -1,12 +1,12 @@
 <span class="sprite fblogin"></span>
 <h2>OR</h2>
 <p class="m15">Sign Up with your email:</p>
-<p>
-  <span class='error' style='color: red; display: none;'>Signup failed!</span>
-</p>
+
+<div class='error' style='color: red; margin: 2ex; display: none;'></div>
+
 <%= simple_form_for(resource, url: user_registration_path, method: :post, format: :json, remote: true) do |f| %>
   <p>
-    <%= f.radio_button :type, 'Learner', class: 'sprite name', style: "float: left;" %>
+    <%= f.radio_button :type, 'Learner', checked: true, class: 'sprite name', style: "float: left;" %>
     <%= f.label :type, 'Learner', style: "float: left; margin: -2px 20px 0px 5px;" %>
     <%= f.radio_button :type, 'Teacher', class: 'sprite name', style: "float: left;" %>
     <%= f.label :type, 'Teacher', style: "float: left; margin: -2px 20px 0px 5px;" %>

@@ -43,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
           respond_with resource
         }
         format.js {
-          render :json => {:success => false}
+          render :json => { success: false, errors: resource.errors }
         }
       end
     end

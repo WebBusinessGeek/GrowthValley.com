@@ -25,7 +25,7 @@ class SessionsController < Devise::SessionsController
         redirect_to root_path, alert: 'Login failed!'
       }
       format.js {
-        render :json => {:success => false, :errors => ["Login failed."]}
+        render :json => { success: false, error: "Invalid username or password!" }
       }
     end
   end

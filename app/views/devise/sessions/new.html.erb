@@ -1,8 +1,6 @@
 <%= simple_form_for(resource, url: user_session_path, method: :post, format: :json, remote: true) do |f| %>
-  <p>
-    <span class='error' style='color: red; display: none;'>Login failed!</span>
-  </p>
-  </br>
+  <div class='error' style='color: red; margin: 2ex; display: none;'></div>
+  
   <p>
     <%= f.email_field :email, placeholder: 'E-mail', class: 'sprite email', required: true %>
   </p>
