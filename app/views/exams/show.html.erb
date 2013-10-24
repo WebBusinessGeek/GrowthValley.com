@@ -9,12 +9,12 @@
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @exam.course.title %></dd>
   <dt><strong>Manage Exam Questions:</strong></dt>
-  <dd><%= link_to 'Manage Exam Questions', course_exam_exam_questions_path(@course, @exam), class: 'btn btn-mini' %></dd>
+  <dd><%= link_to 'Manage Exam Questions', course_exam_exam_questions_path(@course, @exam) %></dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")), course_exams_path(@course), :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_exam_path(@course, @exam), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_exam_path(@course, @exam), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' %>
-  <%= link_to t('.back', :default => 'Back to courses'), courses_path, :class => 'btn'  %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), course_exams_path(@course) %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_exam_path(@course, @exam), style: 'margin-left: 5px;' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_exam_path(@course, @exam), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;' %>
+  <%= link_to t('.back', :default => 'Back to courses'), courses_path, style: 'margin-left: 5px;'  %>
 </div>

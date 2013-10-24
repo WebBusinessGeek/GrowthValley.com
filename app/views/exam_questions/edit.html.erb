@@ -14,6 +14,6 @@
     <% else %>
       <%= f.button :submit, 'Update Exam Question', :class => 'btn-primary' %>
     <% end %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), style: 'margin-left: 5px;' %>
   </div>
 <% end %>

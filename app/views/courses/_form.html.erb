@@ -11,7 +11,7 @@
   <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons if current_user.subscription_type.downcase == 'paid' %>
 
   <div class="form-actions">
-    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
+    <%= f.button :submit, 'Continue' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, style: 'margin-left: 5px;' %>
   </div>
 <% end %>

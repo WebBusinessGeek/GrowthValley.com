@@ -57,6 +57,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @courses = current_user.courses
     render :edit
   end
 
