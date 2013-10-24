@@ -49,24 +49,16 @@
 <div class="wrapper">
   <%= bootstrap_flash %>
   <div class="wrapper-inner" style="height:472px;">
-        <span class="sprite logo"></span>
-        <ul class="sprite menu">
-          <li class="current"><a href="<%= root_path %>">HOME</a></li>
-          <li><a href="javascript:void(0);">ABOUT US</a></li>
-          <li><a href="javascript:void(0);">PRODUCTS</a></li>
-          <li><a href="javascript:void(0);">RESOURCES</a></li>
-          <li><a href="javascript:void(0);">BLOG</a></li>
-          <li><a href="javascript:void(0);">CONTACT</a></li>
-        </ul>
-        <% if !current_user %>
-          <div id="signup-form" class="login-section">
-            <%= render file: "#{Rails.root}/app/views/devise/registrations/new" %>
-          </div>
-          <div id="login-form" class="login-section" style="display: none;">
-            <%= render file: "#{Rails.root}/app/views/devise/sessions/new" %>
-          </div>
-        <% end %>
-    </div>
+    <span class="sprite logo"></span>
+    <ul class="sprite menu">
+      <li class="current"><a href="<%= root_path %>">HOME</a></li>
+      <li><a href="javascript:void(0);">ABOUT US</a></li>
+      <li><a href="javascript:void(0);">PRODUCTS</a></li>
+      <li><a href="javascript:void(0);">RESOURCES</a></li>
+      <li><a href="javascript:void(0);">BLOG</a></li>
+      <li><a href="javascript:void(0);">CONTACT</a></li>
+    </ul>
+  </div>
 </div>
 <div class="bottom-wrapper-out" style="margin: -280px auto 0;">
   <div class="bottom-wrapper-in">
