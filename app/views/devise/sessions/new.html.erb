@@ -13,7 +13,7 @@
   </p>
   <span class="login-info">
     <span class="fleft m1">Not a member yet?&nbsp;&nbsp; <%= link_to "SIGN UP", "javascript:signup();" %></span>
-    <%= submit_tag 'login', value: 'LOGIN', class: 'sprite fright sml-btn' %>
+    <%= submit_tag 'login', value: 'LOGIN', disable_with: 'Loading...', class: 'sprite fright sml-btn' %>
   </span>
   <span class="fleft m1">
     <%= link_to "Forgot Password", new_user_password_path %>

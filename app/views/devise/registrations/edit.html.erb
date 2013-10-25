@@ -1,25 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "user" } %>
+
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
 </br>
-<ul class="nav nav-tabs">
-  <li class='active'><a href="#personal" data-toggle="tab">Personal</a></li>
-  <li><a href="#courses" data-toggle="tab">Courses</a></li>
-  <li><a href="#subscriptions" data-toggle="tab">Subscriptions/Payment</a></li>
-</ul>
 
 <div class="tab-content">
   <div id='personal' class='tab-pane fade active in'>
     <%= render 'personal' %>
-  </div>
-  <div id='courses' class='tab-pane fade'>
-    <%= render 'courses' %>
-  </div>
-  <div id='subscriptions' class='tab-pane fade'>
-    <%= render 'subscriptions' %>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-body">
   </div>
 </div>

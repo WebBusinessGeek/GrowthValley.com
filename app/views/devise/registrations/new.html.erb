@@ -23,7 +23,7 @@
   </p>
   <span class="login-info">
     <span class="fleft m1">Already have an account?&nbsp;&nbsp; <%= link_to "LOGIN", "javascript:login();" %></span>
-    <%= f.submit 'SIGN UP', class: 'sprite fright sml-btn' %>
+    <%= f.submit 'SIGN UP', disable_with: 'Loading...', class: 'sprite fright sml-btn' %>
   </span>
 <% end %>
 <p class="sml-font">By signing up, you agree to our <u>Terms of Use and Privacy Policy</u></p>

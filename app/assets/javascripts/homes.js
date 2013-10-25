@@ -10,7 +10,6 @@ function signup() {
 
 $(function() {
   $('#login-form form').bind("ajax:success", function(data, status, xhr) {
-    alert('Logged in successfully!');
     location.reload(true);
   });
 
@@ -22,7 +21,6 @@ $(function() {
   });
 
   $('#signup-form form').bind("ajax:success", function(data, status, xhr) {
-    alert('Signed up successfully!');
     location.reload(true);
   });
 

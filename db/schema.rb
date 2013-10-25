@@ -55,10 +55,8 @@ ActiveRecord::Schema.define(:version => 20131011094544) do
     t.boolean  "is_published",     :default => false
     t.string   "status"
     t.boolean  "is_paid",          :default => false
-    t.integer  "avg_rating"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
-    t.string   "ip_address"
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|

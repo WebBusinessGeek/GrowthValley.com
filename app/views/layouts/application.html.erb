@@ -47,7 +47,6 @@
   </div>
 </div>
 <div class="wrapper">
-  <%= bootstrap_flash %>
   <div class="wrapper-inner" style="height:472px;">
     <span class="sprite logo"></span>
     <ul class="sprite menu">
@@ -60,8 +59,10 @@
     </ul>
   </div>
 </div>
+
 <div class="bottom-wrapper-out" style="margin: -280px auto 0;">
   <div class="bottom-wrapper-in">
+    <%= bootstrap_flash %>
     <div style='padding: 5px 20px;'>
       <%= yield %>
     </div>

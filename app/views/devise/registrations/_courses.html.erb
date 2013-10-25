@@ -3,7 +3,11 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<%= link_to "New Course", new_course_path, :class => 'btn pull-right' %>
+<% if current_user.subjects.present? %>
+  <%= link_to "New Course", new_course_path, :class => 'btn pull-right' %>
+<% else %>
+  <%= link_to "Add Subjects", "javascript:void(0);", :class => 'pull-right' %>
+<% end %>
 
 <table class="table table-striped">
   <thead>

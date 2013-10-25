@@ -3,6 +3,12 @@ class HomesController < ApplicationController
   layout 'home'
 
   def index
-    @courses = Course.all_published
+    if !current_user
+      @courses = Course.all_published
+    elsif current_user.type == 'Teacher'
+      @courses = Course.all_published
+    elsif current_user.type == 'Learner'
+      @courses = Course.all_published_courses_for_subjects(current_user.subjects)
+    end
   end
 end
