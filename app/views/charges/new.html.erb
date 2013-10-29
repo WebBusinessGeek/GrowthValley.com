@@ -1,12 +1,15 @@
 <%= form_tag charges_path do %>
   <article>
     <label class="amount">
-      <span>Amount: $7.00</span>
+      <span>
+        <b>Amount: </b>
+        <%= number_to_currency(@course.price) if @course.present? %>
+      </span>
     </label>
   </article>
-
+  <%= hidden_field_tag :course_id, @course.id if @course.present? %>
+  </br>
   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="700"></script>
+          data-amount="<%= @course.price.to_i * 100 if @course.present? %>"></script>
 <% end %>

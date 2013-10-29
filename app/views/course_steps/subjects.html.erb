@@ -11,7 +11,11 @@
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <%= link_to t('.back', :default => t("helpers.links.back")), edit_course_path(@course), :class => 'btn' %>
+    <% if @course.is_paid %>
+      <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn' %>
+    <% else %>
+      <%= link_to t('.back', :default => t("helpers.links.back")), edit_course_path(@course), :class => 'btn' %>
+    <% end %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
   </div>
 <% end %>

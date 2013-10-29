@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   skip_before_filter :authenticate_user!
+  before_filter :after_sign_in
   layout 'home'
 
   def index

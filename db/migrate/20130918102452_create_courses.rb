@@ -9,6 +9,7 @@ class CreateCourses < ActiveRecord::Migration
       t.boolean :is_published, default: false
       t.string :status
       t.boolean :is_paid, default: false
+      t.integer :price, default: 0
 
       t.timestamps
     end

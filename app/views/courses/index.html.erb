@@ -26,7 +26,7 @@
       <tbody>
         <% @courses.each do |course| %>
           <tr>
-            <td><%= link_to course.title, course_path(course) %></td>
+            <td><%= link_to course.title.titleize, course_path(course) %></td>
             <td><%= course.description %></td>
             <td>
               <% if course.is_published %>
@@ -66,7 +66,6 @@
               });
             }
           <% end %>
-
         <% end %>
       </tbody>
     </table>
@@ -76,5 +75,32 @@
     <% end %>
   <% end %>
 <% else %>
-  You haven't subscribed for any courses yet...
+  <% unless current_user.subjects.present? %>
+    For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
+  <% end %>
+  </br></br>
+  <% if @courses.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:is_live?) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.title.titleize %></td>
+            <td><%= course.description %></td>
+            <td><%= course.isCourseLive? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <% if current_user.subjects.present? %>
+      You haven't subscribed for any courses yet...
+    <% end %>
+  <% end %>
 <% end %>

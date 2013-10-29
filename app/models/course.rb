@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
-  :sections_count, :status, :is_paid, :subject_ids, :sections_attributes, :ratings_attributes
+  :sections_count, :status, :is_paid, :price, :subject_ids, :sections_attributes, :ratings_attributes
 
   has_and_belongs_to_many :users
   accepts_nested_attributes_for :users, :allow_destroy => true
@@ -27,6 +27,7 @@ class Course < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_range, if: :active_or_on_sections_count_step?
+  validate :price, presence: true, numericality: true, if: :active_or_on_price_step?
 
   scope :free_user_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'free', false, true) }
   scope :paid_user_free_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', false, true) }
@@ -61,6 +62,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def has_exam?
+    (self.exam.present? && self.exam.exam_questions.present?) ? true : false
+  end
+
   def isCourseLive?
     if self.is_published == true && eachSectionHasTest?
       return true
@@ -77,6 +82,10 @@ class Course < ActiveRecord::Base
 
   def active?
     status == :active
+  end
+
+  def active_or_on_price_step?
+    status == :price || active?
   end
 
   def active_or_on_subjects_step?

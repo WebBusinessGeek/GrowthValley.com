@@ -1,6 +1,6 @@
 class CourseStepsController < ApplicationController
   include Wicked::Wizard
-  steps :subjects, :description, :type, :sections_count, :sections
+  prepend_before_filter :set_steps
 
   def show
     @course = current_user.courses.find_by_id(session[:course_id])
@@ -28,5 +28,16 @@ class CourseStepsController < ApplicationController
       @course.status = step
     end
     render_wizard @course
+  end
+
+  private
+  def set_steps
+    @course = current_user.courses.find_by_id(session[:course_id])
+
+    if @course.is_paid
+      self.steps = [:price, :subjects, :description, :type, :sections_count, :sections]
+    else
+      self.steps = [:subjects, :description, :type, :sections_count, :sections]
+    end
   end
 end

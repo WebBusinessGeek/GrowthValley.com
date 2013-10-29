@@ -1,0 +1,17 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "course" } %>
+
+<%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <% if @course.is_paid %>
+    <%= f.input :price, required: true %>
+  <% else %>
+    <%= f.input :price, required: false %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
+    <%= link_to t('.back', :default => t("helpers.links.back")), edit_course_path(@course), :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
+  </div>
+<% end %>

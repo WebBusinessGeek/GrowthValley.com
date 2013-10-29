@@ -8,7 +8,9 @@
   <% else %>
     <%= f.input :course_cover_pic, required: true %>
   <% end %>
-  <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons if current_user.subscription_type.downcase == 'paid' %>
+  <% if current_user.subscription_type.downcase == 'paid' %>
+    <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons %>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>

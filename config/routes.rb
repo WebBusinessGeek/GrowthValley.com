@@ -22,12 +22,13 @@ GrowthValley::Application.routes.draw do
   resources :sections do
     resources :quizzes
   end
-  resources :charges
+  resources :charges, path: 'subscriptions', only: [:new, :create]
   resources :homes, only: :index
 
   resources :learners, only: [:index, :show] do
     member do
       get 'subscribe_course', as: :subscribe_course
+      get 'unsubscribe_course', as: :unsubscribe_course
     end
   end
 
