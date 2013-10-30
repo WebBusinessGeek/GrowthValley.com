@@ -1,6 +1,14 @@
 <ul class="nav nav-tabs">
-  <li class='<%= (current == "user") ? "active" : "" %>'><a href="/users/edit" >Personal</a></li>
-  <li class='<%= (current == "subject") ? "active" : "" %>'><a href="/user/subjects" >My Subjects</a></li>
-  <li class='<%= (current == "course") ? "active" : "" %>'><a href="/courses" >My Courses</a></li>
-  <li class='<%= (current == "subscription") ? "active" : "" %>'><a href="/subscriptions" >Subscriptions/Payment</a></li>
+  <li class='<%= (current == "user") ? "active" : "" %>'>
+    <%= link_to "Personal", edit_user_registration_path %>
+  </li>
+  <li class='<%= (current == "subject") ? "active" : "" %>'>
+    <%= link_to "My Subjects", user_subjects_path %>
+  </li>
+  <li class='<%= (current == "course") ? "active" : "" %>'>
+    <%= link_to "My Courses", courses_path %>
+  </li>
+  <li class='<%= (current == "subscription") ? "active" : "" %>'>
+    <%= link_to "Subscriptions/Payment", charges_path %>
+  </li>
 </ul>

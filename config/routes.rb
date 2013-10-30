@@ -22,7 +22,7 @@ GrowthValley::Application.routes.draw do
   resources :sections do
     resources :quizzes
   end
-  resources :charges, path: 'subscriptions', only: [:new, :create]
+  resources :charges, path: 'subscriptions', only: [:index, :new, :create]
   resources :homes, only: :index
 
   resources :learners, only: [:index, :show] do

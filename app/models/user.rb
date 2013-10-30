@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   before_destroy { courses.clear }
   accepts_nested_attributes_for :courses, :allow_destroy => true
 
+  has_many :charges, dependent: :destroy
+  accepts_nested_attributes_for :charges, :allow_destroy => true
+
   validates_presence_of :full_name
   validates_presence_of :type, on: :create
   # validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?", on: :create

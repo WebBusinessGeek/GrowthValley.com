@@ -3,13 +3,24 @@
     <label class="amount">
       <span>
         <b>Amount: </b>
-        <%= number_to_currency(@course.price) if @course.present? %>
+        <% if @course.present? %>
+          <%= number_to_currency(@course.price) %>
+        <% else %>
+          <%= number_to_currency(7) %>
+        <% end %>
       </span>
     </label>
   </article>
+
   <%= hidden_field_tag :course_id, @course.id if @course.present? %>
+  <%= hidden_field_tag :subscription_type, params[:subscription_type] if params[:subscription_type].present? %>
   </br>
   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-amount="<%= @course.price.to_i * 100 if @course.present? %>"></script>
+          <% if @course.present? %>
+            data-amount="<%= @course.price.to_i * 100 %>"
+          <% else %>
+            data-amount="700"
+          <% end %>>
+  </script>
 <% end %>

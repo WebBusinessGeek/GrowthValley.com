@@ -6,7 +6,6 @@
           <%= image_tag(@course.course_cover_pic.url(:cover)) %>
         </span>
         <span class="cource-disc">
-          <p class="title"><%= @course.title.titleize %></p>
           <ol class="cource-dtl">
             <li>Price<br />
               <span><%= @course.is_paid ? number_to_currency(@course.price, precision: 0) : 'Free' %></span>
@@ -23,17 +22,27 @@
             </li>
           </ol>
         </span>
-        <span class='cource-disc course-subscribe'>
-          <% if current_user.courses.include?(@course) %>
-            <%= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
+      </div>
+    </li>
+    <li>
+      <div class="course-title"><%= @course.title.titleize %></div>
+      <div class="course-description"><%= raw(@course.description) %></div>
+      <div class="course-instructor">
+        <% if @course.present? && @course.users.where(type: 'Teacher').present? %>
+          <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
+        <% end %>
+      </div>
+      </br>
+      <div class='course-subscribe'>
+        <% if current_user.courses.include?(@course) %>
+          <%= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
+        <% else %>
+          <% if @course.is_paid %>
+            <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
           <% else %>
-            <% if @course.is_paid %>
-              <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id), class: 'btn btn-primary' %>
-            <% else %>
-              <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
-            <% end %>
+            <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
           <% end %>
-        </span>
+        <% end %>
       </div>
     </li>
   </ul>

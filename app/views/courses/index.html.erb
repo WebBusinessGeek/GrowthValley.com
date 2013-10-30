@@ -42,30 +42,6 @@
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(course), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;' %>
             </td>
           </tr>
-
-          <%= javascript_tag do %>
-            function toggle_publish(course_id) {
-              $.ajax({
-                url: "/courses/" + course_id + "/publish_unpublish",
-                cache: false,
-                success: function(resp) {
-                  if(resp.status == 'success') {
-                    $('#'+course_id).val(resp.data);
-                    $('#'+course_id).attr('checked', resp.data);
-                    $('#'+course_id).parent().next().text(resp.data);
-                  }
-                  else if(resp.errorCode == '400') {
-                    $('#'+course_id).val("false");
-                    $('#'+course_id).removeAttr('checked');
-                    alert(resp.data);
-                  }
-                  else {
-                    alert(resp.data);
-                  }
-                }
-              });
-            }
-          <% end %>
         <% end %>
       </tbody>
     </table>
@@ -103,4 +79,28 @@
       You haven't subscribed for any courses yet...
     <% end %>
   <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  function toggle_publish(course_id) {
+    $.ajax({
+      url: "/courses/" + course_id + "/publish_unpublish",
+      cache: false,
+      success: function(resp) {
+        if(resp.status == 'success') {
+          $('#'+course_id).val(resp.data);
+          $('#'+course_id).attr('checked', resp.data);
+          $('#'+course_id).parent().next().text(resp.data);
+        }
+        else if(resp.errorCode == '400') {
+          $('#'+course_id).val("false");
+          $('#'+course_id).removeAttr('checked');
+          alert(resp.data);
+        }
+        else {
+          alert(resp.data);
+        }
+      }
+    });
+  }
 <% end %>

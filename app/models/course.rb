@@ -20,6 +20,9 @@ class Course < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :ratings, :allow_destroy => true
 
+  has_many :charges, dependent: :destroy
+  accepts_nested_attributes_for :charges, :allow_destroy => true
+
   mount_uploader :course_cover_pic, CourseCoverPicUploader
 
   CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'] ]
