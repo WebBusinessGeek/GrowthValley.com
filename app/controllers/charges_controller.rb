@@ -84,6 +84,7 @@ class ChargesController < ApplicationController
               render :edit
             else
               current_user.courses << course unless current_user.courses.include?(course)
+              course.sections.first.update_attributes(unlocked: true)
               redirect_to learner_path(course), notice: 'Course subscribed successfully!'
             end
           end

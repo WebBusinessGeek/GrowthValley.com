@@ -88,7 +88,7 @@ class CoursesController < ApplicationController
         if course.togglePublish == true
           render json: { status: 'success', data: course.is_published }
         else
-          render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test...' }
+          render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test and course must have an exam...' }
         end
       else
         if current_user.subscription_type == 'free'

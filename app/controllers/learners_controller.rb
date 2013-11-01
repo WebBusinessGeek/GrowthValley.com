@@ -1,6 +1,4 @@
 class LearnersController < ApplicationController
-  layout 'home'
-
   def index
     @courses = Course.all_published_courses_for_subjects(current_user.subjects)
   end
@@ -12,6 +10,7 @@ class LearnersController < ApplicationController
   def subscribe_course
     @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_id(params[:id])
     current_user.courses << @course unless current_user.courses.include?(@course)
+    @course.sections.first.update_attributes(unlocked: true)
 
     redirect_to learner_path(@course), notice: 'Course subscribed successfully!'
   end
@@ -19,6 +18,7 @@ class LearnersController < ApplicationController
   def unsubscribe_course
     @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_id(params[:id])
     current_user.courses.delete(@course) if current_user.courses.include?(@course)
+    @course.sections.first.update_attributes(unlocked: false)
 
     redirect_to learner_path(@course), notice: 'Course unsubscribed successfully!'
   end

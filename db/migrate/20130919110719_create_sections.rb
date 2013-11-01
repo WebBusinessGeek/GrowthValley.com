@@ -4,6 +4,7 @@ class CreateSections < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :attachment
+      t.boolean :unlocked, default: false
       t.references :course
 
       t.timestamps

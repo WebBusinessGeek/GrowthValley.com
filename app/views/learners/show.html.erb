@@ -25,7 +25,7 @@
       </div>
     </li>
     <li>
-      <div class="course-title"><%= @course.title.titleize %></div>
+      <div class="course-title" style="font-weight: bold; font-size: 12pt;"><%= @course.title.titleize %></div>
       <div class="course-description"><%= raw(@course.description) %></div>
       <div class="course-instructor">
         <% if @course.present? && @course.users.where(type: 'Teacher').present? %>
@@ -42,6 +42,22 @@
           <% else %>
             <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
           <% end %>
+        <% end %>
+      </div>
+      </br></br>
+      <h2>Sections:</h2>
+      <div class='course-sections'>
+        <% @course.sections.each do |section| %>
+          <p>
+            <% if section.unlocked %>
+              <b>
+                <%= link_to section.title.titleize, section.attachment.file.path %>
+                <%= link_to 'Take test', 'javascript:void(0);', class: 'pull-right', target: '_blank' %>
+              </b>
+            <% else %>
+              <%= section.title.titleize %>
+            <% end %>
+          </p>
         <% end %>
       </div>
     </li>

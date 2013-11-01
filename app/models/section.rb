@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  attr_accessible :title, :description, :course_id, :attachment, :attachment_cache, :remove_attachment, :quizzes_attributes
+  attr_accessible :title, :description, :unlocked, :course_id, :attachment, :attachment_cache, :remove_attachment, :quizzes_attributes
 
   belongs_to :course
   validates_associated :course
@@ -9,6 +9,8 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :quizzes, :allow_destroy => true, limit: 10
 
   mount_uploader :attachment, AttachmentUploader
+
+  default_scope { order("id asc") }
 
   def complete?
     if self.quizzes.present?

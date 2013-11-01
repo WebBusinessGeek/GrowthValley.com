@@ -40,7 +40,7 @@ class Course < ActiveRecord::Base
 
   def togglePublish
     if self.is_published == false
-      if eachSectionHasTest?
+      if eachSectionHasTest? && has_exam?
         self.update_attributes(is_published: true)
       else
         return false

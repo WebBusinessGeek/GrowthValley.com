@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.boolean  "is_published",     :default => false
     t.string   "status"
     t.boolean  "is_paid",          :default => false
+    t.integer  "price",            :default => 0
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
-    t.integer  "price",            :default => 0
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
@@ -117,9 +117,10 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.string   "title"
     t.text     "description"
     t.string   "attachment"
+    t.boolean  "unlocked",    :default => false
     t.integer  "course_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "subjects", :force => true do |t|
