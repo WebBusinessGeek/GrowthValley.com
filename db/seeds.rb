@@ -55,6 +55,12 @@ Subject.create!(name: 'Media')
 Subject.create!(name: 'Web Design')
 Subject.create!(name: 'Writing/Editing')
 
-## Create Users:
-User.create!(full_name: 'First Teacher', email: 'teacher@idify.in', password: '12345678', type: 'Teacher')
-User.create!(full_name: 'First Learner', email: 'learner@idify.in', password: '12345678', type: 'Learner')
+## Create Teacher:
+teacher = Teacher.new(full_name: 'First Teacher', email: 'teacher@idify.in', password: '12345678')
+teacher.confirmed_at = '2013-11-01 10:55:39 +0000'
+teacher.save!
+
+## Create Learner:
+learner = Learner.new(full_name: 'First Learner', email: 'learner@idify.in', password: '12345678')
+learner.confirmed_at = '2013-11-01 10:55:39 +0000'
+learner.save!
