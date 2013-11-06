@@ -48,10 +48,10 @@
 </div>
 <div class="wrapper">
   <div class="wrapper-inner" style="height:472px;">
-    <% if current_user.type == 'Teacher' %>
-      <a href="<%= root_path %>">
-    <% else %>
+    <% if current_user && current_user.type == 'Learner' %>
       <a href="<%= learners_path %>">
+    <% else %>
+      <a href="<%= root_path %>">
     <% end %>
         <span class="sprite logo"></span>
       </a>
@@ -68,13 +68,13 @@
       <div class="clear"></div>
       <div class="col-l">
         <ul class="footerlink">
-          <li><a href="<%= root_path %>">Home</a></li>
-          <li><a href="javascript:void(0);">Information</a></li>
-          <li><a href="javascript:void(0);">Contact</a></li>
-          <li><a href="javascript:void(0);">for organizations</a></li>
-          <li><a href="javascript:void(0);">for people</a></li>
-          <li><a href="javascript:void(0);">FAQ</a></li>
-          <li><a href="javascript:void(0);">how it works</a></li>
+          <li><a href="<%= (current_user && current_user.type == 'Learner') ? learners_path : root_path %>">Home</a></li>
+          <li><a href="/coming_soon">Information</a></li>
+          <li><a href="/coming_soon">Contact</a></li>
+          <li><a href="/coming_soon">for organizations</a></li>
+          <li><a href="/coming_soon">for people</a></li>
+          <li><a href="/coming_soon">FAQ</a></li>
+          <li><a href="/coming_soon">how it works</a></li>
         </ul>
       </div>
       <div class="col-l">
