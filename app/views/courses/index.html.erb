@@ -54,6 +54,7 @@
   <% unless current_user.subjects.present? %>
     For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
   <% end %>
+  <%= link_to "View more courses", learners_path, class: 'pull-right btn btn-primary' if @courses.present? %>
   </br></br>
   <% if @courses.present? %>
     <table class="table table-striped">
@@ -67,7 +68,7 @@
       <tbody>
         <% @courses.each do |course| %>
           <tr>
-            <td><%= course.title.titleize %></td>
+            <td><%= link_to course.title.titleize, learner_path(course) %></td>
             <td><%= course.description %></td>
             <td><%= course.isCourseLive? %></td>
           </tr>
@@ -77,6 +78,7 @@
   <% else %>
     <% if current_user.subjects.present? %>
       You haven't subscribed for any courses yet...
+      <%= link_to "Click here to view courses", learners_path %>
     <% end %>
   <% end %>
 <% end %>

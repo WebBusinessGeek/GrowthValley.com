@@ -141,7 +141,11 @@ class RegistrationsController < Devise::RegistrationsController
   # The default url to be used after updating a resource. You need to overwrite
   # this method in your own RegistrationsController.
   def after_update_path_for(resource)
-    signed_in_root_path(resource)
+    if resource.profile_pic_url.present?
+      courses_path
+    else
+      edit_user_registration_path
+    end
   end
 
   # Authenticates the current scope and gets the current resource from the session.

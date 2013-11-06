@@ -48,15 +48,13 @@
 </div>
 <div class="wrapper">
   <div class="wrapper-inner" style="height:472px;">
-    <span class="sprite logo"></span>
-    <ul class="sprite menu">
-      <li class="current"><a href="<%= root_path %>">HOME</a></li>
-      <li><a href="javascript:void(0);">ABOUT US</a></li>
-      <li><a href="javascript:void(0);">PRODUCTS</a></li>
-      <li><a href="javascript:void(0);">RESOURCES</a></li>
-      <li><a href="javascript:void(0);">BLOG</a></li>
-      <li><a href="javascript:void(0);">CONTACT</a></li>
-    </ul>
+    <% if current_user.type == 'Teacher' %>
+      <a href="<%= root_path %>">
+    <% else %>
+      <a href="<%= learners_path %>">
+    <% end %>
+        <span class="sprite logo"></span>
+      </a>
   </div>
 </div>
 

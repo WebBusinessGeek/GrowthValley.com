@@ -3,7 +3,11 @@
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
+  <% counter = 1 %>
+
   <%= f.simple_fields_for :sections do |s| %>
+    <h3>Section <%= counter %></h3>
+    <% counter = counter + 1 %>
     <%= s.input :title, required: true %>
     <%= s.hidden_field 'course_id', value: @course.id %>
 

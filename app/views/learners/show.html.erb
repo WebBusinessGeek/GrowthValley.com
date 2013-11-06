@@ -44,24 +44,46 @@
           <% end %>
         <% end %>
       </div>
-      </br></br>
-      <h2>Sections:</h2>
-      <div class='course-sections'>
-        <% @course.sections.each do |section| %>
-          <p>
-            <% if section.unlocked %>
-              <b>
-                <%= link_to section.title.titleize, section.attachment.file.path %>
-                <%= link_to 'Take test', 'javascript:void(0);', class: 'pull-right', target: '_blank' %>
-              </b>
-            <% else %>
-              <%= section.title.titleize %>
-            <% end %>
-          </p>
-        <% end %>
-      </div>
     </li>
   </ul>
+
+  <h2>Course Sections:</h2>
+  </br>
+  <ul class="nav nav-tabs">
+    <% @course.sections.each do |section| %>
+      <li>
+        <a href="#section_<%= section.id %>" data-toggle="tab">
+          <%= section.title.titleize %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class='tab-content'>
+    <% @course.sections.each do |section| %>
+      <div class="tab-pane" id="section_<%= section.id %>">
+        <ul>
+          <li>
+            <%= raw(section.description) %>
+          </li>
+          <li class='pull-right' style='margin-left: 1em;'>
+            <% if section.unlocked %>
+              <b>
+                <%= link_to 'Take test', 'javascript:void(0);', class: 'pull-right', target: '_blank' %>
+              </b>
+            <% end %>
+          </li>
+          <li class='pull-right'>
+            <% if section.unlocked %>
+              <b>
+                <%= link_to "Download Section", section.attachment.url %>
+              </b>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_tag do %>

@@ -15,7 +15,11 @@ class SessionsController < Devise::SessionsController
         redirect_to root_path
       }
       format.js {
-        render :nothing => true
+        unless current_user.sign_in_count > 1 && current_user.profile_pic_url.present?
+          render js: "window.location.assign('#{edit_user_registration_url}')"
+        else
+          render js: "window.location.assign('#{courses_url}')"
+        end
       }
     end
   end

@@ -9,10 +9,6 @@ function signup() {
 }
 
 $(function() {
-  $('#login-form form').bind("ajax:success", function(data, status, xhr) {
-    location.reload(true);
-  });
-
   $('#login-form form').bind("ajax:error", function(data, status, xhr) {
     $('#login-form div.error').text('');
     var error = $.parseJSON(status.responseText).error;
