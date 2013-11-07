@@ -1,0 +1,37 @@
+<div>
+  <%= raw(@quiz_question.question) %>
+</div>
+</br>
+<%= radio_button_tag :"option_#{@quiz_question.id}", 1, false, { style: "float: left;" } %>
+<%= label_tag :"option_#{@quiz_question.id}_1", @quiz_question.option1, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
+
+<%= radio_button_tag :"option_#{@quiz_question.id}", 2, false, { style: "float: left;" } %>
+<%= label_tag :"option_#{@quiz_question.id}_2", @quiz_question.option2, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
+
+<%= radio_button_tag :"option_#{@quiz_question.id}", 3, false, { style: "float: left;" } %>
+<%= label_tag :"option_#{@quiz_question.id}_3", @quiz_question.option3, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
+
+<%= radio_button_tag :"option_#{@quiz_question.id}", 4, false, { style: "float: left;" } %>
+<%= label_tag :"option_#{@quiz_question.id}_4", @quiz_question.option4, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
+
+<%= simple_form_for @quiz_answer do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.hidden_field :quiz_id %>
+  <%= f.hidden_field :section_id %>
+  <%= f.hidden_field :user_input %>
+
+  </br>
+  </br>
+
+  <%= f.button :submit, 'Continue', class: 'btn btn-primary', disabled: true %>
+<% end %>
+
+<%= javascript_tag do %>
+  $(function() {
+    $("input[name=option_<%= @quiz_question.id %>]").change(function() {
+      $("input[name='commit']").attr("disabled", false);
+      $("#learners_quiz_user_input").val($("input[name='option_<%= @quiz_question.id %>']:checked").val());
+    });
+  });
+<% end %>

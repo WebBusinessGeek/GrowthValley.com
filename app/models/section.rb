@@ -8,6 +8,9 @@ class Section < ActiveRecord::Base
   validates :quizzes, :length => { minimum: 3, maximum: 10 }, allow_blank: true
   accepts_nested_attributes_for :quizzes, :allow_destroy => true, limit: 10
 
+  has_many :learners_quizzes, dependent: :destroy
+  accepts_nested_attributes_for :learners_quizzes, :allow_destroy => true
+
   mount_uploader :attachment, AttachmentUploader
 
   default_scope { order("id asc") }

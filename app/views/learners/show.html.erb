@@ -69,15 +69,15 @@
           <li class='pull-right' style='margin-left: 1em;'>
             <% if section.unlocked %>
               <b>
-                <%= link_to 'Take test', 'javascript:void(0);', class: 'pull-right', target: '_blank' %>
+                <%= link_to 'Take test', new_learners_quiz_path(section_id: section.id), class: 'pull-right', target: '_blank' %>
               </b>
             <% end %>
           </li>
           <li class='pull-right'>
             <% if section.unlocked %>
-              <b>
-                <%= link_to "Download Section", section.attachment.url %>
-              </b>
+              <object data="<%= section.attachment.url %>">
+                <embed src="<%= section.attachment.url %>" />
+              </object>
             <% end %>
           </li>
         </ul>

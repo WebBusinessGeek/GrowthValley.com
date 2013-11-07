@@ -41,6 +41,8 @@ GrowthValley::Application.routes.draw do
     end
   end
 
+  resources :learners_quizzes, only: [:new, :create]
+
   root to: 'homes#index'
 
   namespace :admin do
