@@ -3,6 +3,7 @@ class HomesController < ApplicationController
   layout :set_layout
 
   def index
+    @current_menu = "home"
     if !current_user
       @courses = Course.all_published
     elsif current_user.type == 'Teacher'
@@ -12,9 +13,44 @@ class HomesController < ApplicationController
     end
   end
 
+  def about_us
+    @current_menu = "about_us"
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def products
+    @current_menu = "products"
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def resources
+    @current_menu = "resources"
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def blog
+    @current_menu = "blog"
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def contact
+    @current_menu = "contact"
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def terms
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
   private
 
-    def set_layout
-      current_user ? 'application' : 'home'
-    end
+  def set_layout
+    current_user ? 'application' : 'home'
+  end
 end

@@ -30,6 +30,9 @@ ActiveAdmin.register Course do
 		row("Cover Pic") { |p|
           image_tag p.course_cover_pic_url()
         }
+		row("Teacher") { |p|
+          link_to(p.users.find_by_type("Teacher").email, admin_user_url(p.users.find_by_type("Teacher")))
+        }
 		row :content_type
 		row :status
 		row :is_published
@@ -47,4 +50,12 @@ ActiveAdmin.register Course do
       end
     end
   end
+  
+  sidebar "Course Subscribers", :only => :show do
+    table_for course.users.find_all_by_type("Learner") do |t|
+      t.column("") { |p| link_to(p.email, admin_user_url(p))}
+    end
+  end
+  
+  
 end

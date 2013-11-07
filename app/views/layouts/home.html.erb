@@ -9,61 +9,20 @@
 <%= javascript_include_tag "application" %>
 </head>
 <body>
-<div class="wrapper">
-  <div class="top-header">
-    <div class="fleft"> <span class="discover sprite fleft">
-      <select name="">
-        <option selected="selected">Discover</option>
-      </select>
-      </span> <span class="topsearch-bar sprite fleft">
-      <input name="search" id="Search" type="text" maxlength="100" value="Search" onfocus="if (this.value=='Search') this.value = ''" onblur="if (this.value=='') this.value = 'Search'" />
-      <input name="submit" type="button" class="sprite"; />
-      </span>
-    </div>
-    <div class="fright"> <span class="language sprite fright">
-      <select name="">
-        <option selected="selected">English</option>
-      </select>
-      </span>
-      <ul class="top-menu">
-        <li><a href="javascript:void(0);">Teach Online</a></li>
-        <% if current_user %>
-          <li>
-            <%= link_to "Edit Profile", edit_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "Login", "javascript:login();" %>
-          </li>
-          <li>
-            <%= link_to "Signup", "javascript:signup();" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+
+<%= render partial: "layouts/top_header" %>
+    
 <div class="wrapper">
     <%= bootstrap_flash %>
     </br>
   <div class="wrapper-inner" style="height:472px;">
         <span class="sprite logo"></span>
-        <ul class="sprite menu">
-          <li class="current"><a href="<%= root_path %>">HOME</a></li>
-          <li><a href="/coming_soon">ABOUT US</a></li>
-          <li><a href="/coming_soon">PRODUCTS</a></li>
-          <li><a href="/coming_soon">RESOURCES</a></li>
-          <li><a href="/coming_soon">BLOG</a></li>
-          <li><a href="/coming_soon">CONTACT</a></li>
-        </ul>
+        <%= render partial: "layouts/top_menu" %>
         <% if !current_user %>
-          <div id="signup-form" class="login-section">
+          <div id="signup-form" class="login-section" style="display: <%=(params[:login].present?) ? 'none' : 'block'%>;">
             <%= render file: "#{Rails.root}/app/views/devise/registrations/new" %>
           </div>
-          <div id="login-form" class="login-section" style="display: none;">
+          <div id="login-form" class="login-section" style="display: <%=(params[:login].present?) ? 'block' : 'none'%>;">
             <%= render file: "#{Rails.root}/app/views/devise/sessions/new" %>
           </div>
         <% end %>
@@ -86,12 +45,12 @@
       <div class="col-l">
         <ul class="footerlink">
           <li><a href="<%= root_path %>">Home</a></li>
-          <li><a href="/coming_soon">Information</a></li>
-          <li><a href="/coming_soon">Contact</a></li>
-          <li><a href="/coming_soon">for organizations</a></li>
-          <li><a href="/coming_soon">for people</a></li>
-          <li><a href="/coming_soon">FAQ</a></li>
-          <li><a href="/coming_soon">how it works</a></li>
+          <li><a href="<%= root_path %>">Information</a></li>
+          <li><a href="<%= root_path %>">Contact</a></li>
+          <li><a href="<%= root_path %>">for organizations</a></li>
+          <li><a href="<%= root_path %>">for people</a></li>
+          <li><a href="<%= root_path %>">FAQ</a></li>
+          <li><a href="<%= root_path %>">how it works</a></li>
         </ul>
       </div>
       <div class="col-l">

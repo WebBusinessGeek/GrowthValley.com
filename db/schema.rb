@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.boolean  "is_published",     :default => false
     t.string   "status"
     t.boolean  "is_paid",          :default => false
-    t.integer  "price",            :default => 0
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end
@@ -87,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
   end
 
   create_table "exams", :force => true do |t|
-    t.text     "title"
+    t.text     "question"
     t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -117,10 +116,9 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.string   "title"
     t.text     "description"
     t.string   "attachment"
-    t.boolean  "unlocked",    :default => false
     t.integer  "course_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "subjects", :force => true do |t|
@@ -141,7 +139,6 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.integer  "age"
     t.boolean  "sex"
     t.string   "subscription_type",      :default => "free"
-    t.string   "profile_pic"
     t.string   "email",                  :default => "",     :null => false
     t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"
@@ -158,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.string   "profile_pic"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

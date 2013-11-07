@@ -9,43 +9,9 @@
 <%= javascript_include_tag "application" %>
 </head>
 <body>
-<div class="wrapper">
-  <div class="top-header">
-    <div class="fleft"> <span class="discover sprite fleft">
-      <select name="">
-        <option selected="selected">Discover</option>
-      </select>
-      </span> <span class="topsearch-bar sprite fleft">
-      <input name="search" id="Search" type="text" maxlength="100" value="Search" onfocus="if (this.value=='Search') this.value = ''" onblur="if (this.value=='') this.value = 'Search'" />
-      <input name="submit" type="button" class="sprite"; />
-      </span>
-    </div>
-    <div class="fright"> <span class="language sprite fright">
-      <select name="">
-        <option selected="selected">English</option>
-      </select>
-      </span>
-      <ul class="top-menu">
-        <li><a href="javascript:void(0);">Teach Online</a></li>
-        <% if current_user %>
-          <li>
-            <%= link_to "Edit Profile", edit_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "Login", "javascript:login();" %>
-          </li>
-          <li>
-            <%= link_to "Signup", "javascript:signup();" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+
+<%= render partial: "layouts/top_header" %>
+
 <div class="wrapper">
   <div class="wrapper-inner" style="height:472px;">
     <% if current_user && current_user.type == 'Learner' %>
@@ -54,6 +20,7 @@
       <a href="<%= root_path %>">
     <% end %>
         <span class="sprite logo"></span>
+        <%= render partial: "layouts/top_menu" if @show_top_menu.present? and @show_top_menu == true %>
       </a>
   </div>
 </div>

@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="top-header">
+    <div class="fleft"> <span class="discover sprite fleft">
+      <select name="">
+        <option selected="selected">Discover</option>
+      </select>
+      </span> <span class="topsearch-bar sprite fleft">
+      <input name="search" id="Search" type="text" maxlength="100" value="Search" onfocus="if (this.value=='Search') this.value = ''" onblur="if (this.value=='') this.value = 'Search'" />
+      <input name="submit" type="button" class="sprite"; />
+      </span>
+    </div>
+    <div class="fright"> <span class="language sprite fright">
+      <select name="">
+        <option selected="selected">English</option>
+      </select>
+      </span>
+      <ul class="top-menu">
+        <li><a href="javascript:void(0);">Teach Online</a></li>
+        <% if current_user %>
+          <li>
+            <%= link_to "Edit Profile", edit_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Login", (params[:controller] == "homes" and params[:action] == "index") ? "javascript:login();" : root_path+"?login=1" %>
+          </li>
+          <li>
+            <%= link_to "Signup", (params[:controller] == "homes" and params[:action] == "index") ? "javascript:signup();" : root_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
