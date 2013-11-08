@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   has_many :charges, dependent: :destroy
   accepts_nested_attributes_for :charges, :allow_destroy => true
 
+  has_many :learners_quizzes, dependent: :destroy
+  accepts_nested_attributes_for :learners_quizzes, :allow_destroy => true
+
   validates_presence_of :full_name
   validates_presence_of :type, on: :create
   # validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?", on: :create

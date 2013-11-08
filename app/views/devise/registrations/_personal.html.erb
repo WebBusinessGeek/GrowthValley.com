@@ -1,3 +1,7 @@
+<div id='user_profile_pic_holder' class='pull-right'>
+  <%= image_tag(resource.profile_pic_url, class: 'img-rounded') %>
+</div>
+
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f| %>
   <%= f.error_notification %>
 
@@ -6,11 +10,9 @@
     <%= f.input :email, :required => true %>
     <%= f.input :description %>
     <%= f.input :age %>
-    <%= f.input :sex, label: 'Gender', as: :radio, collection: [['Male', true], ['Female', false]] %>
+    <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false %>
     <% if !resource.new_record? && resource.profile_pic.present? %>
-      <%= f.label :profile_pic, raw('<strong>Existing Profile Pic</strong>') %>
-      <%= image_tag(resource.profile_pic_url, class: 'img-rounded') %>
-      <%= f.input :profile_pic, label: raw('<strong>Change Profile Pic</strong>'), required: false %>
+      <%= f.input :profile_pic, required: false %>
     <% else %>
       <%= f.input :profile_pic, required: true %>
     <% end %>
