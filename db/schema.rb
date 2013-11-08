@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030055239) do
+ActiveRecord::Schema.define(:version => 20131108064102) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.boolean  "is_paid",          :default => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
+    t.string   "slug"
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|
@@ -119,12 +120,14 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.integer  "course_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
   create_table "subjects_users", :id => false, :force => true do |t|
@@ -156,6 +159,8 @@ ActiveRecord::Schema.define(:version => 20131030055239) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.string   "profile_pic"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

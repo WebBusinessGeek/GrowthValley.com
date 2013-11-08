@@ -1,17 +1,17 @@
-<span class="sprite fblogin"></span>
-<h2>OR</h2>
-<p class="m15">Sign Up with your email:</p>
-
-<div class='error' style='color: red; margin: 2ex; display: none;'></div>
-
 <%= simple_form_for(resource, url: user_registration_path, method: :post, format: :json, remote: true) do |f| %>
-  <p>
-    <%= f.radio_button :type, 'Learner', checked: true, class: 'sprite name', style: "float: left;" %>
+  <p style="margin-left: 70px;">
+    <%= f.radio_button :type, 'Learner', checked: true, class: 'sprite name usertype', style: "float: left;" %>
     <%= f.label :type, 'Learner', style: "float: left; margin: -2px 20px 0px 5px;" %>
-    <%= f.radio_button :type, 'Teacher', class: 'sprite name', style: "float: left;" %>
+    <%= f.radio_button :type, 'Teacher', class: 'sprite name usertype', style: "float: left;" %>
     <%= f.label :type, 'Teacher', style: "float: left; margin: -2px 20px 0px 5px;" %>
   </p>
   <p style="margin-bottom: 10px;">&nbsp;</p>
+  <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Learner"), :id=>"facebook_Learner", :class=>"login_with_facebook", :style=>"display:block;" %>
+  <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Teacher"), :id=>"facebook_Teacher", :class=>"login_with_facebook", :style=>"display:none;" %>
+  <h2>OR</h2>
+  <p class="m15">Sign Up with your email:</p>
+
+  <div class='error' style='color: red; margin: 2ex; display: none;'></div>
   <p>
     <%= f.text_field :full_name, placeholder: 'Full Name', class: 'sprite name', required: true %>
   </p>
@@ -28,4 +28,11 @@
 <% end %>
 <p class="sml-font">By signing up, you agree to our <a href="<%= terms_homes_path %>">Terms of Use and Privacy Policy</a></p>
 
-
+<script>
+$(function() {
+  $('.usertype').click(function(){
+    $(".login_with_facebook").hide()
+    $("#facebook_"+$(this).val()).show()
+  });
+});
+</script>

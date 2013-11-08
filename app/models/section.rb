@@ -1,5 +1,9 @@
 class Section < ActiveRecord::Base
-  attr_accessible :title, :description, :unlocked, :course_id, :attachment, :attachment_cache, :remove_attachment, :quizzes_attributes
+  attr_accessible :title, :description, :unlocked, :course_id, :attachment, :attachment_cache, :remove_attachment,
+  :quizzes_attributes, :slug
+  
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   belongs_to :course
   validates_associated :course

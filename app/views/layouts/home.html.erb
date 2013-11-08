@@ -32,50 +32,17 @@
   <div class="top-wrapper-in">
     <div class="slider2">&nbsp;</div>
     <div class="search-bar">
-      <input name="What do you want to learn?" id="what-you-want" type="text" maxlength="100" value="What do you want to learn?" onfocus="if (this.value=='What do you want to learn?') this.value = ''" onblur="if (this.value=='') this.value = 'What do you want to learn?'" />
-      <input name="submit" type="button" class="sprite"; />
+      <%= form_tag(homes_path, :method=>"get") do %>
+      <input name="What do you want to learn?" id="what-you-want" type="text" maxlength="100" value="<%=(params[:search].present?) ? params[:search] : 'What do you want to learn?'%>" onfocus="if (this.value=='What do you want to learn?') this.value = ''" onblur="if (this.value=='') this.value = 'What do you want to learn?'" />
+      <input name="submit" type="submit" value="" class="sprite" />
+      <% end %>
     </div>
   </div>
 </div>
 <div class="bottom-wrapper-out">
   <div class="bottom-wrapper-in">
     <%= yield %>
-    <div class="footer"> <span class="footer-logo sprite"></span> <span class="social-logo"><a href="javascript:void(0);" class="sprite fb"></a> <a href="javascript:void(0);" class="sprite tw"></a></span>
-      <div class="clear"></div>
-      <div class="col-l">
-        <ul class="footerlink">
-          <li><a href="<%= root_path %>">Home</a></li>
-          <li><a href="<%= root_path %>">Information</a></li>
-          <li><a href="<%= root_path %>">Contact</a></li>
-          <li><a href="<%= root_path %>">for organizations</a></li>
-          <li><a href="<%= root_path %>">for people</a></li>
-          <li><a href="<%= root_path %>">FAQ</a></li>
-          <li><a href="<%= root_path %>">how it works</a></li>
-        </ul>
-      </div>
-      <div class="col-l">
-        <h2>CONTACT US</h2>
-        <ul>
-          <li>
-            <input name="name" type="text" value="name" id="name" class="sprite" />
-          </li>
-          <li>
-            <input name="EMAIL" type="text" value="EMAIL" id="EMAIL" class="sprite" />
-          </li>
-          <li>
-            <textarea name="MESSAGE" cols="20" rows="4" class="sprite">MESSAGE</textarea>
-          </li>
-          <li>
-            <input name="OK" type="submit" value="" class="sprite" />
-          </li>
-        </ul>
-      </div>
-      <div class="col-r">
-        <h2>LASTEST TWEETS</h2>
-        <span class="tweet"> @mateuzord: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tortor purus, hendrerit eget varius vitae, dictum eget massa.
-        <p>february, 12 - 2012</p>
-        </span> </div>
-    </div>
+	<%= render partial: "layouts/footer" %>
   </div>
 </div>
 </body>

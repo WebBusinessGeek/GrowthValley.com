@@ -1,6 +1,9 @@
 class Course < ActiveRecord::Base
   attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
-  :sections_count, :status, :is_paid, :price, :subject_ids, :sections_attributes, :ratings_attributes
+  :sections_count, :status, :is_paid, :price, :subject_ids, :sections_attributes, :ratings_attributes, :slug
+  
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   has_and_belongs_to_many :users
   accepts_nested_attributes_for :users, :allow_destroy => true
@@ -37,7 +40,18 @@ class Course < ActiveRecord::Base
   scope :paid_user_paid_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', true, true) }
   scope :all_published_courses_for_subjects, ->(subs) { includes(:subjects).where("(subjects.id = ? or subjects.id = ? or subjects.id = ?) and is_published = ?", subs.map(&:id)[0], subs.map(&:id)[1], subs.map(&:id)[2], true) }
   scope :all_published, -> { where("is_published = ?", true) }
-
+	
+  include PgSearch
+  pg_search_scope :search, against: [:title, :description],
+   using: {tsearch: {dictionary: "english"}}
+   
+  def self.text_search(params)
+    if params[:search].present?
+      search(params[:search])
+    end
+  end
+  
+  
   def togglePublish
     if self.is_published == false
       if eachSectionHasTest? && has_exam?
