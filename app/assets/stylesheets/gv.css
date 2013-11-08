@@ -357,6 +357,9 @@
 	overflow: hidden;
 	padding: 10px 0 0;
 
+
+
+
 }
 .courses-box li .box .cource-disc .cource-dtl li {
 	border-left: 1px solid #CDCECE;
@@ -402,7 +405,7 @@
 /*============================================ Footer ============================================*/
 .footer {
 	background:#2b3b5f url(/assets/footerbg.png) top repeat-x;
-	height:370px;
+	height:480px;
 	padding:30px;
 	margin-top:50px;
 }
@@ -433,7 +436,7 @@
 	float: left;
 	margin-right: 10px;
 	margin-top:70px;
-	width: 230px;
+	width: 209px;
 }
 .footer h2 {
 	line-height:30px;
