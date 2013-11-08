@@ -24,3 +24,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
+textarea {
+  resize: none;
+}
