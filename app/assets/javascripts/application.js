@@ -15,3 +15,11 @@
 //= require twitter/bootstrap
 //= require jquery.rateit
 //= require_tree .
+
+$(function() {
+  window.setTimeout(function() {
+    $(".alert").alert('close')
+  }, 3000);
+
+  $('.text').attr('rows', 5);
+});
