@@ -16,7 +16,10 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :learners_quizzes, :allow_destroy => true
 
   mount_uploader :attachment, AttachmentUploader
-
+  
+  scope :locked, -> { where("unlocked = ?", false) }
+  scope :unlocked, -> { where("unlocked = ?", true) }
+  
   default_scope { order("id asc") }
 
   def complete?

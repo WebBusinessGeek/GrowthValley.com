@@ -4,23 +4,13 @@ class HomesController < ApplicationController
 
   def index
     @current_menu = "home"
-    if params[:search].present?
-		if !current_user
-		  @courses = Course.all_published.text_search(params)
-		elsif current_user.type == 'Teacher'
-		  @courses = Course.all_published.text_search(params)
-		elsif current_user.type == 'Learner'
-		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).text_search(params)
-		end
-	else
-		if !current_user
-		  @courses = Course.all_published
-		elsif current_user.type == 'Teacher'
-		  @courses = Course.all_published
-		elsif current_user.type == 'Learner'
-		  @courses = Course.all_published_courses_for_subjects(current_user.subjects)
-		end
-	end
+    if !current_user
+      @courses = Course.all_published
+    elsif current_user.type == 'Teacher'
+      @courses = Course.all_published
+    elsif current_user.type == 'Learner'
+      @courses = Course.all_published_courses_for_subjects(current_user.subjects)
+    end
   end
 
   def about_us
@@ -61,6 +51,6 @@ class HomesController < ApplicationController
   private
 
   def set_layout
-    current_user ? 'application' : 'home'
+    current_user ? 'user_home' : 'home'
   end
 end

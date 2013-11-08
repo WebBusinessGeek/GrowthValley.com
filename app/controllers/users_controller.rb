@@ -12,7 +12,7 @@ class UsersController < ApplicationController
           s = Subject.find_by_id(subj)
           current_user.subjects.push(s) unless current_user.subjects.include?(s)
         end
-        redirect_to courses_path, notice: 'Subjects added successfully!'
+        redirect_to my_courses_courses_path, notice: 'Subjects added successfully!'
       end
     else
       redirect_to user_subjects_path, alert: 'You must subscribe to atleast one subject...'

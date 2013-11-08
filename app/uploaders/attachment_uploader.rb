@@ -6,6 +6,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MimeTypes
   include CarrierWave::MiniMagick
+  include CarrierWave::Video
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -17,6 +18,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  #version :mp4, :if => :video? do
+  #  process :encode_video => [:mp4]
+  #end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -43,8 +47,18 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     if model.course.content_type == 'pdf'
       %w(pdf)
     else
-      %w(avi flv mov mp4 m4v mkv webm webp ogv)
+      %w(avi) # flv mov mp4 m4v mkv webm webp ogv)
     end
+  end
+
+  protected
+
+  def image?(new_file)
+    new_file.content_type.include? 'image'
+  end
+  
+  def video?(new_file)
+    new_file.content_type.include? 'video'
   end
 
   # Override the filename of the uploaded files:

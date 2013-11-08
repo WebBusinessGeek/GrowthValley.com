@@ -19,7 +19,7 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")), section_quizzes_path(@quiz.section_id), :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_section_quiz_path(@quiz.section_id, @quiz), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), section_quiz_path(@quiz.section_id, @quiz), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), section_quizzes_path(@quiz.section), :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_section_quiz_path(@quiz.section, @quiz), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), section_quiz_path(@quiz.section, @quiz), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' %>
 </div>

@@ -36,6 +36,7 @@
     text-overflow: "";
     top: 6px;
     width: 150px;
+    color: #FFFFFF;
 }
 .topsearch-bar {
 	background-position: -1px -42px;
@@ -78,6 +79,7 @@
     text-overflow: "";
     top: 6px;
     width: 145px;
+    color: #FFFFFF;
 }
 /************* top menu *************/
 .top-menu {
@@ -361,7 +363,7 @@
 .courses-box li .box .cource-disc .cource-dtl li {
 	border-left: 1px solid #CDCECE;
 	font-size: 14px;
-	padding: 0 8px;
+	padding: 0 5px;
 	text-align: center;
 	width: auto !important;
 }

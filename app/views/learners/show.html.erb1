@@ -24,44 +24,55 @@
         </span>
       </div>
     </li>
-    <li>
-      <div class="course-title" style="font-weight: bold; font-size: 12pt;"><%= @course.title.titleize %></div>
-      <div class="course-description"><%= raw(@course.description) %></div>
-      <div class="course-instructor">
-        <% if @course.present? && @course.users.where(type: 'Teacher').present? %>
-          <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
-        <% end %>
-      </div>
-      </br>
-      <div class='course-subscribe'>
-        <% if current_user.courses.include?(@course) %>
-          <%= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
-        <% else %>
-          <% if @course.is_paid %>
-            <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
-          <% else %>
-            <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
-      </div>
+    <li style="width:auto;">
+      <div style="margin:12px;">
+		  <div class="course-title" style="font-weight: bold; font-size: 12pt;"><%= @course.title.titleize %></div>
+		  <div class="course-description"><%= raw(@course.description) %></div>
+		  <div class="course-instructor">
+			<% if @course.present? && @course.users.where(type: 'Teacher').present? %>
+			  <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
+			<% end %>
+		  </div>
+		  </br>
+		  <div class='course-subscribe'>
+			<% if current_user.courses.include?(@course) %>
+			  <%#= link_to("Take Exam", "#", class: 'btn btn-primary') if @course.sections.unlocked.present? and @course.sections.unlocked.count == @course.sections.count %>
+			  <%#= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
+			<% else %>
+			  <% if @course.is_paid %>
+				<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
+			  <% else %>
+				<%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
+			  <% end %>
+			  <br>
+			  <br>
+			  Total Sections: <%=@course.sections.count%>
+			<% end %>
+		  </div>
+	  </div>
     </li>
   </ul>
-
+  
+  <% if current_user.courses.include?(@course) %>
   <h2>Course Sections:</h2>
   </br>
   <ul class="nav nav-tabs">
+	<% classname="active" %>
     <% @course.sections.each do |section| %>
-      <li>
+      <li class="<%=classname%>">
         <a href="#section_<%= section.id %>" data-toggle="tab">
           <%= section.title.titleize %>
         </a>
       </li>
+	<% classname="" %>
     <% end %>
   </ul>
 
+  <% classname="active" %>
   <div class='tab-content'>
     <% @course.sections.each do |section| %>
-      <div class="tab-pane" id="section_<%= section.id %>">
+      <div class="tab-pane <%=classname%>" id="section_<%= section.id %>">
+	  <% classname="" %>
         <ul>
           <li>
             <%= raw(section.description) %>
@@ -69,7 +80,7 @@
           <li class='pull-right' style='margin-left: 1em;'>
             <% if section.unlocked %>
               <b>
-                <%= link_to 'Take test', new_learners_quiz_path(section_id: section.id), class: 'pull-right', target: '_blank' %>
+                <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right', target: '_blank' %>
               </b>
             <% end %>
           </li>
@@ -78,12 +89,18 @@
               <object data="<%= section.attachment.url %>">
                 <embed src="<%= section.attachment.url %>" />
               </object>
+				<!-- <object type="video/x-msvideo" data="/seret2.avi" width="200" height="150">
+					<param name="src" value="/seret2.avi">
+					<param name="autoplay" value="false">
+					<param name="autoStart" value="0">
+				</object> -->
             <% end %>
           </li>
         </ul>
       </div>
     <% end %>
   </div>
+  <% end %>
 </div>
 
 <%= javascript_tag do %>

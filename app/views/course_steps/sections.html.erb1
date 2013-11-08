@@ -23,6 +23,6 @@
   <div class="form-actions">
     <%= f.button :submit, 'Finish', :class => 'btn-primary' %>
     <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, :class => 'btn' %>
   </div>
 <% end %>

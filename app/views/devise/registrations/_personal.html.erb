@@ -1,5 +1,5 @@
 <div id='user_profile_pic_holder' class='pull-right'>
-  <%= image_tag(resource.profile_pic_url, class: 'img-rounded') %>
+  <%= image_tag((resource.profile_pic_url.present?) ? resource.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-rounded') %>
 </div>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f| %>
