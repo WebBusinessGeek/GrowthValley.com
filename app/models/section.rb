@@ -26,4 +26,23 @@ class Section < ActiveRecord::Base
       return false
     end
   end
+
+  def quiz_completed?(user_id)
+    user = User.find_by_id(user_id)
+
+    if user.present? && user.learners_quizzes.present?
+      user.learners_quizzes.collect(&:section_id).include?(self.id) ? true : false
+    else
+      false
+    end
+  end
+
+  def total_no_of_quizzes
+    self.quizzes.present? ? self.quizzes.length : 0
+  end
+
+  def correct_answers_count(user_id)
+    user = User.find_by_id(user_id)
+    (user.present? && user.learners_quizzes.present?) ? user.learners_quizzes.where(section_id: self.id, correct_answer: true).length : 0
+  end
 end

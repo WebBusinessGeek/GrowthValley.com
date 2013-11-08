@@ -69,7 +69,11 @@
           <li class='pull-right' style='margin-left: 1em;'>
             <% if section.unlocked %>
               <b>
-                <%= link_to 'Take test', new_learners_quiz_path(section_id: section.id), class: 'pull-right', target: '_blank' %>
+                <% if section.quiz_completed?(current_user.id) %>
+                  <%= link_to 'View Result', '#quiz_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+                <% else %>
+                  <%= link_to 'Take test', new_learners_quiz_path(section_id: section.id), class: 'pull-right', target: '_blank' %>
+                <% end %>
               </b>
             <% end %>
           </li>
@@ -85,6 +89,20 @@
     <% end %>
   </div>
 </div>
+
+<% @course.sections.each do |section| %>
+  <% if section.quiz_completed?(current_user.id) %>
+    <div id='quiz_result_dialog' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Quiz Result for <%= section.title.titleize if section.title.present? %></h3>
+      </div>
+      <div class="modal-body">
+        <p>You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 <%= javascript_tag do %>
   $(".rateit").bind('rated', function() {

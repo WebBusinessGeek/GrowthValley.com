@@ -42,10 +42,8 @@ class LearnersQuizzesController < ApplicationController
         if course.present?
           course.first.update_attribute(:unlocked, true)
           redirect_to learner_path(section.course.id), notice: 'Next section unlocked!'
-          return
         else
           redirect_to learner_path(section.course.id)
-          return
         end
       else
         redirect_to new_learners_quiz_path(section_id: params[:learners_quiz][:section_id]), notice: 'Answer submitted successfully!'
