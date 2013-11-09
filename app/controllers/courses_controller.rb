@@ -1,9 +1,49 @@
 class CoursesController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:rate_course]
+  skip_before_filter :authenticate_user!, only: [:rate_course, :index]
 
   # GET /courses
   # GET /courses.json
   def index
+    @current_menu = "courses"
+    @show_top_menu = true
+    if params[:order].present?
+		if params[:order] == "latest"
+			sort_order = "courses.created_at desc"
+		elsif params[:order] == "name"
+			sort_order = "courses.title asc"
+		elsif params[:order] == "rating"
+			sort_order = "courses.created_at asc"
+		else
+			sort_order = "courses.title asc"
+		end
+	else
+		sort_order = "courses.title asc"
+    end
+    
+    if params[:search].present?
+		if !current_user
+		  @courses = Course.all_published.text_search(params).order(sort_order)
+		elsif current_user.type == 'Teacher'
+		  @courses = Course.all_published.text_search(params).order(sort_order)
+		elsif current_user.type == 'Learner'
+		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).text_search(params).order(sort_order)
+		end
+	else
+		if !current_user
+		  @courses = Course.all_published.order(sort_order)
+		elsif current_user.type == 'Teacher'
+		  @courses = Course.all_published.order(sort_order)
+		elsif current_user.type == 'Learner'
+		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).order(sort_order)
+		end
+	end
+	
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+  
+  def my_courses
     @courses = current_user.courses
 
     respond_to do |format|

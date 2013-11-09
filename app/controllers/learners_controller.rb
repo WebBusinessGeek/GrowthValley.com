@@ -4,11 +4,11 @@ class LearnersController < ApplicationController
   end
 
   def show
-    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_id(params[:id])
+    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
   end
 
   def subscribe_course
-    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_id(params[:id])
+    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
     current_user.courses << @course unless current_user.courses.include?(@course)
     @course.sections.first.update_attributes(unlocked: true)
 
@@ -16,7 +16,7 @@ class LearnersController < ApplicationController
   end
 
   def unsubscribe_course
-    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_id(params[:id])
+    @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
     current_user.courses.delete(@course) if current_user.courses.include?(@course)
     @course.sections.first.update_attributes(unlocked: false)
 

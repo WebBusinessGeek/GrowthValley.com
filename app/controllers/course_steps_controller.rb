@@ -13,7 +13,7 @@ class CourseStepsController < ApplicationController
 
     case step
     when 'wicked_finish'
-      redirect_to courses_path, notice: 'Course updated successfully!'
+      redirect_to my_courses_courses_path, notice: 'Course updated successfully!'
     else
       render_wizard
     end

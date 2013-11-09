@@ -5,7 +5,7 @@
         <option selected="selected">Discover</option>
       </select>
       </span> <span class="topsearch-bar sprite fleft">
-      <%= form_tag(homes_path, :method=>"get") do %>
+      <%= form_tag(courses_path, :method=>"get") do %>
       <input name="search" id="Search" type="text" maxlength="100" value="<%=(params[:search].present?) ? params[:search] : 'search'%>" onfocus="if (this.value=='Search') this.value = ''" onblur="if (this.value=='') this.value = 'Search'" />
       <input name="submit" type="submit" value="" class="sprite" />
       <% end %>
@@ -20,7 +20,7 @@
         <li><a href="javascript:void(0);">Teach Online</a></li>
         <% if current_user %>
           <li>
-            <%= link_to "Edit Profile", edit_user_registration_path %>
+            <%= link_to "Profile", edit_user_registration_path %>
           </li>
           <li>
             <%= link_to "Log Out", destroy_user_session_path, method: :delete %>

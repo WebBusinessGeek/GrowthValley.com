@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   def index
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
       @quizzes = @section.quizzes
     else
       @quizzes = Quiz.all
@@ -32,7 +32,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new.json
   def new
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
       if @section.quizzes.count < 3
         (3 - @section.quizzes.count).times do
           @quiz = @section.quizzes.build

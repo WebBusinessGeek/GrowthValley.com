@@ -16,6 +16,7 @@ GrowthValley::Application.routes.draw do
     end
 
     collection do
+      get 'my_courses'
       get 'rate_course', as: :rate
     end
   end
@@ -36,6 +37,9 @@ GrowthValley::Application.routes.draw do
   end
 
   resources :learners, only: [:index, :show] do
+	collection do
+		match '/:course/:section/test' => 'learners_quizzes#new', as: :take_test
+	end
     member do
       get 'subscribe_course', as: :subscribe_course
       get 'unsubscribe_course', as: :unsubscribe_course

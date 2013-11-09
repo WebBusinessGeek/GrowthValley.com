@@ -1,16 +1,21 @@
+<div class="course-title" style="font-weight: bold; font-size: 12pt;">Course: <%= @course.title.titleize %></div>
+<div class="course-description">Section: <%= raw(@section.title) %></div>
+
 <div>
-  <%= raw(@quiz_question.question) %>
+	<br>
+	<br>
+  Question: <%= raw(@quiz_question.question) %>
 </div>
 </br>
 <%= radio_button_tag :"option_#{@quiz_question.id}", 1, false, { style: "float: left;" } %>
 <%= label_tag :"option_#{@quiz_question.id}_1", @quiz_question.option1, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
-
+<br>
 <%= radio_button_tag :"option_#{@quiz_question.id}", 2, false, { style: "float: left;" } %>
 <%= label_tag :"option_#{@quiz_question.id}_2", @quiz_question.option2, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
-
+<br>
 <%= radio_button_tag :"option_#{@quiz_question.id}", 3, false, { style: "float: left;" } %>
 <%= label_tag :"option_#{@quiz_question.id}_3", @quiz_question.option3, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
-
+<br>
 <%= radio_button_tag :"option_#{@quiz_question.id}", 4, false, { style: "float: left;" } %>
 <%= label_tag :"option_#{@quiz_question.id}_4", @quiz_question.option4, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
 
