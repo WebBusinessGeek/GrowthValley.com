@@ -8,16 +8,16 @@ class CoursesController < ApplicationController
     @show_top_menu = true
     if params[:order].present?
 		if params[:order] == "latest"
-			sort_order = "created_at desc"
+			sort_order = "courses.created_at desc"
 		elsif params[:order] == "name"
-			sort_order = "title asc"
+			sort_order = "courses.title asc"
 		elsif params[:order] == "rating"
-			sort_order = "created_at asc"
+			sort_order = "courses.created_at asc"
 		else
-			sort_order = "title asc"
+			sort_order = "courses.title asc"
 		end
 	else
-		sort_order = "title asc"
+		sort_order = "courses.title asc"
     end
     
     if params[:search].present?
