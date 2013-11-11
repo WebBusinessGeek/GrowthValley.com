@@ -4,7 +4,14 @@
   <%= f.input :title %>
   <% if !@course.new_record? && @course.course_cover_pic.present? %>
     <%= f.input :course_cover_pic, required: false %>
-    <%= f.label 'existing_course_cover_pic', raw("<strong>Existing Course Cover Pic:</strong> #{image_tag(@course.course_cover_pic_url, class: 'img-rounded')}") %>
+    <div class="control-group file optional existing_course_course_cover_pic">
+      <label class="file optional control-label">
+        <b>Existing course cover pic</b>
+      </label>
+      <div class="controls">
+        <%= image_tag(@course.course_cover_pic_url, class: 'img-rounded') %>
+      </div>
+    </div>
   <% else %>
     <%= f.input :course_cover_pic, required: true %>
   <% end %>
