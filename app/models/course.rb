@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
   :sections_count, :status, :is_paid, :price, :subject_ids, :sections_attributes, :ratings_attributes, :slug
-  
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
   validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
-  validate :sections_count_range, if: :active_or_on_sections_count_step?
+  validate :sections_count_validation, if: :active_or_on_sections_count_step?
   validate :price, presence: true, numericality: true, if: :active_or_on_price_step?
 
   scope :free_user_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'free', false, true) }
@@ -95,6 +95,23 @@ class Course < ActiveRecord::Base
     Rating.where(course_id: courseId).average('rate').to_i
   end
 
+  def sections_count_range
+    arr = Array.new
+    upper_limit = (5 - self.sections.count)
+
+    if sections.count == 0 # new_record
+      1.upto(upper_limit).each do |v|
+        arr << [v, v]
+      end
+    else # existing sections
+      0.upto(upper_limit).each do |v|
+        arr << [v, v]
+      end
+    end
+
+    return arr
+  end
+
   private
 
   def active?
@@ -121,10 +138,9 @@ class Course < ActiveRecord::Base
     status == :sections || active?
   end
 
-  def sections_count_range
-    upper_limit = (5 - self.sections.count)
-    if self.sections_count < 1 || self.sections_count > upper_limit
-      self.errors.add(:sections_count, "Invalid range. Valid range is between #{1..upper_limit}")
+  def sections_count_validation
+    unless sections_count_range.flatten!.include?(sections_count.to_i)
+      errors.add(:sections_count, 'is out of range.')
     end
   end
 end
