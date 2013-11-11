@@ -126,6 +126,7 @@ class CoursesController < ApplicationController
     if course.present?
       if course.is_published == true || current_user.allowed_to_publish?(course.id)
         if course.togglePublish == true
+		  add_activity_stream('COURSE', course, 'published') if course.is_published == true
           render json: { status: 'success', data: course.is_published }
         else
           render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test and course must have an exam...' }
