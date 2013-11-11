@@ -8,12 +8,12 @@
     <%= f.password_field :password, placeholder: 'password', class: 'sprite pass', required: true %>
   </p>
   <p>
-    <%= f.check_box :remember_me %>
-    <%= f.label :remember_me, style: 'display: inline;' %>
+    <%= f.check_box :remember_me, class: 'pull-left' %>
+    <%= f.label :remember_me, class: 'pull-left', style: 'display: inline; margin-left: 5px; margin-top: -2px;' %>
   </p>
-  <span class="login-info">
+  <span class="login-info" style="clear: both;">
     <span class="fleft m1">Not a member yet?&nbsp;&nbsp; <%= link_to "SIGN UP", "javascript:signup();" %></span>
-    <%= submit_tag 'login', value: 'LOGIN', disable_with: 'Loading...', class: 'sprite fright sml-btn' %>
+    <%= submit_tag 'login', value: 'LOGIN', class: 'sprite fright sml-btn' %>
   </span>
   <span class="fleft m1">
     <%= link_to "Forgot Password", new_user_password_path %>

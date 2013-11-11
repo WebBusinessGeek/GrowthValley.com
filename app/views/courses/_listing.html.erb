@@ -25,10 +25,20 @@
       <li>
         <div class="box">
           <span class="cource-img box-grn">
-            <%= image_tag(course.course_cover_pic.url(:cover)) %>
+            <% if current_user && current_user.type == "Learner" %>
+              <%= link_to image_tag(course.course_cover_pic.url(:cover)), learner_path(course) %>
+            <% else %>
+              <%= image_tag(course.course_cover_pic.url(:cover)) %>
+            <% end %>
           </span>
           <span class="cource-disc">
-            <p class="title"><%= course.title.titleize %></p>
+            <p class="title">
+              <% if current_user && current_user.type == "Learner" %>
+                <%= link_to course.title.titleize, learner_path(course) %>
+              <% else %>
+                <%= course.title.titleize %>
+              <% end %>
+            </p>
             <ol class="cource-dtl">
               <li>Price<br />
                 <span><%= course.is_paid ? $7 : 'Free' %></span>

@@ -28,3 +28,41 @@
 textarea {
   resize: none;
 }
+
+div#overlay {
+  display: none;
+  z-index: 2;
+  background: #000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+div#specialBox {
+  display: none;
+  position: relative;
+  z-index: 3;
+  margin: 150px auto 0px auto;
+  width: 500px; 
+  height: 300px;
+  background: #FFF;
+  color: #000;
+}
+
+div#specialBox > span {
+  position: absolute;
+  top: 43%;
+  left: 1%;
+  font-weight: bold;
+  font-size: 26pt;
+}
+
+div#wrapper {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  padding-left:24px;
+}

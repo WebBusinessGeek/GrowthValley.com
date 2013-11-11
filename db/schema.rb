@@ -105,13 +105,14 @@ ActiveRecord::Schema.define(:version => 20131111055434) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "module",     :limit => 25
-    t.string   "action",     :limit => 50
+    t.string   "notification_for", :limit => 100
+    t.string   "module",           :limit => 25
     t.integer  "module_id"
+    t.string   "action",           :limit => 50
     t.integer  "user_id"
     t.text     "message"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "quizzes", :force => true do |t|
