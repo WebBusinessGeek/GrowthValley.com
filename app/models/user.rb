@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   validates_presence_of :type, on: :create
   # validates :subjects, :presence => true, :length => { :maximum => 3 }, :if => "type.present?", on: :create
 
+  has_many :learners_exams, dependent: :destroy
+  accepts_nested_attributes_for :learners_exams, :allow_destroy => true
+
   mount_uploader :profile_pic, ProfilePicUploader
 
   USER_ROLES = [

@@ -1,0 +1,36 @@
+<div class="course-title" style="font-weight: bold; font-size: 12pt;">Course: <%= @course.title.titleize %></div>
+<div class="course-description">Exam: <%= raw(@course.exam.title.titleize) %></div>
+
+<div>
+	<br>
+	<br>
+  Question: <%= raw(@exam_question.question) %>
+</div>
+</br>
+<%= simple_form_for @exam_answer do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :course_id %>
+  <%= f.hidden_field :exam_id %>
+  <%= f.hidden_field :exam_question_id %>
+  <%= f.text_area :user_input, required: true, autofocus: true %>
+
+  </br>
+  </br>
+
+  <%= f.button :submit, 'Continue', class: 'btn btn-primary', disabled: true %>
+<% end %>
+
+<%= javascript_tag do %>
+  $(function() {
+    $("#learners_exam_user_input").change(function() {
+      if($(this).val().trim() != "") {
+        $("input[name='commit']").attr("disabled", false);
+      }
+      else {
+        $("input[name='commit']").attr("disabled", true);
+      }
+    });
+  });
+<% end %>

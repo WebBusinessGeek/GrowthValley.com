@@ -8,5 +8,8 @@ class Exam < ActiveRecord::Base
   validates :exam_questions, :length => { minimum: 3 }, allow_blank: true
   accepts_nested_attributes_for :exam_questions, :allow_destroy => true
 
+  has_many :learners_exams, dependent: :destroy
+  accepts_nested_attributes_for :learners_exams, :allow_destroy => true
+
   validates :title, presence: true
 end

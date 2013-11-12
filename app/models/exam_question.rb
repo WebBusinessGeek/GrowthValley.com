@@ -4,5 +4,8 @@ class ExamQuestion < ActiveRecord::Base
   belongs_to :exam
   validates_associated :exam
 
+  has_many :learners_exams, dependent: :destroy
+  accepts_nested_attributes_for :learners_exams, :allow_destroy => true
+
   validates :question, presence: true, uniqueness: true
 end

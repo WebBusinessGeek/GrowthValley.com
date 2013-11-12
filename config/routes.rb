@@ -49,6 +49,8 @@ GrowthValley::Application.routes.draw do
   end
 
   resources :learners_quizzes, only: [:new, :create]
+  resources :learners_exams, only: [:new, :create]
+
   match 'contact_us' => 'contact_us#create', via: :post
 
   root to: 'homes#index'
