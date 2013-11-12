@@ -13,8 +13,10 @@ class User < ActiveRecord::Base
   before_destroy { subjects.clear }
   accepts_nested_attributes_for :subjects, :allow_destroy => true, :limit => 3
 
-  has_and_belongs_to_many :courses
-  before_destroy { courses.clear }
+  has_many :subscriptions, dependent: :destroy
+  accepts_nested_attributes_for :subscriptions, :allow_destroy => true
+
+  has_many :courses, through: :subscriptions
   accepts_nested_attributes_for :courses, :allow_destroy => true
 
   has_many :charges, dependent: :destroy

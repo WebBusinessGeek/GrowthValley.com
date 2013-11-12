@@ -64,7 +64,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   # GET /courses/new.json
   def new
-    @course = Course.new
+    @course = current_user.courses.build
     @course.sections.build
 
     respond_to do |format|
@@ -74,18 +74,19 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find(params[:id])
     @course.sections.build
   end
 
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(params[:course])
+    @course = current_user.courses.build(params[:course])
 
     respond_to do |format|
       if @course.save
         current_user.courses << @course
+        Subscription.where(course_id: @course.id, user_id: current_user.id).first.update_attribute(:user_type, 'Teacher')
         session[:course_id] = @course.id
         format.html { redirect_to course_steps_path }
       else

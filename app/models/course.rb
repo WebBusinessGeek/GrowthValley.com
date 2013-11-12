@@ -5,7 +5,10 @@ class Course < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  has_and_belongs_to_many :users
+  has_many :subscriptions, dependent: :destroy
+  accepts_nested_attributes_for :subscriptions, :allow_destroy => true
+
+  has_many :users, through: :subscriptions
   accepts_nested_attributes_for :users, :allow_destroy => true
 
   has_and_belongs_to_many :subjects
