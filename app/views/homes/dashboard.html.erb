@@ -1,0 +1,66 @@
+<div class="main-content courses">
+  <div id="filter">
+    <div class='row-fluid'>
+		<div class='span2'><h1>Resources</h1></div>
+		<div class='span10'>
+			<div class='row-fluid' style="border:1px solid black;margin-bottom:20px;">
+				<div class="span6">
+					<div style="margin:5px;"><br>
+					<h3>Whats going on?</h3><br>
+					<ul>
+					<% @notifications.each do |notification| %>
+						<li><%=notification["message"].html_safe()%></li>
+					<% end %>
+					</ul>
+					</div>
+				</div>
+				<div class="span6"><br>
+					<h3>Course Subscriptions</h3>
+					<div class='row-fluid' style="padding-top:5px;">
+						<% @my_subjects.each do |subject| %>
+						<div class="span4">
+						<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>
+						</div>
+						<% end %>
+					</div><br>
+					<% if current_user.type == "Learner" %>
+						<h3>Courses Completed</h3>
+						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold">
+							<%=current_user.subscriptions.where("user_type = ? and complete = true",current_user.type).count()%>
+						</div>
+						<br>
+						<h3>Courses Un-Finished</h3>
+						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold;">
+							<%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%>
+						</div>
+						<br>
+					<% else %>
+						<h3>Courses Published</h3>
+						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold">
+							<%=current_user.courses.where("is_published = true").count()%>
+						</div>
+						<br>
+						<h3>Courses Un-Published</h3>
+						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold;">
+							<%=current_user.courses.where("is_published = false").count()%>
+						</div>
+						<br>
+					<% end %>
+				</div>
+			</div>	
+			<% @my_subjects.each do |subject| %>
+			<% if subject.courses.all_published.count > 0 %>
+			<div class="row-fluid">
+				<h3><%=subject.name.capitalize%> Courses</h3>
+				<ul class="courses-box dashboard">
+				<% subject.courses.all_published.order("created_at desc").limit(3).each do |course| %>
+					<%= render partial: "courses/single_course", :locals=>{:course => course} %>
+				<% end %>
+				</ul>
+			</div>		
+			<% end %>		
+			<% end %>		
+		</div>
+    </div>
+  </div>
+</div>

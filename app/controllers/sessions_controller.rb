@@ -12,7 +12,7 @@ class SessionsController < Devise::SessionsController
 
     respond_to do |format|
       format.html {
-        redirect_to root_path
+        redirect_to dashboard_path
       }
       format.js {
         unless current_user.sign_in_count > 1 && current_user.profile_pic_url.present?

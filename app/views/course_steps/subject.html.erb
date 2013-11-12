@@ -4,9 +4,9 @@
   <%= f.error_notification %>
 
   <% if current_user.subscription_type == 'free' %>
-    <%= f.association :subjects, label: 'Subject', collection: current_user.subjects, include_blank: false, input_html: { required: true, multiple: false } %>
+    <%= f.input :subject_id, label: 'Subject', collection: current_user.subjects, include_blank: false, input_html: { required: true, multiple: false } %>
   <% else %>
-    <%= f.association :subjects, label: 'Subject', collection: Subject.all, include_blank: false, input_html: { required: true, multiple: false } %>
+    <%= f.input :subject_id, label: 'Subject', collection: Subject.all, include_blank: false, input_html: { required: true, multiple: false } %>
   <% end %>
 
   <div class="form-actions">

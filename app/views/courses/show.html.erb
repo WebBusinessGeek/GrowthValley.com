@@ -1,56 +1,164 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "course" } %>
+<div class="main-content courses">
+  <ul class="courses-box">
+    <li>
+      <div class="box">
+        <span class="cource-img box-grn">
+          <%= image_tag(@course.course_cover_pic.url(:cover)) %>
+        </span>
+        <span class="cource-disc">
+          <ol class="cource-dtl">
+            <li>Price<br />
+              <span><%= @course.is_paid ? number_to_currency(@course.price, precision: 0) : 'Free' %></span>
+            </li>
+            <li><%= @course.ratings.count %> Reviews<br/>
+              <% if @course.ratings.present? && @course.ratings.find_by_ip_address(request.remote_ip).present? %>
+                <div id="course_<%= @course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= @course.avg_rating(@course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
+              <% else %>
+                <div id="course_<%= @course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= @course.avg_rating(@course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="false" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
+              <% end %>
+            </li>
+            <li>Students<br />
+              <span class="sprite students"></span><%= @course.users.where(type: 'Learner').count %>
+            </li>
+          </ol>
+        </span>
+      </div>
+    </li>
+    <li style="width:auto;">
+      <div style="margin:12px;">
+		  <div class="course-title" style="font-weight: bold; font-size: 12pt;"><%= @course.title.titleize %></div>
+		  <div class="course-description"><%= raw(@course.description) %></div>
+		  <div class="course-instructor">
+			<% if @course.present? && @course.users.where(type: 'Teacher').present? %>
+			  <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
+			<% end %>
+		  </div>
+		  </br>
+		  <div class='course-subscribe'>
+			<% if current_user.courses.include?(@course) %>
+			  <%= link_to("Take Exam", "#", class: 'btn btn-primary') if @exam_active %>
+			  <%#= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
+			<% else %>
+			  <% if @course.is_paid %>
+				<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
+			  <% else %>
+				<%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
+			  <% end %>
+			  <br>
+			  <br>
+			  Total Sections: <%=@total_section%>
+			<% end %>
+		  </div>
+	  </div>
+    </li>
+  </ul>
+  
+  <% if current_user.courses.include?(@course) %>
+  <h2>Course Sections:</h2>
+  </br>
+  <ul class="nav nav-tabs">
+	<% section_counter=1 %>
+	<% classname = 'active' %>
+    <% @course.sections.each do |section| %>
+		<% if @current_subscription.current_section.present? %>
+			<% if @current_subscription.current_section.to_i == section_counter.to_i %>
+				<% classname = 'active' %>
+			<% else %>
+				<% classname = '' %>
+			<% end %>
+		<% end %>		
+		<li class="<%=classname %>">
+			<a href="#section_<%= section.id %>" data-toggle="tab">
+			  <%= section.title.titleize %>
+			</a>
+		</li>
+		<% classname = '' %>
+		<% section_counter=section_counter + 1 %>
+    <% end %>
+  </ul>
 
-<%- model_class = Course -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
-
-<dl class="dl-horizontal">
-  <dt><strong>Course Title:</strong></dt>
-  <dd><%= @course.title %></dd>
-  <dt><strong>Course Type:</strong></dt>
-  <dd><%= @course.content_type %></dd>
-  <% if @course.sections.present? %>
-    <dt><strong>Course Sections:</strong></dt>
-    </br>
-    <dd>
-      <% @course.sections.each do |section| %>
-        <div class='section'>
-          <div class='section_title'>
-            <% if section.title.present? %>
-              <strong>Section Title:</strong> <%= section.title %>
+  <% classname="active" %>
+  <div class='tab-content'>
+	<% unlock_counter = 1 %>
+	<% unlock = true %>
+    <% @course.sections.each do |section| %>
+		<% if @current_subscription.current_section.present? %>
+			<% if @current_subscription.current_section.to_i == unlock_counter.to_i %>
+				<% classname = 'active' %>
+			<% else %>
+				<% classname = '' %>
+			<% end %>
+		<% end %>	
+      
+      <div class="tab-pane <%=classname %>" id="section_<%= section.id %>">
+        <ul>
+          <li>
+            <%= raw(section.description) %>
+          </li>
+          <li class='pull-right' style='margin-left: 1em;'>
+            <% if unlock and @current_subscription.user_type == "Learner" %>
+              <b>
+                <% if section.quiz_completed?(current_user.id) %>
+                  <%= link_to 'View Result', '#quiz_result_dialog_'+section.id.to_s, role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+                <% else %>
+                  <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right', target: '_blank' %>
+                <% end %>
+              </b>
             <% end %>
-          </div>
-          <div class='section_description'>
-            <% if section.description.present? %>
-              <strong>Section Description:</strong> <%= section.description %>
-            <% end %>
-          </div>
-          <div class='section_attachment'>
-            <% if section.attachment.present? %>
-              <strong>Section Attachment:</strong> <%= section.attachment_url %>
-            <% end %>
-          </div>
-          <div class='section_quiz'>
-            <% if section.quizzes.present? %>
-              <%= link_to raw("<strong>Manage Tests/Quizzes</strong>"), section_quizzes_path(section) %>
-            <% else %>
-              No test added. Would you like to add one? <%= link_to 'Add test/quiz', new_section_quiz_path(section) %>
-            <% end %>
-          </div>
-        </div>
-        </br>
-      <% end %>
-    </dd>
-  <% else %>
-    <dd>
-      <%= link_to 'Add new section', course_step_path('type') %>
-    </dd>
+          </li>
+          <% if unlock %>
+          <li class='pull-right'>
+              <object data="<%= section.attachment.url %>">
+                <embed src="<%= section.attachment.url %>" />
+              </object>
+				<!-- <object type="video/x-msvideo" data="/seret2.avi" width="200" height="150">
+					<param name="src" value="/seret2.avi">
+					<param name="autoplay" value="false">
+					<param name="autoStart" value="0">
+				</object> -->
+          </li>
+		  <% else %>
+          <li>
+				This section is currently locked. To unlock it kindly study previous sections and give associated test.
+          </li>
+          <% end %>
+        </ul>
+      </div>
+		<% classname = '' %>
+      <% unlock_counter = unlock_counter + 1 %>
+      <% unlock = false if (@current_subscription.user_type == "Learner" and unlock_counter > @current_subscription.current_section) %>
+    <% end %>
+  </div>
   <% end %>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")), my_courses_courses_path  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_path(@course), style: 'margin-left: 5px;' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(@course), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;' %>
 </div>
+
+<% @course.sections.each do |section| %>
+  <% if section.quiz_completed?(current_user.id) %>
+    <div id='quiz_result_dialog_<%= section.id%>' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Quiz Result for <%= section.title.titleize if section.title.present? %></h3>
+      </div>
+      <div class="modal-body">
+        <p>You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  $(".rateit").bind('rated', function() {
+    obj = $(this);
+    $(obj).rateit('readonly', 'readonly');
+
+    $.ajax({
+      url: "<%= rate_courses_path %>",
+      type: "GET",
+      data: {
+        course_id: $(obj).attr('id').split('_')[1],
+        rate: $(obj).rateit('value')
+      }
+    });
+  });
+<% end %>
+

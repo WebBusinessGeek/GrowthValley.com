@@ -23,12 +23,9 @@
 
 <div class="wrapper">
   <div class="wrapper-inner" style="height:472px;">
-    <% if current_user && current_user.type == 'Learner' %>
-      <a href="<%= learners_path %>">
-    <% else %>
-      <a href="<%= root_path %>">
-    <% end %>
-        <span class="sprite logo"></span></a>
+      <a href="<%=(current_user) ? dashboard_path : root_path %>">
+        <span class="sprite logo"></span>
+      </a>
         <%= render partial: "layouts/top_menu" if @show_top_menu.present? and @show_top_menu == true %>
       </a>
   </div>
@@ -37,7 +34,7 @@
 <div class="bottom-wrapper-out" style="margin: -280px auto 0;">
   <div class="bottom-wrapper-in">
     <%= bootstrap_flash %>
-    <div style='padding: 5px 20px;'>
+    <div style='padding: 5px 10px;'>
       <%= yield %>
     </div>
 	<%= render partial: "layouts/footer" %>

@@ -274,12 +274,14 @@
     display: block;
     padding-left: 10px;
     position: absolute;
-    top: 3px;
+    top: 0px;
     width: 178px;
 	-webkit-appearance:none;
 	-moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';
+    padding-bottom: 0px;
+    vertical-align:middle;
 }
 /*.fliterby:after {
     background-image: url("/assets/sprite.png");
@@ -292,6 +294,10 @@
     top: 0;
     width: 32px;
 }*/
+
+.dashboard li {
+	width: 33.3% !important;
+}
 .courses-box {
 	list-style: none outside none;
 	margin: 0 auto;
@@ -302,7 +308,7 @@
 .courses-box li {
 	float: left;
 	overflow: hidden;
-	width: 26.2%;
+	width: 25%;
 }
 .courses-box li .box {
 	border-bottom: 2px solid #CBCBCB;

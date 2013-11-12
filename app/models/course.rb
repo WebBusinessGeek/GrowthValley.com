@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
-  :sections_count, :status, :is_paid, :price, :subject_ids, :sections_attributes, :ratings_attributes, :slug
+  :sections_count, :status, :is_paid, :price, :subject_id, :sections_attributes, :ratings_attributes, :slug
 
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -11,10 +11,9 @@ class Course < ActiveRecord::Base
   has_many :users, through: :subscriptions
   accepts_nested_attributes_for :users, :allow_destroy => true
 
-  has_and_belongs_to_many :subjects
-  before_destroy { subjects.clear }
-  accepts_nested_attributes_for :subjects, :allow_destroy => true
-  validates :subjects, presence: true, if: :active_or_on_subjects_step?
+  belongs_to :subject
+  
+  validates :subject, presence: true, if: :active_or_on_subject_step?
 
   has_many :sections, dependent: :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
@@ -41,7 +40,7 @@ class Course < ActiveRecord::Base
   scope :free_user_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'free', false, true) }
   scope :paid_user_free_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', false, true) }
   scope :paid_user_paid_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', true, true) }
-  scope :all_published_courses_for_subjects, ->(subs) { includes(:subjects).where("(subjects.id = ? or subjects.id = ? or subjects.id = ?) and is_published = ?", subs.map(&:id)[0], subs.map(&:id)[1], subs.map(&:id)[2], true) }
+  scope :all_published_courses_for_subjects, ->(subs) { where("(subject_id in (?)) and is_published = ?", subs.map(&:id), true) }
   scope :all_published, -> { where("is_published = ?", true) }
 	
   include PgSearch
@@ -125,8 +124,8 @@ class Course < ActiveRecord::Base
     status == :price || active?
   end
 
-  def active_or_on_subjects_step?
-    status == :subjects || active?
+  def active_or_on_subject_step?
+    status == :subject || active?
   end
 
   def active_or_on_type_step?

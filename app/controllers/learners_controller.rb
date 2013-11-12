@@ -13,14 +13,14 @@ class LearnersController < ApplicationController
     @course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1)
 	  add_activity_stream('COURSE', @course, 'subscribe')
 
-    redirect_to learner_path(@course), notice: 'Course subscribed successfully!'
+    redirect_to course_path(@course), notice: 'Course subscribed successfully!'
   end
 
   def unsubscribe_course
     @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
     current_user.courses.delete(@course) if current_user.courses.include?(@course)
 
-    redirect_to learner_path(@course), notice: 'Course unsubscribed successfully!'
+    redirect_to course_path(@course), notice: 'Course unsubscribed successfully!'
   end
 
   def rate_course

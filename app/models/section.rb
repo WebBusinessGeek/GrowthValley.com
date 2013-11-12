@@ -17,9 +17,6 @@ class Section < ActiveRecord::Base
 
   mount_uploader :attachment, AttachmentUploader
   
-  scope :locked, -> { where("unlocked = ?", false) }
-  scope :unlocked, -> { where("unlocked = ?", true) }
-  
   default_scope { order("id asc") }
 
   def complete?

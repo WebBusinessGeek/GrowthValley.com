@@ -25,7 +25,9 @@
     <%= bootstrap_flash %>
     </br>
   <div class="wrapper-inner" style="height:472px;">
+      <a href="<%=(current_user) ? dashboard_path : root_path %>">
         <span class="sprite logo"></span>
+      </a>
         <%= render partial: "layouts/top_menu" %>
         <% if !current_user %>
           <div id="signup-form" class="login-section" style="display: <%=(params[:login].present?) ? 'none' : 'block'%>;">

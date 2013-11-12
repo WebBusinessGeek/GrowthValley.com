@@ -84,8 +84,9 @@ class ChargesController < ApplicationController
               render :edit
             else
               current_user.courses << course unless current_user.courses.include?(course)
-              course.sections.first.update_attributes(unlocked: true)
-              redirect_to learner_path(course), notice: 'Course subscribed successfully!'
+			  course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1)
+			    add_activity_stream('COURSE', course, 'subscribe')
+              redirect_to course_path(course), notice: 'Course subscribed successfully!'
             end
           end
         ## Course subscription code ends...

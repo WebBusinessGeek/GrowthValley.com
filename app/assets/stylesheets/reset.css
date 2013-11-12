@@ -19,7 +19,7 @@ html, body { height: 100%; }
 .top-wrapper-in { background:url(/assets/shadow_right.png) right 94px no-repeat; margin: 0 auto; position:relative; display:block; padding-right:160px; min-height:720px; }
 .bottom-wrapper-out { background:url(/assets/bottom_shadow_left.png) left bottom no-repeat; margin:-310px auto 0; position:relative; display:block; padding-left:160px; }
 .bottom-wrapper-in { background:url(/assets/bottom_shadow_right.png) right bottom no-repeat; margin: 0 auto; position:relative; display:block; padding-right:160px; }
-.main-content{ padding:0 15px;}
+.main-content{ padding:0 5px;}
 a { color: #5777c4; text-decoration: none; }
 a:hover { color: #5777c4; }
 /*========== Margin ==========*/

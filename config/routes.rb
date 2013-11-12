@@ -12,6 +12,7 @@ GrowthValley::Application.routes.draw do
     end
 
     member do
+	  get 'sections'
       get 'publish_unpublish'
     end
 
@@ -35,6 +36,7 @@ GrowthValley::Application.routes.draw do
       get 'terms', as: :terms
     end
   end
+  match 'dashboard' => 'homes#dashboard', as: :dashboard
 
   resources :learners, only: [:index, :show] do
 	collection do

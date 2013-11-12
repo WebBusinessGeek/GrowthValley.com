@@ -25,6 +25,9 @@ class LearnersQuizzesController < ApplicationController
     if params[:learners_quiz][:section_id].present?
       @section = Section.find_by_id(params[:learners_quiz][:section_id])
       @course = @section.course
+	  total_sections = @course.sections.count
+      current_subscription = @course.subscriptions.where("user_id = ?",current_user.id).first
+      current_section = current_subscription.current_section
       if @section.present? && current_user.present?
         answered_quizzes = @section.learners_quizzes.where(user_id: current_user.id).collect(&:quiz_id)
       end
@@ -44,15 +47,16 @@ class LearnersQuizzesController < ApplicationController
 
     if @quiz_answer.save
       if @section.quizzes.where('id not in (?)', answered_quizzes).length == 1
-        course = Course.find_by_id(@section.course_id).sections.where(unlocked: false)
-        if course.present?
-          course.first.update_attribute(:unlocked, true)
-          redirect_to learner_path(@section.course), notice: 'Next section unlocked!'
-          return
-        else
-          redirect_to learner_path(@section.course)
-          return
-        end
+		  if current_section < total_sections
+			  new_section = current_section + 1
+			  current_subscription.update_attribute(:current_section, new_section)
+			  redirect_to course_path(@section.course), notice: 'Next section unlocked!'
+			  return
+		  else
+			new_section = current_section
+            redirect_to course_path(@section.course), notice: 'All test done. Kindly give the exam.'
+            return
+		  end
       else
         redirect_to take_test_learners_path(section: @section, course: @course), notice: 'Answer submitted successfully!'
       end

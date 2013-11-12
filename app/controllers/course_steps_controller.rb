@@ -10,7 +10,7 @@ class CourseStepsController < ApplicationController
         @course.sections.build
       end
     end
-
+    
     case step
     when 'wicked_finish'
       redirect_to my_courses_courses_path, notice: 'Course updated successfully!'
@@ -35,9 +35,9 @@ class CourseStepsController < ApplicationController
     @course = current_user.courses.find_by_id(session[:course_id])
 
     if @course.is_paid
-      self.steps = [:price, :subjects, :description, :type, :sections_count, :sections]
+      self.steps = [:price, :subject, :description, :type, :sections_count, :sections]
     else
-      self.steps = [:subjects, :description, :type, :sections_count, :sections]
+      self.steps = [:subject, :description, :type, :sections_count, :sections]
     end
   end
 end

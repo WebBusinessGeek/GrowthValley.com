@@ -7,6 +7,5 @@ class Subject < ActiveRecord::Base
   has_and_belongs_to_many :users
   validates_associated :users
 
-  has_and_belongs_to_many :courses
-  validates_associated :courses
+  has_many :courses
 end

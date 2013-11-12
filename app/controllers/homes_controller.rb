@@ -1,16 +1,28 @@
 class HomesController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, except: [:dashboard]
   layout :set_layout
 
+  def dashboard
+    @show_top_menu = false
+    @notifications = get_activity_stream()
+    @my_subjects = current_user.subjects
+    render :layout => 'application'
+  end
+  
   def index
-    @current_menu = "home"
-    if !current_user
-      @courses = Course.all_published
-    elsif current_user.type == 'Teacher'
-      @courses = Course.all_published
-    elsif current_user.type == 'Learner'
-      @courses = Course.all_published_courses_for_subjects(current_user.subjects)
-    end
+    if current_user
+		redirect_to dashboard_path()
+		return
+    else
+		@current_menu = "home"
+		if !current_user
+		  @courses = Course.all_published
+		elsif current_user.type == 'Teacher'
+		  @courses = Course.all_published
+		elsif current_user.type == 'Learner'
+		  @courses = Course.all_published_courses_for_subjects(current_user.subjects)
+		end
+	end
   end
 
   def about_us

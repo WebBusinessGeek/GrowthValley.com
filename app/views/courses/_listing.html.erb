@@ -11,9 +11,12 @@
 		<% end %>
 	<% end %>
 	</h1>
-    <div class="courses-filter fright">Order by: <span class="sprite fliterby fright">
+    <div class="courses-filter fright"><span class="sprite fliterby fright">
       <%= form_tag(courses_path, :name=>"frmsort", :method=>"get") do %>
       <input name="search" id="Search" type="hidden" value="<%=params[:search]%>" />
+      <% if params[:subject].present? %>
+      <input name="subject" id="subject" type="hidden" value="<%=params[:subject]%>" />
+      <% end %>
       <%=select_tag("order", options_for_select([["Latest","latest"],["Name","name"]], params[:order]), :prompt => "Sort By", :onchange=>"document.frmsort.submit();") %>
       <% end %>
       </span></div>
@@ -21,43 +24,13 @@
   </div>
 
   <ul class="courses-box">
+  <% if @courses.count > 0 %>
     <% @courses.each do |course| %>
-      <li>
-        <div class="box">
-          <span class="cource-img box-grn">
-            <% if current_user && current_user.type == "Learner" %>
-              <%= link_to image_tag(course.course_cover_pic.url(:cover)), learner_path(course) %>
-            <% else %>
-              <%= image_tag(course.course_cover_pic.url(:cover)) %>
-            <% end %>
-          </span>
-          <span class="cource-disc">
-            <p class="title">
-              <% if current_user && current_user.type == "Learner" %>
-                <%= link_to course.title.titleize, learner_path(course) %>
-              <% else %>
-                <%= course.title.titleize %>
-              <% end %>
-            </p>
-            <ol class="cource-dtl">
-              <li>Price<br />
-                <span><%= course.is_paid ? $7 : 'Free' %></span>
-              </li>
-              <li><%= course.ratings.count %> Reviews<br/>
-                <% if course.ratings.present? && course.ratings.find_by_ip_address(request.remote_ip).present? %>
-                  <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
-                <% else %>
-                  <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="false" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
-                <% end %>
-              </li>
-              <li>Students<br />
-                <span class="sprite students"></span><%= course.users.where(type: 'Learner').count %>
-              </li>
-            </ol>
-          </span>
-        </div>
-      </li>
+      <%= render partial: "courses/single_course", :locals=>{:course => course} %>
     <% end %>
+  <% else %>
+	No Courses available for your search
+  <% end %>
   </ul>
 
   <div class="btn1">

@@ -1,0 +1,35 @@
+<li>
+<div class="box">
+  <span class="cource-img box-grn">
+	<% if current_user && current_user.type == "Learner" %>
+	  <%= link_to image_tag(course.course_cover_pic.url(:cover)), course_path(course) %>
+	<% else %>
+	  <%= image_tag(course.course_cover_pic.url(:cover)) %>
+	<% end %>
+  </span>
+  <span class="cource-disc">
+	<p class="title">
+	  <% if current_user && current_user.type == "Learner" %>
+		<%= link_to course.title.titleize, course_path(course) %>
+	  <% else %>
+		<%= course.title.titleize %>
+	  <% end %>
+	</p>
+	<ol class="cource-dtl">
+	  <li>Price<br />
+		<span><%= course.is_paid ? $7 : 'Free' %></span>
+	  </li>
+	  <li><%= course.ratings.count %> Reviews<br/>
+		<% if course.ratings.present? && course.ratings.find_by_ip_address(request.remote_ip).present? %>
+		  <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
+		<% else %>
+		  <div id="course_<%= course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= course.avg_rating(course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="false" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
+		<% end %>
+	  </li>
+	  <li>Students<br />
+		<span class="sprite students"></span><%= course.users.where(type: 'Learner').count %>
+	  </li>
+	</ol>
+  </span>
+</div>
+</li>

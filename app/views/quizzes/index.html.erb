@@ -34,4 +34,4 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")), new_section_quiz_path(@section), :class => 'btn btn-primary' %>
-<%= link_to t('.back', :default => 'Back to course overview'), course_path(@section.course), :class => 'btn' %>
+<%= link_to t('.back', :default => 'Back to course overview'), sections_course_path(@section.course), :class => 'btn' %>

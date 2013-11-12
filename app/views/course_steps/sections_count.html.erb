@@ -3,6 +3,7 @@
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
+  <% if @course.sections.count > 0 %>
   <div class="control-group">
     <label class="control-label">
       <b>Existing sections count:</b>
@@ -13,6 +14,7 @@
       </label>
     </div>
   </div>
+  <% end %>
   <%= f.input :sections_count, label: 'How many sections do you want to add?', collection: @course.sections_count_range, include_blank: false, required: true %>
 
   <div class="form-actions">

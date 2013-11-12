@@ -20,6 +20,30 @@ class CoursesController < ApplicationController
 		sort_order = "courses.title asc"
     end
     
+   if params[:subject].present?
+	   if current_user
+			current_subject = current_user.subjects.find_all_by_slug(params[:subject])
+	   else
+			current_subject = Subject.find_all_by_slug(params[:subject])
+	   end		
+   else
+	   if !current_user
+			current_subject = current_user.subjects
+	   else
+			current_subject = Subject.all
+	   end		
+   end
+   if params[:search].present?
+		if params[:order].present?
+			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params).reorder(sort_order)
+		else
+			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params)
+		end
+   else
+		@courses = Course.all_published_courses_for_subjects(current_subject).order(sort_order)
+   end
+   
+=begin  
     if params[:search].present?
 		if !current_user
 		  @courses = Course.all_published.text_search(params).order(sort_order)
@@ -37,7 +61,7 @@ class CoursesController < ApplicationController
 		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).order(sort_order)
 		end
 	end
-	
+=end
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -53,12 +77,32 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
-  def show
+  def sections
     @course = current_user.courses.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
     end
+  end
+
+  # GET /courses/1
+  # GET /courses/1.json
+  def show
+    @course = Course.find_by_slug(params[:id])
+    @current_subscription = @course.subscriptions.where("user_id = ?",current_user.id).first
+	@total_section = @course.sections.count
+	
+	course_sections = @course.sections.map(&:id)
+	user_test_sections = current_user.learners_quizzes.select("distinct section_id").map(&:section_id)
+	@exam_active = user_test_sections.each_cons(course_sections.size).include? course_sections
+		
+	if @current_subscription.present?	
+		respond_to do |format|
+		  format.html # show.html.erb
+		end
+	else
+		redirect_to :dashboard_url, :notice => "You are not authorized to view this course"
+	end	
   end
 
   # GET /courses/new
@@ -117,7 +161,7 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to courses_url }
+      format.html { redirect_to my_courses_courses_url }
     end
   end
 
