@@ -41,3 +41,4 @@ gem 'omniauth-facebook', '~> 1.4.1'
 gem 'friendly_id', "~> 4.0.9"
 gem 'pg_search', "~> 0.7.0"
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'numbers_and_words'

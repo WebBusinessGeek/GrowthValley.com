@@ -10,7 +10,7 @@ class LearnersController < ApplicationController
   def subscribe_course
     @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
     current_user.courses << @course unless current_user.courses.include?(@course)
-    @course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1)
+    @course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
 	  add_activity_stream('COURSE', @course, 'subscribe')
 
     redirect_to course_path(@course), notice: 'Course subscribed successfully!'

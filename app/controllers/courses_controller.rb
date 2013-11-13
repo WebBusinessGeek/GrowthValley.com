@@ -101,7 +101,7 @@ class CoursesController < ApplicationController
 		  format.html # show.html.erb
 		end
 	else
-		redirect_to :dashboard_url, :notice => "You are not authorized to view this course"
+		redirect_to :dashboard, :notice => "You are not authorized to view this course"
 	end	
   end
 
