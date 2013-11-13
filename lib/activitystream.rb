@@ -9,9 +9,19 @@ module Activitystream
 				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
 			end
 			
+			if actionname.to_s == "updated"
+				notification_for = "Learner"
+				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
+			end
+			
 			if actionname.to_s == "subscribe"
 				notification_for = "Teacher"
-				message = "A new user has subsribed for your course '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>."
+				message = "A new user has subsribed for your course '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'."
+			end
+			
+			if actionname.to_s == "completed"
+				notification_for = "Teacher"
+				message = "A user has completed the exam for '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' course. Kindly review his exam."
 			end
 		end
 
@@ -19,7 +29,11 @@ module Activitystream
 	end
 	
 	def get_activity_stream(no_of_records = 10)
-		user_notifications = Notification.find(:all, :conditions => ["notification_for = ? and module_id IN (?)", current_user.type, Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records)
+	  if current_user.type.to_s == "Teacher"
+  		user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records)
+  	else #learner
+      user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id)], :limit => no_of_records)
+  	end
 	end
 
 

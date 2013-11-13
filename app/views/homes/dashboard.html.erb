@@ -25,24 +25,28 @@
 					</div><br>
 					<% if current_user.type == "Learner" %>
 						<h3>Courses Completed</h3>
-						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold">
-							<%=current_user.subscriptions.where("user_type = ? and complete = true",current_user.type).count()%>
+						<div class='row-fluid' style="text-align:center;padding-top:5px">
+							<span style="font-size:25px;font-weight:bold"><%=current_user.subscriptions.where("user_type = ? and complete = true",current_user.type).count()%></span><br>
+							<%=link_to "View Courses", my_courses_courses_path()%>
 						</div>
 						<br>
 						<h3>Courses Un-Finished</h3>
-						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold;">
-							<%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%>
+						<div class='row-fluid' style="text-align:center;padding-top:5px;">
+							<span style="font-size:25px;font-weight:bold"><%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%></span><br>
+							<%=link_to "Complete Courses", my_courses_courses_path()%>
 						</div>
 						<br>
 					<% else %>
 						<h3>Courses Published</h3>
-						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold">
-							<%=current_user.courses.where("is_published = true").count()%>
+						<div class='row-fluid' style="text-align:center;padding-top:5px">
+							<span style="font-size:25px;font-weight:bold"><%=current_user.courses.where("is_published = true").count()%></span><br>
+							<%=link_to "View Courses", my_courses_courses_path()%>
 						</div>
 						<br>
 						<h3>Courses Un-Published</h3>
-						<div class='row-fluid' style="padding-top:5px;font-size:25px;text-align:center;font-weight:bold;">
-							<%=current_user.courses.where("is_published = false").count()%>
+						<div class='row-fluid' style="text-align:center;padding-top:5px;">
+							<span style="font-size:25px;font-weight:bold"><%=current_user.courses.where("is_published = false").count()%></span><br>
+							<%=link_to "Publish Courses", my_courses_courses_path()%>
 						</div>
 						<br>
 					<% end %>
