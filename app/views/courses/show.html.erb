@@ -36,8 +36,7 @@
 		  </br>
 		  <div class='course-subscribe'>
 			<% if current_user.courses.include?(@course) %>
-			  <%= link_to("Take Exam", "#", class: 'btn btn-primary') if @exam_active %>
-			  <%#= link_to 'Unsubscribe Course', unsubscribe_course_learner_path(@course), class: 'btn btn-danger' %>
+			  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') if @exam_active %>
 			<% else %>
 			  <% if @course.is_paid %>
 				<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
