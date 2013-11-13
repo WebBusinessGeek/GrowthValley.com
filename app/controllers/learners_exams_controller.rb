@@ -30,7 +30,7 @@ class LearnersExamsController < ApplicationController
 
       if exam_answer.save
         Subscription.where(user_id: current_user.id, course_id: course.id).first.update_attributes(progress: "exam given")
-        add_activity_stream(COURSE, course, completed) 
+        add_activity_stream('COURSE', course, 'completed') 
         redirect_to new_learners_exam_path(course_id: course)
       else
         render :new

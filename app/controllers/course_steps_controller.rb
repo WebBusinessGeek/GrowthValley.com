@@ -27,6 +27,9 @@ class CourseStepsController < ApplicationController
     else
       @course.status = step
     end
+    if @course.is_published
+      add_activity_stream('COURSE', @course, 'updated')
+    end
     render_wizard @course
   end
 
