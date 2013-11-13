@@ -4,6 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+	redirect_to root_path
     build_resource({})
     respond_with self.resource
   end
@@ -142,7 +143,8 @@ class RegistrationsController < Devise::RegistrationsController
   # this method in your own RegistrationsController.
   def after_update_path_for(resource)
     if resource.profile_pic_url.present?
-      my_courses_courses_path
+      #my_courses_courses_path
+      dashboard_path
     else
       edit_user_registration_path
     end

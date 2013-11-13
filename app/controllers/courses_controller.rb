@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
 			current_subject = Subject.find_all_by_slug(params[:subject])
 	   end		
    else
-	   if !current_user
+	   if current_user
 			current_subject = current_user.subjects
 	   else
 			current_subject = Subject.all
