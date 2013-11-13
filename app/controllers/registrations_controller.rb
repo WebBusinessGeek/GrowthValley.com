@@ -101,6 +101,13 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to new_registration_path(resource_name)
   end
 
+  def upload_profile_pic
+    user = current_user
+    user.profile_pic = params[:user_profile][:profile_pic]
+    user.save
+    redirect_to edit_user_registration_path, notice: 'Profile pic updated successfully!'
+  end
+
   protected
 
   def update_needs_confirmation?(resource, previous)
