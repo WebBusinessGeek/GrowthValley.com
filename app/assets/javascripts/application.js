@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require jquery.rateit
 //= require_tree .
@@ -22,4 +23,5 @@ $(function() {
   }, 3000);
 
   $('.text').attr('rows', 5);
+  $(".datepicker").datepicker();
 });

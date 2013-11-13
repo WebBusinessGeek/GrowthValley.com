@@ -6,23 +6,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :full_name, :autofocus => true %>
-    <%= f.input :email, :required => true %>
+    <%= f.input :full_name, :autofocus => true, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :email, :required => true, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
     <%= f.input :description %>
-    <%= f.input :age %>
-    <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false %>
-    <% if !resource.new_record? && resource.profile_pic.present? %>
-      <%= f.input :profile_pic, required: false %>
-    <% else %>
-      <%= f.input :profile_pic, required: true %>
-    <% end %>
+    <%= f.input :age, input_html: { class: 'datepicker' }, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
+    <%= f.input :profile_pic, required: false %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
+    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :password_confirmation, :required => false, wrapper_html: { style: "display: inline-block; padding-left: 2em; position: absolute;" } %>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>
 
