@@ -101,7 +101,7 @@ class CoursesController < ApplicationController
 		  format.html # show.html.erb
 		end
 	else
-		redirect_to :dashboard_url, :notice => "You are not authorized to view this course"
+		redirect_to :dashboard, :notice => "You are not authorized to view this course"
 	end	
   end
 
@@ -147,6 +147,9 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.update_attributes(params[:course])
         session[:course_id] = @course.id
+        if @course.is_published
+          add_activity_stream('COURSE', @course, 'updated')
+        end
         format.html { redirect_to course_steps_path }
       else
         format.html { render action: "edit" }

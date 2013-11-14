@@ -49,7 +49,7 @@ class LearnersQuizzesController < ApplicationController
       if @section.quizzes.where('id not in (?)', answered_quizzes).length == 1
 		  if current_section < total_sections
 			  new_section = current_section + 1
-			  current_subscription.update_attribute(:current_section, new_section)
+			  current_subscription.update_attributes(:current_section => new_section, progress: "#{current_section.to_words} section completed")
 			  redirect_to course_path(@section.course), notice: 'Next section unlocked!'
 			  return
 		  else

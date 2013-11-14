@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112105213) do
+ActiveRecord::Schema.define(:version => 20131113125726) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -173,13 +173,13 @@ ActiveRecord::Schema.define(:version => 20131112105213) do
     t.boolean  "complete",        :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "progress"
   end
 
   create_table "users", :force => true do |t|
     t.string   "full_name"
     t.text     "description"
     t.string   "type"
-    t.integer  "age"
     t.boolean  "sex"
     t.string   "subscription_type",      :default => "free"
     t.string   "profile_pic"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20131112105213) do
     t.datetime "updated_at",                                 :null => false
     t.string   "provider"
     t.string   "uid"
+    t.date     "date_of_birth"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

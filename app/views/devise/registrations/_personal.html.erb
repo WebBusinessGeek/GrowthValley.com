@@ -1,28 +1,30 @@
 <div id='user_profile_pic_holder' class='pull-right'>
   <%= image_tag((resource.profile_pic_url.present?) ? resource.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-rounded') %>
+  </br></br>
+  <%= link_to 'Update profile pic', "javascript:void(0);", id: "profile_pic_upload_link", style: "padding-left: 28%; font-weight: bold;" %>
+
+  <%= form_for(:user_profile, :url => upload_profile_pic_path, remote: true, :html => { :method => :post, multipart: true, id: 'profile_pic_upload_form' }) do |form| %>
+    <%= form.file_field :profile_pic, style: 'display: none;' %>
+  <% end %>
 </div>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :full_name, :autofocus => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :description %>
-    <%= f.input :age %>
-    <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false %>
-    <% if !resource.new_record? && resource.profile_pic.present? %>
-      <%= f.input :profile_pic, required: false %>
-    <% else %>
-      <%= f.input :profile_pic, required: true %>
-    <% end %>
+    <%= f.input :full_name, :autofocus => true, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :email, :required => true, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
+    <%= f.input :description, input_html: { style: "width: 45%;" } %>
+    <%= f.input :date_of_birth, as: :integer, input_html: { class: 'datepicker' }, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
+    <%= f.input :profile_pic, required: false, as: :hidden, wrapper_html: { style: "display: block;" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
+    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :password_confirmation, :required => false, wrapper_html: { style: "display: inline-block; padding-left: 2em; position: absolute;" } %>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>
 
@@ -36,3 +38,15 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<%= javascript_tag do %>
+  $(function() {
+    $("#profile_pic_upload_link").click(function() {
+      $("#user_profile_profile_pic").click();
+    });
+
+    $("#user_profile_profile_pic").change(function() {
+      $(this).closest('form').trigger('submit.rails');
+    });
+  });
+<% end %>
