@@ -234,7 +234,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, "341031536034250", "d8ce13ac788d3b00e08e1ad6d4a9546a", {:scope => 'email, offline_access'}
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], {:scope => 'email, offline_access'}
   config.warden do |manager| 
     manager.failure_app = CustomFailureAuthentication 
   end
