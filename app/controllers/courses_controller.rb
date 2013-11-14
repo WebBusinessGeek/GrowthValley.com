@@ -95,14 +95,20 @@ class CoursesController < ApplicationController
 	course_sections = @course.sections.map(&:id)
 	user_test_sections = current_user.learners_quizzes.select("distinct section_id").map(&:section_id)
 	@exam_active = user_test_sections.each_cons(course_sections.size).include? course_sections
-		
-	if @current_subscription.present?	
+	
+	if @course.is_published?	
 		respond_to do |format|
 		  format.html # show.html.erb
 		end
 	else
-		redirect_to :dashboard, :notice => "You are not authorized to view this course"
-	end	
+		if @current_subscription.present? and @current_subscription.user_type == "Teacher"
+			respond_to do |format|
+			  format.html # show.html.erb
+			end		
+		else
+			redirect_to :dashboard, :notice => "The desired course is un-published."
+		end
+	end
   end
 
   # GET /courses/new
