@@ -1,6 +1,7 @@
 <div class="main-content courses">
+  <div style="float:left;">
   <ul class="courses-box">
-    <li>
+    <li style="width:100%">
       <div class="box">
         <span class="cource-img box-grn">
           <%= image_tag(@course.course_cover_pic.url(:cover)) %>
@@ -24,34 +25,32 @@
         </span>
       </div>
     </li>
-    <li style="width:auto;">
-      <div style="margin:12px;">
-		  <div class="course-title" style="font-weight: bold; font-size: 12pt;"><%= @course.title.titleize %></div>
-		  <div class="course-description"><%= raw(@course.description) %></div>
-		  <div class="course-instructor">
-			<% if @course.present? && @course.users.where(type: 'Teacher').present? %>
-			  <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
-			<% end %>
-		  </div>
-		  </br>
-		  <div class='course-subscribe'>
-			<% if current_user.courses.include?(@course) %>
-			  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') if @exam_active %>
-			<% else %>
-			  <% if @course.is_paid %>
-				<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
-			  <% else %>
-				<%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
-			  <% end %>
-			  <br>
-			  <br>
-			  Total Sections: <%=@total_section%>
-			<% end %>
-		  </div>
-	  </div>
-    </li>
   </ul>
-  
+  </div>
+  <div style="margin:12px;">
+	  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @course.title.titleize %></div>
+	  <div class="course-instructor">
+		<% if @course.present? && @course.users.where(type: 'Teacher').present? %>
+		  By <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
+		<% end %>
+	  </div><br>
+	  <div class='course-subscribe'>
+		<% if current_user.courses.include?(@course) %>
+		  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') if @exam_active %>
+		<% else %>
+		  <% if @course.is_paid %>
+			<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
+		  <% else %>
+			<%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
+		  <% end %>
+		  <br>
+		  <br>
+		  Total Sections: <%=@total_section%>
+		<% end %>
+	  </div>
+	  <div class="course-description"><%= raw(@course.description) %></div>
+	  </br>
+  </div>
   <% if current_user.courses.include?(@course) %>
   <h2>Course Sections:</h2>
   </br>
@@ -68,7 +67,7 @@
 		<% end %>		
 		<li class="<%=classname %>">
 			<a href="#section_<%= section.id %>" data-toggle="tab">
-			  <%= section.title.titleize %>
+			  Section <%=section_counter%><%#= section.title.titleize %>
 			</a>
 		</li>
 		<% classname = '' %>
@@ -91,8 +90,8 @@
       
       <div class="tab-pane <%=classname %>" id="section_<%= section.id %>">
         <ul>
-          <li>
-            <%= raw(section.description) %>
+          <li style="padding-left:20px;">
+            <%= section.title.titleize %>
           </li>
           <li class='pull-right' style='margin-left: 1em;'>
             <% if unlock and @current_subscription.user_type == "Learner" %>
@@ -105,8 +104,9 @@
               </b>
             <% end %>
           </li>
+        </ul>
           <% if unlock %>
-          <li class='pull-right'>
+          <div style="text-align:center;margin-top:10px;">
               <object data="<%= section.attachment.url %>" width='800' height='1000'>
                 <embed src="<%= section.attachment.url %>" width='800' height='1000' />
               </object>
@@ -115,13 +115,12 @@
 					<param name="autoplay" value="false">
 					<param name="autoStart" value="0">
 				</object> -->
-          </li>
+          </div>
 		  <% else %>
-          <li>
+          <div style="text-align:center;margin-top:10px;">
 				This section is currently locked. To unlock it kindly study previous sections and give associated test.
-          </li>
+          </div>
           <% end %>
-        </ul>
       </div>
 		<% classname = '' %>
       <% unlock_counter = unlock_counter + 1 %>
