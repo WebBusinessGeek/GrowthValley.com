@@ -14,6 +14,11 @@ module Activitystream
 				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
 			end
 			
+			if actionname.to_s == "result"
+				notification_for = "Learner"
+				message = "Exam result has been announced for your course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'. <a href='#'>Click Here</a> to view result."
+			end
+			
 			if actionname.to_s == "subscribe"
 				notification_for = "Teacher"
 				message = "A new user has subsribed for your course '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'."

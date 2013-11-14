@@ -7,7 +7,19 @@ class SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     sign_in_and_redirect(resource_name, resource)
   end
- 
+  
+  def inactive
+	  clean_up_passwords resource
+      respond_to do |format|
+        format.html {
+        redirect_to root_path, alert: flash[:alert]
+        }
+        format.js {
+          render :json => { success: false, error: flash[:alert] }
+        }
+      end
+  end
+  
   def sign_in_and_redirect(resource_or_scope, resource=nil)
     scope = Devise::Mapping.find_scope!(resource_or_scope)
     resource ||= resource_or_scope
@@ -22,7 +34,7 @@ class SessionsController < Devise::SessionsController
         unless current_user.sign_in_count > 1 && current_user.profile_pic_url.present?
           render js: "window.location.assign('#{edit_user_registration_url}')"
         else
-          render js: "window.location.assign('#{courses_url}')"
+          render js: "window.location.assign('#{dashboard_url}')"
         end
       }
     end

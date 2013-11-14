@@ -4,6 +4,7 @@ GrowthValley::Application.routes.draw do
 
   devise_scope :user do
     post 'user/upload_profile_pic' => 'registrations#upload_profile_pic', as: 'upload_profile_pic'
+    get 'user/inactive' => 'sessions#inactive'
   end
 
   get 'user/subjects' => 'users#list_subjects', as: 'user_subjects'

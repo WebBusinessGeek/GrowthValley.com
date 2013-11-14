@@ -18,7 +18,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
     end
 
     @quiz = Quiz.find(params[:id])
@@ -59,7 +59,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
     end
 
     @quiz = Quiz.find(params[:id])
@@ -69,7 +69,7 @@ class QuizzesController < ApplicationController
   # POST /quizzes.json
   def create
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
       @quiz = @section.quizzes.build(params[:quiz])
     else
       @quiz = Quiz.new(params[:quiz])
@@ -88,7 +88,7 @@ class QuizzesController < ApplicationController
   # PUT /quizzes/1.json
   def update
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
     end
 
     @quiz = Quiz.find(params[:id])
@@ -106,7 +106,7 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1.json
   def destroy
     if params[:section_id].present?
-      @section = Section.find_by_id(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])
     end
 
     @quiz = Quiz.find(params[:id])

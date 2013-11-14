@@ -1,7 +1,16 @@
-<div id='user_profile_pic_holder' class='pull-right'>
+<style>
+#user_date_of_birth{
+	background:url(/assets/calendar.png) right no-repeat;
+	cursor:pointer;
+}
+.img-rounded{
+	border: 1px solid #cccccc;
+}
+</style>
+<div id='user_profile_pic_holder' class='pull-right' style="text-align:center;">
   <%= image_tag((resource.profile_pic_url.present?) ? resource.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-rounded') %>
-  </br></br>
-  <%= link_to 'Update profile pic', "javascript:void(0);", id: "profile_pic_upload_link", style: "padding-left: 28%; font-weight: bold;" %>
+  </br>
+  <%= link_to 'Update profile pic', "javascript:void(0);", id: "profile_pic_upload_link", style: "font-weight: bold;" %>
 
   <%= form_for(:user_profile, :url => upload_profile_pic_path, remote: true, :html => { :method => :post, multipart: true, id: 'profile_pic_upload_form' }) do |form| %>
     <%= form.file_field :profile_pic, style: 'display: none;' %>
@@ -15,7 +24,7 @@
     <%= f.input :full_name, :autofocus => true, wrapper_html: { style: "display: inline-block;" } %>
     <%= f.input :email, :required => true, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
     <%= f.input :description, input_html: { style: "width: 45%;" } %>
-    <%= f.input :date_of_birth, as: :integer, input_html: { class: 'datepicker' }, wrapper_html: { style: "display: inline-block;" } %>
+    <%= f.input :date_of_birth, as: :integer, input_html: { class: 'datepicker', readonly: true }, wrapper_html: { style: "display: inline-block;" } %>
     <%= f.input :sex, label: 'Gender', as: :select, collection: [['Male', true], ['Female', false]], :include_blank => false, wrapper_html: { style: "display: inline-block; padding-left: 2em;" } %>
     <%= f.input :profile_pic, required: false, as: :hidden, wrapper_html: { style: "display: block;" } %>
 
