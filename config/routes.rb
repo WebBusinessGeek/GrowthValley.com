@@ -42,6 +42,7 @@ GrowthValley::Application.routes.draw do
     end
   end
   match 'dashboard' => 'homes#dashboard', as: :dashboard
+  match 'notifications' => 'homes#notification', as: :notification
 
   resources :learners, only: [:index, :show] do
 	collection do

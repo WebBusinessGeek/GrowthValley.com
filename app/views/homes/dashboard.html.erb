@@ -9,18 +9,24 @@
 					<h3>Whats going on?</h3><br>
 					<ul>
 					<% @notifications.each do |notification| %>
-						<li><%=notification["message"].html_safe()%></li>
+						<li><%=notification["message"].html_safe()%> at 
+							<%=notification.created_at.strftime("%d-%m-%Y %H:%M %z")%></li>
 					<% end %>
+						<li class="pull-right"><%=link_to("more", notification_path)%></li>
 					</ul>
 					</div>
 				</div>
 				<div class="span6"><br>
 					<h3>Course Subscriptions</h3>
 					<div class='row-fluid' style="padding-top:5px;">
-						<% @my_subjects.each do |subject| %>
-						<div class="span4">
-						<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>
-						</div>
+						<% if @my_subjects.count == 0 %>
+							You have not subscribed any subject yet. <%=link_to("Click here", user_subjects_path)%> to subscribe subjects.
+						<% else %>
+							<% @my_subjects.each do |subject| %>
+							<div class="span4">
+							<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>
+							</div>
+							<% end %>
 						<% end %>
 					</div><br>
 					<% if current_user.type == "Learner" %>

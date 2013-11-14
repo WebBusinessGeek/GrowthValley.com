@@ -11,4 +11,7 @@
   <li class='<%= (current == "subscription") ? "active" : "" %>'>
     <%= link_to "Subscriptions/Payment", charges_path %>
   </li>
+  <li class='<%= (current == "notification") ? "active" : "" %>'>
+    <%= link_to "Notifications", notification_path %>
+  </li>
 </ul>

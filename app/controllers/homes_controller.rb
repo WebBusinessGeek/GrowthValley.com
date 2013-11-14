@@ -1,10 +1,15 @@
 class HomesController < ApplicationController
-  skip_before_filter :authenticate_user!, except: [:dashboard]
+  skip_before_filter :authenticate_user!, except: [:dashboard, :notification]
   layout :set_layout
+
+  def notification
+    @notifications = get_activity_stream(0)
+    render :layout => 'application'
+  end
 
   def dashboard
     @show_top_menu = false
-    @notifications = get_activity_stream()
+    @notifications = get_activity_stream(10)
     @my_subjects = current_user.subjects
     render :layout => 'application'
   end

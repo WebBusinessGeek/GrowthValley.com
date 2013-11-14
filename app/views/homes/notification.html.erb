@@ -1,0 +1,20 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "notification" } %>
+
+<h1>Whats Going On?</h1>
+</br>
+
+<div class="tab-content">
+  <div id='personal' class='tab-pane fade active in' style="padding-left:50px;padding-top:5px;">
+	<% @notifications.each do |notification| %>
+		<div style="margin-top:20px;">
+			<% user_detail = User.find_by_id(notification["user_id"]) %>
+			<%= image_tag((user_detail.profile_pic_url.present?) ? user_detail.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-small') %>
+			<div>
+			<%=notification["message"].html_safe()%><br>
+			<%=notification.created_at.strftime("%d-%m-%Y %H:%M %z")%>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	<% end %>
+  </div>
+</div>

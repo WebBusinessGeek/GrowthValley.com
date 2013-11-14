@@ -33,12 +33,20 @@ module Activitystream
 		Notification.new(:module => modulename, :module_id => coursedetail.id, :notification_for => notification_for, :action => actionname.to_s, :user_id => current_user.id, :message => message).save
 	end
 	
-	def get_activity_stream(no_of_records = 10)
+	def get_activity_stream(no_of_records)
 	  if current_user.type.to_s == "Teacher"
-  		user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records)
-  	else #learner
-      user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id)], :limit => no_of_records)
-  	end
+		if no_of_records > 0
+  		  user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records, :order=>"created_at desc")
+		else
+  		  user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :order=>"created_at desc")
+		end
+  	  else #learner
+		if no_of_records > 0
+          user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id)], :limit => no_of_records, :order=>"created_at desc")
+		else
+          user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id)], :order=>"created_at desc")
+		end
+  	  end
 	end
 
 
