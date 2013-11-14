@@ -17,7 +17,6 @@
       <thead>
         <tr>
           <th><%= model_class.human_attribute_name(:title) %></th>
-          <th><%= model_class.human_attribute_name(:description) %></th>
           <th><%= model_class.human_attribute_name(:is_published?) %></th>
           <th><%= model_class.human_attribute_name(:is_live?) %></th>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -27,7 +26,6 @@
         <% @courses.each do |course| %>
           <tr>
             <td><%= link_to course.title.titleize, course_path(course) %></td>
-            <td><%= course.description %></td>
             <td>
               <% if course.is_published %>
                 <%= check_box_tag :is_published, true, true, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
