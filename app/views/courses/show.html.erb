@@ -36,7 +36,11 @@
 	  </div><br>
 	  <div class='course-subscribe'>
 		<% if current_user.courses.include?(@course) %>
-		  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') if @exam_active %>
+		  <% if @exam_active %>
+  		  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
+		  <% else %>
+		    <%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+		  <% end %>
 		<% else %>
 		  <% if @course.is_paid %>
 			<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
@@ -144,6 +148,15 @@
   <% end %>
 <% end %>
 
+<div id='exam_result_dialog' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
+  <div class='modal-header'>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Exam Result</h3>
+  </div>
+  <div class="modal-body">
+    <p>You correctly answered  out of  questions</p>
+  </div>
+</div>
 <%= javascript_tag do %>
   $(".rateit").bind('rated', function() {
     obj = $(this);

@@ -1,0 +1,28 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "exam" } %>
+
+<% if @learners_exams.present? %>
+  <div class="page-header">
+    <h1><%=t '.title', :default => "Exam (#{@learners_exams.first.exam.title}) Results" %></h1>
+  </div>
+
+  <%= "#{@learners_exams.first.user.full_name} scored #{@learners_exams.sum('score')} out of #{10 * @learners_exams.size}" %>
+  </br></br>
+
+  <%= form_tag submit_result_path do %>
+    <% exam_reviewed = Subscription.where(user_id: @learners_exams.first.user.id, course_id: @learners_exams.first.course.id).first.progress == 'exam reviewed' %>
+
+    <% if exam_reviewed %>
+      <h6>Courses suggested to learner - (<%= @learners_exams.first.user.full_name.titleize %>)</h6>
+      <%= select_tag :suggested_courses, options_for_select(RecommendedCourse.where(user_id: @learners_exams.first.user.id, exam_id: @learners_exams.first.exam.id).collect { |recommended_course| [recommended_course.course.title.titleize, recommended_course.course.id] }), { multiple: true, disabled: true } %>
+    <% else %>
+      <h6>Suggest courses to learner - (<%= @learners_exams.first.user.full_name.titleize %>)</h6>
+      <%= select_tag :suggested_courses, options_for_select(current_user.courses.all_published.collect { |course| [course.title.titleize, course.id] }), { multiple: true } %>
+    <% end %>
+    </br>
+    <%= hidden_field_tag :exam_id, @learners_exams.first.exam.id %>
+    <%= hidden_field_tag :course_id, @learners_exams.first.course.id %>
+    <%= hidden_field_tag :learner_id, @learners_exams.first.user.id %>
+
+    <%= submit_tag 'Submit', class: 'btn btn-primary' unless exam_reviewed %>
+  <% end %>
+<% end %>

@@ -5,4 +5,6 @@ class LearnersExam < ActiveRecord::Base
   belongs_to :exam
   belongs_to :exam_question
   belongs_to :course
+
+  scope :for_courses, ->(course_ids) { where(course_id: course_ids) }
 end
