@@ -8,6 +8,11 @@
   <li class='<%= (current == "course") ? "active" : "" %>'>
     <%= link_to "My Courses", my_courses_courses_path %>
   </li>
+  <% if current_user.type == 'Teacher' %>
+    <li class='<%= (current == "exam") ? "active" : "" %>'>
+      <%= link_to "Review Exams", my_exams_path %>
+    </li>
+  <% end %>
   <li class='<%= (current == "subscription") ? "active" : "" %>'>
     <%= link_to "Subscriptions/Payment", charges_path %>
   </li>

@@ -1,0 +1,25 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "exam" } %>
+
+<% if @learners_exam.present? %>
+  <%= simple_form_for :submit_review, url: submit_review_path do |f| %>
+    <%= f.error_notification %>
+
+    <div id='exam_question'>
+      <b>Question: </b>
+      <%= label_tag raw(@learners_exam.exam_question.question) %>
+    </div>
+    </br>
+    <div id='exam_answer'>
+      <b>Answer: </b>
+      <%= label_tag raw(@learners_exam.user_input) %>
+    </div>
+    </br>
+    <div id='score'>
+      <b>Score: </b>
+      <%= select_tag :score, options_for_select((0..10).collect { |i| [i] }, @learners_exam.score), required: true %>
+    </div>
+    <%= hidden_field_tag :learners_exam_id, @learners_exam.id %>
+    </br>
+    <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

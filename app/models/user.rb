@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
   has_many :learners_exams, dependent: :destroy
   accepts_nested_attributes_for :learners_exams, :allow_destroy => true
 
+  has_many :recommended_courses, dependent: :destroy
+  accepts_nested_attributes_for :recommended_courses, :allow_destroy => true
+
   mount_uploader :profile_pic, ProfilePicUploader
 
   USER_ROLES = [
@@ -59,4 +62,14 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def exams_for_review
+    LearnersExam.for_courses(published_course_ids).order('id asc')
+  end
+
+  private
+
+    def published_course_ids
+      courses.all_published.collect(&:id)
+    end
 end

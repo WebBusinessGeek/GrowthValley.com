@@ -11,5 +11,8 @@ class Exam < ActiveRecord::Base
   has_many :learners_exams, dependent: :destroy
   accepts_nested_attributes_for :learners_exams, :allow_destroy => true
 
+  has_many :recommended_courses, dependent: :destroy
+  accepts_nested_attributes_for :recommended_courses, :allow_destroy => true
+
   validates :title, presence: true
 end

@@ -19,7 +19,7 @@
 
 $(function() {
   window.setTimeout(function() {
-    $(".alert").alert('close')
+    $(".alert").alert('close');
   }, 3000);
 
   $('.text').attr('rows', 5);

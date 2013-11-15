@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113125726) do
+ActiveRecord::Schema.define(:version => 20131115124201) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -71,6 +71,11 @@ ActiveRecord::Schema.define(:version => 20131113125726) do
     t.integer  "subject_id"
   end
 
+  create_table "courses_subjects", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "subject_id"
+  end
+
   create_table "exam_questions", :force => true do |t|
     t.text     "question"
     t.integer  "exam_id"
@@ -91,9 +96,9 @@ ActiveRecord::Schema.define(:version => 20131113125726) do
     t.integer  "exam_question_id"
     t.integer  "course_id"
     t.text     "user_input"
-    t.boolean  "correct_answer"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "score"
   end
 
   create_table "learners_quizzes", :force => true do |t|
@@ -107,14 +112,14 @@ ActiveRecord::Schema.define(:version => 20131113125726) do
   end
 
   create_table "notifications", :force => true do |t|
+    t.string   "notification_for", :limit => 100
     t.string   "module",           :limit => 25
-    t.string   "action",           :limit => 50
     t.integer  "module_id"
+    t.string   "action",           :limit => 50
     t.integer  "user_id"
     t.text     "message"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.string   "notification_for", :limit => 100
   end
 
   create_table "quizzes", :force => true do |t|
@@ -132,6 +137,14 @@ ActiveRecord::Schema.define(:version => 20131113125726) do
   create_table "ratings", :force => true do |t|
     t.string   "ip_address"
     t.integer  "rate"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "recommended_courses", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "exam_id"
     t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
