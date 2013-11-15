@@ -71,11 +71,6 @@ ActiveRecord::Schema.define(:version => 20131115124201) do
     t.integer  "subject_id"
   end
 
-  create_table "courses_subjects", :id => false, :force => true do |t|
-    t.integer "course_id"
-    t.integer "subject_id"
-  end
-
   create_table "exam_questions", :force => true do |t|
     t.text     "question"
     t.integer  "exam_id"
@@ -112,14 +107,14 @@ ActiveRecord::Schema.define(:version => 20131115124201) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "notification_for", :limit => 100
     t.string   "module",           :limit => 25
-    t.integer  "module_id"
     t.string   "action",           :limit => 50
+    t.integer  "module_id"
     t.integer  "user_id"
     t.text     "message"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.string   "notification_for", :limit => 100
   end
 
   create_table "quizzes", :force => true do |t|
