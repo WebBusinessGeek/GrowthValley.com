@@ -48,7 +48,7 @@
 		  Total Sections: <%=@total_section%>
 		<% end %>
 	  </div>
-	  <div class="course-description"><%= raw(@course.description) %></div>
+	  <div class="course-description" style="text-align:justify"><%= raw(@course.description) %></div>
 	  </br>
   </div>
   <% if current_user.courses.include?(@course) %>

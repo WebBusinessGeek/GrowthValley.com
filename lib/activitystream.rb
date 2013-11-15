@@ -16,7 +16,7 @@ module Activitystream
 			
 			if actionname.to_s == "result"
 				notification_for = "Learner"
-				message = "Exam result has been announced for your course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'. <a href='#'>Click Here</a> to view result."
+				message = "Exam result has been announced for your course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'. <a href='"+course_path(coursedetail)+"'>Click Here</a> to view result."
 			end
 			
 			if actionname.to_s == "subscribe"
