@@ -1,0 +1,15 @@
+<% if @learners_exams.present? %>
+  <p>You scored <%= @learners_exams.sum('score') %> out of <%= @learners_exams.size * 10 %></p>
+<% end %>
+</br>
+<% if @recommended_courses.present? %>
+  <div id='recommended_courses'>
+    <%= @teacher.full_name %> has recommended following courses for you:
+    <% @recommended_courses.each do |rc| %>
+      </br>
+      <div>
+        <%= link_to rc.course.title.titleize, course_url(rc.course.slug) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

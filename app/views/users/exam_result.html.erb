@@ -1,4 +1,8 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "exam" } %>
+<% if @exam_reviewed %>
+  <%= render :partial => "layouts/inner_nav", :locals => { :current => "reviewed_exam" } %>
+<% else %>
+  <%= render :partial => "layouts/inner_nav", :locals => { :current => "review_exam" } %>
+<% end %>
 
 <% if @learners_exams.present? %>
   <div class="page-header">
@@ -9,20 +13,18 @@
   </br></br>
 
   <%= form_tag submit_result_path do %>
-    <% exam_reviewed = Subscription.where(user_id: @learners_exams.first.user.id, course_id: @learners_exams.first.course.id).first.progress == 'exam reviewed' %>
-
-    <% if exam_reviewed %>
+    <% if @exam_reviewed %>
       <h6>Courses suggested to learner - (<%= @learners_exams.first.user.full_name.titleize %>)</h6>
       <%= select_tag :suggested_courses, options_for_select(RecommendedCourse.where(user_id: @learners_exams.first.user.id, exam_id: @learners_exams.first.exam.id).collect { |recommended_course| [recommended_course.course.title.titleize, recommended_course.course.id] }), { multiple: true, disabled: true } %>
     <% else %>
       <h6>Suggest courses to learner - (<%= @learners_exams.first.user.full_name.titleize %>)</h6>
-      <%= select_tag :suggested_courses, options_for_select(current_user.courses.all_published.collect { |course| [course.title.titleize, course.id] }), { multiple: true } %>
+      <%= select_tag :suggested_courses, options_for_select(@suggested_courses.collect { |course| [course.title.titleize, course.id] }), { multiple: true } %>
     <% end %>
     </br>
     <%= hidden_field_tag :exam_id, @learners_exams.first.exam.id %>
     <%= hidden_field_tag :course_id, @learners_exams.first.course.id %>
     <%= hidden_field_tag :learner_id, @learners_exams.first.user.id %>
 
-    <%= submit_tag 'Submit', class: 'btn btn-primary' unless exam_reviewed %>
+    <%= submit_tag 'Submit', class: 'btn btn-primary' unless @exam_reviewed %>
   <% end %>
 <% end %>

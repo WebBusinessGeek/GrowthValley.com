@@ -1,4 +1,4 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "exam" } %>
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "review_exam" } %>
 
 <% if @learners_exam.present? %>
   <%= simple_form_for :submit_review, url: submit_review_path do |f| %>

@@ -89,26 +89,28 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find_by_slug(params[:id])
-    @current_subscription = @course.subscriptions.where("user_id = ?",current_user.id).first
-	@total_section = @course.sections.count
-	
-	course_sections = @course.sections.map(&:id)
-	user_test_sections = current_user.learners_quizzes.select("distinct section_id").map(&:section_id)
-	@exam_active = user_test_sections.each_cons(course_sections.size).include? course_sections
-	
-	if @course.is_published?	
-		respond_to do |format|
-		  format.html # show.html.erb
-		end
-	else
-		if @current_subscription.present? and @current_subscription.user_type == "Teacher"
-			respond_to do |format|
-			  format.html # show.html.erb
-			end		
-		else
-			redirect_to :dashboard, :notice => "The desired course is un-published."
-		end
-	end
+    @current_subscription = @course.subscriptions.where("user_id = ?", current_user.id).first
+	  @total_section = @course.sections.count
+	  @learners_exams = LearnersExam.where(user_id: current_user.id, course_id: @course.id)
+
+	  course_sections = @course.sections.map(&:id)
+	  user_test_sections = current_user.learners_quizzes.select("distinct section_id").map(&:section_id)
+	  @exam_active = user_test_sections.each_cons(course_sections.size).include? course_sections
+	  @progress = (@current_subscription.present?) ? @current_subscription.progress : ""
+	  
+	  if @course.is_published?	
+		  respond_to do |format|
+		    format.html # show.html.erb
+		  end
+	  else
+		  if @current_subscription.present? and @current_subscription.user_type == "Teacher"
+			  respond_to do |format|
+			    format.html # show.html.erb
+			  end		
+		  else
+			  redirect_to :dashboard, :notice => "The desired course is un-published."
+		  end
+	  end
   end
 
   # GET /courses/new

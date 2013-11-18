@@ -21,13 +21,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def my_exams
-    @learners_exams = current_user.exams_for_review
-    @exams = Array.new
+  def review_exams
+    @learners_exams = Subscription.where(progress: 'exam given', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id))
 
-    @learners_exams.each do |le|
-      @exams << le.exam
+    respond_to do |format|
+      format.html
     end
+  end
+
+  def reviewed_exams
+    @learners_exams = Subscription.where(progress: 'exam reviewed', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id))
 
     respond_to do |format|
       format.html
@@ -35,15 +38,11 @@ class UsersController < ApplicationController
   end
 
   def exam_review
-    if params[:exam_id].present?
-      exam = Exam.find_by_id(params[:exam_id])
+    if params[:exam_id].present? && params[:user_id].present?
+      @learners_exam = LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id], score: nil).order('id asc').first
 
-      if exam.present?
-        @learners_exam = LearnersExam.where(exam_id: exam.id, score: nil).order('id asc').first
-
-        unless @learners_exam.present?
-          redirect_to exam_result_path(exam_id: exam.id), alert: 'All questions have already been reviewed'
-        end
+      unless @learners_exam.present?
+        redirect_to exam_result_path(exam_id: params[:exam_id], user_id: params[:user_id]), alert: 'All questions have already been reviewed'
       end
     end
   end
@@ -55,12 +54,12 @@ class UsersController < ApplicationController
         learners_exam.score = params[:score]
 
         if learners_exam.save
-          remaining_questions = LearnersExam.where(exam_id: learners_exam.exam.id, score: nil).order('id asc')
+          remaining_questions = LearnersExam.where(exam_id: learners_exam.exam_id, user_id: learners_exam.user_id, score: nil).order('id asc')
 
           if remaining_questions.present?
-            redirect_to review_exam_path(exam_id: learners_exam.exam.id), notice: 'Score submitted successfully!'
+            redirect_to review_exam_path(exam_id: learners_exam.exam_id, user_id: learners_exam.user_id), notice: 'Score submitted successfully!'
           else
-            redirect_to exam_result_path(exam_id: learners_exam.exam.id), notice: 'All questions reviewed successfully!'
+            redirect_to exam_result_path(exam_id: learners_exam.exam_id, user_id: learners_exam.user_id), notice: 'All questions reviewed successfully!'
           end
         else
           render :new
@@ -70,29 +69,41 @@ class UsersController < ApplicationController
   end
 
   def exam_result
-    if params[:exam_id].present?
-      exam = Exam.find_by_id(params[:exam_id])
-
-      if exam.present?
-        @learners_exams = LearnersExam.where(exam_id: exam.id).order('id asc')
-      end
+    if params[:exam_id].present? && params[:user_id].present?
+      @learners_exams = LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).order('id asc')
+      @exam_reviewed = Subscription.where(user_id: @learners_exams.first.user.id, course_id: @learners_exams.first.course.id).first.progress == 'exam reviewed'
+      @suggested_courses = current_user.courses.all_published - Subscription.where(user_type: 'Learner').collect { |s| s.course }
     end
   end
 
   def submit_result
-    if params[:course_id].present? && params[:learner_id].present? && params[:exam_id].present? && params[:suggested_courses].present?
+    if params[:course_id].present? && params[:learner_id].present? && params[:exam_id].present?
       subscription = Subscription.where(course_id: params[:course_id], user_id: params[:learner_id], user_type: 'Learner').order('id asc').first
       subscription.update_attribute(:progress, 'exam reviewed')
 
-      params[:suggested_courses].each do |cid|
-        RecommendedCourse.create(user_id: params[:learner_id], exam_id: params[:exam_id], course_id: params[:course_id])
+      if params[:suggested_courses].present?
+        suggested_courses = Array.new
+
+        params[:suggested_courses].each do |cid|
+          suggested_courses << RecommendedCourse.create(user_id: params[:learner_id], exam_id: params[:exam_id], course_id: params[:course_id])
+        end
       end
 
-      ## code to send mail to learner will come here...
+      learners_exams = LearnersExam.where(course_id: params[:course_id], user_id: params[:learner_id])
 
-      redirect_to my_exams_path, notice: 'Exam reviewed submitted successfully! User has been informed...'
+      if learners_exams.present?
+        if suggested_courses.present?
+          ExamResultMailer.send_message(current_user.id, params[:learner_id], learners_exams, suggested_courses).deliver
+        else
+          ExamResultMailer.send_message(current_user.id, params[:learner_id], learners_exams).deliver
+        end
+      end
+
+      add_activity_stream('COURSE', subscription.course, 'result')
+
+      redirect_to review_exams_path, notice: 'Exam reviewed submitted successfully! User has been informed...'
     else
-      redirect_to my_exams_path, alert: 'Some error occoured while trying to submit exam review... Please try again later!'
+      redirect_to review_exams_path, alert: 'Some error occoured while trying to submit exam review... Please try again later!'
     end
   end
 

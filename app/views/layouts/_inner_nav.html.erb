@@ -9,8 +9,11 @@
     <%= link_to "My Courses", my_courses_courses_path %>
   </li>
   <% if current_user.type == 'Teacher' %>
-    <li class='<%= (current == "exam") ? "active" : "" %>'>
-      <%= link_to "Review Exams", my_exams_path %>
+    <li class='<%= (current == "review_exam") ? "active" : "" %>'>
+      <%= link_to "Review Exams", review_exams_path %>
+    </li>
+    <li class='<%= (current == "reviewed_exam") ? "active" : "" %>'>
+      <%= link_to "Reviewed Exams", reviewed_exams_path %>
     </li>
   <% end %>
   <li class='<%= (current == "subscription") ? "active" : "" %>'>

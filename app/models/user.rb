@@ -62,14 +62,4 @@ class User < ActiveRecord::Base
     end
     user
   end
-
-  def exams_for_review
-    LearnersExam.for_courses(published_course_ids).order('id asc')
-  end
-
-  private
-
-    def published_course_ids
-      courses.all_published.collect(&:id)
-    end
 end

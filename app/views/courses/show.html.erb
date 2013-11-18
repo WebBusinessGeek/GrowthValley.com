@@ -37,16 +37,20 @@
 		  </div><br>
 		  <div class='course-subscribe'>
 			<% if current_user.courses.include?(@course) %>
-			  <% if @exam_active %>
-			  <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
+			  <% if @progress == "exam given" %>
+  				<%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+			  <% elsif @progress == "exam reviewed" %>
+  				<%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
 			  <% else %>
-				<%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+			    <% if @exam_active %>
+  			    <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
+			    <% end %>
 			  <% end %>
 			<% else %>
 			  <% if @course.is_paid %>
-				<%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
+				  <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
 			  <% else %>
-				<%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
+				  <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
 			  <% end %>
 			  <br>
 			  <br>
@@ -158,9 +162,26 @@
     <h3>Exam Result</h3>
   </div>
   <div class="modal-body">
-    <p>You correctly answered  out of  questions</p>
+    <% if @current_subscription.present? && @current_subscription.progress == 'exam reviewed' %>
+      <p>You scored <%= @learners_exams.sum('score') %> out of <%= @learners_exams.size * 10 %></p>
+      </br>
+      <% if @recommended_courses.present? %>
+        <div id='recommended_courses'>
+          <%= @course.users.where(type: 'Teacher').first.full_name %> has recommended following courses for you:
+          </br>
+          <% @recommended_courses.each do |rc| %>
+            <div>
+              <%= link_to rc.course.title.titleize, course_path(rc.course.slug) %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Your exam results are waiting to be reviewed. Once done, you will be notified via email.</p>
+    <% end %>
   </div>
 </div>
+
 <%= javascript_tag do %>
   $(".rateit").bind('rated', function() {
     obj = $(this);
@@ -176,4 +197,3 @@
     });
   });
 <% end %>
-

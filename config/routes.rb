@@ -9,7 +9,8 @@ GrowthValley::Application.routes.draw do
 
   get 'user/subjects' => 'users#list_subjects', as: 'user_subjects'
   post 'user/update_user_subjects' => 'users#update_user_subjects', as: 'update_user_subjects'
-  get 'user/review_exams' => 'users#my_exams', as: 'my_exams'
+  get 'user/review_exams' => 'users#review_exams', as: 'review_exams'
+  get 'user/reviewed_exams' => 'users#reviewed_exams', as: 'reviewed_exams'
   get 'user/exam/review' => 'users#exam_review', as: 'review_exam'
   post 'user/exam/submit_review' => 'users#submit_review', as: 'submit_review'
   get 'user/exam/result' => 'users#exam_result', as: 'exam_result'
