@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:rate_course, :index]
+  before_filter :authorize_user, :check_subscribers, only: [:edit, :update, :destroy, :sections]
 
   # GET /courses
   # GET /courses.json
@@ -182,10 +183,11 @@ class CoursesController < ApplicationController
     if course.present?
       if course.is_published == true || current_user.allowed_to_publish?(course.id)
         if course.togglePublish == true
-		  add_activity_stream('COURSE', course, 'published') if course.is_published == true
+		      add_activity_stream('COURSE', course, 'published') if course.is_published == true
+
           render json: { status: 'success', data: course.is_published }
         else
-          render json: { status: 'error', errorCode: '400', data: 'Error! Each section must have a test and course must have an exam...' }
+          render json: { status: course.togglePublish[:status], errorCode: course.togglePublish[:error_code], data: course.togglePublish[:error_msg] }
         end
       else
         if current_user.subscription_type == 'free'
@@ -221,4 +223,22 @@ class CoursesController < ApplicationController
       render json: { status: 'error', data: 'Course not found!' }
     end
   end
+
+  private
+
+    def authorize_user
+      redirect_to my_courses_courses_path, alert: 'You are not allowed to access this section!' unless current_user.type == 'Teacher'
+    end
+
+    def check_subscribers
+      course = current_user.courses.find(params[:id])
+
+      if course.present?
+        if course.has_active_learners?
+          redirect_to my_courses_courses_path, alert: 'You are not allowed to modify a course while it has active subscriptions!'
+        end
+      else
+        redirect_to my_courses_courses_path, alert: 'The course you are trying to access, could not found!'
+      end
+    end
 end

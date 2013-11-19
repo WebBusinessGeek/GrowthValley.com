@@ -1,4 +1,6 @@
 class QuizzesController < ApplicationController
+  before_filter :authorize_user, :check_subscribers
+
   # GET /quizzes
   # GET /quizzes.json
   def index
@@ -122,4 +124,22 @@ class QuizzesController < ApplicationController
       format.html { redirect_to section_quizzes_path(@section) }
     end
   end
+
+  private
+
+    def authorize_user
+      redirect_to my_courses_courses_path, alert: 'You are not allowed to access this section!' unless current_user.type == 'Teacher'
+    end
+
+    def check_subscribers
+      section = Section.find(params[:section_id])
+
+      if section.present?
+        if section.course.has_active_learners?
+          redirect_to my_courses_courses_path, alert: 'You are not allowed to modify quiz for a course which has active subscriptions!'
+        end
+      else
+        redirect_to my_courses_courses_path, alert: 'The section you are trying to access, could not found!'
+      end
+    end
 end

@@ -1,4 +1,6 @@
 class ExamsController < ApplicationController
+  before_filter :authorize_user, :check_subscribers
+
   # GET /exams
   # GET /exams.json
   def index
@@ -79,4 +81,22 @@ class ExamsController < ApplicationController
       format.html { redirect_to course_exams_path(@course) }
     end
   end
+
+  private
+
+    def authorize_user
+      redirect_to my_courses_courses_path, alert: 'You are not allowed to access this section!' unless current_user.type == 'Teacher'
+    end
+
+    def check_subscribers
+      course = current_user.courses.find(params[:course_id])
+
+      if course.present?
+        if course.has_active_learners?
+          redirect_to my_courses_courses_path, alert: 'You are not allowed to modify exam for a course which has active subscriptions!'
+        end
+      else
+        redirect_to my_courses_courses_path, alert: 'The course you are trying to access, could not found!'
+      end
+    end
 end

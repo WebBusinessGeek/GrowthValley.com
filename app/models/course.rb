@@ -64,13 +64,17 @@ class Course < ActiveRecord::Base
     if self.is_published == false
       if eachSectionHasTest? && has_exam?
         self.update_attributes(is_published: true)
+        return true
       else
-        return false
+        return { status: 'error', error_code: 1, error_msg: 'You cannot unpublish a course that has active subscription(s)!' }
       end
-      return true
     else
-      self.update_attributes(is_published: false)
-      return true
+      if has_active_learners?
+        return { status: 'error', error_code: 2, error_msg: 'You cannot unpublish a course that has active subscription(s)!' }
+      else
+        self.update_attributes(is_published: false)
+        return true
+      end
     end
   end
 
@@ -97,6 +101,10 @@ class Course < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def has_active_learners?
+    Subscription.where(course_id: self.id, user_type: 'Learner').present?
   end
 
   def avg_rating(courseId)

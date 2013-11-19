@@ -1,4 +1,6 @@
 class ExamQuestionsController < ApplicationController
+  before_filter :authorize_user, :check_subscribers
+
   # GET /exam_questions
   # GET /exam_questions.json
   def index
@@ -97,4 +99,22 @@ class ExamQuestionsController < ApplicationController
       format.html { redirect_to course_exam_exam_questions_path(@exam.course, @exam), notice: 'Question deleted successfully!' }
     end
   end
+
+  private
+
+    def authorize_user
+      redirect_to my_courses_courses_path, alert: 'You are not allowed to access this section!' unless current_user.type == 'Teacher'
+    end
+
+    def check_subscribers
+      course = current_user.courses.find(params[:course_id])
+
+      if course.present?
+        if course.has_active_learners?
+          redirect_to my_courses_courses_path, alert: 'You are not allowed to modify exam question for a course which has active subscriptions!'
+        end
+      else
+        redirect_to my_courses_courses_path, alert: 'The course you are trying to access, could not found!'
+      end
+    end
 end
