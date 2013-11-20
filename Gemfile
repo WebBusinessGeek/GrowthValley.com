@@ -43,3 +43,4 @@ gem 'pg_search', "~> 0.7.0"
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'numbers_and_words'
 gem 'jquery-ui-rails'
+gem 'kaminari'

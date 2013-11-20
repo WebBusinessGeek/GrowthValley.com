@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def review_exams
-    @learners_exams = Subscription.where(progress: 'exam given', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id))
+    @learners_exams = Subscription.where(progress: 'exam given', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id)).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def reviewed_exams
-    @learners_exams = Subscription.where(progress: 'exam reviewed', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id))
+    @learners_exams = Subscription.where(progress: 'exam reviewed', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id)).page(params[:page])
 
     respond_to do |format|
       format.html

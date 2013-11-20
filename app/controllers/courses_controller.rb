@@ -36,12 +36,12 @@ class CoursesController < ApplicationController
    end
    if params[:search].present?
 		if params[:order].present?
-			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params).reorder(sort_order)
+			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params).reorder(sort_order).page(params[:page])
 		else
-			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params)
+			@courses = Course.all_published_courses_for_subjects(current_subject).text_search(params).page(params[:page])
 		end
    else
-		@courses = Course.all_published_courses_for_subjects(current_subject).order(sort_order)
+		@courses = Course.all_published_courses_for_subjects(current_subject).order(sort_order).page(params[:page])
    end
    
 =begin  
@@ -69,7 +69,7 @@ class CoursesController < ApplicationController
   end
   
   def my_courses
-    @courses = current_user.courses
+    @courses = current_user.courses.page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

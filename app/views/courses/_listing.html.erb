@@ -28,8 +28,10 @@
     <% @courses.each do |course| %>
       <%= render partial: "courses/single_course", :locals=>{:course => course} %>
     <% end %>
+
+    <%= paginate @courses %>
   <% else %>
-	No Courses available for your search
+	  No Courses available for your search
   <% end %>
   </ul>
 
