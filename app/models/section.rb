@@ -1,7 +1,7 @@
 class Section < ActiveRecord::Base
   attr_accessible :title, :description, :unlocked, :course_id, :attachment, :attachment_cache, :remove_attachment,
   :quizzes_attributes, :slug
-  
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -16,8 +16,10 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :learners_quizzes, :allow_destroy => true
 
   mount_uploader :attachment, AttachmentUploader
-  
+
   default_scope { order("id asc") }
+
+  after_save :convert_videos
 
   def complete?
     if self.quizzes.present?
@@ -45,4 +47,11 @@ class Section < ActiveRecord::Base
     user = User.find_by_id(user_id)
     (user.present? && user.learners_quizzes.present?) ? user.learners_quizzes.where(section_id: self.id, correct_answer: true).length : 0
   end
+
+  private
+
+    def convert_videos
+      `avconv -y -i "#{Rails.root}/public#{attachment.url}" "#{Rails.root}/public/#{attachment.store_dir}/#{File.basename(attachment.url, '.*')}.webm"`
+      `avconv -y -i "#{Rails.root}/public#{attachment.url}" "#{Rails.root}/public/#{attachment.store_dir}/#{File.basename(attachment.url, '.*')}.ogg"`
+    end
 end

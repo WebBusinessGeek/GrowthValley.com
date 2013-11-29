@@ -118,14 +118,10 @@
 			</ul>
 			  <% if unlock %>
 			  <div style="text-align:center;margin-top:10px;">
-				  <object data="<%= section.attachment.url %>" width='800' height='1000'>
-					<embed src="<%= section.attachment.url %>" width='800' height='1000' />
-				  </object>
-					<!-- <object type="video/x-msvideo" data="/seret2.avi" width="200" height="150">
-						<param name="src" value="/seret2.avi">
-						<param name="autoplay" value="false">
-						<param name="autoStart" value="0">
-					</object> -->
+			    <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
+			    <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
+
+			    <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 800, height: 1000 }) %>
 			  </div>
 			  <% else %>
 			  <div style="text-align:center;margin-top:10px;">

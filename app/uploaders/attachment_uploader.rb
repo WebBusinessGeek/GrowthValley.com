@@ -1,12 +1,10 @@
 # encoding: utf-8
 
 class AttachmentUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MimeTypes
   include CarrierWave::MiniMagick
-  include CarrierWave::Video
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -46,8 +44,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def extension_white_list
     if model.course.content_type == 'pdf'
       %w(pdf)
-    else
-      %w(avi) # flv mov mp4 m4v mkv webm webp ogv)
     end
   end
 
@@ -66,5 +62,4 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end
