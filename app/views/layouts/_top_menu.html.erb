@@ -1,5 +1,5 @@
 <ul class="sprite menu">
-  <li class="<%=(@current_menu == "home") ? "current" : ""%>"><a href="<%=(current_user) ? dashboard_path : root_path %>">HOME</a></li>
+  <li class="<%=(@current_menu == "home") ? "current" : ""%>"><a href="<%=(current_user && current_user.type == 'Learner') ? dashboard_path : root_path %>">HOME</a></li>
   <li class="<%=(@current_menu == "about_us") ? "current" : ""%>"><a href="<%= about_us_homes_path %>">ABOUT US</a></li>
   <li class="<%=(@current_menu == "courses") ? "current" : ""%>"><a href="<%= courses_path %>">COURSES</a></li>
   <li class="<%=(@current_menu == "resources") ? "current" : ""%>"><a href="<%= resources_homes_path %>">RESOURCES</a></li>

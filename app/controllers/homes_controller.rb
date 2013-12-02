@@ -15,7 +15,7 @@ class HomesController < ApplicationController
   end
   
   def index
-    if current_user
+    if current_user && current_user.type == 'Learner'
 		redirect_to dashboard_path()
 		return
     else

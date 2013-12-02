@@ -36,7 +36,9 @@
   </ul>
 
   <div class="btn1">
-    <input name="Discover Courses" type="submit" value="Discover Courses" class="sprite" id="Discover Courses" />
+    <form action="<%= courses_path %>" method="get">
+      <input type="submit" value="Discover Courses" class="sprite" />
+    </form>
   </div>
 </div>
 

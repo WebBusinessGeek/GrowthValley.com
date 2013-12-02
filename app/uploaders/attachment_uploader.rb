@@ -44,8 +44,10 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def extension_white_list
     if model.course.content_type == 'pdf'
       %w(pdf)
-    else
+    elsif model.course.content_type == 'video'
       %w(flv avi mp4 wmv mov 3g2 3gp m2v m4v)
+    else
+      %w(pdf flv avi mp4 wmv mov 3g2 3gp m2v m4v)
     end
   end
 

@@ -104,8 +104,13 @@
 			  <li style="padding-left:20px;">
 				<%= section.title.titleize %>
 			  </li>
+			  </br>
 			  <li class='pull-right' style='margin-left: 1em;'>
 				<% if unlock and @current_subscription.user_type == "Learner" %>
+			    <li style="padding-left:20px;">
+			      <%= link_to 'Download', section.attachment.url %>
+			    </li>
+			    </br>
 				  <b>
 					<% if section.quiz_completed?(current_user.id) %>
 					  <%= link_to 'View Result', '#quiz_result_dialog_'+section.id.to_s, role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
@@ -118,10 +123,16 @@
 			</ul>
 			  <% if unlock %>
 			  <div style="text-align:center;margin-top:10px;">
-			    <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
-			    <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
+			    <% if File.extname(section.attachment.url) != '.pdf' %>
+			      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
+			      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
 
-			    <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 800, height: 1000 }) %>
+			      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
+		      <% else %>
+		        <object data="<%= section.attachment.url %>" width="800" height="1000">
+		          <embed src="<%= section.attachment.url %>" width="800" height="1000">
+		        </object>
+		      <% end %>
 			  </div>
 			  <% else %>
 			  <div style="text-align:center;margin-top:10px;">

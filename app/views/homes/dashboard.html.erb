@@ -6,15 +6,18 @@
 			<div class='row-fluid' style="margin-bottom:20px;">
 				<div class="span6">
 					<div style="margin-top:5px;margin-left:5px"><br>
-					<h3>Whats going on?</h3><br>
+					<u><h3>Whats going on?</h3></u>
+					<br>
 					<ul>
 					<% if @notifications.count > 0 %>
 					<% @notifications.each do |notification| %>
-						<li><%=notification["message"].html_safe()%> at 
-							<%=notification.created_at.strftime("%d-%m-%Y %H:%M %z")%></li>
+						<li>
+						  <%= notification["message"].html_safe() %>
+							(<%= time_ago_in_words(notification.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago)
+						</li>
 					<% end %>
 					<% if @notifications.present? %>
-						<li class="pull-right"><%=link_to("view all", notification_path)%></li>
+						<li class="pull-right"><%=link_to("View All", notification_path)%></li>
 					<% end %>
 					<% else %>
 						<li style="text-align:center;">No notifications!!</li>
@@ -45,10 +48,10 @@
 							<%=link_to "View Courses", my_courses_courses_path()%>
 						</div>
 						<br>
-						<h3>Courses Un-Finished</h3>
+						<h3>Courses Unfinished</h3>
 						<div class='row-fluid' style="text-align:center;padding-top:5px;">
 							<span style="font-size:25px;font-weight:bold"><%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%></span><br>
-							<%=link_to "Complete Courses", my_courses_courses_path()%>
+							<%=link_to "Go finish", my_courses_courses_path()%>
 						</div>
 						<br>
 					<% else %>

@@ -22,7 +22,7 @@
 
 <div class="wrapper">
   <div class="wrapper-inner" style="height:472px;">
-      <a href="<%=(current_user) ? dashboard_path : root_path %>">
+      <a href="<%=(current_user.type == 'Learner') ? dashboard_path : root_path %>">
         <span class="sprite logo"></span>
       </a>
         <%= render partial: "layouts/top_menu" if @show_top_menu.present? and @show_top_menu == true %>

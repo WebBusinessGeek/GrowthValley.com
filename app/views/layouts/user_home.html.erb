@@ -24,7 +24,7 @@
     </br>
     <%= bootstrap_flash %>
   <div class="wrapper-inner" style="height:152px;">
-      <a href="<%=(current_user) ? dashboard_path : root_path %>">
+      <a href="<%=(current_user.type == 'Learner') ? dashboard_path : root_path %>">
         <span class="sprite logo"></span>
       </a>
         <%= render partial: "layouts/top_menu" %>

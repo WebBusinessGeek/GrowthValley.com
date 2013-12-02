@@ -11,7 +11,7 @@
 			<%= image_tag((user_detail.profile_pic_url.present?) ? user_detail.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-small') %>
 			<div>
 			<%=notification["message"].html_safe()%><br>
-			<%=notification.created_at.strftime("%d-%m-%Y %H:%M %z")%>
+			<%= time_ago_in_words(notification.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
 			</div>
 		</div>
 		<div style="clear:both;"></div>

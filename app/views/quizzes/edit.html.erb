@@ -9,7 +9,11 @@
     <%= f.input :correct_answer, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 4', 4] ], include_blank: false %>
 
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <% if @quiz.new_record? %>
+      <%= f.button :submit, 'Add this question', :class => 'btn-primary' %>
+    <% else %>
+      <%= f.button :submit, 'Update this question', :class => 'btn-primary' %>
+    <% end %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), section_quizzes_path(@section), :class => 'btn' %>
   </div>
 <% end %>

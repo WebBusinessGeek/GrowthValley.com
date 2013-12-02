@@ -36,10 +36,10 @@ class Course < ActiveRecord::Base
 
   mount_uploader :course_cover_pic, CourseCoverPicUploader
 
-  CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'] ]
+  CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'], ['Both', 'both'] ]
 
   validates :title, presence: true, uniqueness: true
-  validates :content_type, inclusion: { in: %w(pdf video), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
+  validates :content_type, inclusion: { in: %w(pdf video both), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_validation, if: :active_or_on_sections_count_step?
   validate :price, presence: true, numericality: true, if: :active_or_on_price_step?
 
@@ -66,7 +66,7 @@ class Course < ActiveRecord::Base
         self.update_attributes(is_published: true)
         return true
       else
-        return { status: 'error', error_code: 1, error_msg: 'You cannot unpublish a course that has active subscription(s)!' }
+        return { status: 'error', error_code: 1, error_msg: 'Error! Each section must have a test and course must have an exam...' }
       end
     else
       if has_active_learners?
