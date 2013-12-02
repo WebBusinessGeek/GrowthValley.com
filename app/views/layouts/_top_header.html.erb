@@ -17,8 +17,12 @@
       </select>
       </span>
       <ul class="top-menu">
-        <li><a href="javascript:void(0);">Teach Online</a></li>
         <% if current_user %>
+		  <% if current_user.type == "Learner" %>
+          <li>
+            <%= link_to "Dashboard", dashboard_path %>
+          </li>
+          <% end %>
           <li>
             <%= link_to "Profile", edit_user_registration_path %>
           </li>
@@ -26,6 +30,7 @@
             <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
+          <li><a href="javascript:void(0);">Teach Online</a></li>
           <li>
             <%= link_to "Login", (params[:controller] == "homes" and params[:action] == "index") ? "javascript:login();" : root_path+"?login=1" %>
           </li>

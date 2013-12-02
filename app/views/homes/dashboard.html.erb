@@ -2,31 +2,40 @@
   <div id="filter">
     <div class='row-fluid'>
 		<div class='span2'><h1>Resources</h1></div>
-		<div class='span10'>
-			<div class='row-fluid' style="border:1px solid black;margin-bottom:20px;">
+		<div class='span10'style="border-left:1px solid black;">
+			<div class='row-fluid' style="margin-bottom:20px;">
 				<div class="span6">
-					<div style="margin:5px;"><br>
+					<div style="margin-top:5px;margin-left:5px"><br>
 					<h3>Whats going on?</h3><br>
 					<ul>
+					<% if @notifications.count > 0 %>
 					<% @notifications.each do |notification| %>
 						<li><%=notification["message"].html_safe()%> at 
 							<%=notification.created_at.strftime("%d-%m-%Y %H:%M %z")%></li>
 					<% end %>
-						<li class="pull-right"><%=link_to("more", notification_path)%></li>
+					<% if @notifications.present? %>
+						<li class="pull-right"><%=link_to("view all", notification_path)%></li>
+					<% end %>
+					<% else %>
+						<li style="text-align:center;">No notifications!!</li>
+					<% end %>
 					</ul>
 					</div>
 				</div>
-				<div class="span6"><br>
+				<div class="span5 offset1" style="margin-top:5px;"><br>
 					<h3>Course Subscriptions</h3>
 					<div class='row-fluid' style="padding-top:5px;">
 						<% if @my_subjects.count == 0 %>
-							You have not subscribed any subject yet. <%=link_to("Click here", user_subjects_path)%> to subscribe subjects.
+							<div>You have not subscribed any subject yet.</div>
 						<% else %>
 							<% @my_subjects.each do |subject| %>
 							<div class="span4">
 							<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>
 							</div>
 							<% end %>
+						<% end %>
+						<% if @my_subjects.count < 3 %>
+						<div style="text-align:center;"><%=link_to("Add a subscription", user_subjects_path)%></div>
 						<% end %>
 					</div><br>
 					<% if current_user.type == "Learner" %>
