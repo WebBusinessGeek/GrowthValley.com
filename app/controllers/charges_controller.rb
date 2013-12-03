@@ -1,6 +1,13 @@
 class ChargesController < ApplicationController
   def new
     @course = Course.find_by_id(params[:course_id]) if params[:course_id].present?
+    
+    if @course.present? and current_user.subjects.include?@course.subject
+		t = 1
+    else
+		redirect_to course_path(@course), notice: 'Subscribe the subject first!'
+    end
+    
   end
 
   def create

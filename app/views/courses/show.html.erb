@@ -35,6 +35,9 @@
 			  By <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
 			<% end %>
 		  </div><br>
+		  <div class="course-instructor">
+			  Subject: <%= @course.subject.name %>
+		  </div><br>
 		  <div class='course-subscribe'>
 			<% if current_user.courses.include?(@course) %>
 			  <% if @progress == "exam given" %>
@@ -47,10 +50,12 @@
 			    <% end %>
 			  <% end %>
 			<% else %>
+		      <% if current_user.subjects.include?@course.subject %>
 			  <% if @course.is_paid %>
 				  <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
 			  <% else %>
 				  <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
+			  <% end %>
 			  <% end %>
 			  <br>
 			  <br>
