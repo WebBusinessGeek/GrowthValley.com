@@ -22,17 +22,9 @@ class CoursesController < ApplicationController
     end
     
    if params[:subject].present?
-	   if current_user
-			current_subject = current_user.subjects.find_all_by_slug(params[:subject])
-	   else
-			current_subject = Subject.find_all_by_slug(params[:subject])
-	   end		
+		current_subject = Subject.find_all_by_slug(params[:subject])
    else
-	   if current_user
-			current_subject = current_user.subjects
-	   else
-			current_subject = Subject.all
-	   end		
+		current_subject = Subject.all
    end
    if params[:search].present?
 		if params[:order].present?
