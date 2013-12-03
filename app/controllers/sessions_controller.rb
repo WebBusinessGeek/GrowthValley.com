@@ -25,16 +25,22 @@ class SessionsController < Devise::SessionsController
     resource ||= resource_or_scope
     sign_in(scope, resource) unless warden.user(scope) == resource
     flash[:notice] = 'Logged in successfully!'
-
+    if current_user.type == "Learner"
+		redirect_url = dashboard_path
+	else
+		redirect_url = root_url
+	end
+		
     respond_to do |format|
       format.html {
-        redirect_to dashboard_path
+		
+        redirect_to redirect_url
       }
       format.js {
         unless current_user.sign_in_count > 1 && current_user.profile_pic_url.present?
           render js: "window.location.assign('#{edit_user_registration_url}')"
         else
-          render js: "window.location.assign('#{dashboard_url}')"
+          render js: "window.location.assign('#{redirect_url}')"
         end
       }
     end

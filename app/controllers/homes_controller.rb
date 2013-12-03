@@ -8,6 +8,10 @@ class HomesController < ApplicationController
   end
 
   def dashboard
+	if current_user.type == "Teacher"
+		redirect_to root_url()
+		return
+	end
     @show_top_menu = false
     @notifications = get_activity_stream(10)
     @my_subjects = current_user.subjects
