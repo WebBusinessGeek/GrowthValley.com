@@ -1,6 +1,6 @@
 class LearnersController < ApplicationController
   def index
-    @courses = Course.all_published_courses_for_subjects(current_user.subjects)
+    @courses = Course.all_published_courses_for_subjects(current_user.subjects).page(params[:page])
   end
 
   def show

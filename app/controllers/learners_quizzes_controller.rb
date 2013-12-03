@@ -8,8 +8,10 @@ class LearnersQuizzesController < ApplicationController
 		end
 
 		if answered_quizzes.present?
+  		@question_count = answered_quizzes.count + 1
 		  @quiz_question = @section.quizzes.where('id not in (?)', answered_quizzes).first
 		else
+		  @question_count = 1
 		  @quiz_question = @section.quizzes.first
 		end
 		

@@ -8,22 +8,6 @@ function signup() {
   $('#signup-form').show();
 }
 
-function toggleOverlay() {
-  var overlay = document.getElementById('overlay');
-  var specialBox = document.getElementById('specialBox');
-
-  overlay.style.opacity = 0.8;
-
-  if(overlay.style.display == 'block') {
-    overlay.style.display = 'none';
-    specialBox.style.display = 'none';
-  }
-  else {
-    overlay.style.display = 'block';
-    specialBox.style.display = 'block';
-  }
-}
-
 $(function() {
   $('#login-form form, #signup-form form').bind("ajax:beforeSend", function(data, status, xhr) {
     toggleOverlay();

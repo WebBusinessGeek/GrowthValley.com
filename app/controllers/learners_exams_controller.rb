@@ -9,8 +9,10 @@ class LearnersExamsController < ApplicationController
         answered_exam_questions = @course.learners_exams.where(user_id: current_user.id, exam_id: @course.exam.id).collect(&:exam_question_id)
 
         if answered_exam_questions.present?
+          @question_count = answered_exam_questions.count + 1
           @exam_question = @course.exam.exam_questions.where('id not in (?)', answered_exam_questions).order('id asc').first
         else
+          @question_count = 1
           @exam_question = @course.exam.exam_questions.order('id asc').first
         end
 
