@@ -11,6 +11,11 @@ class HomesController < ApplicationController
     @show_top_menu = false
     @notifications = get_activity_stream(10)
     @my_subjects = current_user.subjects
+    if current_user.subjects.present?
+    @other_subjects = Subject.where("id not in (?)",current_user.subjects.map(&:id))
+    else
+    @other_subjects = Subject.all
+    end
     render :layout => 'application'
   end
   

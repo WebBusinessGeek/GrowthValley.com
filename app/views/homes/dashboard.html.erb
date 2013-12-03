@@ -81,6 +81,18 @@
 				</ul>
 			</div>		
 			<% end %>		
+			<% end %>
+			<% @other_subjects.each do |subject| %>
+			<% if subject.courses.all_published.count > 0 %>
+			<div class="row-fluid">
+				<h3><%=subject.name.capitalize%> Courses</h3>
+				<ul class="courses-box dashboard">
+				<% subject.courses.all_published.order("created_at desc").limit(3).each do |course| %>
+					<%= render partial: "courses/single_course", :locals=>{:course => course} %>
+				<% end %>
+				</ul>
+			</div>		
+			<% end %>		
 			<% end %>		
 		</div>
     </div>
