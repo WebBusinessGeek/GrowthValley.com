@@ -65,6 +65,31 @@ class HomesController < ApplicationController
     render :layout => 'application'
   end
   
+  def information
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def for_organizations
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def for_people
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def faq
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
+  def how_it_works
+    @show_top_menu = true
+    render :layout => 'application'
+  end
+  
   private
 
   def set_layout

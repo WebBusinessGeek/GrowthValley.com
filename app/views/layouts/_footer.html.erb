@@ -7,39 +7,19 @@
 
   <div class="clear"></div>
 
-  <div class="col-l">
+  <div class="">
 	  <ul class="footerlink">
 	    <li><a href="<%= (current_user && current_user.type == 'Learner') ? learners_path : root_path %>">Home</a></li>
-	    <li><a href="/coming_soon">Information</a></li>
-	    <li><a href="/coming_soon">Contact</a></li>
-	    <li><a href="/coming_soon">for organizations</a></li>
-	    <li><a href="/coming_soon">for people</a></li>
-	    <li><a href="/coming_soon">FAQ</a></li>
-	    <li><a href="/coming_soon">how it works</a></li>
+	    <li><a href="<%= information_homes_path %>">Information</a></li>
+	    <li><a href="<%= contact_homes_path %>">Contact</a></li>
+	    <li><a href="<%= for_organizations_homes_path %>">for organizations</a></li>
+	    <li><a href="<%= for_people_homes_path %>">for people</a></li>
+	    <li><a href="<%= faq_homes_path %>">FAQ</a></li>
+	    <li><a href="<%= how_it_works_homes_path %>">how it works</a></li>
 	  </ul>
   </div>
 
-  <div class="col-l">
-    <%= form_tag(contact_us_path, method: :post, multipart: true) %>
-	    <h2>CONTACT US</h2>
-	    <ul>
-	      <li>
-	        <%= text_field_tag :name, '', placeholder: 'name', required: true, id: 'name', class: 'sprite' %>
-	      </li>
-	      <li>
-	        <%= email_field_tag :email, '', placeholder: 'E-Mail', required: true, id: 'email', class: 'sprite email', style: 'padding-left: 30px; width: 192px;' %>
-	      </li>
-	      <li>
-	        <%= text_area_tag :message, '', placeholder: 'message', required: true, id: 'message', class: 'text sprite' %>
-	      </li>
-	      <li>
-	        <%= recaptcha_tags %>
-	      </li>
-	      <li>
-	        </br>
-		      <input name="OK" type="submit" value="" class="sprite" />
-	      </li>
-	    </ul>
+  <div class="col-l" style="display:none;">
   </div>
 
   <!--
@@ -51,9 +31,3 @@
     </div>
 	-->
 </div>
-
-<%= javascript_tag do %>
-  $(function() {
-    $('#recaptcha_response_field').attr('required', true);
-  });
-<% end %>

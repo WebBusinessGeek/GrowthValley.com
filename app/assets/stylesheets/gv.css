@@ -409,7 +409,7 @@
 /*============================================ Footer ============================================*/
 .footer {
 	background:#2b3b5f url(/assets/footerbg.png) top repeat-x;
-	height:480px;
+	height:70px;
 	padding:30px;
 	margin-top:50px;
 }
@@ -455,8 +455,14 @@
 	list-style:none;
 }
 .footerlink li {
-	margin:0px;
+	margin:10px;
 	padding:0px;
+	float: left;
+	line-height:30px;
+	color:#fff;
+	text-shadow:1px 1px 0 #000;
+	font-size:20px;
+	text-transform:uppercase;
 }
 .footerlink li a {
 	display:block;
@@ -466,7 +472,7 @@
 	font-size:20px;
 	text-transform:uppercase;
 }
-.footer input[type="text"] {
+.contact input[type="text"] {
 	background-position: -233px -144px;
 	border: medium none;
 	display: inline-block;
@@ -477,7 +483,7 @@
 	width: 209px;
 	text-transform:uppercase;
 }
-.footer textarea {
+.contact textarea {
 	font-family: 'arialnarrow', sans-serif;
 	background-position: -2px -144px;
 	border: medium none;
@@ -489,7 +495,7 @@
 	width: 209px;
 	text-transform:uppercase;
 }
-.footer input[type="button"], .footer input[type="submit"], .footer input[type="image"] {
+.contact input[type="button"], .contact input[type="submit"], .contact input[type="image"] {
 	background-position:-421px -2px;
 	border: medium none;
 	float: right;

@@ -45,6 +45,11 @@ GrowthValley::Application.routes.draw do
       get 'blog', as: :blog
       get 'contact', as: :contact
       get 'terms', as: :terms
+      get 'information', as: :information
+      get 'for_organizations', as: :for_organizations
+      get 'for_people', as: :for_people
+      get 'faq', as: :faq
+      get 'how_it_works', as: :how_it_works
     end
   end
   match 'dashboard' => 'homes#dashboard', as: :dashboard
