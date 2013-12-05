@@ -36,6 +36,7 @@ class QuizzesController < ApplicationController
     if params[:section_id].present?
       @section = Section.find_by_slug(params[:section_id])
       if @section.quizzes.count < 3
+        @edit = false
         (3 - @section.quizzes.count).times do
           @quiz = @section.quizzes.build
         end
@@ -45,8 +46,7 @@ class QuizzesController < ApplicationController
           return
         else
           @quiz = @section.quizzes.build
-          render 'add'
-          return
+          @edit = true
         end
       end
     else

@@ -3,6 +3,10 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
+<div>
+  <h3>Section Name: <%= @section.title %></h3></br>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -33,5 +37,5 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")), new_section_quiz_path(@section), :class => 'btn btn-primary' %>
+<%= link_to t('.new', :default => t("helpers.links.add_question")), new_section_quiz_path(@section), :class => 'btn btn-primary' %>
 <%= link_to t('.back', :default => 'Back to course overview'), sections_course_path(@section.course), :class => 'btn' %>
