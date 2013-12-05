@@ -33,9 +33,11 @@ class ExamQuestionsController < ApplicationController
       return
     elsif @exam.exam_questions.present? && @exam.exam_questions.count >= 3
       @exam_question = @exam.exam_questions.build
-      render :edit
-      return
+      @edit = true
+      #render :add
+      #return
     else
+      @edit = false
       3.times do
         @exam_question = @exam.exam_questions.build
       end
@@ -57,7 +59,6 @@ class ExamQuestionsController < ApplicationController
   def create
     @exam = Exam.find_by_id(params[:exam_id])
     @exam_question = @exam.exam_questions.build(params[:exam_question])
-
     respond_to do |format|
       if @exam_question.save
         format.html { redirect_to course_exam_exam_questions_path(@exam.course, @exam), notice: 'Exam question was successfully created.' }

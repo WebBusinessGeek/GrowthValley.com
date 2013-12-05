@@ -9,7 +9,13 @@
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @exam.course.title %></dd>
   <dt><strong>Manage Exam Questions:</strong></dt>
-  <dd><%= link_to 'Manage Exam Questions', course_exam_exam_questions_path(@course, @exam) %></dd>
+  <dd>
+  <% if @exam.exam_questions.count == 0 %>
+  <%= link_to 'Add Exam Questions', new_course_exam_exam_question_path(@course, @exam) %>
+  <% else %>
+  <%= link_to 'Manage Exam Questions', course_exam_exam_questions_path(@course, @exam) %>
+  <% end %>
+  </dd>
 </dl>
 
 <div class="form-actions">

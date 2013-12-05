@@ -1,5 +1,3 @@
-<% exam_questions_count = @exam.exam_questions.count + 2%>
-<% total_questions_count = @exam.exam_questions.count + 1%>
 <%- model_class = ExamQuestion -%>
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
@@ -11,8 +9,6 @@
     <%= f.error_notification %>
 
     <%= f.input :question, required: true %>
-
-    <a class="delete-exam-question" class="button" href="#delete">Remove</a>
   </div>
   </div>
   <div class="form-actions">
@@ -24,57 +20,3 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), style: 'margin-left: 5px;' %>
   </div>
 <% end %>
-<%= link_to "<span>+</span> Add More".html_safe(), "#add", :id => "add-another-question", :class=>"button" %>
-
-<script>
-  function remove_button(total_exam_question)
-  {
-    if ($(".singlequestion").length > 1)
-    {
-      $(".delete-exam-question").show()
-    }
-    else
-    {
-      $(".delete-exam-question").hide()
-    }
-  }
-  
-  function add_button(total_exam_question)
-  {
-    if (total_exam_question < 10)
-    {
-      $("#add-another-question").show()
-    }
-    else
-    {
-      $("#add-another-question").hide()
-    }
-  }
-	$(document).ready(function() {
-    var new_exam_question = <%=exam_questions_count%>;
-    var total_exam_question = <%=total_questions_count%>;
-    alert('total_exam_question : '+total_exam_question)
-    alert('new_exam_question : '+new_exam_question)
-    add_button(total_exam_question)
-    remove_button(total_exam_question)
-    
-	  $('a#add-another-question').click(function() {
-      
-        $('<div class="singlequestion"><div class="control-group text required exam_exam_questions_question" rows="5"><label for="exam_exam_questions_attributes_'+new_exam_question+'_question" class="text required control-label" rows="5"><abbr title="required">*</abbr> Question</label><div class="controls"><textarea rows="5" required="required" name="exam[exam_questions_attributes]['+new_exam_question+'][question]" id="exam_exam_questions_attributes_'+new_exam_question+'_question" cols="40" class="text required"></textarea></div></div><a class="delete-exam-question" class="button" href="#delete">Remove</a></div>').appendTo('#exam_questions_content');
-        
-        new_exam_question = new_exam_question + 1
-        total_exam_question = total_exam_question + 1
-            
-        add_button(total_exam_question)
-        remove_button(total_exam_question)
-	  });
-
-	  $(document).on('click', '.delete-exam-question',function() {
-			$(this).parent().remove();
-      total_exam_question = total_exam_question - 1			
-      add_button(total_exam_question)
-      remove_button(total_exam_question)
-	  });
-
-	});
-</script>
