@@ -1,23 +1,25 @@
-<% quiz_questions_count = 0 %>
+<% quiz_questions_count = @section.quizzes.count %>
 
 <%= simple_form_for @section, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
   <div id="quiz_questions_content">
     <%= f.simple_fields_for :quizzes do |q| %>
-      <div>
-        <%= q.error_notification %>
+      <% if q.object.new_record? %>
+        <div>
+          <%= q.error_notification %>
 
-        <%= q.input :question %>
-        <%= q.input :option1 %>
-        <%= q.input :option2 %>
-        <%= q.input :option3 %>
-        <%= q.input :option4 %>
-        <%= q.input :correct_answer, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 4', 4] ], include_blank: false %>
-        <a class="delete-quiz-question" class="btn" href="#delete">Remove</a>
-        <hr>
-      </div>
-      <% quiz_questions_count = quiz_questions_count + 1 %>
+          <%= q.input :question %>
+          <%= q.input :option1 %>
+          <%= q.input :option2 %>
+          <%= q.input :option3 %>
+          <%= q.input :option4 %>
+          <%= q.input :correct_answer, collection: [ ['Option 1', 1], ['Option 2', 2], ['Option 3', 3], ['Option 4', 4] ], include_blank: false %>
+          <a class="delete-quiz-question" class="btn" href="#delete">Remove</a>
+          <hr>
+        </div>
+        <% quiz_questions_count = quiz_questions_count + 1 %>
+      <% end %>
     <% end %>
   </div>
 
@@ -30,9 +32,9 @@
 <%= link_to "<span>+</span> Add More".html_safe(), "#add", :id => "add-another-question", :class=>"button" %>
 
 <script>
-  function remove_button(total_quiz_question)
+  function remove_button(existing_quiz_questions)
   {
-    if (total_quiz_question > 3)
+    if (existing_quiz_questions > 1)
     {
       $(".delete-quiz-question").show()
     }
@@ -57,7 +59,7 @@
     var new_quiz_question = <%=quiz_questions_count%>;
     var total_quiz_question = <%=quiz_questions_count%>;
     add_button(total_quiz_question)
-    remove_button(total_quiz_question)
+    remove_button($("#quiz_questions_content").children().length)
     
 	  $('a#add-another-question').click(function() {
       
@@ -67,14 +69,14 @@
         total_quiz_question = total_quiz_question + 1
             
         add_button(total_quiz_question)
-        remove_button(total_quiz_question)
+        remove_button($("#quiz_questions_content").children().length)
 	  });
 
 	  $(document).on('click', '.delete-quiz-question',function() {
 			$(this).parent().remove();
       total_quiz_question = total_quiz_question - 1			
       add_button(total_quiz_question)
-      remove_button(total_quiz_question)
+      remove_button($("#quiz_questions_content").children().length)
 	  });
 
 	});
