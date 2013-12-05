@@ -45,7 +45,7 @@ class QuizzesController < ApplicationController
           return
         else
           @quiz = @section.quizzes.build
-          render 'edit'
+          render 'add'
           return
         end
       end
