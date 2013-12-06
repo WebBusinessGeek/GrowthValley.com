@@ -7,8 +7,8 @@ GrowthValley::Application.initialize!
 ActionMailer::Base.smtp_settings = {
   :user_name => ENV['MAILER_USERNAME'],
   :password => ENV['MAILER_PWD'],
-  :address => 'smtp.sendgrid.net',
+  :address => 'smtp.mailgun.org',
   :port => 587,
   :authentication => :plain,
-  :enable_starttls_auto => true
+  :domain => "idifysolutions.com",
 }
