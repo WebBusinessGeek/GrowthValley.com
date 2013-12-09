@@ -27,8 +27,8 @@ class LearnersQuizzesController < ApplicationController
     if params[:learners_quiz][:section_id].present?
       @section = Section.find_by_id(params[:learners_quiz][:section_id])
       @course = @section.course
-	  total_sections = @course.sections.count
-      current_subscription = @course.subscriptions.where("user_id = ?",current_user.id).first
+      total_sections = @course.sections.count
+      current_subscription = @course.subscriptions.where("user_id = ?", current_user.id).first
       current_section = current_subscription.current_section
       if @section.present? && current_user.present?
         answered_quizzes = @section.learners_quizzes.where(user_id: current_user.id).collect(&:quiz_id)
@@ -49,16 +49,18 @@ class LearnersQuizzesController < ApplicationController
 
     if @quiz_answer.save
       if @section.quizzes.where('id not in (?)', answered_quizzes).length == 1
-		  if current_section < total_sections
-			  new_section = current_section + 1
-			  current_subscription.update_attributes(:current_section => new_section, progress: "#{current_section.to_words} section completed")
-			  redirect_to course_path(@section.course), notice: 'Next section unlocked!'
-			  return
-		  else
-			new_section = current_section
-            redirect_to course_path(@section.course), notice: 'All test done. Kindly give the exam.'
-            return
-		  end
+        current_subscription.update_attributes(progress_percentage: ((current_section * 100) / total_sections))
+
+		    if current_section < total_sections
+			    new_section = current_section + 1
+			    current_subscription.update_attributes(:current_section => new_section, progress: "#{current_section.to_words} section completed")
+			    redirect_to course_path(@section.course), notice: 'Next section unlocked!'
+			    return
+		    else
+			    new_section = current_section
+          redirect_to course_path(@section.course), notice: 'All test done. Kindly give the exam.'
+          return
+		    end
       else
         redirect_to take_test_learners_path(section: @section, course: @course), notice: 'Answer submitted successfully!'
       end

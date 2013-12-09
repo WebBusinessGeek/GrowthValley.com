@@ -49,6 +49,10 @@
   			    <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
 			    <% end %>
 			  <% end %>
+			  <strong>
+			    </br></br>
+			    Course completion progress: <%= @progress_percentage %>%
+			  </strong>
 			<% else %>
 		      <% if current_user.subjects.include?@course.subject %>
 			  <% if @course.is_paid %>
@@ -118,7 +122,10 @@
 			    </br>
 				  <b>
 					<% if section.quiz_completed?(current_user.id) %>
-					  <%= link_to 'View Result', '#quiz_result_dialog_'+section.id.to_s, role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
+					  <li style="padding-left:20px;">
+					    <p>Result: You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
+					    </br>
+				    </li>
 					<% else %>
 					  <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right', target: '_blank' %>
 					<% end %>
@@ -153,20 +160,6 @@
 	  <% end %>
   </div>
 </div>
-
-<% @course.sections.each do |section| %>
-  <% if section.quiz_completed?(current_user.id) %>
-    <div id='quiz_result_dialog_<%= section.id%>' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Quiz Result for <%= section.title.titleize if section.title.present? %></h3>
-      </div>
-      <div class="modal-body">
-        <p>You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
-      </div>
-    </div>
-  <% end %>
-<% end %>
 
 <div id='exam_result_dialog' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
   <div class='modal-header'>

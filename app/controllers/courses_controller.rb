@@ -89,7 +89,8 @@ class CoursesController < ApplicationController
 	  course_sections = @course.sections.map(&:id)
 	  user_test_sections = current_user.learners_quizzes.select("distinct section_id").map(&:section_id)
 	  @exam_active = user_test_sections.each_cons(course_sections.size).include? course_sections
-	  @progress = (@current_subscription.present?) ? @current_subscription.progress : ""
+	  @progress = @current_subscription.present? ? @current_subscription.progress : ""
+	  @progress_percentage = @current_subscription.present? ? @current_subscription.progress_percentage : "0"
 	  
 	  if @course.is_published?	
 		  respond_to do |format|
