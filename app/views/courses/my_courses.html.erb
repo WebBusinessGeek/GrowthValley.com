@@ -73,7 +73,7 @@
             <td><%= course.description %></td>
             <% current_subscription = course.subscriptions.where("user_id = ?", current_user.id).first %>
             <% progress_percentage = current_subscription.present? ? current_subscription.progress_percentage : "0" %>
-            <td>Course completion progress: <%= progress_percentage %>%</td>
+            <td><%= progress_percentage %>% completed</td>
           </tr>
         <% end %>
       </tbody>
