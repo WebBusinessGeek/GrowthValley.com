@@ -19,7 +19,7 @@
 <%= radio_button_tag :"option_#{@quiz_question.id}", 4, false, { style: "float: left;" } %>
 <%= label_tag :"option_#{@quiz_question.id}_4", @quiz_question.option4, { style: "float: left; margin: -2px 20px 0px 5px;" } %>
 
-<%= simple_form_for @quiz_answer do |f| %>
+<%= simple_form_for @quiz_answer, :remote => true do |f| %>
   <%= f.error_notification %>
 
   <%= f.hidden_field :quiz_id %>
@@ -29,7 +29,9 @@
   </br>
   </br>
 
-  <%= f.button :submit, 'Continue', class: 'btn btn-primary', disabled: true %>
+  <div id='result'>
+    <%= f.button :submit, 'Continue', class: 'btn btn-primary', disabled: true %>
+  </div>
 <% end %>
 
 <%= javascript_tag do %>

@@ -1,25 +1,26 @@
 class LearnersQuizzesController < ApplicationController
   def new
     if params[:section].present? and params[:course].present?
-		@course = Course.find_by_slug(params[:course])
-		@section = Section.find_by_slug(params[:section])
-		if @section.present? && current_user.present?
-			answered_quizzes = @section.learners_quizzes.where(user_id: current_user.id).collect(&:quiz_id)
-		end
+		  @course = Course.find_by_slug(params[:course])
+		  @section = Section.find_by_slug(params[:section])
 
-		if answered_quizzes.present?
-  		@question_count = answered_quizzes.count + 1
-		  @quiz_question = @section.quizzes.where('id not in (?)', answered_quizzes).first
-		else
-		  @question_count = 1
-		  @quiz_question = @section.quizzes.first
-		end
+		  if @section.present? && current_user.present?
+			  answered_quizzes = @section.learners_quizzes.where(user_id: current_user.id).collect(&:quiz_id)
+		  end
+
+		  if answered_quizzes.present?
+    		@question_count = answered_quizzes.count + 1
+		    @quiz_question = @section.quizzes.where('id not in (?)', answered_quizzes).first
+		  else
+		    @question_count = 1
+		    @quiz_question = @section.quizzes.first
+		  end
 		
-		if @quiz_question.present?
-		@quiz_answer = current_user.learners_quizzes.build(quiz_id: @quiz_question.id, section_id: @section.id)
-		else
-		redirect_to my_courses_courses_path(), :notice => "You cannot take a test again"
-		end
+		  if @quiz_question.present?
+  		  @quiz_answer = current_user.learners_quizzes.build(quiz_id: @quiz_question.id, section_id: @section.id)
+		  else
+  		  redirect_to my_courses_courses_path, :notice => "You cannot take a test again"
+		  end
     end
   end
 
@@ -30,6 +31,7 @@ class LearnersQuizzesController < ApplicationController
       total_sections = @course.sections.count
       current_subscription = @course.subscriptions.where("user_id = ?", current_user.id).first
       current_section = current_subscription.current_section
+
       if @section.present? && current_user.present?
         answered_quizzes = @section.learners_quizzes.where(user_id: current_user.id).collect(&:quiz_id)
       end
@@ -54,15 +56,30 @@ class LearnersQuizzesController < ApplicationController
 		    if current_section < total_sections
 			    new_section = current_section + 1
 			    current_subscription.update_attributes(:current_section => new_section, progress: "#{current_section.to_words} section completed")
-			    redirect_to course_path(@section.course), notice: 'Next section unlocked!'
-			    return
+
+          respond_to do |format|
+            format.js
+            format.html {
+    			    redirect_to course_path(@section.course), notice: 'Next section unlocked!'
+            }
+          end
 		    else
 			    new_section = current_section
-          redirect_to course_path(@section.course), notice: 'All test done. Kindly give the exam.'
-          return
+
+          respond_to do |format|
+            format.js
+            format.html {
+              redirect_to course_path(@section.course), notice: 'All test done. Kindly give the exam.'
+            }
+          end
 		    end
       else
-        redirect_to take_test_learners_path(section: @section, course: @course), notice: 'Answer submitted successfully!'
+        respond_to do |format|
+          format.js
+          format.html {
+            redirect_to take_test_learners_path(section: @section, course: @course), notice: 'Answer submitted successfully!'
+          }
+        end
       end
     else
       render :new
