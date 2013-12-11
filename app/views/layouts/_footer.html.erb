@@ -9,7 +9,7 @@
 
   <div class="">
 	  <ul class="footerlink">
-	    <li><a href="<%= (current_user && current_user.type == 'Learner') ? learners_path : root_path %>">Home</a></li>
+	    <li><a href="<%= (current_user && current_user.type == 'Learner') ? courses_path : root_path %>">Home</a></li>
 	    <li><a href="<%= information_homes_path %>">Information</a></li>
 	    <li><a href="<%= contact_homes_path %>">Contact</a></li>
 	    <li><a href="<%= for_organizations_homes_path %>">for organizations</a></li>
