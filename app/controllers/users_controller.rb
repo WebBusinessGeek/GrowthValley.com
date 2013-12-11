@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :check_access, except: [:list_subjects, :update_user_subjects]
+  before_filter :check_access, except: [:list_subjects, :update_user_subjects, :subscribe_teacher]
 
   def list_subjects
     @subjects = Subject.all
@@ -104,6 +104,16 @@ class UsersController < ApplicationController
       redirect_to review_exams_path, notice: 'Exam reviewed submitted successfully! User has been informed...'
     else
       redirect_to review_exams_path, alert: 'Some error occoured while trying to submit exam review... Please try again later!'
+    end
+  end
+
+  def subscribe_teacher
+    if params[:course_id].present?
+      current_user.subscribe_teacher(params[:course_id])
+
+      redirect_to :back, :notice => "Teacher subscribed successfully!"
+    else
+      redirect_to :back, :alert => "Course not found!"
     end
   end
 

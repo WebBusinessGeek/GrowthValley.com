@@ -1,4 +1,6 @@
 class Teacher < User
+  has_and_belongs_to_many :learners
+
   def allowed_to_publish?(course_id)
     course = Course.find_by_id(course_id)
 

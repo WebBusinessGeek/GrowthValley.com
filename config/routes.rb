@@ -15,6 +15,7 @@ GrowthValley::Application.routes.draw do
   post 'user/exam/submit_review' => 'users#submit_review', as: 'submit_review'
   get 'user/exam/result' => 'users#exam_result', as: 'exam_result'
   post 'user/exam/submit_result' => 'users#submit_result', as: 'submit_result'
+  post 'courses/:course_id/teacher/subscribe' => 'users#subscribe_teacher', as: 'subscribe_teacher'
   
   resources :subjects
   resources :courses do
