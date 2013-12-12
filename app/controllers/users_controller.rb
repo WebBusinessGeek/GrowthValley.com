@@ -71,7 +71,19 @@ class UsersController < ApplicationController
   def exam_result
     if params[:exam_id].present? && params[:user_id].present?
       @learners_exams = LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).order('id asc')
-      @exam_reviewed = Subscription.where(user_id: @learners_exams.first.user.id, course_id: @learners_exams.first.course.id).first.progress == 'exam reviewed'
+      @total_exam_count=LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).count
+      @total_exam_score=LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).sum('score')
+      @total_score_cgpa=@total_exam_score/@total_exam_count
+      if(@total_score_cgpa >= "5")
+          final_result="passed"
+      else
+          final_result="failed"
+      end
+      @exam_reviewed = Subscription.where(user_id: @learners_exams.first.user.id, course_id: @learners_exams.first.course.id).first
+      @exam_reviewed[:progress]="exam reviewed"
+      @exam_reviewed[:score]=@total_score_cgpa
+      @exam_reviewed[:final_result]=final_result
+      @exam_reviewed.save
       @suggested_courses = current_user.courses.all_published - Subscription.where(user_type: 'Learner').collect { |s| s.course }
     end
   end
@@ -116,7 +128,12 @@ class UsersController < ApplicationController
       redirect_to :back, :alert => "Course not found!"
     end
   end
-
+  def analytics
+     @courses = current_user.courses.page(params[:page])
+     @total_subscriptions=Subscription.where(:user_type=>"Learner").count
+     @total_passed=Subscription.where(:final_result=>"passed").count
+     @total_failed=Subscription.where(:final_result=>"failed").count
+  end
   private
 
     def check_access

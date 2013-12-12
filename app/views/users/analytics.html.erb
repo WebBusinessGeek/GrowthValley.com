@@ -1,0 +1,105 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "analytics" } %>
+
+<%- model_class = Course -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<% if current_user.type == 'Teacher' %>
+  
+  </br></br>
+  <% if @courses.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:total_learners) %></th>
+          <th><%= model_class.human_attribute_name(:total_passed) %></th>
+          <th><%= model_class.human_attribute_name(:total_failed) %></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= link_to course.title.titleize, course_path(course) %></td>
+            <td>
+               <%= @total_subscriptions %>
+            </td>
+            <td><%= @total_passed %></td>
+            <td>
+               <%= @total_failed %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <% if current_user.subjects.present? %>
+      You haven't added any courses yet...
+    <% end %>
+  <% end %>
+<% else %>
+  <% unless current_user.subjects.present? %>
+    For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
+  <% end %>
+  <%= link_to "View more courses", courses_path, class: 'pull-right btn btn-primary' if @courses.present? %>
+  </br></br>
+  <% if @courses.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:progress) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= link_to course.title.titleize, course_path(course) %></td>
+            <td><%= course.description %></td>
+            <% current_subscription = course.subscriptions.where("user_id = ?", current_user.id).first %>
+            <% progress_percentage = current_subscription.present? ? current_subscription.progress_percentage : "0" %>
+            <td><%= progress_percentage %>% completed</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <% if current_user.subjects.present? %>
+      You haven't subscribed for any courses yet...
+      <%= link_to "Click here to view courses", courses_path %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= paginate @courses %>
+
+<%= javascript_tag do %>
+  function toggle_publish(course_id) {
+    $.ajax({
+      url: "/courses/" + course_id + "/publish_unpublish",
+      cache: false,
+      success: function(resp) {
+        if(resp.status == 'success') {
+          $('#'+course_id).val(resp.data);
+          $('#'+course_id).attr('checked', resp.data);
+          $('#'+course_id).parent().next().text(resp.data);
+        }
+        else if(resp.errorCode == 1) {
+          $('#'+course_id).val("false");
+          $('#'+course_id).removeAttr('checked');
+          alert(resp.data);
+        }
+        else if(resp.errorCode == 2) {
+          $('#'+course_id).prop('checked', true);
+          alert(resp.data);
+        }
+        else {
+          alert(resp.data);
+        }
+      }
+    });
+  }
+<% end %>

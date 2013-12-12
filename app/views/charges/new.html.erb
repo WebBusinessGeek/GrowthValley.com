@@ -1,26 +1,42 @@
-<%= form_tag charges_path do %>
-  <article>
-    <label class="amount">
-      <span>
-        <b>Amount: </b>
-        <% if @course.present? %>
-          <%= number_to_currency(@course.price) %>
-        <% else %>
-          <%= number_to_currency(7) %>
-        <% end %>
-      </span>
-    </label>
-  </article>
+<article>
+  <label class="amount">
+    <span>
+      <b>Amount: </b>
+      <% if @course.present? %>
+        <%= number_to_currency(@course.price) %>
+      <% else %>
+        <%= number_to_currency(7) %>
+      <% end %>
+    </span>
+  </label>
+</article>
+</br>
 
-  <%= hidden_field_tag :course_id, @course.id if @course.present? %>
-  <%= hidden_field_tag :subscription_type, params[:subscription_type] if params[:subscription_type].present? %>
-  </br>
-  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          <% if @course.present? %>
-            data-amount="<%= @course.price.to_i * 100 %>"
-          <% else %>
-            data-amount="700"
-          <% end %>>
-  </script>
-<% end %>
+<form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" target="_top">
+  <input type="hidden" name="button" value="subscribe">
+  <% if params[:subscription_type].present? %>
+    <% if params[:subscription_type] == 'premium_learner' %>
+      <input type="hidden" name="item_name" value="Premium Learner Subscription">
+      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type]) %>">
+      <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type]) %>">
+    <% elsif params[:subscription_type] == 'premium_teacher' %>
+      <input type="hidden" name="item_name" value="Premium Teacher Subscription">
+      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type]) %>">
+      <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type]) %>">
+    <% elsif params[:subscription_type] == 'course_subscription' && params[:course_id].present? %>
+      <input type="hidden" name="item_name" value="Premium Course Subscription">
+      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type], :course_id => params[:course_id]) %>">
+      <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type], :course_id => params[:course_id]) %>">
+    <% end %>
+  <% end %>
+  <input type="hidden" name="amount" value="<%= @course.present? ? @course.price.to_i : 7 %>">
+  <input type="hidden" name="a3" value="<%= @course.present? ? @course.price.to_i : 7 %>">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="p3" value="1">
+  <input type="hidden" name="t3" value="M">
+  <input type="hidden" name="env" value="www.sandbox">
+  <input type="hidden" name="cmd" value="_xclick-subscriptions">
+  <input type="hidden" name="business" value="M9RGYW7HCRF3W">
+  <input type="hidden" name="bn" value="JavaScriptButton_subscribe">
+  <input type="image" src="/assets/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+</form>

@@ -4,5 +4,5 @@ class Charge < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
 
-  validates_presence_of :user_id, :stripe_token, :amount
+  validates_presence_of :user_id, :amount
 end

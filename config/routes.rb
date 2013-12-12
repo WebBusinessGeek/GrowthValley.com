@@ -16,7 +16,7 @@ GrowthValley::Application.routes.draw do
   get 'user/exam/result' => 'users#exam_result', as: 'exam_result'
   post 'user/exam/submit_result' => 'users#submit_result', as: 'submit_result'
   post 'courses/:course_id/teacher/subscribe' => 'users#subscribe_teacher', as: 'subscribe_teacher'
-  
+  get 'user/analytics' => 'users#analytics' , as: 'course_analytics'
   resources :subjects
   resources :courses do
     resources :exams do
@@ -38,6 +38,7 @@ GrowthValley::Application.routes.draw do
     resources :quizzes
   end
   resources :charges, path: 'subscriptions', only: [:index, :new, :create]
+  get 'subscriptions/success' => 'charges#success', as: 'successful_payment'
   resources :homes, only: :index do
     collection do
       get 'about_us', as: :about_us

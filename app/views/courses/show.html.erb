@@ -62,7 +62,7 @@
 			    Course completion progress: <%= @progress_percentage %>%
 			  </strong>
 			<% else %>
-		      <% if current_user.subjects.include?@course.subject %>
+		      <% if ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid') %>
 			  <% if @course.is_paid %>
 				  <%= link_to 'Subscribe Course', new_charge_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
 			  <% else %>
