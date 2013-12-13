@@ -15,7 +15,7 @@
   <%= image_tag @bundle.bundle_pic_url(:thumb) %>
 <% end %>
 <div>
-<%=f.association :courses,as: :check_boxes%>
+<%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes %>
 </div>
 <%=f.button :submit%>
 <%end%>
