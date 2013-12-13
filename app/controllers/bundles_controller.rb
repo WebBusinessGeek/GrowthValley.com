@@ -15,7 +15,7 @@ class BundlesController < ApplicationController
     @bundle = current_user.bundles.build(params[:bundle])
 
     if @bundle.save
-      redirect_to bundles_path
+      redirect_to my_bundles_bundles_path
 	  else
       render :new
 	  end
@@ -29,7 +29,7 @@ class BundlesController < ApplicationController
     @bundle = current_user.bundles.find(params[:id])
 
     if @bundle.update_attributes(params[:bundle]) 
-      redirect_to bundles_path
+      redirect_to my_bundles_bundles_path
     else
       render :edit
     end

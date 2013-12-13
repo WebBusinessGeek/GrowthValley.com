@@ -4,6 +4,8 @@ class Bundle < ActiveRecord::Base
   has_and_belongs_to_many :courses
   belongs_to :user
 
+  validates_presence_of :name, :price, :course_ids, :bundle_pic
+
   mount_uploader :bundle_pic, BundlePicUploader
 
   scope :active_and_available_bundles, -> { where("active = ? and available = ?", true, true) }

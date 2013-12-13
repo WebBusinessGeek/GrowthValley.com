@@ -11,7 +11,7 @@
 <%=f.input :price%>
 <%=f.label :bundle_pic%>
 <%=f.file_field :bundle_pic%>
-<% if @bundle.bundle_pic_url.present? %>
+<% if !@bundle.new_record? && @bundle.bundle_pic_url.present? %>
   <%= image_tag @bundle.bundle_pic_url(:thumb) %>
 <% end %>
 <div>
