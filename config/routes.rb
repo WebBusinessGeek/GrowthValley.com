@@ -39,6 +39,8 @@ GrowthValley::Application.routes.draw do
   end
   resources :charges, path: 'subscriptions', only: [:index, :new, :create]
   get 'subscriptions/success' => 'charges#success', as: 'successful_payment'
+  resources :premium_courses, only: [:new]
+  get 'premium_course_subscription/success' => 'premium_courses#success', as: 'successful_premium_course_subscription'
   resources :homes, only: :index do
     collection do
       get 'about_us', as: :about_us

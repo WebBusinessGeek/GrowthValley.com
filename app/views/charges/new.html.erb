@@ -2,11 +2,7 @@
   <label class="amount">
     <span>
       <b>Amount: </b>
-      <% if @course.present? %>
-        <%= number_to_currency(@course.price) %>
-      <% else %>
-        <%= number_to_currency(7) %>
-      <% end %>
+      <%= number_to_currency(7) %>
     </span>
   </label>
 </article>
@@ -17,20 +13,16 @@
   <% if params[:subscription_type].present? %>
     <% if params[:subscription_type] == 'premium_learner' %>
       <input type="hidden" name="item_name" value="Premium Learner Subscription">
-      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type]) %>">
+      <input type="hidden" name="return" value="<%= successful_payment_url %>">
       <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type]) %>">
     <% elsif params[:subscription_type] == 'premium_teacher' %>
       <input type="hidden" name="item_name" value="Premium Teacher Subscription">
-      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type]) %>">
+      <input type="hidden" name="return" value="<%= successful_payment_url %>">
       <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type]) %>">
-    <% elsif params[:subscription_type] == 'course_subscription' && params[:course_id].present? %>
-      <input type="hidden" name="item_name" value="Premium Course Subscription">
-      <input type="hidden" name="return" value="<%= successful_payment_url(:subscription_type => params[:subscription_type], :course_id => params[:course_id]) %>">
-      <input type="hidden" name="cancel_return" value="<%= new_charge_url(:subscription_type => params[:subscription_type], :course_id => params[:course_id]) %>">
     <% end %>
   <% end %>
-  <input type="hidden" name="amount" value="<%= @course.present? ? @course.price.to_i : 7 %>">
-  <input type="hidden" name="a3" value="<%= @course.present? ? @course.price.to_i : 7 %>">
+  <input type="hidden" name="amount" value="7">
+  <input type="hidden" name="a3" value="7">
   <input type="hidden" name="currency_code" value="USD">
   <input type="hidden" name="p3" value="1">
   <input type="hidden" name="t3" value="M">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212075047) do
+ActiveRecord::Schema.define(:version => 20131213052636) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20131212075047) do
 
   create_table "charges", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "course_id"
     t.string   "stripe_token"
     t.integer  "amount"
     t.datetime "created_at",   :null => false
@@ -120,6 +119,14 @@ ActiveRecord::Schema.define(:version => 20131212075047) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.string   "notification_for", :limit => 100
+  end
+
+  create_table "premium_courses", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "quizzes", :force => true do |t|

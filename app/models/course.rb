@@ -25,8 +25,11 @@ class Course < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :ratings, :allow_destroy => true
 
-  has_many :charges, dependent: :destroy
-  accepts_nested_attributes_for :charges, :allow_destroy => true
+#  has_many :charges, dependent: :destroy
+#  accepts_nested_attributes_for :charges, :allow_destroy => true
+
+  has_many :premium_courses, dependent: :destroy
+  accepts_nested_attributes_for :premium_courses, :allow_destroy => true
 
   has_many :learners_exams, dependent: :destroy
   accepts_nested_attributes_for :learners_exams, :allow_destroy => true

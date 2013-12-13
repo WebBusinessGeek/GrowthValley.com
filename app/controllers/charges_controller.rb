@@ -1,12 +1,5 @@
 class ChargesController < ApplicationController
   def new
-    @course = Course.find_by_id(params[:course_id]) if params[:course_id].present?
-    
-    if @course.present? and ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid')
-  		t = 1
-    else
-		  redirect_to course_path(@course), notice: 'Subscribe the subject first!' if @courses.present?
-    end
   end
 
   def create
@@ -104,35 +97,18 @@ class ChargesController < ApplicationController
   end
 
   def success
-    if params[:subscription_type].present?
-      if params[:subscription_type].downcase == "premium_teacher"
-        charge = Charge.new(user_id: current_user.id, amount: 7)
+    charge = Charge.new(user_id: current_user.id, amount: 7)
 
-        if charge.save
-          current_user.update_attributes(subscription_type: 'paid')
-          redirect_to charges_path, notice: 'Successfully upgraded to premium teacher membership!'
-        else
-          render :new
-        end
-      elsif params[:subscription_type].downcase == "premium_learner"
-        charge = Charge.new(user_id: current_user.id, amount: 7)
+    if charge.save
+      current_user.update_attributes(subscription_type: 'paid')
 
-        if charge.save
-          current_user.update_attributes(subscription_type: 'paid')
-          redirect_to charges_path, notice: 'Successfully upgraded to premium learner membership!'
-        else
-          render :new
-        end
-      elsif params[:subscription_type].downcase == "course_subscription" && params[:course_id].present?
-        course = Course.find(params[:course_id])
-        charge = Charge.new(user_id: current_user.id, amount: 7, course_id: params[:course_id])
-
-        current_user.courses << course unless current_user.courses.include?(course)
-        course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
-        add_activity_stream('COURSE', course, 'subscribe')
-
-        redirect_to course_path(course), notice: 'Course subscribed successfully!'
+      if current_user.type == 'Teacher'
+        redirect_to charges_path, notice: 'Successfully upgraded to premium teacher membership!'
+      else
+        redirect_to charges_path, notice: 'Successfully upgraded to premium learner membership!'
       end
+    else
+      render :new
     end
   end
 end

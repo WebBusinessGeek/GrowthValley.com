@@ -1,8 +1,7 @@
 class Charge < ActiveRecord::Base
-  attr_accessible :user_id, :course_id, :stripe_token, :amount
+  attr_accessible :user_id, :amount#, :stripe_token
 
   belongs_to :user
-  belongs_to :course
 
-  validates_presence_of :user_id, :amount
+  validates_presence_of :user_id, :amount#, :stripe_token
 end

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :charges, dependent: :destroy
   accepts_nested_attributes_for :charges, :allow_destroy => true
 
+  has_many :premium_courses, dependent: :destroy
+  accepts_nested_attributes_for :premium_courses, :allow_destroy => true
+
   has_many :learners_quizzes, dependent: :destroy
   accepts_nested_attributes_for :learners_quizzes, :allow_destroy => true
 
