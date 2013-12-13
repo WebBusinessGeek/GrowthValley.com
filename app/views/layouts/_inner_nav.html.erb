@@ -8,6 +8,9 @@
   <li class='<%= (current == "course") ? "active" : "" %>'>
     <%= link_to "My Courses", my_courses_courses_path %>
   </li>
+  <li class='<%= (current == "bundle") ? "active" : "" %>'>
+    <%= link_to "My Bundles", my_bundles_bundles_path %>
+  </li>
   <% if current_user.type == 'Teacher' %>
     <li class='<%= (current == "review_exam") ? "active" : "" %>'>
       <%= link_to "Review Exams", review_exams_path %>
@@ -24,8 +27,5 @@
   </li>
   <li class='<%= (current == "analytics") ? "active" : "" %>'>
     <%= link_to "Analytics", course_analytics_path %>
-  </li>
-  <li class='<%= (current == "bundle") ? "active" : "" %>'>
-    <%= link_to "Bundles", bundles_path %>
   </li>
 </ul>

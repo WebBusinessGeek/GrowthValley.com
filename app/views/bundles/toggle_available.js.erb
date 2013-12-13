@@ -1,0 +1,5 @@
+<% if @bundle.available %>
+  $("#bundle_available_<%= @bundle.id %>").html("<a data-remote='true' href='/bundles/<%= @bundle.id %>/toggle_available'>Make Unavailable</a>")
+<% else %>
+  $("#bundle_available_<%= @bundle.id %>").html("<a data-remote='true' href='/bundles/<%= @bundle.id %>/toggle_available'>Make Available</a>")
+<% end %>

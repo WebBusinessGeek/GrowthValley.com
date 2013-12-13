@@ -17,7 +17,16 @@ GrowthValley::Application.routes.draw do
   post 'user/exam/submit_result' => 'users#submit_result', as: 'submit_result'
   post 'courses/:course_id/teacher/subscribe' => 'users#subscribe_teacher', as: 'subscribe_teacher'
   get 'user/analytics' => 'users#analytics' , as: 'course_analytics'
-  resources :bundles
+  resources :bundles do
+    member do
+      get 'make_active'
+      get 'toggle_available'
+    end
+
+    collection do
+      get 'my_bundles'
+    end
+  end
   resources :subjects
   resources :courses do
     resources :exams do
@@ -25,7 +34,7 @@ GrowthValley::Application.routes.draw do
     end
 
     member do
-	  get 'sections'
+	    get 'sections'
       get 'publish_unpublish'
     end
 

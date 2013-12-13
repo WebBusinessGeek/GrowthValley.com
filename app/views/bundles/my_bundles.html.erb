@@ -1,0 +1,87 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "bundle" } %>
+
+<%- model_class = Bundle -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "My #{model_class.model_name.human.pluralize.titleize}" %></h1>
+</div>
+
+<% if current_user.type == 'Teacher' %>
+  <% if current_user.courses.present? %>
+    <%= link_to "Add New Bundle", new_bundle_path, :class => 'btn pull-right btn-primary' %>
+  <% else %>
+    For adding bundles, first <%= link_to "Add Courses", my_courses_courses_path %>
+  <% end %>
+  </br></br>
+  <% if @bundles.present? %>
+    <table class="table table-striped">
+      <thead>
+	      <tr>
+	        <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:active?) %></th>
+          <th><%= model_class.human_attribute_name(:available?) %></th>
+	        <th><%= t '.actions', :default => t("helpers.actions") %></th>
+	      </tr>
+      </thead>
+
+      <tbody>
+        <% @bundles.each do |bundle| %>
+          <tr>
+            <td><%= link_to bundle.name.titleize, bundle_path(bundle) %></td>
+            <td id="bundle_active_<%= bundle.id %>">
+              <% if bundle.active %>
+                <%= bundle.active %>
+              <% else %>
+                <%= link_to "Activate Bundle", make_active_bundle_path(bundle), :data => { :confirm => "This action cannot be undone! Are you sure you want to continue?" }, :remote => true %>
+              <% end %>
+            </td>
+            <td id="bundle_available_<%= bundle.id %>">
+              <% if bundle.active %>
+                <% if bundle.available %>
+                  <%= link_to "Make Unavailable", toggle_available_bundle_path(bundle), :remote => true %>
+                <% else %>
+                  <%= link_to "Make Available", toggle_available_bundle_path(bundle), :remote => true %>
+                <% end %>
+              <% else %>
+                <%= bundle.available %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to t('.view', :default => 'View Bundle'), bundle_path(bundle) %>
+              <%= link_to t('.edit', :default => 'Edit Bundle'), edit_bundle_path(bundle), style: 'margin-left: 5px;' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), bundle_path(bundle), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <% if current_user.subjects.present? %>
+      You haven't added any bundles yet...
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "View more bundles", bundles_path, class: 'pull-right btn btn-primary' if @bundles.present? %>
+  </br></br>
+  <% if @bundles.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bundles.each do |bundle| %>
+          <tr>
+            <td><%= link_to bundle.title.titleize, bundle_path(bundle) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    You haven't subscribed for any bundles yet...
+    <%= link_to "Click here to view bundles", bundles_path %>
+  <% end %>
+<% end %>
+
+<%= paginate @bundles %>
