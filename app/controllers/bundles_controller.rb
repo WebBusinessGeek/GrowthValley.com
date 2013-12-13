@@ -36,7 +36,7 @@ class BundlesController < ApplicationController
 	end
 
   def show
-    render :text => "Bundle details page"
+    @bundle = Bundle.find(params[:id])
   end
 
   def my_bundles

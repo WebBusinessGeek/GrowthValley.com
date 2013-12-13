@@ -1,18 +1,12 @@
 class Learner < User
   has_and_belongs_to_many :teachers
 
-  def teacher_subscribed?(course_id)
-    course = Course.find_by_slug(course_id)
-    teacher = course.users.where(:type  => 'Teacher').first
-
+  def teacher_subscribed?(teacher)
     teachers.include?(teacher)
   end
 
-  def subscribe_teacher(course_id)
-    course = Course.find_by_slug(course_id)
-    teacher = course.users.where(:type  => 'Teacher').first
-
-    unless teacher_subscribed?(course.slug)
+  def subscribe_teacher(teacher)
+    unless teacher_subscribed?(teacher)
       teachers.push(teacher)
     end
   end

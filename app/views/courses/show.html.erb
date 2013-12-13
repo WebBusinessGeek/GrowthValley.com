@@ -31,14 +31,14 @@
 	  <div style="margin:12px;">
 		  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @course.title.titleize %></div>
 		  <div class="course-instructor">
-			  <% if @course.present? && @course.users.where(type: 'Teacher').present? %>
-			    By <%= @course.users.where(type: 'Teacher').first.full_name.titleize %>
+			  <% if @course.present? && @course.teacher.present? %>
+			    By <%= @course.teacher.full_name.titleize %>
 			  <% end %>
 
         <% if current_user.type == 'Learner' %>
           <span style='margin-left: 1em;'>
-            <% unless current_user.teacher_subscribed?(@course.slug) %>
-              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@course), :method => :post, class: 'btn' %>
+            <% unless current_user.teacher_subscribed?(@course.teacher) %>
+              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@course.teacher), :method => :post, class: 'btn' %>
             <% end %>
           </span>
         <% end %>

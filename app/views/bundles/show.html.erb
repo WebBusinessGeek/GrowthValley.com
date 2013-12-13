@@ -1,0 +1,69 @@
+<div class="main-content courses">
+  <div>
+	  <div style="float:left;">
+	    <ul class="courses-box">
+		    <li style="width:100%">
+		      <div class="box">
+			      <span class="cource-img box-grn">
+			        <%= image_tag(@bundle.bundle_pic.url(:cover)) %>
+			      </span>
+			      <span class="cource-disc">
+			        <ol class="cource-dtl">
+				        <li>Price<br />
+				          <span><%= number_to_currency(@bundle.price) %></span>
+				        </li>
+			        </ol>
+			      </span>
+		      </div>
+		    </li>
+	    </ul>
+	  </div>
+
+	  <div style="margin:12px;">
+		  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @bundle.name.titleize %></div>
+		  <div class="course-instructor">
+			  <% if @bundle.present? && @bundle.user.present? %>
+			    By <%= @bundle.user.full_name.titleize %>
+			  <% end %>
+
+        <% if current_user.type == 'Learner' %>
+          <span style='margin-left: 1em;'>
+            <% unless current_user.teacher_subscribed?(@bundle.user) %>
+              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@bundle.user), :method => :post, class: 'btn' %>
+            <% end %>
+          </span>
+        <% end %>
+		  </div>
+		  <div class="buy_bundle">
+		    <%#= link_to "Buy Bundle", "", :class => "btn btn-primary" %>
+		  </div>
+	  </div>
+  </div>
+
+  <div style="clear:both;">
+    <h2>Bundle Courses:</h2>
+    </br>
+    <ul class="courses-box">
+		  <% @bundle.courses.each do |course| %>
+		    <%= render partial: "courses/single_course", :locals=>{ :course => course } %>
+		  <% end %>
+	  </ul>
+
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(".rateit").bind('rated', function() {
+    obj = $(this);
+    $(obj).rateit('readonly', 'readonly');
+
+    $.ajax({
+      url: "<%= rate_courses_path %>",
+      type: "GET",
+      data: {
+        course_id: $(obj).attr('id').split('_')[1],
+        rate: $(obj).rateit('value')
+      }
+    });
+  });
+<% end %>

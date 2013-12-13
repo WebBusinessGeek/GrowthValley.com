@@ -133,6 +133,10 @@ class Course < ActiveRecord::Base
     return arr
   end
 
+  def teacher
+    users.where(:type => 'Teacher').first
+  end
+
   private
 
   def active?
