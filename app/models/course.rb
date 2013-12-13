@@ -4,6 +4,8 @@ class Course < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+  
+  has_and_belongs_to_many :bundles
 
   has_many :subscriptions, dependent: :destroy
   accepts_nested_attributes_for :subscriptions, :allow_destroy => true

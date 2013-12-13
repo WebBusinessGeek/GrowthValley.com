@@ -1,0 +1,32 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "bundle" } %>
+
+<%- model_class = Bundle -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%=link_to :create_bundle , new_bundle_path%>
+<% if current_user.type == 'Teacher' %>
+  
+  </br></br>
+  <% if @bundles.present? %>
+    <table class="table table-striped">
+		      <thead>
+			<tr>
+			  <th><%= model_class.human_attribute_name(:title) %></th>
+			  <th><%=t '.actions', :default => t("helpers.actions") %></th>
+			</tr>
+		      </thead>
+	      <tbody>
+		<% @bundles.each do |bundle| %>
+		  <tr>
+		    <td><%= link_to bundle.name.titleize, bundle_path(bundle) %></td>
+		    <td><%= link_to :edit, edit_bundle_path(bundle) %></td>
+		  </tr>
+		<% end %>
+	      </tbody>
+    </table>
+  <% end %>
+<% end %>
+<%=paginate @bundles%>
+
+

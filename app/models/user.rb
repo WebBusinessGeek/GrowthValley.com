@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :description, :type, :date_of_birth, :sex, :subscription_type, 
   :profile_pic, :subject_ids, :course_ids, :provider, :uid, :confirmed_at
 
+  has_many :bundles
+
   has_and_belongs_to_many :subjects
   before_destroy { subjects.clear }
   accepts_nested_attributes_for :subjects, :allow_destroy => true, :limit => 3
