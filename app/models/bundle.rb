@@ -19,7 +19,7 @@ class Bundle < ActiveRecord::Base
   end
 
   def purchased?(learner_id)
-    learner = Learner.find_by_id(learner_id)
+    learner = User.find_by_id(learner_id)
     learner.bundles.include?(self)
   end
 
