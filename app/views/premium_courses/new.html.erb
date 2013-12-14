@@ -2,23 +2,52 @@
   <label class="amount">
     <span>
       <b>Amount: </b>
-      <%= number_to_currency(@course.price) %>
+      <% if @course.present? %>
+        <%= number_to_currency(@course.price) %>
+      <% elsif @bundle.present? %>
+        <%= number_to_currency(@bundle.price) %>
+      <% end %>
     </span>
   </label>
 </article>
 </br>
 
-<form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" target="_top">
-  <input type="hidden" name="button" value="buynow">
-  <input type="hidden" name="item_name" value="Premium Course Subscription">
-  <input type="hidden" name="return" value="<%= successful_premium_course_subscription_url(:subscription_type => params[:subscription_type], :course_id => @course.id) %>">
-  <input type="hidden" name="cancel_return" value="<%= new_premium_course_url(:subscription_type => params[:subscription_type], :course_id => @course.id) %>">
-  <input type="hidden" name="quantity" value="1">
-  <input type="hidden" name="amount" value="<%= @course.price.to_i %>">
-  <input type="hidden" name="currency_code" value="USD">
-  <input type="hidden" name="env" value="www.sandbox">
-  <input type="hidden" name="cmd" value="_xclick">
-  <input type="hidden" name="business" value="M9RGYW7HCRF3W">
-  <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-  <input type="image" src="/assets/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-</form>
+<% if @course.present? %>
+  <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" target="_top">
+    <input type="hidden" name="button" value="buynow">
+    <input type="hidden" name="item_name" value="Premium Course Subscription">
+    <input type="hidden" name="return" value="<%= successful_premium_course_subscription_url %>">
+    <input type="hidden" name="cancel_return" value="<%= new_premium_course_url(:subscription_type => params[:subscription_type], :course_id => @course.id) %>">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="amount" value="<%= @course.price.to_i %>">
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="env" value="www.sandbox">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="M9RGYW7HCRF3W">
+    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+    <input type="image" src="/assets/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+  </form>
+<% elsif @bundle.present? %>
+  <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" target="_top">
+    <input type="hidden" name="button" value="buynow">
+    <input type="hidden" name="item_name" value="Courses Bundle">
+    <input type="hidden" name="return" value="<%= successful_premium_course_subscription_url %>">
+    <input type="hidden" name="cancel_return" value="<%= new_premium_course_url(:bundle_id => @bundle.id) %>">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="amount" value="<%= @bundle.price.to_i %>">
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="env" value="www.sandbox">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="M9RGYW7HCRF3W">
+    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+    <input type="image" src="/assets/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+  </form>
+<% end %>
+
+</br>
+
+<% if @course.present? %>
+  <%= link_to "Back to course details", course_path(@course) %>
+<% elsif @bundle.present? %>
+  <%= link_to "Back to bundle details", bundle_path(@bundle) %>
+<% end %>

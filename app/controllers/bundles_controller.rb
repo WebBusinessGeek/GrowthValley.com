@@ -15,6 +15,8 @@ class BundlesController < ApplicationController
     @bundle = current_user.bundles.build(params[:bundle])
 
     if @bundle.save
+      current_user.bundles.push(@bundle)
+
       redirect_to my_bundles_bundles_path
 	  else
       render :new

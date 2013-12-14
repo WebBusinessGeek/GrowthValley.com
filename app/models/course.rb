@@ -53,7 +53,8 @@ class Course < ActiveRecord::Base
   scope :paid_user_paid_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', true, true) }
   scope :all_published_courses_for_subjects, ->(subs) { where("(subject_id in (?)) and is_published = ?", subs.map(&:id), true) }
   scope :all_published, -> { where("is_published = ?", true) }
-	
+  scope :with_sections, -> { includes(:sections) }
+
   include PgSearch
   pg_search_scope :search, against: [:title, :description],
    using: {tsearch: {dictionary: "english"}}

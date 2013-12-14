@@ -2,20 +2,31 @@
 
 <%- model_class = Bundle -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => "#{ @bundle.new_record? ? 'New' : 'Edit' } #{ model_class.model_name.human.titleize }" %></h1>
 </div>
-<%=link_to :back_to_bundles ,bundles_path%>
-<br/><br/>
-<%=simple_form_for @bundle, html: {multipart: true} do |f|%>
-<%=f.input :name%>
-<%=f.input :price%>
-<%=f.label :bundle_pic%>
-<%=f.file_field :bundle_pic%>
-<% if !@bundle.new_record? && @bundle.bundle_pic_url.present? %>
-  <%= image_tag @bundle.bundle_pic_url(:thumb) %>
+
+<%= simple_form_for @bundle, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <% if !@bundle.new_record? && @bundle.bundle_pic_url.present? %>
+    <%= f.input :bundle_pic, required: false %>
+    <div class="control-group file optional existing_bundle_bundle_pic">
+      <label class="file optional control-label">
+        Existing bundle pic
+      </label>
+      <div class="controls">
+        <%= image_tag(@bundle.bundle_pic_url(:thumb), class: 'img-rounded') %>
+      </div>
+    </div>
+  <% else %>
+    <%= f.input :bundle_pic, required: true %>
+  <% end %>
+  <%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_bundles_bundles_path, style: 'margin-left: 5px;' %>
+  </div>
 <% end %>
-<div>
-<%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes %>
-</div>
-<%=f.button :submit%>
-<%end%>

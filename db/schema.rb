@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213072848) do
+ActiveRecord::Schema.define(:version => 20131214075838) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20131213072848) do
     t.string   "bundle_pic"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.integer  "user_id"
     t.boolean  "active",     :default => false
     t.boolean  "available",  :default => false
   end
@@ -60,6 +59,11 @@ ActiveRecord::Schema.define(:version => 20131213072848) do
   create_table "bundles_courses", :id => false, :force => true do |t|
     t.integer "course_id"
     t.integer "bundle_id"
+  end
+
+  create_table "bundles_users", :id => false, :force => true do |t|
+    t.integer "bundle_id"
+    t.integer "user_id"
   end
 
   create_table "charges", :force => true do |t|
@@ -84,6 +88,11 @@ ActiveRecord::Schema.define(:version => 20131213072848) do
     t.datetime "updated_at",                          :null => false
     t.string   "slug"
     t.integer  "subject_id"
+  end
+
+  create_table "courses_subjects", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "subject_id"
   end
 
   create_table "exam_questions", :force => true do |t|
@@ -127,14 +136,14 @@ ActiveRecord::Schema.define(:version => 20131213072848) do
   end
 
   create_table "notifications", :force => true do |t|
+    t.string   "notification_for", :limit => 100
     t.string   "module",           :limit => 25
-    t.string   "action",           :limit => 50
     t.integer  "module_id"
+    t.string   "action",           :limit => 50
     t.integer  "user_id"
     t.text     "message"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.string   "notification_for", :limit => 100
   end
 
   create_table "premium_courses", :force => true do |t|
