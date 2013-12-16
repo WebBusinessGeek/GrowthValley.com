@@ -47,24 +47,22 @@ class User < ActiveRecord::Base
     ['Im here to teach a skill', 'Teacher']
   ]
 
-  def self.find_for_oauth(auth, extra, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    unless user
-      type = extra['type']
-      provider = auth.provider
-      uid = auth.uid
-      email = auth.info.email
-      fullname = auth.extra.raw_info.name
-      user = User.new(full_name:fullname,
-                           provider:provider,
-                           uid:uid,
-                           email:email,
-                           password:Devise.friendly_token[0,20],
-                           confirmed_at:DateTime.now,
-                           type: type
-                           )
-      user.save
+  def self.create_from_oauth(auth, extra, signed_in_resource=nil)
+    type = extra['type']
+    provider = auth.provider
+    uid = auth.uid
+    email = auth.info.email
+    fullname = auth.extra.raw_info.name
+    user = User.new(full_name:fullname,
+                         provider:provider,
+                         uid:uid,
+                         email:email,
+                         password:Devise.friendly_token[0,20],
+                         confirmed_at:DateTime.now,
+                         type: type
+                         )
+    if user.save
+      return user
     end
-    user
   end
 end

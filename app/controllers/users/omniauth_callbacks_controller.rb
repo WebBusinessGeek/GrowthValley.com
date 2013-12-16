@@ -7,19 +7,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.where(:provider => auth.provider, :uid => auth.uid)
 
     unless user.present?
-      @user = User.find_for_oauth(auth, extra, current_user)
+      user = User.create_from_oauth(auth, extra, current_user)
 
-      if @user.persisted?
-        sign_in @user, :event => :authentication #this will throw if @user is not activated
+      if user.persisted?
+        sign_in user, :event => :authentication #this will throw if user is not activated
         set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
         session["devise.facebook_data"] = request.env["omniauth.auth"]
       end
     else
-      if user.first.type == 'Learner'
-        flash[:alert] = 'You are already registered with GrowthValley as Learner!'
+      if user.first.type == extra['type']
+        sign_in user.first, :event => :authentication #this will throw if user is not activated
+        set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
-        flash[:alert] = 'You are already registered with GrowthValley! as Teacher'
+        flash[:alert] = "You are already registered with GrowthValley as #{ user.first.type }!"
       end
     end
 
