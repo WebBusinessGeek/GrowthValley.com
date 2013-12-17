@@ -37,6 +37,13 @@ class BundlesController < ApplicationController
     end
 	end
 
+  def destroy
+    bundle = current_user.bundles.find(params[:id])
+    bundle.destroy
+
+    redirect_to my_bundles_bundles_path
+  end
+
   def show
     @bundle = Bundle.find(params[:id])
   end

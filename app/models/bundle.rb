@@ -32,28 +32,39 @@ class Bundle < ActiveRecord::Base
   end
 
   def download_link
-    "/uploads/bundle/#{ name.gsub(/\s/, '_').downcase }.zip"
+    teacher_name = "first_teacher" # users.where(:type => 'Teacher').first.full_name.downcase.gsub(/\s/, '_')
+    bundle_name = name.downcase.gsub(/\s/, '_')
+    "/uploads/bundle/#{ teacher_name }/#{ bundle_name }.zip"
   end
 
   private
 
   def create_or_update_bundle
-    root_dir = FileUtils.mkdir_p("#{ Rails.root }/public/uploads/bundle/")
-    output_file = "#{ root_dir.first }/#{ name.gsub(/\s/, '_').downcase }.zip"
-
-    if File.exists?(output_file)
-      FileUtils.rm_f(output_file)
-    end
-
-    input_files = ""
+    teacher_name = "first_teacher" # users.where(:type => 'Teacher').first.full_name.downcase.gsub(/\s/, '_')
+    bundle_name = name.downcase.gsub(/\s/, '_')
+    root_dir = FileUtils.mkdir_p("#{ Rails.root }/public/uploads/bundle/#{ teacher_name }")
 
     courses.with_sections.each do |course|
+      input_files = ""
+      FileUtils.mkdir_p("#{ root_dir.first }/#{ bundle_name }")
+      output_file = "#{ root_dir.first }/#{ bundle_name }/#{ course.title.downcase.gsub(/\s/, '_') }.zip"
+
+      if File.exists?(output_file)
+        FileUtils.rm_f(output_file)
+      end
+
       course.sections.each do |section|
         input_files << " #{ section.attachment.root}#{section.attachment.url }"
       end
+
+      `zip -j #{ output_file } #{ input_files }`
     end
 
-    `zip -j #{ output_file } #{ input_files }`
+    `zip -j #{ root_dir.first }/#{ bundle_name }.zip #{ root_dir.first }/#{ bundle_name }/*zip`
+
+    if File.exists?("#{ root_dir.first }/#{ bundle_name }.zip")
+      FileUtils.rm_rf("#{ root_dir.first }/#{ bundle_name }/")
+    end
 
     download_link
   end
