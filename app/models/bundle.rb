@@ -34,7 +34,7 @@ class Bundle < ActiveRecord::Base
   def download_link
     teacher_name = "first_teacher" # users.where(:type => 'Teacher').first.full_name.downcase.gsub(/\s/, '_')
     bundle_name = name.downcase.gsub(/\s/, '_')
-    "/uploads/bundle/#{ teacher_name }/#{ bundle_name }.zip"
+    "/uploads/bundles/#{ teacher_name }/#{ bundle_name }.zip"
   end
 
   private
