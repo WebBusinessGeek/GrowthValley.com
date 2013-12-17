@@ -42,7 +42,7 @@ class Bundle < ActiveRecord::Base
   def create_or_update_bundle
     teacher_name = "first_teacher" # users.where(:type => 'Teacher').first.full_name.downcase.gsub(/\s/, '_')
     bundle_name = name.downcase.gsub(/\s/, '_')
-    root_dir = FileUtils.mkdir_p("#{ Rails.root }/public/uploads/bundle/#{ teacher_name }")
+    root_dir = FileUtils.mkdir_p("#{ Rails.root }/public/uploads/bundles/#{ teacher_name }")
 
     courses.with_sections.each do |course|
       input_files = ""
