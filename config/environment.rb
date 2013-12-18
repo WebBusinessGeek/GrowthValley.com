@@ -7,9 +7,9 @@ GrowthValley::Application.initialize!
 ActionMailer::Base.smtp_settings = {
   :user_name => ENV['MAILER_USERNAME'],
   :password => ENV['MAILER_PWD'],
-  :address => 'smtp.sendgrid.net',
+  :address => ENV['MAILER_ADDRESS'],
   :port => 587,
   :authentication => :plain,
-  :domain => "96.126.98.180",
+  :domain => ENV['MAILER_DOMAIN'],
   :enable_starttls_auto => true
 }
