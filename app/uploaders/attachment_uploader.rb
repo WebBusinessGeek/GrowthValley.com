@@ -41,6 +41,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
+
   def extension_white_list
     if model.course.content_type == 'pdf'
       %w(pdf)
@@ -51,12 +52,13 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     end
   end
 
+
   protected
 
   def image?(new_file)
     new_file.content_type.include? 'image'
   end
-  
+
   def video?(new_file)
     new_file.content_type.include? 'video'
   end
