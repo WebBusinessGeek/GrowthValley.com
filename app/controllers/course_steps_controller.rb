@@ -38,9 +38,9 @@ class CourseStepsController < ApplicationController
     @course = current_user.courses.find_by_id(session[:course_id])
 
     if @course.is_paid
-      self.steps = [:price, :subject, :description, :type, :sections_count, :sections]
+      self.steps = [:price, :subject, :description, :sections_count, :sections]
     else
-      self.steps = [:subject, :description, :type, :sections_count, :sections]
+      self.steps = [:subject, :description, :sections_count, :sections]
     end
   end
 end

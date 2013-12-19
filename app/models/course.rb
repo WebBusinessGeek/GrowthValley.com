@@ -44,7 +44,7 @@ class Course < ActiveRecord::Base
   CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'], ['Both', 'both'] ]
 
   validates :title, presence: true, uniqueness: true
-  validates :content_type, inclusion: { in: %w(pdf video both), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
+#  validates :content_type, inclusion: { in: %w(pdf video both), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_validation, if: :active_or_on_sections_count_step?
   validate :price, presence: true, numericality: true, if: :active_or_on_price_step?
 
@@ -152,9 +152,9 @@ class Course < ActiveRecord::Base
     status == :subject || active?
   end
 
-  def active_or_on_type_step?
-    status == :type || active?
-  end
+#  def active_or_on_type_step?
+#    status == :type || active?
+#  end
 
   def active_or_on_sections_count_step?
     status == :sections_count || active?

@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :title, unique: true
       t.string :course_cover_pic
       t.text :description
-      t.string :content_type
+      t.string :content_type, default: 'both'
       t.integer :sections_count, default: 1
       t.boolean :is_published, default: false
       t.string :status
