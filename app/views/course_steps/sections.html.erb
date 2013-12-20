@@ -12,11 +12,11 @@
     <%= s.hidden_field 'course_id', value: @course.id %>
 
     <% if !s.object.new_record? && s.object.attachment.present? %>
-      <%= s.input :attachment, required: false %>
+      <%= s.input :attachment, required: false, hint: raw("<strong>Allowed file types: pdf, flv, avi, mp4, wmv, mov, 3g2, 3gp, m2v, m4v</strong>") %>
       <%= s.label 'existing_attachment', raw("<strong>Existing Attachment:</strong> #{s.object.attachment_url}") %>
       <%= s.input :_destroy, label: 'Remove attachment', as: :radio %>
     <% else %>
-      <%= s.input :attachment, required: true, :input_html => { :oninvalid => "javascript:hideOverlay();" } %>
+      <%= s.input :attachment, required: true, hint: raw("<strong>Allowed file types: pdf, flv, avi, mp4, wmv, mov, 3g2, 3gp, m2v, m4v</strong>"), :input_html => { :oninvalid => "javascript:hideOverlay();" } %>
     <% end %>
     <hr>
   <% end %>
