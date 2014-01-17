@@ -25,3 +25,16 @@ en:
       show:
         showing_post_with_tag: "Showing posts with label"
         show_all_posts: "Show all posts"
+    admin:
+      login:
+        needs_auth: "You must first log in to access admin section."
+      sessions:
+        new:
+          title: "Sign in"
+          email: "Email"
+          password: "Password"
+          button: "Log in"
+        messages:
+          invalid: "Invalid email or password"
+          logged_in: "Logged in!"
+          logged_out: "Logged out!"

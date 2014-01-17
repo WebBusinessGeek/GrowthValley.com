@@ -8,7 +8,7 @@ class Blog::Admin::SessionsController < Blog::Admin::BaseController
     user = Blog::User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:blog_user_id] = user.id
-      redirect_to admin_url, notice: t("blog.admin.sessions.messages.logged_in")
+      redirect_to blog_admin_url, notice: t("blog.admin.sessions.messages.logged_in")
     else
       flash.now.alert = t("blog.admin.sessions.messages.invalid")
       render "new"
@@ -17,6 +17,6 @@ class Blog::Admin::SessionsController < Blog::Admin::BaseController
 
   def destroy
     session[:blog_user_id] = nil
-    redirect_to admin_url, notice: t("blog.admin.sessions.messages.logged_out")
+    redirect_to blog_admin_url, notice: t("blog.admin.sessions.messages.logged_out")
   end
 end

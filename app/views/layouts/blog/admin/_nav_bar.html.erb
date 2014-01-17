@@ -1,0 +1,24 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container" data-blog="nav-bar">
+      <%= link_to "Blog", blog_admin_path, class: "brand" %>
+      <ul class="nav pull-left" data-blog="nav-bar-left">
+        <%= activable_li_tag_with_link t(".add_a_blog"), new_blog_admin_post_path %>
+        <%= activable_li_tag_with_link t(".list_blogs"), blog_admin_posts_path, blog_admin_path %>
+        <%= activable_li_tag_with_link t(".comments"), blog_admin_comments_path %>
+      </ul>
+
+      <ul class="nav pull-right" data-blog="nav-bar-right">
+        <%= activable_li_tag_with_link t(".users"), blog_admin_users_path %>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" id="settings" data-toggle="dropdown"><%= t(".settings") %> <b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="settings">
+            <li><%= link_to t(".edit_user_info"), edit_blog_admin_user_path(blog_current_user)%></li>
+          </ul>
+        </li>
+        <li><%= link_to t(".log_out"), blog_admin_logout_path %></li>
+      </ul>
+
+    </div>
+  </div>
+</div>
