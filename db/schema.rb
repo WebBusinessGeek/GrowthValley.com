@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214075838) do
+ActiveRecord::Schema.define(:version => 20140117140447) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,37 @@ ActiveRecord::Schema.define(:version => 20131214075838) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "blog_posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "published_at"
+    t.boolean  "published"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "blog_posts", ["id"], :name => "index_blog_posts_on_id", :unique => true
+  add_index "blog_posts", ["published_at"], :name => "index_blog_posts_on_published_at"
+  add_index "blog_posts", ["user_id"], :name => "index_blog_posts_on_user_id"
+
+  create_table "blog_taggings", :force => true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "blog_taggings", ["post_id"], :name => "index_blog_taggings_on_post_id"
+  add_index "blog_taggings", ["tag_id"], :name => "index_blog_taggings_on_tag_id"
+
+  create_table "blog_tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "blog_tags", ["name"], :name => "index_blog_tags_on_name"
+
   create_table "bundles", :force => true do |t|
     t.string   "name"
     t.float    "price"
@@ -78,14 +109,14 @@ ActiveRecord::Schema.define(:version => 20131214075838) do
     t.string   "title"
     t.string   "course_cover_pic"
     t.text     "description"
-    t.string   "content_type"
+    t.string   "content_type",     :default => "both"
     t.integer  "sections_count",   :default => 1
     t.boolean  "is_published",     :default => false
     t.string   "status"
     t.boolean  "is_paid",          :default => false
     t.integer  "price",            :default => 0
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "slug"
     t.integer  "subject_id"
   end
