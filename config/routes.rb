@@ -1,5 +1,22 @@
 GrowthValley::Application.routes.draw do
 
+  namespace :blog do
+    get '/' => 'posts#index'
+    get 'page/:page' => 'posts#index', as: "posts_page"
+    get "/tags/:tag" =>"tags#show", as: "tags_page"
+
+    namespace :admin do
+      get "/" => "posts#index", as:  ""
+      get "logout" => "sessions#destroy"
+      get "login" => "sessions#new"
+      resources :sessions
+      resources :posts
+      resources :users
+      get "comments" => "comments#show", as: "comments"
+    end
+    # get "*post_url" => "posts#show", as:  "post"
+  end
+
   devise_for :users, controllers: {:omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations', passwords: 'passwords' }
 
   devise_scope :user do
@@ -89,7 +106,7 @@ GrowthValley::Application.routes.draw do
   namespace :admin do
   	match 'change_password' => 'admin_users#edit'
   end
-  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 end

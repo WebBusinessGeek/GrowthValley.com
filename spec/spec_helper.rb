@@ -15,6 +15,8 @@ require 'shoulda'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+Rails.backtrace_cleaner.remove_silencers!
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

@@ -1,5 +1,7 @@
 module Blog
   class Post < ActiveRecord::Base
+    include ActiveModel::ForbiddenAttributesProtection
+    belongs_to :user
     has_many :taggings
     has_many :tags, through: :taggings, dependent: :destroy
 

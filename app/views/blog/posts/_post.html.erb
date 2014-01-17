@@ -1,0 +1,12 @@
+<section>
+  <%= render partial: 'blog/posts/post_header', locals: {post: post} %>
+
+  <div class="content" data-blog="content">
+    <%= truncate_html(post.content, length: 1000, omission: '...') %>
+  </div>
+
+  <div class="tags" data-blog="tags">
+    <%= render post.tags %>
+  </div>
+  <%= link_to t(".readmore"), post.full_url, class: "button" %>
+</section>

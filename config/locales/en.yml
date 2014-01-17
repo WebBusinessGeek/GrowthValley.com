@@ -2,4 +2,26 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  blog:
+    posts:
+      pagination:
+        older_posts: "Older Posts"
+        new_posts: "Newer Posts"
+    post:
+      readmore: "Read more"
+      "404":
+        title: "The page you were looking for doesn't exist."
+        message: "You may have mistyped the address or the page may have moved."
+    sidebar:
+      categories:
+        title: "Categories"
+      latest_posts:
+        title: "Latest posts"
+      latest_tweets:
+        title: "Latest tweets"
+      tag_cloud:
+        title: "Tags"
+    tags:
+      show:
+        showing_post_with_tag: "Showing posts with label"
+        show_all_posts: "Show all posts"

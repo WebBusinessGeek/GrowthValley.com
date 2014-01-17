@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= content_for?(:title) ? yield(:title) : "GrowthValley" %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "blog/application", :media => "all" %>
+    <%= javascript_include_tag "blog/application" %>
+</head>
+    <body>
+        <%= yield %>
+    </body>
+</html>
