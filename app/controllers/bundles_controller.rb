@@ -1,4 +1,5 @@
 class BundlesController < ApplicationController
+  before_filter :authenticate_user!
 	def index
     @current_menu = "bundles"
     @show_top_menu = true

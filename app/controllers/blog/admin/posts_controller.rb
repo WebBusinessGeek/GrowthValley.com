@@ -55,6 +55,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at)
+    params.require(:blog_post).permit(:published, :tag_list,:title,:content,:url,:published_at)
   end
 end

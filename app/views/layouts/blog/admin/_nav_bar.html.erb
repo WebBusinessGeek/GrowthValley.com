@@ -3,8 +3,8 @@
     <div class="container" data-blog="nav-bar">
       <%= link_to "Blog", blog_admin_path, class: "brand" %>
       <ul class="nav pull-left" data-blog="nav-bar-left">
-        <%= activable_li_tag_with_link t(".add_a_blog"), new_blog_admin_post_path %>
-        <%= activable_li_tag_with_link t(".list_blogs"), blog_admin_posts_path, blog_admin_path %>
+        <%= activable_li_tag_with_link t(".add_a_post"), new_blog_admin_post_path %>
+        <%= activable_li_tag_with_link t(".list_posts"), blog_admin_posts_path, blog_admin_path %>
         <%= activable_li_tag_with_link t(".comments"), blog_admin_comments_path %>
       </ul>
 

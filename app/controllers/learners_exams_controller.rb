@@ -1,4 +1,5 @@
 class LearnersExamsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :allowed_to_access?
 
   def new

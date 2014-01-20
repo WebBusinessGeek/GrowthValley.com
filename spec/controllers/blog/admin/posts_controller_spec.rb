@@ -15,7 +15,7 @@ describe Blog::Admin::PostsController do
       before do
         put :update,
           id: post.id,
-          post: {
+          blog_post: {
             content: new_content,
             title: new_title,
             published: false

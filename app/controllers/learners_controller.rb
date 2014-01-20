@@ -1,4 +1,5 @@
 class LearnersController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @courses = Course.all_published_courses_for_subjects(current_user.subjects).page(params[:page])
   end

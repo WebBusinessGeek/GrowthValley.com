@@ -1,4 +1,5 @@
 class ConfirmationsController < Devise::ConfirmationsController
+  before_filter :authenticate_user!
   # GET /resource/confirmation/new
   def new
     self.resource = resource_class.new

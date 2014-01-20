@@ -1,5 +1,7 @@
 GrowthValley::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   namespace :blog do
     get '/' => 'posts#index'
     get 'page/:page' => 'posts#index', as: "posts_page"

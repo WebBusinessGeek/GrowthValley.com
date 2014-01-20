@@ -37,6 +37,7 @@ gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'truncate_html'
 gem 'select2-rails', '~> 3.2'
+gem "ckeditor"
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
@@ -49,6 +50,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'shoulda'
   gem 'database_cleaner', '~> 0.9.1'
+  gem 'launchy'
 end
 
 group :development do

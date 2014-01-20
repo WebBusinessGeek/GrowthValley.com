@@ -1,5 +1,4 @@
 class ContactUsController < ApplicationController
-  skip_before_filter :authenticate_user!
 
   def create
     if verify_recaptcha

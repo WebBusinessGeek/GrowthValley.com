@@ -1,4 +1,5 @@
 class LearnersQuizzesController < ApplicationController
+  before_filter :authenticate_user!
   def new
     if params[:section].present? and params[:course].present?
 		  @course = Course.find_by_slug(params[:course])

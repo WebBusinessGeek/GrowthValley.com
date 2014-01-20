@@ -1,5 +1,6 @@
 class CourseStepsController < ApplicationController
   include Wicked::Wizard
+  before_filter :authenticate_user!
   prepend_before_filter :set_steps
 
   def show

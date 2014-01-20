@@ -7,7 +7,7 @@ describe "sessions" do
 
     it "can log out" do
       visit blog_admin_path
-      click_link "Log out"
+      click_link "Log Out"
     end
   end
 

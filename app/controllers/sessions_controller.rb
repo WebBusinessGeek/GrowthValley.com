@@ -1,13 +1,13 @@
 class SessionsController < Devise::SessionsController
   def new
-	redirect_to root_path+"?login=1"
+	 redirect_to root_path+"?login=1"
   end
-  
+
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     sign_in_and_redirect(resource_name, resource)
   end
-  
+
   def inactive
 	  clean_up_passwords resource
       respond_to do |format|
@@ -19,7 +19,7 @@ class SessionsController < Devise::SessionsController
         }
       end
   end
-  
+
   def sign_in_and_redirect(resource_or_scope, resource=nil)
     scope = Devise::Mapping.find_scope!(resource_or_scope)
     resource ||= resource_or_scope
@@ -30,10 +30,10 @@ class SessionsController < Devise::SessionsController
 	else
 		redirect_url = root_url
 	end
-		
+
     respond_to do |format|
       format.html {
-		
+
         redirect_to redirect_url
       }
       format.js {
@@ -45,7 +45,7 @@ class SessionsController < Devise::SessionsController
       }
     end
   end
- 
+
   def failure
     respond_to do |format|
       format.html {

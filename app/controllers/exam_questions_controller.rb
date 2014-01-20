@@ -1,4 +1,5 @@
 class ExamQuestionsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :authorize_user, :check_subscribers
 
   # GET /exam_questions

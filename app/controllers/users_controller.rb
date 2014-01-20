@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :check_access, except: [:list_subjects, :update_user_subjects, :subscribe_teacher]
 
   def list_subjects

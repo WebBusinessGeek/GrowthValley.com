@@ -78,8 +78,8 @@ en:
       blog:
         admin:
           nav_bar:
-            add_a_monologue: "Add a post"
-            list_monologues: "List of posts"
+            add_a_blog: "Add a post"
+            list_blog: "List of posts"
             comments: "Comments"
             cache: "Manage cache"
             edit_user_info: "My account"

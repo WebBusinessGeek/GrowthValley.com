@@ -1,8 +1,9 @@
 class PremiumCoursesController < ApplicationController
+  before_filter :authenticate_user!
   def new
     if params[:course_id].present?
       @course = Course.find_by_id(params[:course_id])
-      
+
       if(current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid'
         t = 1
         session[:course_id] = @course.id

@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, only: [:rate_course, :index]
   before_filter :authorize_user, :check_subscribers, only: [:edit, :update, :destroy, :sections]
 

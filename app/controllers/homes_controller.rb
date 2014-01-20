@@ -1,4 +1,5 @@
 class HomesController < ApplicationController
+  before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, except: [:dashboard, :notification]
   layout :set_layout
 
