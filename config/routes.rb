@@ -14,7 +14,7 @@ GrowthValley::Application.routes.draw do
       resources :users
       get "comments" => "comments#show", as: "comments"
     end
-    # get "*post_url" => "posts#show", as:  "post"
+    get "*post_url" => "posts#show", as:  "post"
   end
 
   devise_for :users, controllers: {:omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations', passwords: 'passwords' }

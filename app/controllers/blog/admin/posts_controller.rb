@@ -24,7 +24,7 @@ class Blog::Admin::PostsController < Blog::Admin::BaseController
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update_attributes(post_params)
       prepare_flash_and_redirect_to_edit()
     else
       render :edit
@@ -51,7 +51,7 @@ private
     else
       flash[:notice] =  I18n.t("blog.admin.posts.#{params[:action]}.saved")
     end
-    redirect_to edit_admin_post_path(@post)
+    redirect_to edit_blog_admin_post_path(@post)
   end
 
   def post_params

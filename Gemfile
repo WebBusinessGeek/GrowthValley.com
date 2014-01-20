@@ -33,7 +33,10 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'numbers_and_words'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+# Blog
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'truncate_html'
+gem 'select2-rails', '~> 3.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'

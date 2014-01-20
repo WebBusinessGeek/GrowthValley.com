@@ -7,9 +7,9 @@ en:
       pagination:
         older_posts: "Older Posts"
         new_posts: "Newer Posts"
-    post:
-      readmore: "Read more"
-      "404":
+      post:
+        readmore: "Read more"
+      '404':
         title: "The page you were looking for doesn't exist."
         message: "You may have mistyped the address or the page may have moved."
     sidebar:
@@ -27,7 +27,7 @@ en:
         show_all_posts: "Show all posts"
     admin:
       login:
-        needs_auth: "You must first log in to access admin section."
+        need_auth: "You must first log in to access admin section."
       sessions:
         new:
           title: "Sign in"
@@ -38,3 +38,51 @@ en:
           invalid: "Invalid email or password"
           logged_in: "Logged in!"
           logged_out: "Logged out!"
+      posts:
+        index:
+          title: "Title"
+          edit: "Edit"
+          delete: "Delete"
+          published: "Yes"
+          not_published: "Not published"
+          status: "Published ?"
+        new:
+          header: "New Post"
+        create:
+          saved: "Post created"
+          saved_with_future_date_and_cache: "Post created: posts with a future publication date will not be shown unless cache is cleared on that same day. Cache will most probably be generated before that and won't be refreshed automatically."
+        edit:
+          header: "Edit"
+        update:
+          saved_with_future_date_and_cache: "Post saved: posts with a future publication date will not be shown unless cache is cleared on that same day. Cache will most probably be generated before that and won't be refreshed automatically."
+          saved: "Post saved"
+        delete:
+          removed: "Post removed"
+          fail: "Failed to remove post!"
+        form:
+          title: "Title"
+          content: "Content"
+          url:
+            caption: "URL<br/><i> This will be filled by default with '%{default_url}'. You can choose your own URL. Do not add '%{root}' at the beginning of your URL.</i>"
+            generated_title: "your-post-title"
+          published_at: "Published at"
+          published: "Published"
+          save: "Save"
+          preview: "Preview"
+          close: "Close"
+          tags: "Tags"
+      comments:
+        show:
+          recent_comments: "Recent comments"
+    layouts:
+      blog:
+        admin:
+          nav_bar:
+            add_a_monologue: "Add a post"
+            list_monologues: "List of posts"
+            comments: "Comments"
+            cache: "Manage cache"
+            edit_user_info: "My account"
+            settings: "Settings"
+            log_out: "Log out"
+            users: "Users"

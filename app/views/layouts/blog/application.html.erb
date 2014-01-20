@@ -8,6 +8,13 @@
     <%= javascript_include_tag "blog/application" %>
 </head>
     <body>
+        <div class="content">
+        <% flash.each do |name, msg| %>
+            <div class="flash-notice">
+                <%= msg %>
+            </div>
+        <% end %>
         <%= yield %>
+        <%= render 'layouts/blog/application/sidebar' %>
     </body>
 </html>

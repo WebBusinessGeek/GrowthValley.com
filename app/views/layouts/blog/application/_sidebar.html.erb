@@ -1,0 +1,5 @@
+<aside class="sidebar col-4">
+   <% ["latest_posts", "categories", "tag_cloud"].each do |ext| %>
+     <%= render partial: "blog/sidebar/#{ext}" %>
+   <% end %>
+</aside>

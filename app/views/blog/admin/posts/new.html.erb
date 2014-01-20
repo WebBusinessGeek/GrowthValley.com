@@ -1,0 +1,4 @@
+<h1><%= t(".header") %></h1>
+<%= simple_form_for @post, url: blog_admin_posts_path do |post| %>
+  <%= render partial: 'form', locals: {post: post} %>
+<% end %>

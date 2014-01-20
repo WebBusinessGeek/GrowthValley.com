@@ -1,5 +1,6 @@
 module Blog
   class User < ActiveRecord::Base
+    self.table_name = "blog_users"
     include ActiveModel::ForbiddenAttributesProtection
     has_many :posts
 
