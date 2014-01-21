@@ -1,0 +1,16 @@
+blog:
+  site_name: "GrowthValley Blog"
+  site_subtitle: "the stories behind GrowthValley"
+  site_url: "http://localhost:3000"
+  meta_description: "This is a blog about GrowthValley"
+  meta_keyword: "rails, programming, ruby"
+  posts_per_page: 10
+  twitter_locale: "en" # "fr"
+  facebook_like_locale: "en_US" # "fr_CA"
+  google_plusone_locale: "en"
+  sidebar: ["latest_posts", "latest_tweets", "categories", "tag_cloud"]
+  twitter_username: ""
+  facebook_url: "https://www.facebook.com/random"
+  facebook_logo: 'logo.png'
+  google_plus_account_url: "https://plus.google.com/u/1/115273180419164295760/posts"
+  linkedin_url: "http://www.linkedin.com/in/random"

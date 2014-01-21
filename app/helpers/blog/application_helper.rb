@@ -3,21 +3,29 @@ module Blog
     include Blog::HtmlHelper
     include Blog::TagsHelper
 
+    def blog_accurate_title
+      content_for?(:title) ? ((content_for :title) + " | #{Settings.blog.site_name}") : Settings.blog.site_name
+    end
 
     def twitter_icon
-      social_icon("twitter", "http://twitter.com/#{Figaro.env.twitter_username}", Figaro.env.twitter_username)
+      social_icon("twitter", "http://twitter.com/#{Settings.blog.twitter_username}", Settings.blog.twitter_username)
     end
 
     def linkedin_icon
-      social_icon("linkedin", Figaro.env.linkedin_url, Figaro.env.linkedin_url)
+      social_icon("linkedin", Settings.blog.linkedin_url, Settings.blog.linkedin_url)
     end
 
     def googleplus_icon
-      social_icon("google-plus", Figaro.env.google_plus_account_url, Figaro.env.google_plus_account_url)
+      social_icon("google-plus", Settings.blog.google_plus_account_url, Settings.blog.google_plus_account_url)
     end
 
     def facebook_icon
-      social_icon("facebook", Figaro.env.facebook_url, Figaro.env.facebook_url)
+      social_icon("facebook", Settings.blog.facebook_url, Settings.blog.facebook_url)
+    end
+
+    def absolute_image_url(url)
+      return url if url.starts_with? "http"
+      request.protocol + request.host + url
     end
 
     def social_icon(foundicon, url, setting)

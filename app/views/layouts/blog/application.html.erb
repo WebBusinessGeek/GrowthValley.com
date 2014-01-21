@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><%= content_for?(:title) ? yield(:title) : "GrowthValley" %></title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "blog/application", :media => "all" %>
-    <%= javascript_include_tag "blog/application" %>
+    <%= render partial: "layouts/blog/application/head" %>
 </head>
     <body>
         <div class="container">
-             <header class="main-header sixteen columns clearfix">
-                <%= render partial: "layouts/blog/application/social_icons" %>
+            <header class="main-header sixteen columns clearfix">
+              <h1><a href=<%= blog_path %>><%= Settings.blog.site_name %></a></h1>
+              <h2><%= Settings.blog.site_subtitle %></h2>
+              <%= render partial: "layouts/blog/application/social_icons" %>
             </header>
-        </div>
-        <div class="content">
-        <% flash.each do |name, msg| %>
-            <div class="flash-notice">
-                <%= msg %>
+
+            <div class="content twelve columns">
+              <% flash.each do |name, msg| %>
+                <div class="flash-notice">
+                  <%= msg %>
+                </div>
+              <% end %>
+
+              <%= yield %>
             </div>
-        <% end %>
-        <%= yield %>
-        <%= render 'layouts/blog/application/sidebar' %>
+
+              <%= render 'layouts/blog/application/sidebar' %>
+          </div>
     </body>
 </html>

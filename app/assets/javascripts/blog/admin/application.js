@@ -6,6 +6,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require blog/bootstrap/bootstrap.min
+//= require blog/bootstrap/bootstrap-datepicker
+//= require blog/bootstrap/bootstrap-datepicker-fr
+//= require blog/bootstrap/bootstrap-datepicker-pt
+//= require blog/bootstrap/bootstrap-datepicker-es
 //= require ckeditor/init
 //= require select2

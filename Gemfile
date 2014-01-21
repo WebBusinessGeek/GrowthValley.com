@@ -38,6 +38,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'truncate_html'
 gem 'select2-rails', '~> 3.2'
 gem "ckeditor"
+gem 'rails_config'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'

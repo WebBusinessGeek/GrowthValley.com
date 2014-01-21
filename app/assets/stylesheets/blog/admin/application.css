@@ -3,6 +3,9 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require twitter-bootstrap-static/bootstrap
+ *= require blog/bootstrap/bootstrap.min
+ *= require blog/bootstrap/bootstrap-responsive.min
+ *= require blog/bootstrap/bootstrap-datepicker
  *= require select2
+ *= require blog/admin/posts
 */

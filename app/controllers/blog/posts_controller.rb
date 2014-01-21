@@ -8,7 +8,7 @@ class Blog::PostsController < Blog::ApplicationController
     if blog_current_user
       @post = Blog::Post.default.where("url = :url", {url: params[:post_url]}).first
     else
-      @post = Blog::Post.published.where("url = :url", {url: params[:post_url]}).first
+      @post = Blog::Post.includes(:user).published.where("url = :url", {url: params[:post_url]}).first
     end
     if @post.nil?
       not_found

@@ -20,7 +20,6 @@ describe "pagination" do
   it "can go to newer posts" do
     visit blog_posts_page_path(1)
     page_2 = page.html
-    save_and_open_page
     click_on "Newer Posts"
     page.html.should_not eq(page_2)
   end

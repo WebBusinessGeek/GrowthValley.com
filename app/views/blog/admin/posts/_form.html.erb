@@ -1,7 +1,7 @@
 <%= post.input :title, label:  t(".title"), class:  "span6" %>
 <%= post.input :content, as: :ckeditor, label: t(".content"), input_html: { id: "post_content", :ckeditor => {:toolbar => 'Full'} } %>
 <%= post.input :url, label:  raw(t(".url.caption", default_url: "#{DateTime.now.year}/#{t(".url.generated_title")}", root: blog_path)) %>
-<%= post.input :published_at, as: :string, label:  t(".published_at"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+<%= post.input :published_at, as: :string, label:  t(".published_at"), input_html: { data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d")} %>
 <%= post.input :tag_list, label:  t(".tags") %>
 <%= post.input :published, label:  t(".published") %>
 
@@ -10,8 +10,8 @@
 </div>
 
 <script>
-  // if($.fn.datepicker.defaults_<%= I18n.locale %>){
-  //   $.fn.datepicker.defaults = $.fn.datepicker.defaults_<%= I18n.locale %>;
-  // }
+  if($.fn.datepicker.defaults_<%= I18n.locale %>){
+    $.fn.datepicker.defaults = $.fn.datepicker.defaults_<%= I18n.locale %>;
+  }
   $("#blog_post_tag_list").select2({tags: <%= Blog::Tag.all.map{|t| t.name }.to_json.html_safe %> });
 </script>
