@@ -27,6 +27,11 @@
 
               <%= render 'layouts/blog/application/sidebar' %>
           </div>
+          <% if content_for?(:footer) %>
+            <footer>
+              <%= yield :footer %>
+            </footer>
+          <% end %>
           <%= render 'layouts/blog/application/disqus' %>
     </body>
 </html>
