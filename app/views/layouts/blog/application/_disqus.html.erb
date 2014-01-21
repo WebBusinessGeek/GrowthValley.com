@@ -1,0 +1,15 @@
+<script type="text/javascript">
+  var disqus_shortname = '<%= Settings.blog.disqus_shortname %>';
+
+  <% if Rails.env.development?  %>
+  var disqus_developer = 1;
+  <% end %>
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>

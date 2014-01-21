@@ -3,7 +3,7 @@ class Blog::Admin::PostsController < Blog::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
 
   def index
-    @posts = Blog::Post.default
+    @posts = blog_current_user.posts
   end
 
   def new

@@ -15,4 +15,7 @@
         <div class="tags" data-blog="tags">
     <%= render @post.tags %>
   </div>
+  <div id="disqus_thread"></div>
+  <%= render 'layouts/blog/application/disqus_embed' %>
+  <noscript>Please enable JavaScript to view the comments.</noscript>
 </article>

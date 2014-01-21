@@ -74,6 +74,15 @@ en:
       comments:
         show:
           recent_comments: "Recent comments"
+      users:
+        form:
+          email: "Email"
+          name: "Name"
+          password: "Password"
+          password_confirmation: "Password confirmation"
+        edit:
+          header: "Edit your account"
+          save: "Save"
     layouts:
       blog:
         admin:
