@@ -15,8 +15,6 @@
 /tmp
 
 /config/database.yml
-/public
-/Gemfile.lock
 
 # Ignore application configuration
 /config/application.yml
