@@ -35,6 +35,7 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'numbers_and_words'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'thin'
 # Blog
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'truncate_html'
@@ -58,5 +59,4 @@ end
 
 group :development do
   gem 'quiet_assets'
-  gem 'thin'
 end

@@ -64,5 +64,8 @@ teacher.save!
 learner = Learner.new(full_name: 'First Learner', email: 'learner@idify.in', password: '12345678')
 learner.confirmed_at = '2013-11-01 10:55:39 +0000'
 learner.save!
-
+module Blog
+  class User < ActiveRecord::Base
+  end
+end
 Blog::User.create! name: "John Smith", email: "blogger@test.com", password: "testtest", password_confirmation: "testtest"
