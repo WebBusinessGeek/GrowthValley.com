@@ -2,6 +2,7 @@ module Blog
   class Post < ActiveRecord::Base
     self.table_name = "blog_posts"
     include ActiveModel::ForbiddenAttributesProtection
+    include PgSearch
     belongs_to :user
     has_many :taggings
     has_many :tags, through: :taggings, dependent: :destroy
@@ -9,6 +10,10 @@ module Blog
     before_validation :generate_url
     scope :default,  -> {order("published_at DESC, blog_posts.created_at DESC, blog_posts.updated_at DESC") }
     scope :published, -> { default.where(published: true).where("published_at <= ?", DateTime.now) }
+    pg_search_scope :search, against: {
+      title: 'B',
+      content: 'A'
+    }
 
     default_scope {includes(:tags)}
     # validates :user_id, presence: true

@@ -2,6 +2,7 @@ GrowthValley::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  get '/blog/:query' => 'blog/posts#search', path: 'blog/posts', as: 'blog_search'
   namespace :blog do
     get '/' => 'posts#index'
     get 'page/:page' => 'posts#index', as: "posts_page"

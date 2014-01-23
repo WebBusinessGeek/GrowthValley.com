@@ -21,6 +21,8 @@ en:
         title: "Latest tweets"
       tag_cloud:
         title: "Tags"
+      search:
+        title: "Search"
     tags:
       show:
         showing_post_with_tag: "Showing posts with label"

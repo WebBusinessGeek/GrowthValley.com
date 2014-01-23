@@ -1,7 +1,11 @@
 class Blog::PostsController < Blog::ApplicationController
   def index
-    @page = params[:page].nil? ? 1 : params[:page]
-    @posts = Blog::Post.published.page(@page)
+    unless params[:query]
+      @page = params[:page].nil? ? 1 : params[:page]
+      @posts = Blog::Post.published.page(@page)
+    else
+      @posts = Blog::Post.search(params[:query])
+    end
   end
 
   def show
@@ -13,5 +17,10 @@ class Blog::PostsController < Blog::ApplicationController
     if @post.nil?
       not_found
     end
+  end
+
+  def search
+    @posts = Blog::Post.search(params[:query])
+    render 'blog/posts/index'
   end
 end
