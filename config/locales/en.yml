@@ -85,6 +85,20 @@ en:
         edit:
           header: "Edit your account"
           save: "Save"
+        index:
+          email: "Email"
+          name: "Name"
+          edit: "Edit"
+          delete: "Delete"
+          create: "Create"
+        new:
+          create: "Create"
+          header: "Add a user"
+        create:
+          success: "User created"
+        delete:
+          removed: "User '%{user}' removed successfully"
+          failed: "Could not remove user '%{user}'"
     layouts:
       blog:
         admin:

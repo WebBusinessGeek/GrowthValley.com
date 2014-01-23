@@ -6,6 +6,9 @@
         <%= activable_li_tag_with_link t(".add_a_post"), new_blog_admin_post_path %>
         <%= activable_li_tag_with_link t(".list_posts"), blog_admin_posts_path, blog_admin_path %>
         <%= activable_li_tag_with_link t(".comments"), blog_admin_comments_path %>
+        <% if blog_current_user.admin? %>
+          <%= activable_li_tag_with_link t(".users"), blog_admin_users_path %>
+        <% end %>
       </ul>
 
       <ul class="nav pull-right" data-blog="nav-bar-right">

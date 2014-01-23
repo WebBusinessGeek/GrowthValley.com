@@ -3,7 +3,6 @@ class Blog::Admin::UsersController < Blog::Admin::BaseController
   before_filter :load_user, except: [:index, :new, :create]
 
   def edit
-
   end
 
   def new
@@ -13,7 +12,7 @@ class Blog::Admin::UsersController < Blog::Admin::BaseController
   def update
     if @user.update user_params
       flash.notice = "User modified"
-      redirect_to admin_users_path
+      redirect_to blog_admin_users_path
     else
       render :edit
     end
@@ -21,9 +20,9 @@ class Blog::Admin::UsersController < Blog::Admin::BaseController
 
   def destroy
     if @user.destroy
-      redirect_to admin_users_path, notice:  I18n.t("blog.admin.users.delete.removed", user: @user.name)
+      redirect_to blog_admin_users_path, notice:  I18n.t("blog.admin.users.delete.removed", user: @user.name)
     else
-      redirect_to admin_users_path, alert: I18n.t("blog.admin.users.delete.failed", user: @user.name)
+      redirect_to blog_admin_users_path, alert: I18n.t("blog.admin.users.delete.failed", user: @user.name)
    end
   end
 
@@ -31,7 +30,7 @@ class Blog::Admin::UsersController < Blog::Admin::BaseController
     @user = Blog::User.new user_params
     if @user.save
       flash.notice = I18n.t("blog.admin.users.create.success")
-      redirect_to admin_users_path
+      redirect_to blog_admin_users_path
     else
       render :new
     end
