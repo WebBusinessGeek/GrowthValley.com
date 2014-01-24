@@ -17,7 +17,7 @@
       <td><%= link_to t(".edit"), edit_blog_admin_user_path(user), class: "btn btn-small" %></td>
       <td>
         <% if blog_current_user.can_delete?(user) %>
-          <%= link_to t(".delete"), [:admin, user], data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-small btn-danger" %>
+          <%= link_to t(".delete"),blog_admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-small btn-danger" %>
         <% else %>
           <a href="#" class="btn btn-small btn-danger disabled"><%= t(".delete") %></a>
         <% end %>

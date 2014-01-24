@@ -11,8 +11,8 @@ module Blog
     validates :email , presence: true, uniqueness: true
 
     def can_delete?(user)
+      return false if !self.admin?
       return false if self == user
-      return false if user.posts.any?
       true
     end
   end

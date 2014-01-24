@@ -1,3 +1,13 @@
+<% if user.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.object.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% user.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= user.input :name, label:  t(".name"), class:  "span6" %>
 <%= user.input :email, label:  t(".email"), class:  "span6" %>
 <%= user.input :password, label:  t(".password"), class:  "span6" %>

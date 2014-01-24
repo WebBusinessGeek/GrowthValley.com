@@ -8,12 +8,12 @@ describe "posts" do
 
     it "can access post's admin" do
       visit blog_admin_posts_path
-      page.should have_content "Add a post"
+      page.should have_content "Add A Post"
     end
 
     it "can create new post" do
       visit new_blog_admin_post_path
-      page.should have_content "New post"
+      page.should have_content "New Post"
       fill_in "Title", with:  "my title"
       fill_in "Content", with:  "C'est l'histoire d'un gars comprends tu...and finally it has some french accents àèùöûç...meh!"
       fill_in "Published at", with:  DateTime.now
@@ -22,7 +22,7 @@ describe "posts" do
     end
 
     it "can edit a post and then save the post" do
-      Factory(:post, title: "my title")
+      post = Factory(:post, title: "my title")
       visit blog_admin_posts_path
       click_on "my title"
       page.should have_content "Edit \""
@@ -35,11 +35,11 @@ describe "posts" do
 
     it "will output error messages if error(s) there is" do
       visit new_blog_admin_post_path
-      page.should have_content "New post"
+      page.should have_content "New Post"
       click_button "Save"
-      page.should have_content "Title is required"
-      page.should have_content "Content is required"
-      page.should have_content "'Published at' is required"
+      page.should have_content "Title can't be blank"
+      page.should have_content "Content can't be blank"
+      page.should have_content "Published at can't be blank"
     end
 
     it "can create a new post with tags removing the empty spaces" do
