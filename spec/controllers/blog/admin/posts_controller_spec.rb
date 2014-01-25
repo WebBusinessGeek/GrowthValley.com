@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Blog::Admin::PostsController do
-  let(:user) { create(:user) }
+  let(:user) { create(:blog_user) }
   before do
     sign_in_as user
   end

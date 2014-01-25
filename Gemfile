@@ -1,6 +1,14 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
+def darwin_only(require_as)
+  RbConfig::CONFIG['host_os'] =~ /darwin/ && require_as
+end
+
+def linux_only(require_as)
+  RbConfig::CONFIG['host_os'] =~ /linux/ && require_as
+end
+
 gem 'rails', '3.2.14'
 gem 'pg'
 
@@ -46,6 +54,8 @@ gem 'rails_config'
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
   gem 'guard-rspec', '2.5.0'
+  gem 'rb-inotify', '~> 0.9', :require => linux_only('rb-inotify')
+  gem 'rb-fsevent', :require => darwin_only('rb-fsevent')
 end
 
 group :test do

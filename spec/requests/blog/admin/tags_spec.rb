@@ -2,7 +2,7 @@ require 'spec_helper'
 describe "tags" do
   context "creating a post as a logged in user" do
       before(:each) do
-        log_in
+        blog_log_in
         visit new_blog_admin_post_path
         fill_in "Title", with:  "title"
         fill_in "Content", with:  "content"

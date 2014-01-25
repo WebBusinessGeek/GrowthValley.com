@@ -18,7 +18,7 @@ describe "pagination" do
   end
 
   it "can go to newer posts" do
-    visit blog_posts_page_path(1)
+    visit blog_posts_page_path(2)
     page_2 = page.html
     click_on "Newer Posts"
     page.html.should_not eq(page_2)

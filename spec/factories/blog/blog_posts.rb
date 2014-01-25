@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post, class: Blog::Post do
     published true
-    association :user
+    association :user, factory: :blog_user
     sequence(:title) {|i| "post title #{i}"}
     content "A sample of text for this post that has some html markup"
     sequence(:url) { |i| "url#{i}" }

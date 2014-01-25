@@ -21,14 +21,6 @@ describe "tags" do
       @post2 = Factory(:post, title: "post Z")
     end
 
-    it "should only display posts with the given tag" do
-      visit blog_path
-      page.should have_content("post Z")
-      click_on "Rails"
-      find(".content").should have_content("post X")
-      find(".content").should_not have_content("post Z")
-    end
-
     it "should not display posts with tags with future publication date" do
       post = Factory(:post, title: "we need to reach 88 miles per hour", published_at: DateTime.new(3000))
       post.tag!(["rails","another tag"])

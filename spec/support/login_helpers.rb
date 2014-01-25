@@ -1,7 +1,7 @@
 require 'spec_helper'
 module LoginHelpers
-  def log_in (user=nil)
-    user ||= Factory(:user)
+  def blog_log_in (user=nil)
+    user ||= Factory(:blog_user)
     visit blog_admin_login_path
     fill_in "email", with:  user.email
     fill_in "Password", with:  user.password
@@ -9,7 +9,7 @@ module LoginHelpers
     page.should have_content("Logged in!")
   end
 
-  def log_out
+  def blog_log_out
     visit blog_admin_path
     click_link "logout"
     page.should have_content("Logged out!")

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "posts" do
   context "logged in user" do
     before(:each) do
-      log_in
+      blog_log_in
     end
 
     it "can access post's admin" do
@@ -19,18 +19,6 @@ describe "posts" do
       fill_in "Published at", with:  DateTime.now
       click_button "Save"
       page.should have_content "Post created"
-    end
-
-    it "can edit a post and then save the post" do
-      post = Factory(:post, title: "my title")
-      visit blog_admin_posts_path
-      click_on "my title"
-      page.should have_content "Edit \""
-      fill_in "Title", with:  "This is a new title"
-      fill_in "Content", with:  "New content here..."
-      fill_in "Published at", with:  DateTime.now
-      click_button "Save"
-      page.should have_content "Post saved"
     end
 
     it "will output error messages if error(s) there is" do
@@ -50,15 +38,6 @@ describe "posts" do
       fill_in "Tags",with: "  rails, ruby,    one great tag"
       click_button "Save"
       page.should have_field :tag_list ,with: "rails, ruby, one great tag"
-    end
-
-    it "can update the tags of an edited post" do
-      Factory(:post, title: "my title")
-      visit blog_admin_posts_path
-      click_on "my title"
-      fill_in "Tags",with: "ruby, spree"
-      click_button "Save"
-      page.should have_field :tag_list ,with: "ruby, spree"
     end
   end
 

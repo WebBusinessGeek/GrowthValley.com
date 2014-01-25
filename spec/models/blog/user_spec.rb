@@ -15,10 +15,6 @@ describe Blog::User do
 
     let(:user) { Blog::User.new }
 
-    it "should be able to delete another user that does not have any posts" do
-      user.can_delete?(user_without_post).should be_true
-    end
-
     it "should not be able to delete itself" do
       user.can_delete?(user).should be_false
     end
