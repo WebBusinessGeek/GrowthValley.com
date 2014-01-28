@@ -3,14 +3,13 @@ class Ability
 
   def initialize(admin_user)
     can :manage, :all
-    
     cannot :create, AdminUser
     cannot :destroy, AdminUser
-    
+
     cannot :create, Course
     cannot :destroy, Course
     cannot :update, Course
-    
+
     cannot :create, User
     cannot :destroy, User
     cannot :update, User

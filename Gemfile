@@ -50,6 +50,9 @@ gem 'truncate_html'
 gem 'select2-rails', '~> 3.2'
 gem "ckeditor"
 gem 'rails_config'
+# Private Classroom
+gem 'activerecord-postgres-hstore'
+gem 'state_machine'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'

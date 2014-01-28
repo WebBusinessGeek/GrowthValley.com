@@ -1,10 +1,11 @@
 class Course < ActiveRecord::Base
-  attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type, 
-  :sections_count, :status, :is_paid, :price, :subject_id, :sections_attributes, :ratings_attributes, :slug
+  serialize :classroom_properties, ActiveRecord::Coders::Hstore
+  attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type,
+  :sections_count, :status, :is_paid, :price, :subject_id, :sections_attributes, :ratings_attributes, :slug, :classroom_enabled
 
   extend FriendlyId
   friendly_id :title, use: :slugged
-  
+
   has_and_belongs_to_many :bundles
 
   has_many :subscriptions, dependent: :destroy
@@ -14,7 +15,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :users, :allow_destroy => true
 
   belongs_to :subject
-  
+
   validates :subject, presence: true, if: :active_or_on_subject_step?
 
   has_many :sections, dependent: :destroy
@@ -58,14 +59,26 @@ class Course < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:title, :description],
    using: {tsearch: {dictionary: "english"}}
-   
+
+  %w[cost_per_lesson max_number_lessons private_classroom].each do |key|
+    attr_accessible key
+    scope "has_#{key}", lambda { |value| where("classroom_properties @> hstore(?, ?)", key, value) }
+
+    define_method(key) do
+      classroom_properties && classroom_properties[key]
+    end
+
+    define_method("#{key}=") do |value|
+      self.classroom_properties = (classroom_properties || {}).merge(key => value)
+    end
+  end
+
   def self.text_search(params)
     if params[:search].present?
       search(params[:search])
     end
   end
-  
-  
+
   def togglePublish
     if self.is_published == false
       if eachSectionHasTest? && has_exam?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140123154736) do
+ActiveRecord::Schema.define(:version => 20140128144105) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -134,16 +134,18 @@ ActiveRecord::Schema.define(:version => 20140123154736) do
     t.string   "title"
     t.string   "course_cover_pic"
     t.text     "description"
-    t.string   "content_type",     :default => "both"
-    t.integer  "sections_count",   :default => 1
-    t.boolean  "is_published",     :default => false
+    t.string   "content_type",         :default => "both"
+    t.integer  "sections_count",       :default => 1
+    t.boolean  "is_published",         :default => false
     t.string   "status"
-    t.boolean  "is_paid",          :default => false
-    t.integer  "price",            :default => 0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.boolean  "is_paid",              :default => false
+    t.integer  "price",                :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "slug"
     t.integer  "subject_id"
+    t.hstore   "classroom_properties"
+    t.boolean  "classroom_enabled",    :default => false
   end
 
   create_table "courses_subjects", :id => false, :force => true do |t|

@@ -68,4 +68,4 @@ module Blog
   class User < ActiveRecord::Base
   end
 end
-Blog::User.create! name: "John Smith", email: "blogger@test.com", password: "testtest", password_confirmation: "testtest"
+Blog::User.create! full_name: "John Smith", email: "blogger@test.com", password: "testtest", password_confirmation: "testtest"
