@@ -70,7 +70,6 @@
 			  <% end %>
 			  <% end %>
 			  <br>
-			  <br>
 			  Total Sections: <%=@total_section%>
 			<% end %>
 		  </div>
@@ -78,6 +77,7 @@
 		  </br>
 	  </div>
   </div>
+  <%= render 'courses/classroom_links' %>
   <div style="clear:both;">
 	  <% if current_user.courses.include?(@course) %>
 	  <h2>Course Sections:</h2>
@@ -92,7 +92,7 @@
 				<% else %>
 					<% classname = '' %>
 				<% end %>
-			<% end %>		
+			<% end %>
 			<li class="<%=classname %>">
 				<a href="#section_<%= section.id %>" data-toggle="tab">
 				  Section <%=section_counter%><%#= section.title.titleize %>
@@ -114,8 +114,8 @@
 				<% else %>
 					<% classname = '' %>
 				<% end %>
-			<% end %>	
-		  
+			<% end %>
+
 		  <div class="tab-pane <%=classname %>" id="section_<%= section.id %>">
 			<ul>
 			  <li style="padding-left:20px;">

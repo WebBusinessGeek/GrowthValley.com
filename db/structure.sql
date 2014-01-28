@@ -647,6 +647,39 @@ ALTER SEQUENCE pl_classrooms_id_seq OWNED BY pl_classrooms.id;
 
 
 --
+-- Name: pl_users_classrooms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_users_classrooms (
+    id integer NOT NULL,
+    user_id integer,
+    classroom_id integer,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_users_classrooms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_users_classrooms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_users_classrooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_users_classrooms_id_seq OWNED BY pl_users_classrooms.id;
+
+
+--
 -- Name: premium_courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1077,6 +1110,13 @@ ALTER TABLE ONLY pl_classrooms ALTER COLUMN id SET DEFAULT nextval('pl_classroom
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pl_users_classrooms ALTER COLUMN id SET DEFAULT nextval('pl_users_classrooms_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY premium_courses ALTER COLUMN id SET DEFAULT nextval('premium_courses_id_seq'::regclass);
 
 
@@ -1258,6 +1298,14 @@ ALTER TABLE ONLY pl_classrooms
 
 
 --
+-- Name: pl_users_classrooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_users_classrooms
+    ADD CONSTRAINT pl_users_classrooms_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: premium_courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1413,6 +1461,13 @@ CREATE INDEX index_blog_tags_on_name ON blog_tags USING btree (name);
 
 
 --
+-- Name: index_pl_users_classrooms_on_user_id_and_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_users_classrooms_on_user_id_and_classroom_id ON pl_users_classrooms USING btree (user_id, classroom_id);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1541,3 +1596,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140128144105');
 INSERT INTO schema_migrations (version) VALUES ('20140128153943');
 
 INSERT INTO schema_migrations (version) VALUES ('20140128160044');
+
+INSERT INTO schema_migrations (version) VALUES ('20140128161627');

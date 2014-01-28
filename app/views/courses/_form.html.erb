@@ -18,6 +18,12 @@
   <% if current_user.subscription_type.downcase == 'paid' %>
     <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons %>
   <% end %>
+  <p class="lead">Classroom settings. (optional)</p>
+  <div class="control-group">
+    <%= f.input :cost_per_lesson, label: "Cost Per Lesson", as: :decimal %>
+    <%= f.input :max_number_lessons, label: "Maxiumum number of lessons", as: :integer %>
+    <%= f.input :private_classroom, label: "Enable Complete Privacy for all classrooms by default", as: :boolean %>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>

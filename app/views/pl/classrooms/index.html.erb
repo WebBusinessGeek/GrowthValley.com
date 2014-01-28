@@ -1,0 +1,26 @@
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "classrooms" } %>
+
+<%- model_class = Pl::Classroom -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<h2><%= t '.active.title', default: "Active Classrooms" %></h1>
+<ul id="classrooms" class="unstyled">
+  <% @active.each do |classroom| %>
+    <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
+      <%= render classroom.classroom %>
+    <% end %>
+  <% end %>
+</ul>
+<hr>
+<h2><%= t '.requested.title', default: "Classrooms waiting for approval" %></h1>
+<p>
+  <%= t '.requested.instructions', default: "Below are projects waiting for approval" %>
+</p>
+<ul id="classrooms" class="unstyled">
+  <% @requested.each do |classroom| %>
+    <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
+      <%= render classroom.classroom %>
+    <% end %>
+  <% end %>
+</ul>

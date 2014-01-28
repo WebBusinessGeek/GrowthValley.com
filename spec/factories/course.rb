@@ -10,6 +10,9 @@ FactoryGirl.define do
     slug 'rails-test-course'
     classroom_enabled false
     association :subject
+    cost_per_lesson "9.99"
+    private_classroom "0"
+    max_number_lessons "5"
   end
 
   factory :paid_course, parent: :course do

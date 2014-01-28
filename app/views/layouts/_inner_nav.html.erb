@@ -8,6 +8,9 @@
   <li class='<%= (current == "course") ? "active" : "" %>'>
     <%= link_to "My Courses", my_courses_courses_path %>
   </li>
+  <li class='<%= (current == 'classrooms') ? 'active' : "" %>'>
+  <%= link_to "My Classrooms", classrooms_path %>
+  </li>
   <li class='<%= (current == "bundle") ? "active" : "" %>'>
     <%= link_to "My Bundles", my_bundles_bundles_path %>
   </li>

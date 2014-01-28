@@ -1,5 +1,7 @@
 GrowthValley::Application.routes.draw do
 
+  resources :classrooms, module: 'pl'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   get '/blog/:query' => 'blog/posts#search', path: 'blog/posts', as: 'blog_search'

@@ -1,0 +1,9 @@
+<ul>
+  <li>
+      <h3><%= link_to classroom.title, classroom_path(classroom) %></h3>
+      <h4><%= t '.for', default: "for" %> <%= classroom.course.title %></h4>
+      <p><%= classroom.description %></p>
+      <p><%= t '.teacher', default: "teacher" %> <%= classroom.teacher.full_name %></p>
+      <p><%= t '.learner', default: 'learner' %> <%= classroom.learner.full_name %></p>
+  </li>
+</ul>

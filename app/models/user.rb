@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :description, :type, :date_of_birth, :sex, :subscription_type, 
   :profile_pic, :subject_ids, :course_ids, :provider, :uid, :confirmed_at
 
+  has_many :users_classrooms, class_name: "Pl::UsersClassroom", foreign_key: "user_id"
+  has_many :classrooms, through: :users_classrooms, class_name: "Pl::Classroom"
+
   has_and_belongs_to_many :bundles
 
   has_and_belongs_to_many :subjects
@@ -63,6 +66,14 @@ class User < ActiveRecord::Base
                          )
     if user.save
       return user
+    end
+  end
+
+  def has_classroom_for(course_id)
+    if @classroom = classrooms.where(course_id: course_id).first
+      return @classroom
+    else
+      false
     end
   end
 end
