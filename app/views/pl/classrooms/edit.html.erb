@@ -1,0 +1,7 @@
+<h1>Update Classroom</h1>
+<%= simple_form_for @classroom, url: classroom_path(@classroom), method: :put do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :privacy %>
+  <%= f.submit %>
+<% end %>

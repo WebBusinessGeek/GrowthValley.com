@@ -3,8 +3,9 @@ module Pl
     attr_accessible :title, :description, :privacy
 
     belongs_to :course
-    has_many :users_classrooms, class_name: "Pl::UsersClassroom"
+    has_many :users_classrooms, class_name: "Pl::UsersClassroom", dependent: :destroy
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
+    has_many :lessons, dependent: :destroy
 
     validates :course_id, presence: true
 
@@ -17,6 +18,28 @@ module Pl
       end
       event :archive do
         transition [:requested, :active] => :archived
+      end
+    end
+
+    def self.add_classroom(classroom_data)
+      @course = Course.find(classroom_data["course_id"])
+      if Pl::Classroom.where(course_id: @course.id).map(&:user_ids).include?(classroom_data["learner_id"])
+        return nil
+      end
+
+      @classroom = Pl::Classroom.new do |c|
+        c.title = @course.title
+        c.course_id = classroom_data["course_id"]
+        c.privacy = false
+      end
+
+      @classroom.users << User.find(classroom_data["learner_id"])
+      @classroom.users << @course.teacher
+
+      if @classroom.save
+        @classroom.id
+      else
+        return nil
       end
     end
 

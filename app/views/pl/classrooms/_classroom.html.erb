@@ -5,5 +5,9 @@
       <p><%= classroom.description %></p>
       <p><%= t '.teacher', default: "teacher" %> <%= classroom.teacher.full_name %></p>
       <p><%= t '.learner', default: 'learner' %> <%= classroom.learner.full_name %></p>
+      <% if current_user.type == "Teacher" %>
+        <%= link_to "Approve", classroom_approve_path(classroom_id: classroom.id), method: :post, class: 'btn btn-primary' if classroom.state == 'requested' %>
+        <%= link_to "Deny", classroom_deny_path(classroom_id: classroom.id), class: 'btn btn-primary' if classroom.state == 'requested'%>
+      <% end %>
   </li>
 </ul>

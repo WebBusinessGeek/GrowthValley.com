@@ -1,7 +1,7 @@
 <% if current_user.courses.include?(@course) %>
   <% if current_user.type == "Teacher" %>
     <% if @course.classroom_enabled? %>
-      <%= link_to "Manage classrooms for this course", 'javascript:void(0);' %>
+      <%= link_to "Manage classrooms for this course", classrooms_path(course: @course.slug), class: 'btn btn-primary' %>
       <%= link_to 'Manage classroom settings', edit_course_path(@course) %>
     <% else %>
       <%= link_to "Enable Classroom feature", edit_course_path(@course), class: 'btn btn-primary' %>
@@ -12,7 +12,7 @@
         <%= link_to "My Classroom", classroom_path(@classroom), class: 'btn btn-primary' %>
       <% else %>
         <p>Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
-        <%= link_to 'Request a classroom', 'javascript:void(0);', class: 'btn btn-primary' %>
+        <%= link_to 'Request a classroom', classrooms_path(classroom: {course_id: @course.id, learner_id: current_user.id}), method: :post, class: 'btn btn-primary' %>
         Classroom Price $19.99/lesson
       <% end %>
     <% end %>

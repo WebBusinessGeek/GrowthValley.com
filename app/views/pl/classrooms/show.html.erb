@@ -1,1 +1,27 @@
-<%= @classroom.inspect %>
+<div class="main-content">
+  <div>
+    <h2>Classroom: <%= @classroom.title.titleize %></h2>
+    <ol style="float:left;">
+      <li>
+        <p>Description: <%= @classroom.description %></p>
+      </li>
+      <li>Teacher: <%= @classroom.teacher.full_name %></li>
+      <li>Learner: <%= @classroom.learner.full_name %></li>
+    </ol>
+    <span style="margin-left:100px;">
+      <%= image_tag(@classroom.course.course_cover_pic.url(:cover)) %>
+    </span>
+  </div>
+
+  <div style="clear:both;">
+    <hr>
+    <h2>Lessons</h2>
+    <ul id="detailed_lessons" data-classroom-id="#{<%= @classroom.id %>}">
+      <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
+    </ul>
+  </div>
+
+  <hr>
+  <span><%= link_to "My Classrooms", classrooms_path, class: 'btn btn-primary' %></span>
+  <span><%= link_to "Back to Course page", course_path(@classroom.course), class: 'btn btn-primary' %></span>
+</div>
