@@ -1,7 +1,7 @@
 class Pl::LessonsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_classroom, only: [:index, :create]
-  before_filter :load_lessons, only: [:show, :edit, :update, :destroy]
+  before_filter :load_lesson, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :js
 
@@ -20,14 +20,14 @@ class Pl::LessonsController < ApplicationController
   end
 
   def create
-    @lesson = @classroom.lessons.build(params[:lesson])
+    @lesson = @classroom.lessons.build(params[:pl_lesson])
     if @lesson.save
-      respond_with @lesson
+      respond_with @classroom, location: classroom_path(@classroom), notice: "Lessons succesfully"
     end
   end
 
   def update
-    @lesson.update_attributes(params[:lesson])
+    @lesson.update_attributes(params[:pl_lesson])
     redirect_to @lesson.classroom, notice: "Lesson succesfully updated."
   end
 

@@ -647,6 +647,40 @@ ALTER SEQUENCE pl_classrooms_id_seq OWNED BY pl_classrooms.id;
 
 
 --
+-- Name: pl_contents; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_contents (
+    id integer NOT NULL,
+    teachable_id integer,
+    teachable_type character varying(255),
+    title character varying(255),
+    lesson_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_contents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_contents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_contents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_contents_id_seq OWNED BY pl_contents.id;
+
+
+--
 -- Name: pl_lessons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -679,6 +713,37 @@ CREATE SEQUENCE pl_lessons_id_seq
 --
 
 ALTER SEQUENCE pl_lessons_id_seq OWNED BY pl_lessons.id;
+
+
+--
+-- Name: pl_text_teachables; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_text_teachables (
+    id integer NOT NULL,
+    content text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_text_teachables_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_text_teachables_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_text_teachables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_text_teachables_id_seq OWNED BY pl_text_teachables.id;
 
 
 --
@@ -1145,7 +1210,21 @@ ALTER TABLE ONLY pl_classrooms ALTER COLUMN id SET DEFAULT nextval('pl_classroom
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pl_contents ALTER COLUMN id SET DEFAULT nextval('pl_contents_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pl_lessons ALTER COLUMN id SET DEFAULT nextval('pl_lessons_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pl_text_teachables ALTER COLUMN id SET DEFAULT nextval('pl_text_teachables_id_seq'::regclass);
 
 
 --
@@ -1340,11 +1419,27 @@ ALTER TABLE ONLY pl_classrooms
 
 
 --
+-- Name: pl_contents_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_contents
+    ADD CONSTRAINT pl_contents_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pl_lessons_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY pl_lessons
     ADD CONSTRAINT pl_lessons_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pl_text_teachables_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_text_teachables
+    ADD CONSTRAINT pl_text_teachables_pkey PRIMARY KEY (id);
 
 
 --
@@ -1511,6 +1606,20 @@ CREATE INDEX index_blog_tags_on_name ON blog_tags USING btree (name);
 
 
 --
+-- Name: index_pl_contents_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_contents_on_lesson_id ON pl_contents USING btree (lesson_id);
+
+
+--
+-- Name: index_pl_contents_on_teachable_id_and_teachable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_contents_on_teachable_id_and_teachable_type ON pl_contents USING btree (teachable_id, teachable_type);
+
+
+--
 -- Name: index_pl_lessons_on_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1664,3 +1773,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140128160044');
 INSERT INTO schema_migrations (version) VALUES ('20140128161627');
 
 INSERT INTO schema_migrations (version) VALUES ('20140129152122');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130003455');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130004512');

@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: growthvalley_development
+  pool: 5
+  username: YOUR_USERNAME
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: growthvalley_test
+  pool: 5
+  username: YOUR_USERNAME
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: growthvalley_production
+  pool: 5
+  username: YOUR_USERNAME
+  password:

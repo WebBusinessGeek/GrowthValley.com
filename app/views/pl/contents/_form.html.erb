@@ -1,0 +1,10 @@
+<%= simple_form_for content, as: :content, url: url do |f| -%>
+  <%= f.hidden_field :teachable_type %>
+  <%= f.input :title %>
+  <%= render(
+    "#{content.teachable.to_partial_path}_form",
+    teachable: content.teachable,
+    f: f
+  ) %>
+  <%= f.submit %>
+<% end -%>

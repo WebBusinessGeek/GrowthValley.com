@@ -72,4 +72,5 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'meta_request'
 end

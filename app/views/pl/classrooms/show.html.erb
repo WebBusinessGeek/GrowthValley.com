@@ -16,9 +16,12 @@
   <div style="clear:both;">
     <hr>
     <h2>Lessons</h2>
-    <ul id="detailed_lessons" data-classroom-id="#{<%= @classroom.id %>}">
+    <ul id="detailed_lessons" data-classroom-id="#{<%= @classroom.id %>}" style="float:left;width:100%">
       <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
     </ul>
+    <div style="clear:both;">
+      <%= link_to "Add a lesson", new_classroom_lesson_path(@classroom), class: "btn btn-primary" if @classroom.teacher == current_user %>
+    </div>
   </div>
 
   <hr>

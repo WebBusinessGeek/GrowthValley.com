@@ -1,0 +1,27 @@
+<div class="well">
+<%= @lesson.inspect %>
+<ol>
+  <li><strong>Title</strong> <%= @lesson.title %></li>
+  <li><strong>Description </strong><%= @lesson.description %></li>
+  <% @lesson.contents.each do |content| %>
+    <li><%= render(
+      "#{content.teachable.to_partial_path}",
+      content: content
+      )
+    %></li>
+  <% end %>
+</ol>
+<% if @lesson.classroom.teacher == current_user %>
+  <ul>
+    <li>
+      <%=
+        link_to "Text",
+          new_lesson_content_path(
+            @lesson,
+            content: { teachable_type: 'Pl::TextTeachable' }
+          ), class: 'btn btn-primary'
+      %>
+    </li>
+  </ul>
+<% end %>
+</div>

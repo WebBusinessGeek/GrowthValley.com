@@ -1,9 +1,12 @@
 GrowthValley::Application.routes.draw do
 
+  resources :lessons, only: [:show, :edit, :update, :destroy], module: 'pl' do
+    resources :contents
+  end
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny
-    resources :lessons
+    resources :lessons, only: [:new, :create]
   end
 
   mount Ckeditor::Engine => '/ckeditor'
