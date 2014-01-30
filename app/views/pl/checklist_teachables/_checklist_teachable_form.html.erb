@@ -1,0 +1,6 @@
+<%= f.fields_for :teachable do |teachable_fields| %>
+  <%= teachable_fields.fields_for :tasks do |task| %>
+    <%= render 'pl/content/task_fields', f: task %>
+  <% end %>
+  <%= link_to_add_fields "Add an Item", teachable_fields, :tasks %>
+<% end %>

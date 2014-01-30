@@ -17,10 +17,7 @@ class Pl::Content < ActiveRecord::Base
   accepts_nested_attributes_for :teachable
 
   def build_teachable(type, attributes)
-    puts type
-    puts attributes
     teachable_class = type.constantize
-    puts teachable_class
     self.teachable = teachable_class.new(attributes.merge(content: self))
   end
 end

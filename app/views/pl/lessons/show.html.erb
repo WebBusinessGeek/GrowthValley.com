@@ -1,5 +1,4 @@
 <div class="well">
-<%= @lesson.inspect %>
 <ol>
   <li><strong>Title</strong> <%= @lesson.title %></li>
   <li><strong>Description </strong><%= @lesson.description %></li>
@@ -22,6 +21,30 @@
           ), class: 'btn btn-primary'
       %>
     </li>
+    <li>
+      <%=
+        link_to "File",
+          new_lesson_content_path(
+            @lesson,
+            content: { teachable_type: 'Pl::AttachmentTeachable' }
+          ), class: 'btn btn-primary'
+      %>
+    </li>
+    <li>
+      <%=
+        link_to "Checklist",
+          new_lesson_content_path(
+            @lesson,
+            content: { teachable_type: 'Pl::ChecklistTeachable' }
+          ), class: 'btn btn-primary'
+      %>
+    </li>
   </ul>
 <% end %>
+<hr>
+<h2>Discussion</h2>
+ <ul class="unstyled" id="comments">
+    <%= render partial: "comments/comment", collection: @comments, as: :comment %>
+    <%= render 'comments/form' %>
+  </ul>
 </div>

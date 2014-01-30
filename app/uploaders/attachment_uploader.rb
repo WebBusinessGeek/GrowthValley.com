@@ -43,12 +43,16 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
 
   def extension_white_list
-    if model.course.content_type == 'pdf'
-      %w(pdf)
-    elsif model.course.content_type == 'video'
-      %w(flv avi mp4 wmv mov 3g2 3gp m2v m4v)
+    if model.class.method_defined? :course
+      if model.course.content_type == 'pdf'
+        %w(pdf)
+      elsif model.course.content_type == 'video'
+        %w(flv avi mp4 wmv mov 3g2 3gp m2v m4v)
+      else
+        %w(pdf flv avi mp4 wmv mov 3g2 3gp m2v m4v)
+      end
     else
-      %w(pdf flv avi mp4 wmv mov 3g2 3gp m2v m4v)
+      %w(pdf txt doc flv avi mp4 wmv mov 3g2 3gp m2v m4v png gif jpg jpeg)
     end
   end
 

@@ -377,6 +377,40 @@ ALTER SEQUENCE ckeditor_assets_id_seq OWNED BY ckeditor_assets.id;
 
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id integer NOT NULL,
+    user_id integer,
+    body text,
+    commentable_id integer,
+    commentable_type character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
 -- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -611,6 +645,67 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
+-- Name: pl_attachment_teachables; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_attachment_teachables (
+    id integer NOT NULL,
+    asset character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_attachment_teachables_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_attachment_teachables_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_attachment_teachables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_attachment_teachables_id_seq OWNED BY pl_attachment_teachables.id;
+
+
+--
+-- Name: pl_checklist_teachables; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_checklist_teachables (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_checklist_teachables_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_checklist_teachables_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_checklist_teachables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_checklist_teachables_id_seq OWNED BY pl_checklist_teachables.id;
+
+
+--
 -- Name: pl_classrooms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -713,6 +808,39 @@ CREATE SEQUENCE pl_lessons_id_seq
 --
 
 ALTER SEQUENCE pl_lessons_id_seq OWNED BY pl_lessons.id;
+
+
+--
+-- Name: pl_tasks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_tasks (
+    id integer NOT NULL,
+    completed boolean,
+    content character varying(255),
+    checklist_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pl_tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_tasks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_tasks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_tasks_id_seq OWNED BY pl_tasks.id;
 
 
 --
@@ -1161,6 +1289,13 @@ ALTER TABLE ONLY ckeditor_assets ALTER COLUMN id SET DEFAULT nextval('ckeditor_a
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
@@ -1203,6 +1338,20 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pl_attachment_teachables ALTER COLUMN id SET DEFAULT nextval('pl_attachment_teachables_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pl_checklist_teachables ALTER COLUMN id SET DEFAULT nextval('pl_checklist_teachables_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pl_classrooms ALTER COLUMN id SET DEFAULT nextval('pl_classrooms_id_seq'::regclass);
 
 
@@ -1218,6 +1367,13 @@ ALTER TABLE ONLY pl_contents ALTER COLUMN id SET DEFAULT nextval('pl_contents_id
 --
 
 ALTER TABLE ONLY pl_lessons ALTER COLUMN id SET DEFAULT nextval('pl_lessons_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pl_tasks ALTER COLUMN id SET DEFAULT nextval('pl_tasks_id_seq'::regclass);
 
 
 --
@@ -1363,6 +1519,14 @@ ALTER TABLE ONLY ckeditor_assets
 
 
 --
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1411,6 +1575,22 @@ ALTER TABLE ONLY notifications
 
 
 --
+-- Name: pl_attachment_teachables_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_attachment_teachables
+    ADD CONSTRAINT pl_attachment_teachables_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pl_checklist_teachables_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_checklist_teachables
+    ADD CONSTRAINT pl_checklist_teachables_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pl_classrooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1432,6 +1612,14 @@ ALTER TABLE ONLY pl_contents
 
 ALTER TABLE ONLY pl_lessons
     ADD CONSTRAINT pl_lessons_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pl_tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_tasks
+    ADD CONSTRAINT pl_tasks_pkey PRIMARY KEY (id);
 
 
 --
@@ -1606,6 +1794,20 @@ CREATE INDEX index_blog_tags_on_name ON blog_tags USING btree (name);
 
 
 --
+-- Name: index_comments_on_commentable_type_and_commentable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_commentable_type_and_commentable_id ON comments USING btree (commentable_type, commentable_id);
+
+
+--
+-- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
+
+
+--
 -- Name: index_pl_contents_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1631,6 +1833,13 @@ CREATE INDEX index_pl_lessons_on_classroom_id ON pl_lessons USING btree (classro
 --
 
 CREATE INDEX index_pl_lessons_on_position ON pl_lessons USING btree ("position");
+
+
+--
+-- Name: index_pl_tasks_on_checklist_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_tasks_on_checklist_id ON pl_tasks USING btree (checklist_id);
 
 
 --
@@ -1777,3 +1986,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140129152122');
 INSERT INTO schema_migrations (version) VALUES ('20140130003455');
 
 INSERT INTO schema_migrations (version) VALUES ('20140130004512');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130132221');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130132357');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130133012');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130133224');

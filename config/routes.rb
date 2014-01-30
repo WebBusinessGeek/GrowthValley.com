@@ -2,7 +2,9 @@ GrowthValley::Application.routes.draw do
 
   resources :lessons, only: [:show, :edit, :update, :destroy], module: 'pl' do
     resources :contents
+    post :add_comment
   end
+
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny

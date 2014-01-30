@@ -10,6 +10,9 @@ class Pl::LessonsController < ApplicationController
   end
 
   def show
+    @commentable = @lesson
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new
@@ -38,6 +41,17 @@ class Pl::LessonsController < ApplicationController
   def complete
     @lesson.update_attributes state: "done" if params["checked"] == "true"
     @lesson.update_attributes state: "to_do" if params["checked"] == "false"
+  end
+
+  def add_comment
+    @commentable = Pl::Lesson.find(params[:lesson_id])
+    @comment = @commentable.comments.new(params[:comment])
+    @comment.user = current_user
+    if @comment.save!
+      redirect_to lesson_path(@commentable), notice: "Comment created."
+    else
+      redirect_to lesson_path(@commentable), notice: "Failed to create comment"
+    end
   end
 
   private

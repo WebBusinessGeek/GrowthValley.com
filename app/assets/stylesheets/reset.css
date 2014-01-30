@@ -11,7 +11,8 @@ input[type="checkbox"], input[type="radio"], input.radio, input.checkbox { verti
 .error { border: 1px solid red !important; border-radius: 4px 4px 4px 4px; overflow: hidden; }
 .valid { border: 1px solid rgb(112, 164, 27) !important; border-radius: 4px 4px 4px 4px; overflow: hidden; }
 /*============================ Global properties ============================*/
-body { background:#fff url(/assets/bg.jpg) center top no-repeat; color: #606060; font: 13px/19px 'arialnarrow', sans-serif; margin: 0; min-width: 980px; }
+/* font: 13px/19px 'arialnarrow', sans-serif;*/
+body { background:#fff url(/assets/bg.jpg) center top no-repeat; color: #606060;margin: 0; min-width: 980px; }
 html, body { height: 100%; }
 .wrapper { margin: 0 auto; position:relative; display:block; padding:0 160px; }
 .wrapper-inner{ position:relative;}
