@@ -1,0 +1,8 @@
+<ul>
+  <%= content_tag_for :li, lesson, class: 'ui-state-default', style: "width:200px;padding:3px;min-height:100px;float:left;margin:3px 3px 3px 3px 0" do %>
+    <ol>
+      <li><strong>Title</strong> <%= lesson.title %></li>
+      <li><strong>Description </strong><%= lesson.description %></li>
+    </ol>
+  <% end %>
+</ul>

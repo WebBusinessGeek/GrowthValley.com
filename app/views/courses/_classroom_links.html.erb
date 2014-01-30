@@ -1,4 +1,9 @@
-<% if current_user.courses.include?(@course) %>
+<div class="well">
+  <div style="clear:both;">
+    <h3>Explore example classrooms being utilized by other users</h3>
+    <%= format_learner_names(@course) %>
+  </div>
+  <% if current_user.courses.include?(@course) %>
   <% if current_user.type == "Teacher" %>
     <% if @course.classroom_enabled? %>
       <%= link_to "Manage classrooms for this course", classrooms_path(course: @course.slug), class: 'btn btn-primary' %>
@@ -18,3 +23,4 @@
     <% end %>
   <% end %>
 <% end %>
+</div>

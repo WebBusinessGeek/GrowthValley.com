@@ -4,4 +4,6 @@ class Pl::Lesson < ActiveRecord::Base
   belongs_to :classroom
   has_many :contents, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+
+  scope :completed, where(completed: true)
 end

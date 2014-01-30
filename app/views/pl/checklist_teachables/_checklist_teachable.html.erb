@@ -1,7 +1,7 @@
 <h4><%= content.title %></h4>
-<ol>
+<ol id="task_list">
   <% content.teachable.tasks.each do |task| %>
-    <%= content_tag :li, id: dom_id(task) do %>
+    <%= content_tag :li, id: dom_id(task), class: task.completed? ? "completed_task" : "" do %>
       <%= check_box_tag "complete", task.id, task.completed?, class: "complete_task" %>
       <%= task.content %>
     <% end %>

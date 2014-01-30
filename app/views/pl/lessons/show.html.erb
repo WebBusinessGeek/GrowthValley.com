@@ -2,6 +2,11 @@
 <ol>
   <li><strong>Title</strong> <%= @lesson.title %></li>
   <li><strong>Description </strong><%= @lesson.description %></li>
+  <% if current_user == @lesson.classroom.learner %>
+    <%= link_to "#{@lesson.completed? ? 'Complete lesson' : 'Uncomplete lesson'}", complete_lesson_path(@lesson), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+  <hr>
+  <h2>Learning Materials</h2>
   <% @lesson.contents.each do |content| %>
     <li><%= render(
       "#{content.teachable.to_partial_path}",

@@ -718,7 +718,8 @@ CREATE TABLE pl_classrooms (
     course_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    state character varying(255)
+    state character varying(255),
+    pay_state character varying(255)
 );
 
 
@@ -1994,3 +1995,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140130132357');
 INSERT INTO schema_migrations (version) VALUES ('20140130133012');
 
 INSERT INTO schema_migrations (version) VALUES ('20140130133224');
+
+INSERT INTO schema_migrations (version) VALUES ('20140130184730');

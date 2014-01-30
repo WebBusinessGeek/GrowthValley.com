@@ -9,7 +9,7 @@ module Pl
 
     validates :course_id, presence: true
 
-    state_machine initial: :requested do
+    state_machine :state, initial: :requested do
       event :approve do
         transition :requested => :active
       end
@@ -18,6 +18,16 @@ module Pl
       end
       event :archive do
         transition [:requested, :active] => :archived
+      end
+    end
+
+    state_machine :pay_state, initial: :inactive, namespace: 'payment' do
+      event :request_payment do
+        transition :inactive => :requested, if: :active?
+      end
+
+      event :approve_payment do
+        transition :requested => :approved, if: :active?
       end
     end
 
@@ -41,6 +51,10 @@ module Pl
       else
         return nil
       end
+    end
+
+    def progress
+      @progress = (lessons.completed.count / lessons.count).round * 100
     end
 
     def teacher

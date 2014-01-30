@@ -74,6 +74,12 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def learner_names
+    a = []
+    classrooms.limit(5).collect {|x| a << {id: x.id, full_name: x.learner.full_name}}
+    a
+  end
+
   def self.text_search(params)
     if params[:search].present?
       search(params[:search])

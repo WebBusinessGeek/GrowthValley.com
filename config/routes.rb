@@ -1,8 +1,17 @@
 GrowthValley::Application.routes.draw do
 
+  resources :tasks, only: [], module: 'pl' do
+    member do
+      post :complete
+    end
+  end
+
   resources :lessons, only: [:show, :edit, :update, :destroy], module: 'pl' do
     resources :contents
     post :add_comment
+    member do
+      post :complete
+    end
   end
 
   resources :classrooms, module: 'pl' do

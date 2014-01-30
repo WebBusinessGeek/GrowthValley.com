@@ -1,0 +1,5 @@
+<% if @task.completed? %>
+  $('#<%= dom_id(@task) %>').addClass('completed_task');
+<% else %>
+  $('#<%= dom_id(@task) %>').removeClass('completed_task');
+<% end %>

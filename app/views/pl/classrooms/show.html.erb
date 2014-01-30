@@ -11,13 +11,31 @@
     <span style="margin-left:100px;">
       <%= image_tag(@classroom.course.course_cover_pic.url(:cover)) %>
     </span>
+    <h4>Progress: <%= @classroom.progress %>%</h4>
+    <div class="well">
+      <% if user_signed_in? %>
+        <% if current_user == @classroom.teacher %>
+          <% if @classroom.active? && @classroom.payment_inactive? %>
+            <%= link_to "Request Classroom Payment", "javascript:void(0);", class: 'btn btn-primary' %>
+            <% end %>
+        <% elsif current_user == @classroom.learner %>
+          <% if @classroom.active? && @classroom.payment_requested? %>
+            <%= link_to "Approve Classroom Payment", "javascript:void(0);" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div style="clear:both;">
     <hr>
     <h2>Lessons</h2>
     <ul id="detailed_lessons" data-classroom-id="#{<%= @classroom.id %>}" style="float:left;width:100%">
-      <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
+      <% if @classroom.users.include?(current_user) && user_signed_in? %>
+        <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
+      <% else %>
+        <%= render partial: 'pl/lessons/static_lesson', collection: @classroom.lessons, as: :lesson %>
+      <% end %>
     </ul>
     <div style="clear:both;">
       <%= link_to "Add a lesson", new_classroom_lesson_path(@classroom), class: "btn btn-primary" if @classroom.teacher == current_user %>

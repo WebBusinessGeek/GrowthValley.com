@@ -1,7 +1,7 @@
 class Pl::LessonsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_classroom, only: [:index, :create]
-  before_filter :load_lesson, only: [:show, :edit, :update, :destroy]
+  before_filter :load_lesson, only: [:show, :edit, :update, :destroy, :complete]
 
   respond_to :html, :js
 
@@ -39,8 +39,18 @@ class Pl::LessonsController < ApplicationController
   end
 
   def complete
-    @lesson.update_attributes state: "done" if params["checked"] == "true"
-    @lesson.update_attributes state: "to_do" if params["checked"] == "false"
+    if current_user == @lesson.classroom.learner
+      unless @lesson.completed?
+        @lesson.update_attributes(completed: true)
+        msg = "Lesson completed. Well done."
+      else
+        @lesson.update_attributes(completed: false)
+        msg = "Lesson marked uncomplete."
+      end
+      redirect_to classroom_path(@lesson.classroom), notice: msg
+    else
+      redirect_to classroom_path(@lesson.classroom), warning: "You are not authorized to do this."
+    end
   end
 
   def add_comment
