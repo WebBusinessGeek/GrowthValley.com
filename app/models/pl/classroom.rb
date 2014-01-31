@@ -5,7 +5,7 @@ module Pl
     belongs_to :course
     has_many :users_classrooms, class_name: "Pl::UsersClassroom", dependent: :destroy
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
-    has_many :lessons, dependent: :destroy
+    has_many :lessons, order: :position, dependent: :destroy
 
     validates :course_id, presence: true
 
@@ -54,6 +54,7 @@ module Pl
     end
 
     def progress
+      return 0 if lessons.count == 0
       @progress = (lessons.completed.count / lessons.count).round * 100
     end
 

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   :profile_pic, :subject_ids, :course_ids, :provider, :uid, :confirmed_at
 
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :users_classrooms, class_name: "Pl::UsersClassroom", foreign_key: "user_id"
+  has_many :users_classrooms, order: :position, class_name: "Pl::UsersClassroom", foreign_key: "user_id"
   has_many :classrooms, through: :users_classrooms, class_name: "Pl::Classroom"
 
   has_and_belongs_to_many :bundles

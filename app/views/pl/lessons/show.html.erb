@@ -5,6 +5,7 @@
   <% if current_user == @lesson.classroom.learner %>
     <%= link_to "#{@lesson.completed? ? 'Complete lesson' : 'Uncomplete lesson'}", complete_lesson_path(@lesson), method: :post, class: 'btn btn-primary' %>
   <% end %>
+  </ol>
   <hr>
   <h2>Learning Materials</h2>
   <% @lesson.contents.each do |content| %>
@@ -16,7 +17,7 @@
   <% end %>
 </ol>
 <% if @lesson.classroom.teacher == current_user %>
-  <ul>
+  <ul class="inline">
     <li>
       <%=
         link_to "Text",

@@ -1,0 +1,56 @@
+  <div class="well">
+  <ol>
+    <li><strong>Title</strong> <%= @lesson.title %></li>
+    <li><strong>Description </strong><%= @lesson.description %></li>
+    <% if current_user == @lesson.classroom.learner %>
+      <%= link_to "#{@lesson.completed? ? 'Complete lesson' : 'Uncomplete lesson'}", complete_lesson_path(@lesson), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+    </ol>
+    <hr>
+    <h2>Learning Materials</h2>
+    <% @lesson.contents.each do |content| %>
+      <li><%= render(
+        "#{content.teachable.to_partial_path}",
+        content: content
+        )
+      %></li>
+    <% end %>
+  </ol>
+  <% if @lesson.classroom.teacher == current_user %>
+    <ul class="inline">
+      <li>
+        <%=
+          link_to "Text",
+            new_lesson_content_path(
+              @lesson,
+              content: { teachable_type: 'Pl::TextTeachable' }
+            ), class: 'btn btn-primary'
+        %>
+      </li>
+      <li>
+        <%=
+          link_to "File",
+            new_lesson_content_path(
+              @lesson,
+              content: { teachable_type: 'Pl::AttachmentTeachable' }
+            ), class: 'btn btn-primary'
+        %>
+      </li>
+      <li>
+        <%=
+          link_to "Checklist",
+            new_lesson_content_path(
+              @lesson,
+              content: { teachable_type: 'Pl::ChecklistTeachable' }
+            ), class: 'btn btn-primary'
+        %>
+      </li>
+    </ul>
+  <% end %>
+  <hr>
+  <h2>Discussion</h2>
+   <ul class="unstyled" id="comments">
+      <%= render partial: "comments/comment", collection: @comments, as: :comment %>
+      <%= render 'comments/form' %>
+    </ul>
+  </div>

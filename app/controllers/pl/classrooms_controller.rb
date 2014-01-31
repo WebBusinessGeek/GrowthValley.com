@@ -42,6 +42,14 @@ class Pl::ClassroomsController < ApplicationController
     end
   end
 
+  def sort
+    params[:pl_users_classroom].each_with_index do |id, index|
+        pu = current_user.users_classrooms.find id
+        pu.update_attribute :position, index if pu
+    end
+    render nothing: true
+  end
+
   def approve
     @classroom = Pl::Classroom.find(params[:classroom_id])
     if @classroom.teacher != current_user

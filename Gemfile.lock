@@ -43,6 +43,8 @@ GEM
     activesupport (3.2.14)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    acts_as_list (0.3.0)
+      activerecord (>= 3.0)
     addressable (2.3.5)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -340,6 +342,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (~> 0.6.0)
   activerecord-postgres-hstore
+  acts_as_list
   bcrypt-ruby (~> 3.0.0)
   cancan
   capybara (~> 1.1.4)

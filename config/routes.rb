@@ -12,11 +12,17 @@ GrowthValley::Application.routes.draw do
     member do
       post :complete
     end
+    collection do
+      post :sort
+    end
   end
 
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny
+    collection do
+      post :sort
+    end
     resources :lessons, only: [:new, :create]
   end
 

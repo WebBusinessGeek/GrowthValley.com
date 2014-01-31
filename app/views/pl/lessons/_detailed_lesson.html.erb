@@ -1,10 +1,8 @@
-<ul>
-  <%= content_tag_for :li, lesson, class: 'ui-state-default', style: "width:200px;padding:3px;min-height:100px;float:left;margin:3px 3px 3px 3px 0" do %>
-    <%= link_to lesson_path(lesson) do %>
+<%= content_tag_for :li, lesson , class: 'ui-state-default', style: "float:left;width:200px;padding:3px;min-height:200px;;margin:3px 3px 3px 3px 0" do %>
+    <%= link_to lesson_path(lesson), remote: true do %>
         <ol>
           <li><strong>Title</strong> <%= lesson.title %></li>
           <li><strong>Description </strong><%= lesson.description %></li>
         </ol>
     <% end %>
-  <% end %>
-</ul>
+<% end %>

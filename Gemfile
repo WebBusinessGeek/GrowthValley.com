@@ -53,6 +53,7 @@ gem 'rails_config'
 # Private Classroom
 gem 'activerecord-postgres-hstore'
 gem 'state_machine'
+gem 'acts_as_list'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'

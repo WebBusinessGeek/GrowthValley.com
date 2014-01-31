@@ -64,6 +64,14 @@ class Pl::LessonsController < ApplicationController
     end
   end
 
+  def sort
+    params[:pl_lesson].each_with_index do |id, index|
+        pu = Pl::Lesson.find id
+        pu.update_attribute :position, index if pu
+    end
+    render nothing: true
+  end
+
   private
     def load_classroom
       @classroom = Pl::Classroom.find(params[:classroom_id])
