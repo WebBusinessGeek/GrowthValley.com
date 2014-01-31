@@ -17,7 +17,12 @@
         <% if current_user == @classroom.teacher %>
           <% if @classroom.active? && @classroom.payment_inactive? %>
             <%= link_to "Request Classroom Payment", "javascript:void(0);", class: 'btn btn-primary' %>
-            <% end %>
+          <% end %>
+          <% if @classroom.privacy? %>
+            <%= link_to "Make Classroom Public", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-primary' %>
+          <% else %>
+            <%= link_to "Make Classroom Private", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-primary' %>
+          <% end %>
         <% elsif current_user == @classroom.learner %>
           <% if @classroom.active? && @classroom.payment_requested? %>
             <%= link_to "Approve Classroom Payment", "javascript:void(0);" %>
@@ -30,13 +35,15 @@
   <div style="clear:both;width:100%">
     <hr>
     <h2>Lessons</h2>
-    <ul id="lessons" data-update-url="<%= sort_lessons_url %>" data-classroom-id="<%= @classroom.id %>" style="padding:3px;min-height:300px;margin:3px 3px 3px 3px 0">
-      <% if @classroom.users.include?(current_user) && user_signed_in? %>
+    <% if @classroom.users.include?(current_user) && user_signed_in? %>
+      <ul id="lessons" data-update-url="<%= sort_lessons_url %>" data-classroom-id="<%= @classroom.id %>" style="padding:3px;min-height:300px;margin:3px 3px 3px 3px 0">
         <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
-      <% else %>
+      </ul>
+    <% else %>
+      <ul>
         <%= render partial: 'pl/lessons/static_lesson', collection: @classroom.lessons, as: :lesson %>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
     <div style="clear:both;">
       <%= link_to "Add a lesson", new_classroom_lesson_path(@classroom), class: "btn btn-primary" if @classroom.teacher == current_user %>
     </div>

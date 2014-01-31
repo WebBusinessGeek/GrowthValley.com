@@ -17,6 +17,9 @@ class Pl::ClassroomsController < ApplicationController
 
   def show
     @classroom = Pl::Classroom.find(params[:id])
+    if @classroom.privacy? && !@classroom.users.include?(current_user)
+      redirect_to root_path, notice: "You cannot view a private classroom"
+    end
   end
 
   def edit
@@ -48,6 +51,16 @@ class Pl::ClassroomsController < ApplicationController
         pu.update_attribute :position, index if pu
     end
     render nothing: true
+  end
+
+  def toggle_privacy
+    @classroom = Pl::Classroom.find(params[:id])
+    if @classroom.privacy?
+      @classroom.update_attributes privacy: false
+    else
+      @classroom.update_attributes privacy: true
+    end
+    redirect_to classroom_path @classroom
   end
 
   def approve

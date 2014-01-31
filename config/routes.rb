@@ -20,6 +20,9 @@ GrowthValley::Application.routes.draw do
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny
+    member do
+      post :toggle_privacy
+    end
     collection do
       post :sort
     end

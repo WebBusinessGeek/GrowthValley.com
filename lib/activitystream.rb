@@ -7,22 +7,22 @@ module Activitystream
 				notification_for = "Learner"
 				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
 			end
-			
+
 			if actionname.to_s == "updated"
 				notification_for = "Learner"
 				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
 			end
-			
+
 			if actionname.to_s == "result"
 				notification_for = "Learner"
 				message = "Exam result has been announced for your course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'. <a href='"+course_path(coursedetail)+"'>Click Here</a> to view result."
 			end
-			
+
 			if actionname.to_s == "subscribe"
 				notification_for = "Teacher"
 				message = "A new user has subsribed for your course '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'."
 			end
-			
+
 			if actionname.to_s == "completed"
 				notification_for = "Teacher"
 				message = "A user has completed the exam for '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' course. Kindly review his exam."
@@ -31,7 +31,7 @@ module Activitystream
 
 		Notification.new(:module => modulename, :module_id => coursedetail.id, :notification_for => notification_for, :action => actionname.to_s, :user_id => current_user.id, :message => message).save
 	end
-	
+
 	def get_activity_stream(no_of_records)
 	  if current_user.type.to_s == "Teacher"
 		  if no_of_records > 0
