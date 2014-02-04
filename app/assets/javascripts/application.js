@@ -15,7 +15,11 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require jquery.rateit
-//= require_tree .
+//= require bootstrap_overrides
+//= require homes
+//= require paypal-button.min
+//= require test
+//= require_self
 
 $(function() {
   $('.text').attr('rows', 5);

@@ -1,4 +1,4 @@
-<%= simple_form_for @comment, url: lesson_add_comment_path(lesson_id: @commentable.id) do |f| %>
+<%= simple_form_for Comment.new, url:  lesson_add_comment_path(lesson_id: @commentable.id), remote: true do |f| %>
   <%= f.input :body, as: :string %>
   <%= f.submit "Add comment" %>
 <% end %>

@@ -49,8 +49,8 @@
   <% end %>
   <hr>
   <h2>Discussion</h2>
-   <ul class="unstyled" id="comments">
-      <%= render partial: "comments/comment", collection: @comments, as: :comment %>
-      <%= render 'comments/form' %>
-    </ul>
-  </div>
+  <ul class="unstyled" id="comments">
+    <%= render partial: "comments/comment", collection: @comments, as: :comment %>
+  </ul>
+  <%= render partial: 'comments/form', locals: {url:  lesson_add_comment_path(lesson_id: @commentable.id)} %>
+</div>

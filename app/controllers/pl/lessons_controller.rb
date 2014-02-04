@@ -12,7 +12,6 @@ class Pl::LessonsController < ApplicationController
   def show
     @commentable = @lesson
     @comments = @commentable.comments
-    @comment = Comment.new
   end
 
   def new
@@ -57,11 +56,11 @@ class Pl::LessonsController < ApplicationController
     @commentable = Pl::Lesson.find(params[:lesson_id])
     @comment = @commentable.comments.new(params[:comment])
     @comment.user = current_user
-    if @comment.save!
-      redirect_to lesson_path(@commentable), notice: "Comment created."
-    else
-      redirect_to lesson_path(@commentable), notice: "Failed to create comment"
-    end
+    @comment.save!
+    #   respond_with @comment, location: lesson_path(@commentable), notice: "Comment created."
+    # else
+    #   redirect_to lesson_path(@commentable), notice: "Failed to create comment"
+    # end
   end
 
   def sort
