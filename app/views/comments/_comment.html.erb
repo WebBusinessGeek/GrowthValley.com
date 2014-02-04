@@ -2,6 +2,6 @@
   <p><%= comment.body %></p>
   <small>
     <%= comment.user.full_name %>
-    left at <%= comment.created_at %>
+    left at <%= l comment.created_at.localtime, format: :comment %>
   </small>
 </li>
