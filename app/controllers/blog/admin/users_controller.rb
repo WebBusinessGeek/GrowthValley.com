@@ -1,8 +1,12 @@
 class Blog::Admin::UsersController < Blog::Admin::BaseController
 
   before_filter :load_user, except: [:index, :new, :create]
+  before_filter :require_blog_admin, except: [:update, :edit]
 
   def edit
+    if (blog_current_user != @user) && !blog_current_user.admin?
+      redirect_to blog_admin_path, notice: "You are not authorized for this page"
+    end
   end
 
   def new
@@ -10,9 +14,9 @@ class Blog::Admin::UsersController < Blog::Admin::BaseController
   end
 
   def update
-    if @user.update user_params
+    if @user.update_attributes user_params
       flash.notice = "User modified"
-      redirect_to blog_admin_users_path
+      redirect_to blog_admin_path
     else
       render :edit
     end

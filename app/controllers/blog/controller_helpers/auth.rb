@@ -16,6 +16,10 @@ module Blog
            redirect_to blog_admin_login_url, alert: I18n.t("blog.admin.login.need_auth")
          end
       end
+
+      def require_blog_admin
+        redirect_to blog_admin_path, notice: "You must be a blog administrator to do this" unless blog_current_user.admin?
+      end
     end
   end
 end

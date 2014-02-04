@@ -5,6 +5,7 @@
   <tr>
     <th><%= t(".name") %></th>
     <th><%= t(".email") %></th>
+    <th><%= t(".admin") %></th>
     <th></th>
     <th></th>
   </tr>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
+      <td><%= user.admin? %></td>
       <td><%= link_to t(".edit"), edit_blog_admin_user_path(user), class: "btn btn-small" %></td>
       <td>
         <% if blog_current_user.can_delete?(user) %>

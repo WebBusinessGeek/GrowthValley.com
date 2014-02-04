@@ -3,7 +3,11 @@ class Blog::Admin::PostsController < Blog::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
 
   def index
-    @posts = blog_current_user.posts
+    if blog_current_user.admin?
+      @posts = Blog::Post.all
+    else
+      @posts = blog_current_user.posts
+    end
   end
 
   def new
@@ -21,6 +25,9 @@ class Blog::Admin::PostsController < Blog::Admin::BaseController
   end
 
   def edit
+    if (blog_current_user != @post.user) && !blog_current_user.admin?
+      redirect_to blog_admin_path, notice: "You are not authorized for this action."
+    end
   end
 
   def update

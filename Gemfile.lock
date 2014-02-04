@@ -152,6 +152,8 @@ GEM
     less-rails (2.4.2)
       actionpack (>= 3.1)
       less (~> 2.4.0)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     libv8 (3.16.14.3)
     listen (2.4.0)
       celluloid (>= 0.15.2)
@@ -354,6 +356,7 @@ DEPENDENCIES
   kaminari
   launchy
   less-rails
+  letter_opener
   mini_magick
   numbers_and_words
   omniauth (~> 1.1.4)
