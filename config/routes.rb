@@ -1,5 +1,7 @@
 GrowthValley::Application.routes.draw do
 
+  resources :classroom_requests, module: 'pl'
+
   resources :tasks, only: [], module: 'pl' do
     member do
       post :complete
@@ -16,7 +18,6 @@ GrowthValley::Application.routes.draw do
       post :sort
     end
   end
-
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny

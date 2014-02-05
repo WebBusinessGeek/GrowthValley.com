@@ -25,8 +25,10 @@ class Pl::ClassroomsController < ApplicationController
   def edit
     if params[:course_id]
       @course = Course.find(params[:course_id])
-      @classroom = @course.
-    @classroom = Pl::Classroom.find(params[:id])
+      @classroom = @course.classroom
+    else
+      @classroom = Pl::Classroom.find(params[:id])
+    end
   end
 
   def update
@@ -77,4 +79,5 @@ class Pl::ClassroomsController < ApplicationController
       end
     end
   end
+
 end
