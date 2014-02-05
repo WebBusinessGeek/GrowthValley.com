@@ -23,6 +23,9 @@ class Pl::ClassroomsController < ApplicationController
   end
 
   def edit
+    if params[:course_id]
+      @course = Course.find(params[:course_id])
+      @classroom = @course.
     @classroom = Pl::Classroom.find(params[:id])
   end
 

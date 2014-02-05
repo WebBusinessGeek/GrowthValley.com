@@ -218,6 +218,22 @@ class CoursesController < ApplicationController
     end
   end
 
+  def classroom_settings
+    @course = Course.find(params[:id])
+  end
+
+  def update_classroom_settings
+    @course = Course.find(params[:id])
+    redirect_to my_courses_courses_path, alert: 'You are not allowed to access this section!' unless current_user.type == 'Teacher' && current_user.courses.include?(@course)
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+        format.html { redirect_to my_courses_courses_path, notice: "Classroom settings updated successfully." }
+      else
+        format.html { render action: :classroom_settings }
+      end
+    end
+  end
+
   private
 
     def authorize_user

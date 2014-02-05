@@ -85,6 +85,8 @@ GrowthValley::Application.routes.draw do
     member do
 	    get 'sections'
       get 'publish_unpublish'
+      get :classroom_settings
+      put :update_classroom_settings
     end
 
     collection do

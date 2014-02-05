@@ -1,0 +1,25 @@
+<%= simple_form_for @course, url: update_classroom_settings_course_path, method: :put, html: {class: 'form-horizontal'} do |f| %>
+  <%= f.error_notification %>
+  <legend>Classroom settings. (optional)</legend>
+  <div class="control-group">
+      <%= f.input :classroom_enabled, label: "Accept Requests" %>
+      <div class="controls">
+        <span class="help-block">Disabling this feature will prevent future all classroom requests.</span>
+      </div>
+  </div>
+  <div class="control-group">
+    <%= f.input :minimum_price, label: "Minimum Price", as: :decimal %>
+    <div class="controls">
+      <span class="help-block">Set a minimum asking price for classroom requests.</span>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.input :private_classroom, label: "Classroom Privacy", as: :boolean %>
+    <div class="controls">
+      <span class="help-block">By default, other users can view an overview of your classrooms, you can set your classrooms to full privacy.</span>
+    </div>
+  </div>
+  <div class="form-actions">
+      <%= f.submit "Update" %>
+  </div>
+<% end %>
