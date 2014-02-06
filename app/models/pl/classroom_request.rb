@@ -1,10 +1,14 @@
 class Pl::ClassroomRequest < ActiveRecord::Base
-  attr_accessible :amount, :course_id, :learner_id, :teacher_approved, :learner_approved, :comments_attributes
+  attr_accessible :amount, :course_id, :learner_id, :teacher_approved, :learner_approved, :comments_attributes, :escrow
   belongs_to :course
   belongs_to :learner, class_name: "Learner", foreign_key: 'learner_id'
+  belongs_to :classrooom, class_name: "Pl::Classroom", foreign_key: 'classroom_id'
   has_many :comments, as: :commentable, dependent: :destroy
 
   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes['body'].blank? }
+
+  scope :completed, where("classroom_id IS NOT NULL")
+  scope :incompleted, where("classroom_id IS NULL")
 
   # A bit redundant but better code readability
   def awaiting_payment?

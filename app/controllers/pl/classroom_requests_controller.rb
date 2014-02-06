@@ -18,6 +18,7 @@ class Pl::ClassroomRequestsController < ApplicationController
 
   def edit
     @request = Pl::ClassroomRequest.find(params[:id])
+    @request.comments.build
     check_authorization
   end
 
@@ -61,6 +62,7 @@ class Pl::ClassroomRequestsController < ApplicationController
       "active" => true
     })
     if @classroom
+      @request.update_attribute(classroom_id: @classroom.id)
       redirect_to classroom_path(@classroom), notice: "Payment recieved and classroom created successfully."
     else
       redirect_to classrooms_path, warn: "Payment request unsuccessful."

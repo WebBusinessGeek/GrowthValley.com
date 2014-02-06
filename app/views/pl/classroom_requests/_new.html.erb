@@ -1,6 +1,6 @@
 <p class="lead">Classroom Request</legend>
 <p>GrowthValley offers a pay what you want model between the teacher and
-the learner. Begin by offering a price you are will to pay for private lessons
+the learner. Begin by offering a price you are willing to pay for private lessons
 with this teacher for this course.</p>
 <%= simple_form_for @request, url: classroom_requests_path do |f| %>
   <%= f.input :course_id, as: :hidden, input_html: {value: @course.id } %>

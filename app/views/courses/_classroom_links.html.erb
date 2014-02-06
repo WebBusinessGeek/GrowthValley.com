@@ -19,7 +19,7 @@
       <% else %>
         <p style="width:40%">Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
         <% if @classroom_request = current_user.has_classroomrequest_for(@course) %>
-          <%= link_to "Already requested", "javascript:void(0);", class: "btn btn-primary disabled" %>
+          <%= link_to @classroom_request.status, "javascript:void(0);", class: "btn btn-primary disabled" %>
         <% else %>
           <%= link_to 'Request a classroom', new_classroom_request_path(course_id: @course.id), remote: :true, class: 'btn btn-primary' %>
         <% end %>

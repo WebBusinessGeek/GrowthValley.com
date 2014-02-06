@@ -8,8 +8,8 @@ class Pl::ClassroomsController < ApplicationController
     else
       @classrooms = current_user.users_classrooms.includes(classroom: [:course])
     end
-    @requests = Pl::ClassroomRequest.where(course_id: current_user.course_ids) if current_user.type == "Teacher"
-    @requests = current_user.classroom_requests if current_user.type == "Learner"
+    @requests = Pl::ClassroomRequest.where(course_id: current_user.course_ids).incompleted if current_user.type == "Teacher"
+    @requests = current_user.classroom_requests.incompleted if current_user.type == "Learner"
   end
 
   def show

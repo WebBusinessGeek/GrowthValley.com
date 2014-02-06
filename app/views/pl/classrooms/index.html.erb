@@ -17,11 +17,12 @@
     </div>
   </div>
   <div style="clear:both;">
+    <div class="pagination-centered">
     <h2><%= t '.requested.title', default: "Classrooms waiting for approval" %></h2>
     <p>
       <%= t '.requested.instructions', default: "Below are classrooms waiting for approval" %>
     </p>
-    <% if @requests.present? %>
+    </div>
     <table id="classroom_requested" class="table table-striped">
       <thead>
         <tr>
@@ -33,35 +34,36 @@
         </tr>
       </thead>
       <tbody>
-        <% @requests.each do |request| %>
-          <tr id="<%= dom_id(request) %>">
-            <td><%= request.course.title %></td>
-            <td><%= request.learner.full_name %></td>
-            <td><%= number_to_currency request.amount %></td>
-            <td><%= request.status %></td>
-            <td>
-              <% if request.awaiting_payment? && current_user.type == "Learner" %>
-                <%= link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %> |
-              <% end %>
-              <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
-              <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>
-                <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post, remote: true %> |
-              <% end %>
-              <%= link_to classroom_request_path(request), method: :delete, remote: true do %>
-                <% if current_user.type == "Teacher" %>
-                  <%= t('.requested.table.reject', default: "Reject") %>
-                <% else %>
-                  <%= t('.requested.table.cancel', default: "Cancel Request") %>
+        <% if @requests.present? %>
+          <% @requests.each do |request| %>
+            <tr id="<%= dom_id(request) %>">
+              <td><%= request.course.title %></td>
+              <td><%= request.learner.full_name %></td>
+              <td><%= number_to_currency request.amount %></td>
+              <td><%= request.status %></td>
+              <td>
+                <% if request.awaiting_payment? && current_user.type == "Learner" %>
+                  <%= link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %> |
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
+                <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
+                <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>
+                  <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post, remote: true %> |
+                <% end %>
+                <%= link_to classroom_request_path(request), method: :delete, remote: true do %>
+                  <% if current_user.type == "Teacher" %>
+                    <%= t('.requested.table.reject', default: "Reject") %>
+                  <% else %>
+                    <%= t('.requested.table.cancel', default: "Cancel Request") %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          <% else %>
+          <tr><td></td><td></td><td>No Classroom Requests</td><td></td><td></td></tr>
+          <% end %>
       </tbody>
     </table>
-    <% else %>
-      No Classroom Requests
-    <% end %>
   </div>
 </div>
 <div id="request_modal" class="modal fade hide">

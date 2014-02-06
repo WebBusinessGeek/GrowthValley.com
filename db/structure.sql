@@ -717,7 +717,9 @@ CREATE TABLE pl_classroom_requests (
     learner_approved boolean,
     amount numeric,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    classroom_id integer,
+    escrow boolean
 );
 
 
@@ -1859,6 +1861,13 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_pl_classroom_requests_on_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_classroom_requests_on_classroom_id ON pl_classroom_requests USING btree (classroom_id);
+
+
+--
 -- Name: index_pl_classroom_requests_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2063,3 +2072,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140130133224');
 INSERT INTO schema_migrations (version) VALUES ('20140130184730');
 
 INSERT INTO schema_migrations (version) VALUES ('20140205164306');
+
+INSERT INTO schema_migrations (version) VALUES ('20140206174557');
