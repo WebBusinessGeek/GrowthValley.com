@@ -6,6 +6,7 @@ module Pl
     has_many :users_classrooms, class_name: "Pl::UsersClassroom", dependent: :destroy
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
     has_many :lessons, order: :position, dependent: :destroy
+    has_one :classroom_request, class_name: "Pl::ClassroomRequest", dependent: :destroy
 
     validates :course_id, presence: true
 
@@ -42,6 +43,8 @@ module Pl
         c.course_id = classroom_data["course_id"]
         c.privacy = false
       end
+
+      @classroom.state = "active" if classroom_data["active"]
 
       @classroom.users << User.find(classroom_data["learner_id"])
       @classroom.users << @course.teacher

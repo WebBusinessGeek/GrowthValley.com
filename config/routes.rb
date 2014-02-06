@@ -1,5 +1,12 @@
 GrowthValley::Application.routes.draw do
 
+  resources :classroom_requests, module: 'pl' do
+    member do
+      post :approve
+      post :pay
+    end
+  end
+
   resources :tasks, only: [], module: 'pl' do
     member do
       post :complete
@@ -16,7 +23,6 @@ GrowthValley::Application.routes.draw do
       post :sort
     end
   end
-
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny
@@ -85,6 +91,8 @@ GrowthValley::Application.routes.draw do
     member do
 	    get 'sections'
       get 'publish_unpublish'
+      get :classroom_settings
+      put :update_classroom_settings
     end
 
     collection do

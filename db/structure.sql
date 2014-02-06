@@ -706,6 +706,43 @@ ALTER SEQUENCE pl_checklist_teachables_id_seq OWNED BY pl_checklist_teachables.i
 
 
 --
+-- Name: pl_classroom_requests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pl_classroom_requests (
+    id integer NOT NULL,
+    course_id integer,
+    learner_id integer,
+    teacher_approved boolean,
+    learner_approved boolean,
+    amount numeric,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    classroom_id integer,
+    escrow boolean
+);
+
+
+--
+-- Name: pl_classroom_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pl_classroom_requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pl_classroom_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pl_classroom_requests_id_seq OWNED BY pl_classroom_requests.id;
+
+
+--
 -- Name: pl_classrooms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1353,6 +1390,13 @@ ALTER TABLE ONLY pl_checklist_teachables ALTER COLUMN id SET DEFAULT nextval('pl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pl_classroom_requests ALTER COLUMN id SET DEFAULT nextval('pl_classroom_requests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pl_classrooms ALTER COLUMN id SET DEFAULT nextval('pl_classrooms_id_seq'::regclass);
 
 
@@ -1592,6 +1636,14 @@ ALTER TABLE ONLY pl_checklist_teachables
 
 
 --
+-- Name: pl_classroom_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pl_classroom_requests
+    ADD CONSTRAINT pl_classroom_requests_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pl_classrooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1809,6 +1861,27 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_pl_classroom_requests_on_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_classroom_requests_on_classroom_id ON pl_classroom_requests USING btree (classroom_id);
+
+
+--
+-- Name: index_pl_classroom_requests_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_classroom_requests_on_course_id ON pl_classroom_requests USING btree (course_id);
+
+
+--
+-- Name: index_pl_classroom_requests_on_learner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_pl_classroom_requests_on_learner_id ON pl_classroom_requests USING btree (learner_id);
+
+
+--
 -- Name: index_pl_contents_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1997,3 +2070,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140130133012');
 INSERT INTO schema_migrations (version) VALUES ('20140130133224');
 
 INSERT INTO schema_migrations (version) VALUES ('20140130184730');
+
+INSERT INTO schema_migrations (version) VALUES ('20140205164306');
+
+INSERT INTO schema_migrations (version) VALUES ('20140206174557');

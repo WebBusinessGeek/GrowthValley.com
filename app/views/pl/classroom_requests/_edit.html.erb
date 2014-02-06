@@ -1,0 +1,54 @@
+<p>GrowthValley offers a pay what you want model between the teacher and
+the learner.  </p>
+<%= simple_form_for request, url: classroom_request_path(request) do |f| %>
+  Current Bid: <%= number_to_currency request.amount %>
+  <br>
+  <h4>Status</h4>
+  <div class="well" style="width:30%;float:left;">
+    <%= f.input :learner_approved, label: "Learner Approval", disabled: current_user.type == "Teacher" %>
+  </div>
+  <div class="well" style="wdith:70%;float:left;">
+    <%= f.input :teacher_approved, label: "Teacher Approval", disabled: current_user.type == "Learner" %>
+  </div>
+  <br>
+  <div style="clear:both;">
+    <% if request.comments.any? %>
+      <h4>Notes</h4>
+      <% request.comments.each do |comment| %>
+        <% unless comment.new_record? %>
+          <strong><%= comment.user.full_name %></strong>: <span><%= comment.body %>
+          <em style="font-size:12px;">left at: <%= l comment.created_at.localtime, format: :comment %></em></span>
+          <br>
+        <% end %>
+      <% end %>
+    <% end %>
+    <hr>
+    <p class="lead">Update your offer below.</p>
+    <%= f.input :amount, as: :decimal, label: "Amount" %>
+    <label for="pl_classroom_request_escrow" class="boolean optional control-label">Request Escrow</label>
+    <%= f.input :escrow, label: false, disabled: current_user.type == "Learner" %>
+    <%= f.simple_fields_for :comments do |fc| %>
+      <% if fc.object.new_record? %>
+        <%= fc.input :user_id, as: :hidden, input_html: {value: current_user.id } %>
+        <%= fc.input :body, as: :text, label: "New Note", input_html: {style: "height:100px;width:50%"} %>
+      <% end %>
+    <% end %>
+    <div class="form-actions">
+      <%= f.submit "Update Request", class: 'btn btn-primary' %>
+      <% if current_user.type == "Learner" && request.final_approval? %>
+        or
+        <%= f.submit "Submit Payment", id: "paybutton", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<script>
+  var el = $('input[name="pl_classroom_request[learner_approved]"]')
+  el.on('change', function() {
+    if(el.is(':checked')) {
+      $('#paybutton').removeClass('disabled');
+    } else {
+      $('#paybutton').addClass('disabled');
+    }
+  });
+</script>

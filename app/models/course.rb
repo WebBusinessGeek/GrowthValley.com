@@ -61,7 +61,7 @@ class Course < ActiveRecord::Base
   pg_search_scope :search, against: [:title, :description],
    using: {tsearch: {dictionary: "english"}}
 
-  %w[cost_per_lesson max_number_lessons private_classroom].each do |key|
+  %w[minimum_price private_classroom].each do |key|
     attr_accessible key
     scope "has_#{key}", lambda { |value| where("classroom_properties @> hstore(?, ?)", key, value) }
 

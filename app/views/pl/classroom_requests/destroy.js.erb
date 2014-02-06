@@ -1,0 +1,5 @@
+$('#<%= dom_id(@request) %>').remove()
+var x = $('#classroom_requested tbody')
+if (x.children().length == 0) {
+    x.append("<tr><td>No requests</td></tr>")
+}

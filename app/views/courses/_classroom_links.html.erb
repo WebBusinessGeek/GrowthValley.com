@@ -3,6 +3,7 @@
     <h3>Explore example classrooms being utilized by other users</h3>
     <%= format_learner_names(@course) %>
   </div>
+  <br>
   <% if current_user.courses.include?(@course) %>
   <% if current_user.type == "Teacher" %>
     <% if @course.classroom_enabled? %>
@@ -13,14 +14,24 @@
     <% end %>
   <% elsif current_user.type == "Learner" %>
     <% if @course.classroom_enabled? %>
-      <% if @classroom = current_user.has_classroom_for(@course) %>
+      <% if (@classroom = current_user.has_classroom_for(@course)) %>
         <%= link_to "My Classroom", classroom_path(@classroom), class: 'btn btn-primary' %>
       <% else %>
-        <p>Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
-        <%= link_to 'Request a classroom', classrooms_path(classroom: {course_id: @course.id, learner_id: current_user.id}), method: :post, class: 'btn btn-primary' %>
-        Classroom Price $19.99/lesson
+        <p style="width:40%">Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
+        <% if @classroom_request = current_user.has_classroomrequest_for(@course) %>
+          <%= link_to @classroom_request.status, "javascript:void(0);", class: "btn btn-primary disabled" %>
+        <% else %>
+          <%= link_to 'Request a classroom', new_classroom_request_path(course_id: @course.id), remote: :true, class: 'btn btn-primary' %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
+</div>
+<div id="classroom_request_modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
+  <div class="modal-body">
+  </div>
 </div>
