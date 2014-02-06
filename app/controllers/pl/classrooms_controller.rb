@@ -2,17 +2,14 @@ class Pl::ClassroomsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @requested, @active = [],[]
     if params[:course]
       @course = Course.find_by_slug(params[:course])
       @classrooms = Pl::UsersClassroom.where(classroom_id: @course.classroom_ids, user_id: current_user.id)
     else
       @classrooms = current_user.users_classrooms.includes(classroom: [:course])
     end
-    @classrooms.each do |classroom|
-      @requested << classroom if classroom.classroom.requested?
-      @active << classroom if classroom.classroom.active?
-    end
+    @requests = Pl::ClassroomRequest.where(course_id: current_user.course_ids) if current_user.type == "Teacher"
+    @requests = current_user.classroom_requests if current_user.type == "Learner"
   end
 
   def show

@@ -43,6 +43,8 @@ module Pl
         c.privacy = false
       end
 
+      @classroom.state = "active" if classroom_data["active"]
+
       @classroom.users << User.find(classroom_data["learner_id"])
       @classroom.users << @course.teacher
 

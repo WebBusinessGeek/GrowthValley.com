@@ -6,6 +6,7 @@ with this teacher for this course.</p>
   <%= f.input :course_id, as: :hidden, input_html: {value: @course.id } %>
   <%= f.input :learner_id, as: :hidden, input_html: {value: current_user.id } %>
   <%= f.input :amount, as: :decimal, label: "Amount" %>
+  <%= f.input :learner_approved, label: "Send for final approval?" %>
   <%= f.simple_fields_for :comments do |fc| %>
     <%= fc.input :user_id, as: :hidden, input_html: {value: current_user.id } %>
     <%= fc.input :body, as: :text, label: "Attach a message for explain what you'd wish to get

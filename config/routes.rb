@@ -1,6 +1,11 @@
 GrowthValley::Application.routes.draw do
 
-  resources :classroom_requests, module: 'pl'
+  resources :classroom_requests, module: 'pl' do
+    member do
+      post :approve
+      post :pay
+    end
+  end
 
   resources :tasks, only: [], module: 'pl' do
     member do

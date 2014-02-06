@@ -6,9 +6,8 @@
       <div class="page-header">
         <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
       </div>
-      <h2><%= t '.active.title', default: "Active Classrooms" %></h1>
       <ul id="active_classrooms" data-update-url="<%= sort_classrooms_path %>">
-        <% @active.each do |classroom| %>
+        <% @classrooms.each do |classroom| %>
           <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
             <%= render classroom.classroom %>
           <% end %>
@@ -20,14 +19,56 @@
   <div style="clear:both;">
     <h2><%= t '.requested.title', default: "Classrooms waiting for approval" %></h2>
     <p>
-      <%= t '.requested.instructions', default: "Below are projects waiting for approval" %>
+      <%= t '.requested.instructions', default: "Below are classrooms waiting for approval" %>
     </p>
-    <ul id="requested_classrooms" class="unstyled">
-      <% @requested.each do |classroom| %>
-        <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
-          <%= render classroom.classroom %>
+    <% if @requests.present? %>
+    <table id="classroom_requested" class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t '.requested.table.course', default: "Course" %></th>
+          <th><%= t '.requested.table.learner', default: "Learner" %></th>
+          <th><%= t '.requested.table.learner', default: "Bid" %></th>
+          <th><%= t '.requested.table.status', default: "Status" %></th>
+          <th><%= t '.requested.table.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @requests.each do |request| %>
+          <tr id="<%= dom_id(request) %>">
+            <td><%= request.course.title %></td>
+            <td><%= request.learner.full_name %></td>
+            <td><%= number_to_currency request.amount %></td>
+            <td><%= request.status %></td>
+            <td>
+              <% if request.awaiting_payment? && current_user.type == "Learner" %>
+                <%= link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %> |
+              <% end %>
+              <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
+              <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>
+                <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post, remote: true %> |
+              <% end %>
+              <%= link_to classroom_request_path(request), method: :delete, remote: true do %>
+                <% if current_user.type == "Teacher" %>
+                  <%= t('.requested.table.reject', default: "Reject") %>
+                <% else %>
+                  <%= t('.requested.table.cancel', default: "Cancel Request") %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      <% end %>
-    </ul>
+      </tbody>
+    </table>
+    <% else %>
+      No Classroom Requests
+    <% end %>
+  </div>
+</div>
+<div id="request_modal" class="modal fade hide">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Classroom Request</h3>
+  </div>
+  <div class="modal-body">
   </div>
 </div>
