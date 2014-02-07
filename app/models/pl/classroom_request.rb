@@ -7,8 +7,15 @@ class Pl::ClassroomRequest < ActiveRecord::Base
 
   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes['body'].blank? }
 
+  default_scope includes(:course)
   scope :completed, where("classroom_id IS NOT NULL")
   scope :incompleted, where("classroom_id IS NULL")
+
+  delegate :minimum_price, to: :course, prefix: true
+
+  validate do |request|
+    Pl::ClassroomRequestValidator.new(request).validate
+  end
 
   # A bit redundant but better code readability
   def awaiting_payment?
@@ -32,6 +39,18 @@ class Pl::ClassroomRequest < ActiveRecord::Base
       "Awaiting Learner Approval"
     else
       "Awaiting Approval by both parties"
+    end
+  end
+end
+
+class Pl::ClassroomRequestValidator
+  def initialize(record)
+    @record = record
+  end
+
+  def validate
+    if @record.amount < @record.course_minimum_price.to_i
+      @record.errors[:amount] << "Amount cannot be less than the teachers minimum asking price."
     end
   end
 end
