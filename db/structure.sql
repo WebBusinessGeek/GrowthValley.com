@@ -645,6 +645,43 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
+-- Name: payments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE payments (
+    id integer NOT NULL,
+    resource_id integer,
+    resource_type character varying(255),
+    amount numeric,
+    status character varying(255),
+    transation_id character varying(255),
+    type character varying(255),
+    params text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
+
+
+--
 -- Name: pl_attachment_teachables; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1376,6 +1413,13 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pl_attachment_teachables ALTER COLUMN id SET DEFAULT nextval('pl_attachment_teachables_id_seq'::regclass);
 
 
@@ -1620,6 +1664,14 @@ ALTER TABLE ONLY notifications
 
 
 --
+-- Name: payments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY payments
+    ADD CONSTRAINT payments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pl_attachment_teachables_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1861,6 +1913,20 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_payments_on_id_and_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_payments_on_id_and_type ON payments USING btree (id, type);
+
+
+--
+-- Name: index_payments_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_payments_on_resource_id_and_resource_type ON payments USING btree (resource_id, resource_type);
+
+
+--
 -- Name: index_pl_classroom_requests_on_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2074,3 +2140,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140130184730');
 INSERT INTO schema_migrations (version) VALUES ('20140205164306');
 
 INSERT INTO schema_migrations (version) VALUES ('20140206174557');
+
+INSERT INTO schema_migrations (version) VALUES ('20140207224136');
