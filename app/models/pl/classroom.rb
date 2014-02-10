@@ -7,6 +7,7 @@ module Pl
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
     has_many :lessons, order: :position, dependent: :destroy
     has_one :classroom_request, class_name: "Pl::ClassroomRequest", dependent: :destroy
+    has_many :transactions, as: :resource
 
     validates :course_id, presence: true
 
@@ -69,12 +70,8 @@ module Pl
       @learner ||= users.where(type: "Learner").first
     end
 
-    def price_per_lesson
-      course.classroom_properties['cost_per_lesson'].to_i
-    end
-
-    def max_number_lessons
-      course.classroom_properties['max_number_lessons'].to_i
+    def amount
+      classroom_request.amount
     end
   end
 end

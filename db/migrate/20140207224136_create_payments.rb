@@ -1,17 +1,14 @@
 class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
-      t.integer :resource_id
-      t.string :resource_type
+      t.integer :transaction_id
       t.decimal :amount
       t.string :status
-      t.string :transation_id
-      t.string :type
-      t.text :params
+      t.string :txn_id
+      t.text :data
 
       t.timestamps
     end
-    add_index :payments, [:id, :type]
-    add_index :payments, [:resource_id, :resource_type]
+    add_index :payments, :transaction_id
   end
 end

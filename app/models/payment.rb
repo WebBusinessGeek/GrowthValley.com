@@ -1,15 +1,9 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :params, :resource_id, :resource_type, :status, :transation_id, :type
+  attr_accessible :amount, :data, :status, :txn_id
 
-  # All resource models should have a token and payerID string
-  belongs_to :resource, polymorphic: true
+  belongs_to :transation
 
-  serialize :params
+  serialize :data
 
   scope :successful, where(status: 'Completed')
-
-  def paypal_values(return_url, cancel_url, notify_url)
-    # Implement in subclass
-    raise NotImplementedError, "Override paypal_values in subclass"
-  end
 end

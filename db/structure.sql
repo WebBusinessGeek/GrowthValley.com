@@ -650,13 +650,11 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 CREATE TABLE payments (
     id integer NOT NULL,
-    resource_id integer,
-    resource_type character varying(255),
+    transaction_id integer,
     amount numeric,
     status character varying(255),
-    transation_id character varying(255),
-    type character varying(255),
-    params text,
+    txn_id character varying(255),
+    data text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1245,6 +1243,40 @@ ALTER SEQUENCE subscriptions_id_seq OWNED BY subscriptions.id;
 
 
 --
+-- Name: transactions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE transactions (
+    id integer NOT NULL,
+    "payerID" character varying(255),
+    payment_token character varying(255),
+    resource_id integer,
+    resource_type character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE transactions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1532,6 +1564,13 @@ ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscription
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY transactions ALTER COLUMN id SET DEFAULT nextval('transactions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -1800,6 +1839,14 @@ ALTER TABLE ONLY subscriptions
 
 
 --
+-- Name: transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY transactions
+    ADD CONSTRAINT transactions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1913,17 +1960,10 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
--- Name: index_payments_on_id_and_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_payments_on_transaction_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_payments_on_id_and_type ON payments USING btree (id, type);
-
-
---
--- Name: index_payments_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_payments_on_resource_id_and_resource_type ON payments USING btree (resource_id, resource_type);
+CREATE INDEX index_payments_on_transaction_id ON payments USING btree (transaction_id);
 
 
 --
@@ -1987,6 +2027,13 @@ CREATE INDEX index_pl_tasks_on_checklist_id ON pl_tasks USING btree (checklist_i
 --
 
 CREATE INDEX index_pl_users_classrooms_on_user_id_and_classroom_id ON pl_users_classrooms USING btree (user_id, classroom_id);
+
+
+--
+-- Name: index_transactions_on_resource_id_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_resource_id_and_resource_id ON transactions USING btree (resource_id, resource_id);
 
 
 --
@@ -2142,3 +2189,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140205164306');
 INSERT INTO schema_migrations (version) VALUES ('20140206174557');
 
 INSERT INTO schema_migrations (version) VALUES ('20140207224136');
+
+INSERT INTO schema_migrations (version) VALUES ('20140210183840');
