@@ -48,7 +48,7 @@
                 <% end %>
                 <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
                 <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>
-                  <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post, remote: true %> |
+                  <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post %> |
                 <% end %>
                 <%= link_to classroom_request_path(request), method: :delete, remote: true do %>
                   <% if current_user.type == "Teacher" %>

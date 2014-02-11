@@ -1,5 +1,6 @@
 class PaypalWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => false
 
   def perform(tran_id)
     @transaction = Transaction.find(tran_id)

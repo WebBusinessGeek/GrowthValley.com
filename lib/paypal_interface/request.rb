@@ -80,10 +80,10 @@ module PaypalInterface
       # Access Response
       if @do_express_checkout_payment_response.success?
         details = @do_express_checkout_payment_response.DoExpressCheckoutPaymentResponseDetails
-        @tran.set_payment_details(prepare_express_checkout_response(details))
+        @tran.set_payment_details(details)
       else
         errors = @do_express_checkout_payment_response.Errors # => Array
-        @tran.save_payment_errors errors
+        @tran.save_payment_errors(errors)
       end
     end
   end

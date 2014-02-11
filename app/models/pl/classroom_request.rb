@@ -20,7 +20,16 @@ class Pl::ClassroomRequest < ActiveRecord::Base
 
   # A bit redundant but better code readability
   def awaiting_payment?
-    final_approval?
+    final_approval? && !payment_made?
+  end
+
+  def payment_made?
+    return false unless transactions.any?
+    if transactions.last.completed?
+      return true
+    else
+      return false
+    end
   end
 
   def final_approval?
@@ -38,8 +47,14 @@ class Pl::ClassroomRequest < ActiveRecord::Base
       "Awaiting Teacher Approval"
     elsif teacher_approved? && !learner_approved?
       "Awaiting Learner Approval"
-    else
+    elsif !learner_approved? && !teacher_approved?
       "Awaiting Approval by both parties"
+    elsif transactions.any?
+      "Payment processing"
+    elsif payment_made?
+      "Payment made and classroom created"
+    else
+      "Initiated"
     end
   end
 end

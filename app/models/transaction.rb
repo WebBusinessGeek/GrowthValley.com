@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   has_one :payment
 
-  scope :in_progress, ->(user) {where("user_id = ? AND payment_token IS NULL", user)}
+  scope :in_progress, ->(user) {where("user_id = ? AND payment_token IS NOT NULL AND status IS NULL", user)}
 
   delegate :amount, to: :resource
   alias_method :total, :amount
@@ -14,8 +14,9 @@ class Transaction < ActiveRecord::Base
     begin
       transaction = self.find_by_payment_token(token)
       transaction.payerID = payerID
+      transaction.status = "In Progress"
       transaction.save
-      # PaypalWorker.perform_async(order.id)
+      PaypalWorker.perform_async(transaction.id)
       return transaction
     rescue
       false
@@ -34,11 +35,33 @@ class Transaction < ActiveRecord::Base
   end
 
   def set_payment_details(details)
-    self.create_payment(data: details)
+    @payment = self.build_payment(data: details.inspect.to_s)
+    @payment.txn_id = details.PaymentInfo[0].TransactionID
+    @payment.status = details.PaymentInfo[0].PaymentStatus
+    @payment.amount = details.PaymentInfo[0].GrossAmount.value
+    @payment.save
+    self.status = "Completed"
+    self.save
+    case self.resource_type
+    when 'Pl::ClassroomRequest'
+      @classroom = Pl::Classroom.add_classroom({
+        "course_id" => self.resource.course_id,
+        "learner_id" => self.resource.learner_id,
+        "active" => true
+      })
+      if @classroom
+        self.resource.update_attribute(:classroom_id, @classroom)
+      end
+    else
+    end
   end
 
   def save_payment_errors(errors)
-    self.create_payment(data: errors)
+    @payment = self.build_payment(data: errors)
+    @payment.status = "Error"
+    @payment.save
+    self.status = "Error"
+    self.save
   end
 
   def code
@@ -46,6 +69,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def set_payment_token(token)
-    update_attribute(:payment_token, token)
+    self.payment_token = token
+    self.save
+  end
+
+  def completed?
+    status == 'Completed'
   end
 end

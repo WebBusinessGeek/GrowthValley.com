@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
   def new
      @transaction = @resource.transactions.in_progress(current_user.id).last
      unless @transaction
-       @transaction = Transaction.create!(resource: @resource, user_id: current_user.id)
+       @transaction = Transaction.new(resource: @resource, user_id: current_user.id)
      end
      @paypal = PaypalInterface::Request.new(@transaction)
      @paypal.express_checkout
