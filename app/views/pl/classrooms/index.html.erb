@@ -43,7 +43,8 @@
               <td><%= request.status %></td>
               <td>
                 <% if request.awaiting_payment? && current_user.type == "Learner" %>
-                  <%= link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %> |
+                  <%# link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %>
+                  <%= link_to 'Pay', new_transaction_path(resource_type: request.class, resource_id: request.id) %> |
                 <% end %>
                 <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
                 <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>

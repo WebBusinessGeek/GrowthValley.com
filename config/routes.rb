@@ -1,5 +1,13 @@
 GrowthValley::Application.routes.draw do
 
+  resources :transactions do
+    collection do
+      get :paid
+      get :revoked
+      post :ipn
+    end
+  end
+
   resources :classroom_requests, module: 'pl' do
     member do
       post :approve

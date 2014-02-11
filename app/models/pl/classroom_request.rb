@@ -4,6 +4,7 @@ class Pl::ClassroomRequest < ActiveRecord::Base
   belongs_to :learner, class_name: "Learner", foreign_key: 'learner_id'
   belongs_to :classrooom, class_name: "Pl::Classroom", foreign_key: 'classroom_id'
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :transactions, as: :resource
 
   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes['body'].blank? }
 

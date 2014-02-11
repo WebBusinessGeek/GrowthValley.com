@@ -1248,10 +1248,13 @@ ALTER SEQUENCE subscriptions_id_seq OWNED BY subscriptions.id;
 
 CREATE TABLE transactions (
     id integer NOT NULL,
+    user_id integer,
     "payerID" character varying(255),
     payment_token character varying(255),
     resource_id integer,
     resource_type character varying(255),
+    transfer boolean,
+    status character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2034,6 +2037,20 @@ CREATE INDEX index_pl_users_classrooms_on_user_id_and_classroom_id ON pl_users_c
 --
 
 CREATE INDEX index_transactions_on_resource_id_and_resource_id ON transactions USING btree (resource_id, resource_id);
+
+
+--
+-- Name: index_transactions_on_status; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_status ON transactions USING btree (status);
+
+
+--
+-- Name: index_transactions_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_user_id ON transactions USING btree (user_id);
 
 
 --

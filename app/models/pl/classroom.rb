@@ -7,7 +7,6 @@ module Pl
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
     has_many :lessons, order: :position, dependent: :destroy
     has_one :classroom_request, class_name: "Pl::ClassroomRequest", dependent: :destroy
-    has_many :transactions, as: :resource
 
     validates :course_id, presence: true
 
