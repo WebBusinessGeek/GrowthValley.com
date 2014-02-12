@@ -645,6 +645,41 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
+-- Name: payments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE payments (
+    id integer NOT NULL,
+    transaction_id integer,
+    amount numeric,
+    status character varying(255),
+    txn_id character varying(255),
+    data text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
+
+
+--
 -- Name: pl_attachment_teachables; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1208,6 +1243,43 @@ ALTER SEQUENCE subscriptions_id_seq OWNED BY subscriptions.id;
 
 
 --
+-- Name: transactions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE transactions (
+    id integer NOT NULL,
+    user_id integer,
+    "payerID" character varying(255),
+    payment_token character varying(255),
+    resource_id integer,
+    resource_type character varying(255),
+    transfer boolean,
+    status character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE transactions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1376,6 +1448,13 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pl_attachment_teachables ALTER COLUMN id SET DEFAULT nextval('pl_attachment_teachables_id_seq'::regclass);
 
 
@@ -1482,6 +1561,13 @@ ALTER TABLE ONLY subjects ALTER COLUMN id SET DEFAULT nextval('subjects_id_seq':
 --
 
 ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY transactions ALTER COLUMN id SET DEFAULT nextval('transactions_id_seq'::regclass);
 
 
 --
@@ -1620,6 +1706,14 @@ ALTER TABLE ONLY notifications
 
 
 --
+-- Name: payments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY payments
+    ADD CONSTRAINT payments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pl_attachment_teachables_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1748,6 +1842,14 @@ ALTER TABLE ONLY subscriptions
 
 
 --
+-- Name: transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY transactions
+    ADD CONSTRAINT transactions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1861,6 +1963,13 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_payments_on_transaction_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_payments_on_transaction_id ON payments USING btree (transaction_id);
+
+
+--
 -- Name: index_pl_classroom_requests_on_classroom_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1921,6 +2030,27 @@ CREATE INDEX index_pl_tasks_on_checklist_id ON pl_tasks USING btree (checklist_i
 --
 
 CREATE INDEX index_pl_users_classrooms_on_user_id_and_classroom_id ON pl_users_classrooms USING btree (user_id, classroom_id);
+
+
+--
+-- Name: index_transactions_on_resource_id_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_resource_id_and_resource_id ON transactions USING btree (resource_id, resource_id);
+
+
+--
+-- Name: index_transactions_on_status; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_status ON transactions USING btree (status);
+
+
+--
+-- Name: index_transactions_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_transactions_on_user_id ON transactions USING btree (user_id);
 
 
 --
@@ -2074,3 +2204,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140130184730');
 INSERT INTO schema_migrations (version) VALUES ('20140205164306');
 
 INSERT INTO schema_migrations (version) VALUES ('20140206174557');
+
+INSERT INTO schema_migrations (version) VALUES ('20140207224136');
+
+INSERT INTO schema_migrations (version) VALUES ('20140210183840');

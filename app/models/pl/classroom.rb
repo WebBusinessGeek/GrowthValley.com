@@ -69,12 +69,8 @@ module Pl
       @learner ||= users.where(type: "Learner").first
     end
 
-    def price_per_lesson
-      course.classroom_properties['cost_per_lesson'].to_i
-    end
-
-    def max_number_lessons
-      course.classroom_properties['max_number_lessons'].to_i
+    def amount
+      classroom_request.amount
     end
   end
 end

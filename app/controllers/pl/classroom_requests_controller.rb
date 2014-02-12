@@ -53,20 +53,20 @@ class Pl::ClassroomRequestsController < ApplicationController
   end
 
   def pay
-    @request = Pl::ClassroomRequest.find(params[:id])
-    unauthorized if current_user != @request.learner
-    # future pay code
-    @classroom = Pl::Classroom.add_classroom({
-      "course_id" => @request.course_id,
-      "learner_id" => @request.learner_id,
-      "active" => true
-    })
-    if @classroom
-      @request.update_attribute(classroom_id: @classroom.id)
-      redirect_to classroom_path(@classroom), notice: "Payment recieved and classroom created successfully."
-    else
-      redirect_to classrooms_path, warn: "Payment request unsuccessful."
-    end
+    # @request = Pl::ClassroomRequest.find(params[:id])
+    # unauthorized if current_user != @request.learner
+    # # future pay code
+    # @classroom = Pl::Classroom.add_classroom({
+    #   "course_id" => @request.course_id,
+    #   "learner_id" => @request.learner_id,
+    #   "active" => true
+    # })
+    # if @classroom
+    #   @request.update_attribute(classroom_id: @classroom)
+    #   redirect_to classroom_path(@classroom), notice: "Payment recieved and classroom created successfully."
+    # else
+    #   redirect_to classrooms_path, warn: "Payment request unsuccessful."
+    # end
   end
 
   private

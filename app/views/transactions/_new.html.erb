@@ -1,0 +1,27 @@
+<div class="hero-unit" style="float:left;margin-left:200px;">
+  <h2>Confirm Payment</h2>
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= @resource.course_title %></td>
+            <td><%= @transaction.resource.class.name.demodulize.titleize %></td>
+            <td><%= @transaction.total %></td>
+        </tr>
+    </tbody>
+  </table>
+  <div>Click the button below to make payment</div>
+  <p><%= link_to @paypal_url do %>
+    <img src="https://www.paypalobjects.com/it_IT/IT/Marketing/i/bnr/bnr_horizontal_solutiongraphic_335x80.gif" style="margin-right:7px;" />
+  <% end %></p>
+</div>
+<%# @resource.inspect %>
+<%# @transaction.inspect %>
+<%# @paypal %>

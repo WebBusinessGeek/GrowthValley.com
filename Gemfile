@@ -54,6 +54,12 @@ gem 'rails_config'
 gem 'activerecord-postgres-hstore'
 gem 'state_machine'
 gem 'acts_as_list'
+# Paypal
+gem 'paypal-sdk-merchant'
+# Sidekiq
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
@@ -72,6 +78,10 @@ group :test do
 end
 
 group :development do
+  gem 'jazz_hands'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'letter_opener'
   gem 'quiet_assets'
-  gem "letter_opener"
+  gem 'rack-mini-profiler'
 end
