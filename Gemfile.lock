@@ -266,6 +266,8 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    puma (2.7.1)
+      rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -288,8 +290,13 @@ GEM
       bundler (~> 1.0)
       railties (= 3.2.14)
     rails-rateit (0.2)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_config (0.3.3)
       activesupport (>= 3.0)
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (3.2.14)
       actionpack (= 3.2.14)
       activesupport (= 3.2.14)
@@ -448,10 +455,12 @@ DEPENDENCIES
   paypal-sdk-merchant
   pg
   pg_search (~> 0.7.0)
+  puma
   quiet_assets
   rack-mini-profiler
   rails (= 3.2.14)
   rails-rateit
+  rails_12factor
   rails_config
   rb-fsevent
   rb-inotify (~> 0.9)

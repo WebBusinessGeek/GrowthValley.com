@@ -85,3 +85,8 @@ group :development do
   gem 'quiet_assets'
   gem 'rack-mini-profiler'
 end
+
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
