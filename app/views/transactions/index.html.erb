@@ -1,3 +1,33 @@
-<% @transactions.each do |t| %>
-  <%= t.inspect %>
-<% end %>
+<%= render :partial => "layouts/inner_nav", :locals => { :current => "transactions" } %>
+<div class="pagination-centered">
+  <h2><%= t '.transacted.title', default: "Transactions" %></h2>
+  <p>
+    <%= t '.transacted.instructions', default: "below is a your payment history" %>
+  </p>
+</div>
+<table id="transacted" class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t '.transacted.table.code', default: "Description" %></th>
+      <th><%= t '.transacted.table.amount', default: "Amount" %></th>
+      <th><%= t '.transacted.table.status', default: "Status" %></th>
+      <th><%= t '.transacted.table.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @transactions.present? %>
+      <% @transactions.each do |transaction| %>
+        <tr id="<%= dom_id(transaction) %>">
+          <td><%= transaction.code %></td>
+          <td><%= transaction.total%></td>
+          <td><%= transaction.status %></td>
+          <td><%=  %></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><td></td><td>No Transactions found</td><td></td></tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_resource, except: [:paid, :ipn,:revoked, :index]
+  before_filter :get_resource, except: [:paid, :ipn, :revoked, :index]
 
   def index
     @transactions = current_user.transactions
@@ -22,9 +22,9 @@ class TransactionsController < ApplicationController
 
   def paid
     if @transaction = Transaction.pay(params[:token], params[:PayerID])
-      msg = "yay"
+      msg = "Payment made successfully."
     else
-      msg = "boo"
+      msg = "A problem occured during the payment process, please attempt again."
     end
     redirect_to transactions_path, notice: msg
   end

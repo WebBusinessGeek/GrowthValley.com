@@ -13,6 +13,7 @@ class Pl::ClassroomRequest < ActiveRecord::Base
   scope :incompleted, where("classroom_id IS NULL")
 
   delegate :minimum_price, to: :course, prefix: true
+  delegate :title, to: :course, prefix: true
 
   validate do |request|
     Pl::ClassroomRequestValidator.new(request).validate

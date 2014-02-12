@@ -1,20 +1,20 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: AZ6QyBCEMUjlJxggcgtVBmKNHdyqKTtey9pwo9ANkqxSiPiptuhSVM_DBXnO
-  client_secret: ECAc4BDqp8M7QLwL-LZFtbod5cXQpxUBBeq5fRnBY9mc8becqiCi4fVCruWy
+  client_id: <%= ENV['PAYPAL_CLIENT_ID'] %>
+  client_secret: <%= ENV['PAYPAL_CLIENT_SECRET'] %>
 
   # Mode can be 'live' or 'sandbox'
-  mode: sandbox
+  mode: <%= ENV['PAYPAL_MODE'] %>
 
   # Credentials for Classic APIs
-  app_id: APP-1RS81362V9766120D
-  username: adam.robbie-facilitator_api1.gmail.com
-  password: 1392049957
-  signature: AolubZXrkCc.G0pObQvoNEIufiqYAZRUInVeji8ItXT52NwtpWZKbgvc
+  app_id: <%= ENV['PAYPAL_APP_ID'] %>
+  username: <%= ENV['PAYPAL_USERNAME'] %>
+  password: <%= ENV['PAYPAL_PASSWORD'] %>
+  signature: <%= ENV['PAYPAL_SIGNATURE'] %>
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: adam.robbie@gmail.com
+  sandbox_email_address: <%= ENV['PAYPAL_SANDBOX_EMAIL_ADDRESS'] %>
 
   # # IP Address
   # ip_address: 127.0.0.1

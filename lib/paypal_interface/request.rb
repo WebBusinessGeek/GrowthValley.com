@@ -5,6 +5,10 @@ module PaypalInterface
   class Request
     attr_reader :api, :express_checkout_response
 
+    PAYPAL_RETURN_URL = Rails.application.routes.url_helpers.paid_transactions_url(host: HOST_WO_HTTP)
+    PAYPAL_CANCEL_URL = Rails.application.routes.url_helpers.revoked_transactions_url(host: HOST_WO_HTTP)
+    PAYPAL_NOTIFY_URL = Rails.application.routes.url_helpers.ipn_transactions_url(host: HOST_WO_HTTP)
+
     def initialize(transaction)
       @api = PayPal::SDK::Merchant::API.new
       @tran = transaction

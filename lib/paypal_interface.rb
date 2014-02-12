@@ -1,13 +1,9 @@
 module PaypalInterface
-  PAYPAL_RETURN_URL = Rails.application.routes.url_helpers.paid_transactions_url(host: HOST_WO_HTTP)
-  PAYPAL_CANCEL_URL = Rails.application.routes.url_helpers.revoked_transactions_url(host: HOST_WO_HTTP)
-  PAYPAL_NOTIFY_URL = Rails.application.routes.url_helpers.ipn_transactions_url(host: HOST_WO_HTTP)
-
   def self.send_money(email, amount, options = {})
     credentials = {
-    "USER" => "adam.robbie-facilitator_api1.gmail.com",
-    "PWD" => "1392049957",
-    "SIGNATURE" => "AolubZXrkCc.G0pObQvoNEIufiqYAZRUInVeji8ItXT52NwtpWZKbgvc",
+    "USER" => ENV['PAYPAL_USERNAME'],
+    "PWD" => ENV['PAYPAL_PASSWORD'],
+    "SIGNATURE" => ENV['PAYPAL_SIGNATURE'],
     }
 
     params = {

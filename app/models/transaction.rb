@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :resource, polymorphic: true
   belongs_to :user
-  has_one :payment
+  has_one :payment, dependent: :destroy
 
   scope :in_progress, ->(user) {where("user_id = ? AND payment_token IS NOT NULL AND status IS NULL", user)}
 
@@ -57,7 +57,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def save_payment_errors(errors)
-    @payment = self.build_payment(data: errors)
+    @payment = self.build_payment(data: errors.to_s)
     @payment.status = "Error"
     @payment.save
     self.status = "Error"
@@ -65,7 +65,12 @@ class Transaction < ActiveRecord::Base
   end
 
   def code
-    "Test Description"
+    case resource_type
+    when 'Pl::ClassroomRequest'
+      "Classroom purchased for #{resource.course.title}"
+    else
+      "$#{amount} purchase"
+    end
   end
 
   def set_payment_token(token)
