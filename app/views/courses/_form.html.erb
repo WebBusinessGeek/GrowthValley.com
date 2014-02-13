@@ -15,9 +15,9 @@
   <% else %>
     <%= f.input :course_cover_pic, required: true %>
   <% end %>
-  <% if current_user.subscription_type.downcase == 'paid' %>
+  <%# if current_user.subscription_type.downcase == 'paid' %>
     <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons %>
-  <% end %>
+  <%# end %>
   <p>Classroom settings (optional)</p>
   <%= f.input :classroom_enabled, label: "Accept Requests" %>
   <div class="form-actions">
