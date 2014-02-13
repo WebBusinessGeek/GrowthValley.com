@@ -12,6 +12,12 @@ calendar.png: f3c1668bf7063db4f1d62de1cd89620c
 courses-featured.png: ada23973518ac84a7345a614fd6b092b
 defaultuser-old.jpg: 19cab3858ba9a7971f69eeba695ea340
 defaultuser.jpg: 68366ecf2bf7618b61179ee21fb9b78d
+fallback/cover_default_bundle_pic.png: 12890af6b255fe2f506777eff0b0e707
+fallback/cover_default_course_cover_pic.png: 8ec0154b1bd95687294868f24a429dd2
+fallback/default_attachment.pdf: 841d91c8094e8b3bcddc890d77d436e7
+fallback/default_course_cover_pic.png: 0acb662b191479470e31b52a9b808ff7
+fallback/default_profile_pic.png: 3d5108c8c9c557be2d74cafc96dd73f7
+fallback/thumb_default_bundle_pic.png: defceb73c22b361608450734f21d943d
 favicon.ico: 1b13569e9620782f423d4cd3ce931750
 footerbg.png: 43eaf59716b704d2b8a4af5a14173af6
 loading.gif: 46b8dca6411506034c1f0f555ab850af
@@ -24,7 +30,7 @@ shadow_right.png: c756b061f2c2c94d23a9948af77d8827
 slider2.png: 6c43a7379372bf679adde8c2a178a9f2
 sprite.png: dfc3dd47c8155b39ca4d40b298657a11
 active_admin.js: a3c7708afd3b3b1873f36a9df056681f
-application.js: 780e5dcfa8a8b1ec844d6e902be48ca6
+application.js: ac22c89c5a94ee1d55f8c17e99423b6c
 blog/admin/application.js: 73633184245b40cdeae798ec6e9a98dd
 blog/application.js: 97dae31869c62bf47541eb9a08f46855
 active_admin.css: 126de500031687fd199edd3b9cc25776

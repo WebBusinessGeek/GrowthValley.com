@@ -9,7 +9,7 @@ class Bundle < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :transactions, as: :resource
 
-  validates_presence_of :name, :price, :course_ids, :bundle_pic
+  validates_presence_of :name, :price, :course_ids
 
   mount_uploader :bundle_pic, BundlePicUploader
 
