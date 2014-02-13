@@ -41,7 +41,7 @@
 		    </div>
 	    <% else %>
 		    <div id="buy_bundle">
-		      <%= link_to "Buy Bundle", new_premium_course_path(:bundle_id => @bundle.id), :class => "btn btn-primary" %>
+		      <%= link_to "Buy Bundle", new_transaction_path(resource_type: @bundle.class.to_s, resource_id: @bundle.id), :class => "btn btn-primary" %>
 		    </div>
 	    <% end %>
 	  </div>

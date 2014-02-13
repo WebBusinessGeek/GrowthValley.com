@@ -3,6 +3,8 @@ class Course < ActiveRecord::Base
   attr_accessible :title, :course_cover_pic, :course_cover_pic_cache, :remove_course_cover_pic, :description, :is_published, :content_type,
   :sections_count, :status, :is_paid, :price, :subject_id, :sections_attributes, :ratings_attributes, :slug, :classroom_enabled
 
+  alias_attribute :amount, :price
+  alias_attribute :course_title, :title
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -148,14 +150,6 @@ class Course < ActiveRecord::Base
 
   def teacher
     users.where(:type => 'Teacher').first
-  end
-
-  def amount
-    price
-  end
-
-  def course_title
-    title
   end
 
   private

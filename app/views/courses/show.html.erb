@@ -107,7 +107,7 @@
 	  <div class='tab-content'>
 		<% unlock_counter = 1 %>
 		<% unlock = true %>
-		<% @course.sections.each do |section| %>
+		<% @course.sections.each_with_index do |section, index| %>
 			<% if @current_subscription.current_section.present? %>
 				<% if @current_subscription.current_section.to_i == unlock_counter.to_i %>
 					<% classname = 'active' %>
@@ -141,7 +141,7 @@
 				<% end %>
 			  </li>
 			</ul>
-			  <% if unlock && @current_subscription.paid? %>
+			  <% if (unlock && @current_subscription.paid?) || index == 0 %>
 			  <div style="text-align:center;margin-top:10px;">
 			    <% if File.extname(section.attachment.url) != '.pdf' %>
 			      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
@@ -157,7 +157,7 @@
 			  <% else %>
 			  <div style="text-align:center;margin-top:10px;">
                 <% unless @current_subscription.paid? %>
-				  Submit a payment to unlcok future sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
+				  Submit a payment to unlcok more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
                 <% else %>
                   This section is currently locked. To unlock it kindly study previous sections and give associated test.
                 <% end %>

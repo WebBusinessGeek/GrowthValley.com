@@ -13,7 +13,7 @@
         <tr>
             <td><%= @resource.course_title %></td>
             <td><%= @transaction.resource.class.name.demodulize.titleize %></td>
-            <td><%= @transaction.total %></td>
+            <td><%= number_to_currency @transaction.total %></td>
         </tr>
     </tbody>
   </table>

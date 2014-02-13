@@ -1,9 +1,13 @@
 class Bundle < ActiveRecord::Base
   attr_accessible :bundle_pic, :name, :price, :course_ids, :active, :available
 
-  has_and_belongs_to_many :courses
+  alias_attribute :title, :name
+  alias_attribute :course_title, :name
+  alias_attribute :amount, :price
 
+  has_and_belongs_to_many :courses
   has_and_belongs_to_many :users
+  has_many :transactions, as: :resource
 
   validates_presence_of :name, :price, :course_ids, :bundle_pic
 

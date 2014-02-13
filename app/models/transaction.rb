@@ -43,6 +43,14 @@ class Transaction < ActiveRecord::Base
     self.status = "Completed"
     self.save
     case self.resource_type
+    when 'Bundle'
+      unless user.bundles.include?(resource)
+        user.bundles.push(resource)
+      end
+    when 'Course'
+      @subscription = self.user.subscriptions.where(course_id: self.resource_id).last
+      @subscription.update_attribute :paid, true
+      PremiumCourse.create(user_id: self.user, amount: resource.price.to_i, course_id: resource_id)
     when 'Pl::ClassroomRequest'
       @classroom = Pl::Classroom.add_classroom({
         "course_id" => self.resource.course_id,
@@ -66,6 +74,10 @@ class Transaction < ActiveRecord::Base
 
   def code
     case resource_type
+    when 'Bundle'
+      "Bundle purchase for #{resource.title}"
+    when 'Course'
+      "Course purchase for #{resource.title}"
     when 'Pl::ClassroomRequest'
       "Classroom purchased for #{resource.course.title}"
     when 'Pl::Classroom'
@@ -82,5 +94,13 @@ class Transaction < ActiveRecord::Base
 
   def completed?
     status == 'Completed'
+  end
+
+  def resource
+    if self.nil?
+      "test"
+    else
+      super
+    end
   end
 end

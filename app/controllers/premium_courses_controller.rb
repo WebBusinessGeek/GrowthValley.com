@@ -28,18 +28,12 @@ class PremiumCoursesController < ApplicationController
     def subscribe_to_course
       if session[:course_id].present?
         course = Course.find_by_id(session[:course_id])
-        premium_course = PremiumCourse.new(:user_id => current_user.id, :amount => course.price.to_i, :course_id => course.id)
+        current_user.courses << course unless current_user.courses.include?(course)
+        course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
+        add_activity_stream('COURSE', course, 'subscribe')
+        session[:course_id] = nil
 
-        if premium_course.save
-          current_user.courses << course unless current_user.courses.include?(course)
-          course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
-          add_activity_stream('COURSE', course, 'subscribe')
-          session[:course_id] = nil
-
-          redirect_to course_path(course), notice: 'Course subscribed successfully!'
-        else
-          render :new
-        end
+        redirect_to course_path(course), notice: 'Course subscribed successfully!'
       elsif session[:bundle_id].present?
         bundle = Bundle.find_by_id(session[:bundle_id])
 
