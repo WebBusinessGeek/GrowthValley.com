@@ -1,4 +1,3 @@
-require 'paypal_interface'
 require 'paypal-sdk-merchant'
 
 module PaypalInterface

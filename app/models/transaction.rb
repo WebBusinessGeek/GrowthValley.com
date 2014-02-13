@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :payerID, :resource_id, :resource_type, :payment_token, :user_id, :resource
+  attr_accessible :payerID, :resource_id, :resource_type, :payment_token, :user_id, :resource, :transfer
 
   belongs_to :resource, polymorphic: true
   belongs_to :user
@@ -68,6 +68,8 @@ class Transaction < ActiveRecord::Base
     case resource_type
     when 'Pl::ClassroomRequest'
       "Classroom purchased for #{resource.course.title}"
+    when 'Pl::Classroom'
+      "Classroom payment to #{resource.teacher.full_name}"
     else
       "$#{amount} purchase"
     end

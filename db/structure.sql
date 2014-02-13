@@ -1219,7 +1219,8 @@ CREATE TABLE subscriptions (
     progress character varying(255),
     progress_percentage integer DEFAULT 0,
     score integer,
-    final_result character varying(255)
+    final_result character varying(255),
+    paid boolean DEFAULT false
 );
 
 
@@ -1309,7 +1310,8 @@ CREATE TABLE users (
     updated_at timestamp without time zone NOT NULL,
     provider character varying(255),
     uid character varying(255),
-    date_of_birth date
+    date_of_birth date,
+    paypal_email character varying(255)
 );
 
 
@@ -2208,3 +2210,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140206174557');
 INSERT INTO schema_migrations (version) VALUES ('20140207224136');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210183840');
+
+INSERT INTO schema_migrations (version) VALUES ('20140212192252');
+
+INSERT INTO schema_migrations (version) VALUES ('20140212225929');

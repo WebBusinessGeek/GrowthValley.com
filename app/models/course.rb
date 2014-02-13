@@ -8,47 +8,39 @@ class Course < ActiveRecord::Base
 
   has_many :classrooms, class_name: "Pl::Classroom"
   has_and_belongs_to_many :bundles
-
   has_many :subscriptions, dependent: :destroy
-  accepts_nested_attributes_for :subscriptions, :allow_destroy => true
-
   has_many :users, through: :subscriptions
-  accepts_nested_attributes_for :users, :allow_destroy => true
-
   belongs_to :subject
-
-  validates :subject, presence: true, if: :active_or_on_subject_step?
-
   has_many :sections, dependent: :destroy
-  accepts_nested_attributes_for :sections, :allow_destroy => true
-  validates :sections, :length => { minimum: 1, maximum: 5 }, if: :active_or_on_sections_step?
-
   has_one :exam, dependent: :destroy
-  accepts_nested_attributes_for :exam, :allow_destroy => true
-
-  has_many :ratings, dependent: :destroy
-  accepts_nested_attributes_for :ratings, :allow_destroy => true
-
-#  has_many :charges, dependent: :destroy
-#  accepts_nested_attributes_for :charges, :allow_destroy => true
-
   has_many :premium_courses, dependent: :destroy
-  accepts_nested_attributes_for :premium_courses, :allow_destroy => true
-
   has_many :learners_exams, dependent: :destroy
+  has_many :recommended_courses, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :transactions, as: :resource
+
+  accepts_nested_attributes_for :users, :allow_destroy => true
+  accepts_nested_attributes_for :subscriptions, :allow_destroy => true
+  accepts_nested_attributes_for :sections, :allow_destroy => true
+  accepts_nested_attributes_for :ratings, :allow_destroy => true
+  accepts_nested_attributes_for :exam, :allow_destroy => true
+  accepts_nested_attributes_for :recommended_courses, :allow_destroy => true
+  accepts_nested_attributes_for :premium_courses, :allow_destroy => true
   accepts_nested_attributes_for :learners_exams, :allow_destroy => true
 
-  has_many :recommended_courses, dependent: :destroy
-  accepts_nested_attributes_for :recommended_courses, :allow_destroy => true
+  #  has_many :charges, dependent: :destroy
+  #  accepts_nested_attributes_for :charges, :allow_destroy => true
 
   mount_uploader :course_cover_pic, CourseCoverPicUploader
 
   CONTENT_TYPES = [ ['PDF', 'pdf'], ['Video', 'video'], ['Both', 'both'] ]
 
+  validates :sections, :length => { minimum: 1, maximum: 5 }, if: :active_or_on_sections_step?
   validates :title, presence: true, uniqueness: true
 #  validates :content_type, inclusion: { in: %w(pdf video both), message: "Invalid selection, allowed course types: #{%w(pdf video)}" }, if: :active_or_on_type_step?
   validate :sections_count_validation, if: :active_or_on_sections_count_step?
   validate :price, presence: true, numericality: true, if: :active_or_on_price_step?
+  validates :subject, presence: true, if: :active_or_on_subject_step?
 
   scope :free_user_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'free', false, true) }
   scope :paid_user_free_published_courses, ->(user_id) { includes(:users).where("users.id = ? and users.type = ? and users.subscription_type = ? and is_paid = ? and is_published = ?", user_id, 'Teacher', 'paid', false, true) }
@@ -156,6 +148,14 @@ class Course < ActiveRecord::Base
 
   def teacher
     users.where(:type => 'Teacher').first
+  end
+
+  def amount
+    price
+  end
+
+  def course_title
+    title
   end
 
   private

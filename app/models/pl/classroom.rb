@@ -7,7 +7,7 @@ module Pl
     has_many :users, through: :users_classrooms, class_name: "User", uniq: true
     has_many :lessons, order: :position, dependent: :destroy
     has_one :classroom_request, class_name: "Pl::ClassroomRequest", dependent: :destroy
-
+    has_many :transactions, as: :resource
     validates :course_id, presence: true
 
     state_machine :state, initial: :requested do
@@ -23,14 +23,18 @@ module Pl
     end
 
     state_machine :pay_state, initial: :inactive, namespace: 'payment' do
-      event :request_payment do
+      event :request do
         transition :inactive => :requested, if: :active?
       end
 
-      event :approve_payment do
+      event :approve do
         transition :requested => :approved, if: :active?
       end
+
+      after_transition on: :approve, do: :transfer
     end
+
+    delegate :title, to: :course, prefix: true
 
     def self.add_classroom(classroom_data)
       @course = Course.find(classroom_data["course_id"])
@@ -72,5 +76,10 @@ module Pl
     def amount
       classroom_request.amount
     end
+
+    private
+      def transfer
+        PaypalTransferWorker.perform_async(self.id)
+      end
   end
 end

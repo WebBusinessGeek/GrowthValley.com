@@ -141,7 +141,7 @@
 				<% end %>
 			  </li>
 			</ul>
-			  <% if unlock %>
+			  <% if unlock && @current_subscription.paid? %>
 			  <div style="text-align:center;margin-top:10px;">
 			    <% if File.extname(section.attachment.url) != '.pdf' %>
 			      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
@@ -156,7 +156,11 @@
 			  </div>
 			  <% else %>
 			  <div style="text-align:center;margin-top:10px;">
-					This section is currently locked. To unlock it kindly study previous sections and give associated test.
+                <% unless @current_subscription.paid? %>
+				  Submit a payment to unlcok future sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
+                <% else %>
+                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
+                <% end %>
 			  </div>
 			  <% end %>
 		  </div>

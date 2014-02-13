@@ -16,7 +16,11 @@
       <% if user_signed_in? %>
         <% if current_user == @classroom.teacher %>
           <% if @classroom.active? && @classroom.payment_inactive? %>
-            <%= link_to "Request Classroom Payment", "javascript:void(0);", class: 'btn btn-primary' %>
+            <%= link_to "Request Classroom Payment", classroom_request_payment_path(@classroom), method: :post, class: 'btn btn-primary' %>
+          <% elsif @classroom.active? && @classroom.payment_requested? %>
+            <%= link_to "Payment requested", "javascript:void(0);", class: "btn btn-primary disabled" %>
+          <% elsif @classroom.active? && @classroom.payment_approved? %>
+            <%= link_to "Payment approved and awaiting transfer", "javascript:void(0);", class: 'btn btn-primary disabled' %>
           <% end %>
           <% if @classroom.privacy? %>
             <%= link_to "Make Classroom Public", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-primary' %>
@@ -25,7 +29,7 @@
           <% end %>
         <% elsif current_user == @classroom.learner %>
           <% if @classroom.active? && @classroom.payment_requested? %>
-            <%= link_to "Approve Classroom Payment", "javascript:void(0);" %>
+            <%= link_to "Approve Classroom Payment", classroom_approve_payment_path(@classroom), method: :post, class: "btn btn-primary" %>
           <% end %>
         <% end %>
       <% end %>

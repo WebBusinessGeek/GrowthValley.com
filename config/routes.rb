@@ -34,6 +34,8 @@ GrowthValley::Application.routes.draw do
   resources :classrooms, module: 'pl' do
     post :approve
     post :deny
+    post :request_payment
+    post :approve_payment
     member do
       post :toggle_privacy
     end

@@ -77,4 +77,33 @@ class Pl::ClassroomsController < ApplicationController
     end
   end
 
+  def request_payment
+    @classroom = Pl::Classroom.find(params[:classroom_id])
+    if @classroom.teacher != current_user
+      redirect_to :back, notice: "Not authorized"
+    else
+      if @classroom.active? && @classroom.payment_inactive?
+        @classroom.request_payment
+        msg = "Payment requested."
+      else
+        msg = "Payment already requested"
+      end
+      redirect_to classroom_path(@classroom), notice: msg
+    end
+  end
+
+   def approve_payment
+    @classroom = Pl::Classroom.find(params[:classroom_id])
+    if @classroom.learner != current_user
+      redirect_to :back, notice: "Not authorized"
+    else
+      if @classroom.active? && @classroom.payment_requested?
+        @classroom.approve_payment
+        redirect_to classroom_path(@classroom)
+      else
+        redirect_to classroom_path(@classroom), notice: "Payment already approved"
+      end
+    end
+  end
+
 end
