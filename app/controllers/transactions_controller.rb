@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
      if @paypal.express_checkout_response.success?
        @paypal_url = @paypal.api.express_checkout_url(@paypal.express_checkout_response)
      else
-       redirect_to :back, "error"
+       redirect_to :back
      end
   end
 

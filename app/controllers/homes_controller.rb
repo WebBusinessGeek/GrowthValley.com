@@ -26,18 +26,19 @@ class HomesController < ApplicationController
   
   def index
     if current_user && current_user.type == 'Learner'
-		redirect_to dashboard_path()
-		return
+		  redirect_to dashboard_path()
+		  return
     else
-		@current_menu = "home"
-		if !current_user
-		  @courses = Course.all_published.page(params[:page])
-		elsif current_user.type == 'Teacher'
-		  @courses = Course.all_published.page(params[:page])
-		elsif current_user.type == 'Learner'
-		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).page(params[:page])
-		end
-	end
+  		@current_menu = "home"
+  		if !current_user
+  		  @courses = Course.all_published.page(params[:page])
+  		elsif current_user.type == 'Teacher'
+  		  @courses = Course.all_published.page(params[:page])
+  		elsif current_user.type == 'Learner'
+  		  @courses = Course.all_published_courses_for_subjects(current_user.subjects).page(params[:page])
+  		end
+	 end
+   render :layout => 'home_new'
   end
 
   def about_us

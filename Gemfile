@@ -61,6 +61,9 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 
+# Heroku
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
   gem 'guard-rspec', '2.5.0'
@@ -87,5 +90,6 @@ group :development do
 end
 
 group :production do
+  gem 'puma'
   gem 'rails_12factor'
 end

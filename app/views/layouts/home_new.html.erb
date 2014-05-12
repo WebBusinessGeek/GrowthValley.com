@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= content_for?(:title) ? yield(:title) : "GrowthValley" %></title>
+<%= csrf_meta_tags %>
+<%= stylesheet_link_tag "home_new", :media => "all" %>
+<%= javascript_include_tag "home_new" %>
+</head>
+<body>
+  <!-- Start Overlay -->
+  <div id="overlay"></div>
+  <!-- End Overlay -->
+
+  <!-- Start Special Centered Box -->
+<!--   <div id="specialBox">
+    <span><%=image_tag("loading.gif")%></span>
+  </div> -->
+  <!-- End Special Centered Box -->
+
+<%= render partial: "layouts/top_header" %>
+
+<div class="wrapper">
+    </br>
+    <%= bootstrap_flash %>
+  <div class="wrapper-inner" style="height:472px;">
+      <a href="<%=(current_user) ? dashboard_path : root_path %>">
+        <span class="sprite logo"></span>
+      </a>
+        <%= render partial: "layouts/top_menu" %>
+        <% if !current_user %>
+          <div id="signup-form" class="login-section" style="display: <%=(params[:login].present?) ? 'none' : 'block'%>;">
+            <%= render file: "#{Rails.root}/app/views/devise/registrations/new" %>
+          </div>
+          <div id="login-form" class="login-section" style="display: <%=(params[:login].present?) ? 'block' : 'none'%>;">
+            <%= render file: "#{Rails.root}/app/views/devise/sessions/new" %>
+          </div>
+        <% end %>
+    </div>
+</div>
+<div class="top-wrapper-out">
+  <div class="top-wrapper-in">
+    <div class="slider2">&nbsp;</div>
+    <div class="search-bar">
+      <%= form_tag(courses_path, :method=>"get") do %>
+      <input name="search" id="search" type="text" maxlength="100" value="<%=(params[:search].present?) ? params[:search] : 'What do you want to learn?'%>" onfocus="if (this.value=='What do you want to learn?') this.value = ''" onblur="if (this.value=='') this.value = 'What do you want to learn?'" />
+      <input name="submit" type="submit" value="" class="sprite" />
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="bottom-wrapper-out">
+  <div class="bottom-wrapper-in">
+    <%= yield %>
+	<%= render partial: "layouts/footer" %>
+  </div>
+</div>
+</body>
+</html>
