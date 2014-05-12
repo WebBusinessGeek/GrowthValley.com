@@ -1,0 +1,1398 @@
+/* Default Font Styles */
+@font-face {
+	font-family: nixieone;
+	src: url(font-path("webfont_nixie_regular/nixieone-regular-webfont.woff")); }
+
+@font-face {
+	font-family: arvo;
+	src: url(font-path("webfont_arvo_bold_regular/arvo-bold-webfont.woff"));
+	src: url(font-path("webfont_arvo_bold_regular/arvo-regular-webfont.woff")); }
+	
+@font-face {
+	font-family: colab;
+	src: url(font-path("webfont_colab_kit/colabbol-webfont.woff"));
+	src: url(font-path("fontkits/webfont_colab_kit/colablig-webfont.woff"));
+	src: url(font-path("webfont_colab_kit/colabmed-webfont.woff"));
+	src: url(font-path("webfont_colab_kit/colabreg-webfont.woff"));
+	src: url(font-path("webfont_colab_kit/colabthi-webfont.woff")); }
+	
+@font-face{
+	font-family: texgyre;
+	src: url(font-path("webfont_texgyre_kit/texgyrecursor-bold-webfont.woff"));
+	src: url(font-path("webfont_texgyre_kit/texgyrecursor-regular-webfont.woff")); }
+	
+@font-face {
+	font-family: web-serveroff;
+	src: url(font-path("webfont_web_serveroff/web_serveroff-webfont.woff")); }
+
+body, input, select, textarea{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:13px;
+	color:#3e3f41;
+}
+/* -------------------------------------- Headings -------------------------------------- */
+h1,h2,h3,h4,h5,h6{
+	font-family: arvo;
+	font-weight:normal;
+	line-height:1.4;
+	margin:0 0 12px;
+}
+h1{
+	font-size:46px;
+	color:#000;
+}
+h2{
+	font-size:40px;
+	color:#000;
+}
+h3{
+	font-size:24px;
+	color:#000;
+}
+	h3 a{
+		color:#000;
+		text-decoration:none;
+	}
+h4{
+	font-size:20px;
+	margin:0 0 20px;
+}
+h5{
+	font-size:17px;
+	color:#214192;
+}
+h6{
+	font-size:15px;
+	color:#162a5d;
+}
+.sub-head{
+	margin:0;
+}
+/* bootstrap grid  */
+#ie6 .row {
+  margin-left: -10px;
+}
+#ie6 .span12,
+#ie6 .span11,
+#ie6 .span10,
+#ie6 .span9,
+#ie6 .span8,
+#ie6 .span7,
+#ie6 .span6,
+#ie6 .span5,
+#ie6 .span4,
+#ie6 .span3,
+#ie6 .span2,
+#ie6 .span1{
+  float: left;
+  min-height: 1px;
+  margin-left: 10px;
+}
+#ie6 .row-fluid .span12,
+#ie6 .row-fluid .span11,
+#ie6 .row-fluid .span10,
+#ie6 .row-fluid .span9,
+#ie6 .row-fluid .span8,
+#ie6 .row-fluid .span7,
+#ie6 .row-fluid .span6,
+#ie6 .row-fluid .span5,
+#ie6 .row-fluid .span4,
+#ie6 .row-fluid .span3,
+#ie6 .row-fluid .span2,
+#ie6 .row-fluid .span1{
+  display: block;
+  float: left;
+  min-height: 30px;
+  margin-left: 2.127659574468085%;
+  box-sizing: border-box;
+}
+#ie6 .row-fluid .first-child{
+	margin-left:0;
+}
+
+
+/* -------------------------------------- Links -------------------------------------- */
+a{ color:#214192; text-decoration:underline; }
+a:hover { text-decoration:none; }
+
+/* -------------------------------------- p, blockquote, address -------------------------------------- */
+p{
+	line-height:26px;
+	margin:0 0 20px;
+}
+p.last-para{
+	margin-bottom:0;
+}
+
+/* -------------------------------------- Lists -------------------------------------- */
+ul,li{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* -------------------------------------- Layout -------------------------------------- */
+#container-fluid{
+	
+}
+/* -------------------------------------- Header -------------------------------------- */
+.header-wrap{
+    background-color: #2a2a2a;
+    height: 85px;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+}
+	.logo{
+		float:left;
+		padding:17px 10px 0 11px;
+		margin:0;
+	}
+/* -------------------------------------- Navigation -------------------------------------- */
+.navbar{
+	margin:0;
+}
+.nav-wrap{
+}
+.nav-wrap li{
+	font-size:16px;
+	font-family: arvo;
+	padding:30px 20px;
+}
+.nav-wrap .nav li a{
+	color:#fff;
+	text-decoration:none;
+	padding:0;
+}
+.nav-wrap .nav li a:hover{
+	color:#009999;
+}
+.nav-wrap .nav li a.active,
+.nav-wrap .nav li.open a{
+	color:#009999 !important;
+}
+
+.create-account-login-links{
+	padding:17px 10px 0 0;
+	line-height:46px;
+}
+
+.create-account-login-links a{
+	color:#fff;
+	text-decoration:none;
+	float:left;
+	font-family: arvo;
+	font-size: 16px;
+}
+
+.create-account-login-links a:hover{
+	color:#009999;
+}
+.green-button{
+	background-color:#028D96;
+	-webkit-box-shadow: 0 10px 0 0 #01595F;
+	box-shadow: 0 10px 0 0 #01595F;
+	border-radius:7px;
+	padding:0 25px;
+	color:#fff;
+	text-decoration:none;
+	display:inline-block;
+    font-family: arvo;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: center;
+}
+.green-button:hover, .create-account-login-links a.green-button:hover{
+	background-color:#35C4Cb;
+	color:#fff;
+}
+.green-button:active, .create-account-login-links a.green-button:active{
+	color:#fff;
+	background-color:#1D6D71;
+}
+
+.create-account-login-links .login-btn {
+    height: 38px;
+    line-height: 38px;
+	float:right
+}
+/* -------------------------------------- Hero Section Area -------------------------------------- */
+#hero {
+	background-image:url(../images/hero_background_darkblur.png);
+	background-position:center center;
+	height: 700px;
+	min-width: 300px;
+	width:100%;
+	text-align:center;
+}
+
+#hero h1{
+    color: #FFFFFF;
+    font-size: 60px;
+    font-weight: bolder;
+    line-height: 50px;
+    padding-top: 245px;
+    text-shadow: 1px 2px #000000;
+}
+
+#hero h3{
+	color:#fff;
+    font-family: nixieone,sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+	text-shadow:0 1px #000000;
+}
+#hero .create-account-btn, .more-cources-btn a{
+    height: 50px;
+	line-height:50px;
+    width: 220px;
+	padding:0;
+	margin-bottom:10px;
+}
+
+#hero a.learn-more{
+	color:#fff;
+	text-decoration:underline;
+    font-family: nixieone;
+    font-size: 14px;
+    font-weight: lighter;
+}
+/* -------------------------------------- Teaser Section -------------------------------------- */
+.teaser_content{
+	background-color:#fff;
+	text-align:center;
+	padding:0 10px 100px;
+}
+
+.teaser_content h1{
+	padding:70px 0 0;
+}
+
+.teaser_content .span4{
+	padding-top:50px;
+	width:33.3333%;
+	margin:0;
+}
+
+.teaser_content h3{
+	padding-top:15px;
+}
+
+.teaser_content p{
+    font-family: nixieone,sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+/* -------------------------------------- How it works Section -------------------------------------- */
+.how-it-works{
+	background-color:#E3E3E3;
+	padding:0 10px;
+}
+
+.how-it-works-inner{
+	width:630px;
+	padding:70px 0;
+	margin:auto;
+	text-align:center;
+    font-family: nixieone,sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.how-it-works .row-fluid{
+	margin-bottom:30px;
+}
+
+.how-it-works .row-fluid .fl{
+	float:left;
+}
+.how-it-works .row-fluid .fr{
+	float:right;
+}
+
+.how-it-works h3{
+	color:#028D96;
+	font-weight:bolder;
+	padding:50px 0 10px;
+}
+/* -------------------------------------- Why Learn on GrowthValley Section -------------------------------------- */
+.why-learn-on-growthvalley{
+	background-color:#028D96;
+	padding:0 10px;
+}
+.why-learn-on-growthvalley-inner{
+	width:705px;
+	text-align:center;
+    font-family: arvo,sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+	color:#fff;
+	margin:auto;
+	padding:50px 0;
+}
+
+.why-learn-on-growthvalley-inner h1{
+	color:#fff;
+	padding-bottom:50px;
+}
+
+.why-learn-on-growthvalley-inner p{
+	line-height:31px;
+}
+/* -------------------------------------- Testimonial Section -------------------------------------- */
+.testimonial-section{
+	background-color:#fff;
+	padding:70px 10px;
+}
+
+.testimonial-inner{
+	width:730px;
+	margin:auto;
+}
+
+.testimonial-inner p{
+	color:#000;
+    font-family: arvo;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bolder;
+	text-align:center;
+}
+
+.testimonial-inner .testimonial-img{
+	background-color:#028D96;
+	-webkit-border-radius: 80px 80px 80px 80px;
+	border-radius: 80px 80px 80px 80px;
+    height: 150px;
+    width: 150px;
+	margin:auto;
+}
+
+.testimonial_whois{
+    font-family: nixieone,sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+	width:400px;
+	text-align:center;
+	margin-top:15px;
+}
+
+.see-full-story {
+	margin:25px 0 0 10px;
+}
+
+.see-full-story a{
+	color:#028D96;
+    font-family: nixieone;
+    font-size: 14px;
+    font-weight: lighter;
+	margin-top:25px;
+}
+
+/* -------------------------------------- How to get started section --------------------------------------*/
+.how-to-get-started{
+	background-color:#E3E3E3;
+	padding-bottom:40px;
+}
+
+.how-to-get-started h1{
+	text-align:center;
+	padding:40px 0 10px
+}
+
+.how-to-get-started .how-to-get-started-inner{
+	margin:0 0 0 200px;
+}
+
+.how-to-get-started li{
+	background:url(../images/checbox.png) left 23px no-repeat;
+	color:#028D96;
+    font-family: arvo,sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+	padding:25px 0 25px 39px;
+	line-height:28px;
+}
+
+.how-to-get-started li.identify{
+	color:#1F5099;
+}
+
+/* -------------------------------------- Check out the Blog Section --------------------------------------*/
+.check-out-blog{
+	background-color:#028D96;
+	padding:70px 10px 20px;
+}
+
+.check-out-blog h1 {
+	color:#fff;
+	text-align:center;
+}
+
+.check-out-blog-inner{
+	width:800px;
+	margin:auto;
+}
+
+.check-out-blog-inner .single-post{
+	border-top:1px solid #1D6D71;
+    font-family: nixieone,sans-serif;
+    font-weight: lighter;
+	padding:15px 0 20px;
+}
+
+.check-out-blog-inner .single-post h4 {
+    font-weight: lighter;
+    font-family: nixieone,sans-serif;
+	text-align:center;
+	margin:0 0 5px;
+}
+
+.check-out-blog-inner .single-post h4 a{
+	color:#fff;
+	text-decoration:none;
+}
+
+.check-out-blog-inner .single-post .read-more {
+	text-align:right;
+	padding-right:70px;
+}
+
+.check-out-blog-inner .single-post .read-more a{
+    font-size: 14px;
+	color:#fff;
+	text-decoration:none;
+}
+
+.check-out-blog-inner .single-post a:hover{
+	text-decoration:underline;
+}
+
+/* -------------------------------------- Footer --------------------------------------*/
+.footer{
+	background-color:#2b2b2b;
+	padding:50px 10px;
+	color:#e4e4e4;
+	font-size:14px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.footer-logo{
+	padding-top:30px;
+	text-align:center;
+}
+
+.footer ul li{
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+.footer ul{
+	padding-left:10px;
+}
+
+.footer ul li a{
+    color: #e4e4e4;
+    text-decoration: none;
+}
+
+.footer ul li a:hover{
+	text-decoration:underline
+}
+
+.footer h5{ color:#e4e4e4; margin-top:14px; 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; margin-top:7px;}
+
+.footer .social-icons{ text-align:center; }
+
+.footer .social-icons a{ margin-left:5px;}
+
+.footer .copyright{ text-align:center; padding-top:10px;}
+/* -------------------------------------- Login Form --------------------------------------*/
+.login-form-page {
+	background: #2b2b2b;
+}
+.login-form {
+	width: 430px;
+	background: white;
+	border-radius: 8px;
+	margin: 0 auto;
+	margin-top: 80px;
+	padding-bottom:25px;
+}
+.login-form .logo-area {
+	height: 100px;
+	background: #028d96;
+	border-radius: 8px 8px 0px 0px;
+}
+.login-form h5 {
+	text-align: center;
+	color: #2b2b2b;
+	font-family: cabin;
+	font-size: 15pt;
+	margin: 20px 0 0;
+	padding-bottom: 0px;
+}
+.login-form form {
+	width: 85%;
+	margin: 0 auto;
+}
+.login-form form input {
+	width: 87%;
+	height: 45px;
+	border: 1px solid #DBD9D9;
+	border-radius: 3px;
+	padding: 0px 23px;
+	margin: 20px 0px 0px 0px;
+	color: #434343;
+	font-weight: 300;
+	outline: medium none;
+	box-shadow: none;
+	-moz-box-sizing: border-box;
+	transition: 0.4s;
+}
+.login-form form input:focus {
+	border: 1px solid #028d96;
+	transition: 0.5s;
+}
+.login-form form .form-btn {
+	height: 50px;
+	width: 100%;
+	background: #028d96;
+	border: none;
+	box-shadow: none;
+	margin: 0 auto;
+	border-radius: 3px;
+	margin-top: 25px;
+	color: white;
+}
+.login-form #logo {
+	background: url("../images/logo-white.png") no-repeat center;
+	height: 89px;
+}
+
+/* -------------------------------------- Profile Pages --------------------------------------*/
+.profile-page{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-family:14px;
+}
+
+.wrapper{
+	width:950px;
+	margin:auto;
+}
+
+.profile-page .header-wrap{
+	-webkit-box-shadow: 0 2px 3px 0 #015156;
+	box-shadow: 0 2px 3px 0 #015156;
+}
+
+.profile-page .nav-wrap .nav li ul.submenu{
+	width:100%;
+	background-color:#028d96;
+	position:absolute;
+	left:0;
+	top:85px;
+	display:none;
+	height:90px;
+	text-align:center;
+	-webkit-box-shadow:inset 0 2px 3px 0 #015156;
+	box-shadow:inset 0 2px 3px 0 #015156;
+}
+
+.profile-page .nav-wrap .nav li.active ul.submenu{
+	display:block;
+}
+
+.profile-page .nav-wrap .nav li ul.submenu li {
+	display:inline-block;
+	padding:30px 70px;
+}
+
+.profile-page .nav-wrap li{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-family:16px;
+	padding:0;
+}
+
+.profile-page .nav-wrap li a{
+	display:block;
+	padding:33px 18px;
+}
+
+.profile-page .nav-wrap li.active a, .profile-page .nav-wrap li.active a:hover{
+	background-color:#028d96;
+}
+
+.profile-page .nav-wrap li.active ul.submenu li a{
+	background:none;
+	padding:0;
+}
+
+.profile-page .nav-wrap li.active ul.submenu li a:hover, .profile-page .nav-wrap li.active ul.submenu li.active-submenu a{
+	border-bottom:4px solid #fff;
+	color:#fff;
+	padding-bottom:2px;
+}
+
+.profile-page .search-field{
+	padding-top:25px;
+}
+
+.profile-page .search-field input{
+	background:#171717 url(../images/search-btn.png) 140px center no-repeat;
+	border:none;
+	height:24px;
+	width:154px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#636363;
+}
+
+.main-content-area{
+	padding:210px 0 20px;
+	font-size:14px;
+}
+/* -------------------------------------- Notification Page --------------------------------------*/
+.profile-page .notifications .notification-thumb img{
+	border:1px solid #cacaca;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	border-radius: 2px 2px 2px 2px;
+}
+
+.profile-page .notifications .single-notification {
+	margin-bottom:10px;
+}
+
+.profile-page .notifications .single-notification .span11{
+	border-bottom:1px solid #f3f3f4;
+	padding-bottom:10px
+}
+
+.profile-page .notifications .single-notification h5{
+	color:#2a2a2a;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	font-size:16px;
+	margin:5px 0;
+}
+
+.profile-page .notifications .single-notification span.time{
+	color:#028d96;
+	font-style:italic;
+}
+
+.profile-page .notifications .no-more-notification{
+	color:#a4a4a4;
+	font-style:italic;
+	padding:10px 0;
+	text-align:center;
+}
+/* -------------------------------------- Review Exams Page --------------------------------------*/
+.profile-page .review-exams h4{
+	border-bottom:1px solid #ededed;
+	color:#028d96;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding-bottom:10px;
+}
+
+.profile-page .review-exams p.no-pending{
+	color:#2a2a2a;
+	font-weight:bold;
+	font-size:14px;
+}
+/* -------------------------------------- My Courses Page --------------------------------------*/
+.profile-page .my-courses-table td{
+	color:#028d96;
+}
+.profile-page .my-courses-table th.add-new-courses-btn a, .profile-page .add-new-bundle-btn a {
+	text-decoration:none;
+}
+.profile-page .my-courses-table th.add-new-courses-btn a span.plus{
+	color:#028d96;
+	display:inline-block;
+	font-size:18px;
+}
+.profile-page .my-courses-table th.add-new-courses-btn a span.add-new-courses, .profile-page .add-new-bundle-btn a{
+	background-color:#028d96;
+	padding:4px 20px;
+	color:#fff;
+	display:inline-block;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.profile-page .modal{
+	background-color:#028d96;
+	color:#fff;
+	width:360px;
+	margin-left:-200px;
+	display:none;
+}
+
+.profile-page .modal.fade.in{
+	z-index:1050px;
+}
+
+.profile-page .modal-header{
+	border-bottom:none;
+	padding:30px 30px 5px 50px;
+}
+
+.profile-page .modal .close{
+    color: #FFFFFF;
+    font-size: 36px;
+    font-weight: normal;
+    opacity: 1;
+}
+
+.profile-page .modal h4, .profile-page .modal h5{
+	font-size:18px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#fff;
+}
+
+.profile-page .modal-body {
+	padding:0  50px 15px;
+}
+
+.profile-page .modal h5{
+	font-size:16px;
+	clear:both;
+	padding-top:15px;
+}
+
+.profile-page .modal-body .course-title-field{
+	width:85%;
+	font-style:italic;
+}
+
+.profile-page .modal-body .options input, .profile-page .modal-body .options label{
+	float:left;
+	margin-right:5px;
+}
+
+.profile-page .modal-body input#choose-course-cover-pic{
+	display:none;
+}
+
+.profile-page .modal-body label{
+	display:inline-block;
+}
+
+ .profile-page .modal-body .options label{
+	 margin-right:15px;
+}
+
+.profile-page .modal-footer{
+	border-top:none;
+	padding:0;
+}
+
+.profile-page .modal-footer button.btn{
+	background:#2b2b2b;
+	color:#fff;
+	font-weight:bold;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	display:block;
+	width:100%;
+	padding:10px;
+	text-shadow:none;
+	border-radius:0 0 0 0;
+	-webkit-border-radius:0 0 0 0;
+	box-shadow:none;
+}
+/* -------------------------------------- My Classrooms Page --------------------------------------*/
+.profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.profile-page .my-classrooms-page .welcome-classrooms h4 span{
+	color:#028d96;
+}
+
+.profile-page .my-classrooms-page .welcome-classrooms-inner{
+	background-color:#f8f8f8;
+	border-top:1px solid #dddddd;
+	border-bottom:1px solid #dddddd;
+	padding:10px;
+	margin-bottom:30px;
+}
+
+.profile-page .my-classrooms-page .welcome-classrooms-inner li{
+	font-size:16px;
+	font-weight:bold;
+	padding-bottom:10px;
+}
+
+.profile-page .my-classrooms-table h4, .profile-page .my-classrooms-table h5, .my-subjets-page h4{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin-bottom:5px;
+	color:#028d96;
+	text-align:center;
+}
+
+.profile-page .my-classrooms-table h5{
+	color:#000000;
+	padding-bottom:20px;
+}
+.profile-page .my-classrooms-table td.no-classroom-requests{
+	color:#a0a0a0;
+	font-style:italic;
+	text-align:center;
+}
+/* -------------------------------------- My Subjects Page --------------------------------------*/
+.profile-page .my-subjets-page h4{
+	 padding-bottom:20px;
+}
+.profile-page .my-subjets-page .btn-group label.btn{
+	background:#d5d5d5;	
+	width:177px;
+	height:38px;
+	line-height:38px;
+	padding:0;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	text-shadow:none;
+	box-shadow:none;
+	border:none;
+	margin-bottom:19px;
+	float:none;
+	clear:both;
+	display:block;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	border-radius: 2px 2px 2px 2px;
+	cursor:auto;
+	position:relative;
+}
+
+.profile-page .my-subjets-page .btn-group label.btn.active{
+	background:#028d96;
+	color:#fff;
+}
+
+.profile-page .my-subjets-page .btn-group label.btn input{
+    position: absolute;
+    right: -20px;
+    top: 10px;
+}
+/* -------------------------------------- Profile Page --------------------------------------*/
+.personal-setting-form{
+	width:610px;
+	margin:auto;
+}
+
+.personal-setting-form .span3 img{
+	border:1px solid #c7c7c7;
+}
+
+.personal-setting-form .span3 #upload-your-profile-pic{
+	display:none;
+}
+
+.personal-setting-form .span3 label{
+	color:#028d96;
+	padding-top:20px;
+}
+
+.personal-setting-form .span9 .form-group {
+	padding-bottom:15px;
+}
+
+.personal-setting-form .span9 input, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
+	color:#a4a4a4;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	height:26px;
+	line-height:26px;
+	width:185px;
+}
+
+.personal-setting-form .span9 select{
+    height: 34px;
+    line-height: 34px;
+	width:199px;
+}
+ 
+.personal-setting-form .span9 textarea{
+	height:150px;
+	width:418px;
+	float:right;
+}
+
+.personal-setting-form .span9 .current-password-field{
+	padding:40px 0 10px 20px;
+}
+
+.personal-setting-form .span9 .current-password-field label{
+	color:#028d96;
+	font-size:13px;
+	font-style:italic;
+	padding-bottom:5px;
+}
+
+.personal-setting-form .span9 .update-button{
+	padding-left:20px;
+}
+
+.personal-setting-form .span9 .update-button .btn{
+	background:#028d96;
+	color:#fff;
+	font-size:18px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding:10px 39px;
+	text-shadow:none;
+	-webkit-box-shadow: 0 3px 0 0 #016d74;
+	box-shadow: 0 3px 0 0 #016d74;
+}
+
+.fl{ float:left}
+.fr{ float:right}
+.cl{ clear:both; font-size:0; height:0; }
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* Alignments */
+.center { text-align:center }
+.right { text-align:right }
+.top {vertical-align:top }
+.middle { vertical-align:middle }
+
+@media (max-width: 1200px) {
+	.nav-wrap li{ padding:30px 10px; font-size:14px; }
+	.create-account-login-links a{ font-size:14px;}
+}
+
+@media (max-width: 979px) {
+	.header-wrap{
+		min-height:85px;
+		height:auto;
+	}
+	.navbar-inverse .btn-navbar{
+		background:#028D96;
+	}
+	.navbar-inverse .btn-navbar:hover{
+		background:#35C4CB;
+	}
+	.navbar .btn-navbar{
+		margin:17px 0 5px;
+	}
+	.nav-wrap li{ padding:2px 10px;}
+	.navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a{
+		font-weight:normal;
+		color:#fff;
+		padding:3px;
+	}
+	.nav-collapse .nav > li > a:hover{
+		background:#35C4CB !important;
+	}
+	
+	.create-account-login-links{
+		line-height:30px;
+	}
+	
+	.create-account-login-links .login-btn{
+		padding:6px;
+		margin-right:5px;
+		height:auto;
+		line-height:normal;
+		-webkit-box-shadow: 0 5px 0 0 #01595F;
+		box-shadow: 0 5px 0 0 #01595F;
+	}
+	#hero{
+		height:430px;
+	}
+	#hero h1{
+		padding-top:145px;
+		font-size:46px;
+	}
+	#hero h3{
+		font-size:24px;
+	}
+	.teaser_content{
+		padding-bottom:30px
+	}
+	.teaser_content h1{
+		padding:30px 0 0;
+	}
+	.teaser_content .span4{
+		padding:25px 0 0;
+	}
+	.how-it-works-inner{
+		padding:30px 0;
+	}
+	
+	.why-learn-on-growthvalley-inner{
+		padding:30px 0;
+	}
+	.why-learn-on-growthvalley-inner h1{
+		padding-bottom:20px;
+	}
+	.testimonial-section{
+		padding:30px 10px;
+	}
+	.how-to-get-started .how-to-get-started-inner{
+		margin:0;
+	}
+	.check-out-blog{
+		padding-top:30px;
+	}
+	
+	.footer{
+		padding:25px 10px;
+	}
+	
+	.profile-page .header-wrap{ position:relative;}
+	
+	.wrapper { width:auto;}
+	.profile-page .nav-wrap .nav li ul.submenu{
+		position:relative;
+		left:auto;
+		top:auto;
+		height:auto;
+		background:none;
+		
+		-webkit-box-shadow:none;
+		box-shadow:none;
+	}
+	.profile-page .nav-wrap .nav li ul.submenu li{
+		padding:5px 5px 0;
+		text-align:left;
+		display:inherit;
+	}
+	.profile-page .nav-wrap .nav li ul.submenu li a{
+		border-bottom:4px solid #2A2A2A;
+		padding:0 0 2px 7px;
+	}
+	.profile-page .search-field{
+		padding-top:17px;
+	}
+	
+	.profile-page .main-content-area{
+		padding:20px 0 20px;
+	}
+	
+	.profile-page .notifications{
+		padding:0 10px;
+	}
+	.profile-page .main-content-area.my-subjets-page {
+		padding:20px 10px;
+	}
+	.my-subjets-page .btn-group label.btn{
+		width:160px;
+	}
+	.personal-setting-form{
+		width:auto;
+	}
+	.personal-setting-form .span3 label{
+		padding-top:10px;
+	}
+	.personal-setting-form .span3, .personal-setting-form .span9 .row-fluid, .personal-setting-form .span9 .update-button{
+		text-align:center;
+	}
+	.personal-setting-form .span9 .form-group, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
+		float:none;
+		padding-bottom:10px
+	}
+	.personal-setting-form .span9 .form-group input, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
+		width:90%;
+		margin:auto;
+	}
+	.personal-setting-form .span9 .current-password-field{
+		padding:10px 0;
+	}
+}
+
+@media (max-width: 870px) {
+	.check-out-blog-inner{
+		width:auto;
+	}
+	.create-account-login-links{
+		padding-top:5px;
+	}
+	.create-account-login-links a, .create-account-login-links .login-btn{
+		float:none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+		background:none;
+		padding:0 5px;
+	}
+	.create-account-login-links a:hover, .create-account-login-links a.login-btn:hover{
+		background-color:#000;
+		color:#009999;
+	}
+}
+
+@media (max-width: 767px) {
+body{
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6{
+	margin:0 0 8px;
+}
+h1{
+	font-size:30px;
+}
+h2{
+	font-size:24px;
+}
+h3{
+	font-size:18px;
+}
+h4{
+	font-size:14px;
+	margin:0 0 15px;
+}
+h5{
+	font-size:15px;
+}
+h6{
+	font-size:15px;
+}
+p{
+	line-height:22px;
+	margin:0 0 15px;
+}
+
+.logo{
+	text-align:center;
+}
+.navbar{
+	padding:5px 15px;
+}
+	.navbar .btn-navbar{
+		margin:5px 0;
+	}
+.create-account-login-links{
+	text-align:center;
+	padding:5px;
+}
+
+#hero h1{
+	padding-top:200px;
+	font-size:36px;
+}
+#hero h3{
+	font-size:18px;
+}
+.teaser_content .span4{
+	width:100%;
+}
+.how-it-works-inner{
+	width:100%;
+}
+.how-it-works .row-fluid{
+	margin-bottom:20px;
+}
+.how-it-works h3{
+	padding-top:20px
+}
+.why-learn-on-growthvalley-inner{
+	font-size:18px;
+	width:auto;
+}
+.how-to-get-started li{
+	padding:25px 0 5px 39px;
+}
+.testimonial-inner{
+	width:auto;
+}
+.how-to-get-started .how-to-get-started-inner{
+	width:auto;
+}
+.check-out-blog-inner .single-post{
+	padding:10px 0;
+}
+.footer {
+	text-align:center;
+}
+.footer ul{
+	border-bottom:1px solid #666;
+}
+
+.profile-page .search-field{
+	text-align:center;
+}
+
+.profile-page .modal{
+	margin:0;
+	width:auto;
+}
+.profile-page .my-classrooms-page .welcome-classrooms h4 {
+	padding-left:10px;
+}
+.profile-page .my-classrooms-page .welcome-classrooms-inner li{
+	font-weight:normal;
+	font-size:14px;
+	padding-bottom:5px;
+}
+.my-subjets-page .btn-group{
+	display:block;
+}
+.my-subjets-page .btn-group label.btn{
+	width:93%;
+}
+
+}
+
+@media (max-width: 640px) {
+	#hero{
+		height:auto;
+		padding-bottom:20px;
+	}
+	#hero h1{
+		font-size:24px;
+		padding-top:160px;
+	}
+	#hero .create-account-btn, .more-cources-btn a{
+		height:35px;
+		line-height:35px;
+		-webkit-box-shadow: 0 5px 0 0 #01595F;
+		box-shadow: 0 5px 0 0 #01595F;
+	}
+	.teaser_content{
+		padding-bottom:15px;
+	}
+	.teaser_content p, .how-it-works-inner{
+		font-size:18px;
+	}
+	.why-learn-on-growthvalley-inner{
+		padding:15px 0;
+	}
+	.why-learn-on-growthvalley-inner h1{
+		padding-bottom:0;
+	}
+	.why-learn-on-growthvalley-inner p{
+		line-height:24px;
+	}
+	.testimonial-inner p{
+		font-size:18px;
+	}
+	.testimonial_whois, .see-full-story{
+		float:none;
+		width:auto;
+		text-align:center;
+	}
+	.see-full-story {
+		margin-top:10px
+	}
+	.how-to-get-started li{
+		font-size:18px;
+	}
+	.check-out-blog{
+		padding:15px 10px;
+	}
+	.profile-page .modal-header{
+		padding:10px 20px 5px 20px;
+	}
+	.profile-page .modal-body{
+		padding:0 20px 15px;
+	}
+
+	.profile-page .my-courses-table th.add-new-courses-btn a span.plus{
+		display:none;
+	}
+	
+	.profile-page .my-courses-table th.add-new-courses-btn a span.add-new-courses{
+		padding:4px 5px;
+	}
+}
+@media (max-width: 479px) {
+body{
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6{
+	margin:0 0 8px;
+}
+h1{
+	font-size:24px;
+}
+h2{
+	font-size:20px;
+}
+h3{
+	font-size:16px;
+}
+h4{
+	font-size:14px;
+	margin:0 0 15px;
+}
+h5{
+	font-size:12px;
+}
+h6{
+	font-size:12px;
+}
+p{
+	line-height:22px;
+	margin:0 0 15px;
+	font-size:16px
+}
+
+#hero h1{
+	font-size:20px;
+}
+
+#hero h3{
+	font-size:16px;
+}
+
+.teaser_content h1{
+	padding-top:15px;
+}
+
+.teaser_content .span4{
+	padding:10px 0;
+}
+
+.how-it-works-inner{
+	padding-top:15px;
+}
+
+.how-it-works h3{
+	padding:10px 0 0;
+}
+
+.how-to-get-started{
+	padding-bottom:15px;
+}
+
+.how-to-get-started h1{
+	padding-top:15px;
+}
+
+.check-out-blog-inner .single-post .read-more{
+	text-align:center;
+	padding:0;
+}
+
+.login-form{
+	width:auto;
+	margin:10px;
+	padding-bottom:15px;
+}
+
+.login-form h5{
+	margin-top:10px;
+}
+.login-form form input, .login-form form .form-btn{
+	margin-top:10px;
+	height:40px;
+}
+
+.profile-page .table th{
+	padding:2px;
+}
+.profile-page .modal .close{
+	font-size:28px;
+}
+
+}
