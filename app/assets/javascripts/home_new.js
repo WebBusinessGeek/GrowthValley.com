@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
 //= require jquery.rateit
 //= require paypal-button.min
+//= require home_new/bootstrap
 //= require_self

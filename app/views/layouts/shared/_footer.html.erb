@@ -1,0 +1,36 @@
+<div class="footer">
+  <div class="row-fluid">
+    <div class="footer-logo span4"><a href="#"><%= image_tag("footer-logo.png") %></a></div>
+    <div class="span2">
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "How it works", how_it_works_homes_path %></li>
+        <li><%= link_to "About us", about_us_homes_path %></li>
+        <li><%= link_to "Our team", our_team_homes_path %></li>
+        <li><a href="#">Sign Up</a></li>
+        <li><%= link_to "Login", new_user_session_path %></li>
+      </ul>
+    </div>
+    
+    <div class="span2">
+      <ul>
+        <li><a href="#">Sitemap</a></li>
+        <li><%= link_to "Terms of user", terms_homes_path %></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    
+    <div class="span4">
+      <h5>Contact</h5>
+      <p>General Inquiries: info@classbug.com<br> Tech Support: support@classbug.com </p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/pages/Growthvalley/624417170959038" target="_blank"><%= image_tag('fb-icon.png') %></a>
+        <a href="https://twitter.com/Growthvalley" target="_blank"><%= image_tag("twitter-icon.png") %></a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="copyright">&copy; <%= Time.now.year %> GrowthVally</div>
+  
+</div>

@@ -1,0 +1,27 @@
+<header class="header-wrap">
+  <div class="row-fluid">
+    <div class="logo span3"><a href="#"><%= image_tag("logo.png") %></a></div>
+    <!--nav-wrapper start-->
+    <div class="nav-wrap span6">
+      <div class="navbar navbar-inverse">
+        <div class="container">
+          <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav clearfix">
+              <li><a href="#">Who is GrowthValley?</a></li>
+              <li><a href="#">Web Wisdom</a></li>
+              <li><a href="#">Featured Teachers</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--nav-wrapper end --> 
+    <div class="span3 fr">
+      <div class="create-account-login-links">
+        <a href="#">Create my account</a>
+        <%= link_to "Login", new_user_session_path, class: "login-btn green-button" %>
+      </div>
+    </div>
+  </div>
+</header>

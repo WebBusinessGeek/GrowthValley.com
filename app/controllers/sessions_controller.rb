@@ -1,7 +1,4 @@
 class SessionsController < Devise::SessionsController
-  def new
-	 redirect_to root_path+"?login=1"
-  end
 
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
@@ -26,10 +23,10 @@ class SessionsController < Devise::SessionsController
     sign_in(scope, resource) unless warden.user(scope) == resource
     flash[:notice] = 'Logged in successfully!'
     if current_user.type == "Learner"
-		redirect_url = dashboard_path
-	else
+		  redirect_url = dashboard_path
+	 else
 		redirect_url = root_url
-	end
+	 end
 
     respond_to do |format|
       format.html {

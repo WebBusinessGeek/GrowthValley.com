@@ -131,6 +131,8 @@ GrowthValley::Application.routes.draw do
       get 'for_people', as: :for_people
       get 'faq', as: :faq
       get 'how_it_works', as: :how_it_works
+      get 'about_us', as: :about_us
+      get 'our_team', as: :our_team
     end
   end
   match 'dashboard' => 'homes#dashboard', as: :dashboard

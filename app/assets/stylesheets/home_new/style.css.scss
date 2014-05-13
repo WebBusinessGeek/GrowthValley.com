@@ -11,7 +11,7 @@
 @font-face {
 	font-family: colab;
 	src: url(font-path("webfont_colab_kit/colabbol-webfont.woff"));
-	src: url(font-path("fontkits/webfont_colab_kit/colablig-webfont.woff"));
+	src: url(font-path("webfont_colab_kit/colablig-webfont.woff"));
 	src: url(font-path("webfont_colab_kit/colabmed-webfont.woff"));
 	src: url(font-path("webfont_colab_kit/colabreg-webfont.woff"));
 	src: url(font-path("webfont_colab_kit/colabthi-webfont.woff")); }
@@ -218,7 +218,7 @@ ul,li{
 }
 /* -------------------------------------- Hero Section Area -------------------------------------- */
 #hero {
-	background-image:url(../images/hero_background_darkblur.png);
+	background-image:url(image-path('hero_background_darkblur.png'));
 	background-position:center center;
 	height: 700px;
 	min-width: 300px;
@@ -406,7 +406,7 @@ ul,li{
 }
 
 .how-to-get-started li{
-	background:url(../images/checbox.png) left 23px no-repeat;
+	background:url(image-path('checbox.png')) left 23px no-repeat;
 	color:#028D96;
     font-family: arvo,sans-serif;
     font-size: 24px;
@@ -567,7 +567,7 @@ ul,li{
 	color: white;
 }
 .login-form #logo {
-	background: url("../images/logo-white.png") no-repeat center;
+	background: url(image-path("logo-white.png")) no-repeat center;
 	height: 89px;
 }
 
@@ -640,7 +640,7 @@ ul,li{
 }
 
 .profile-page .search-field input{
-	background:#171717 url(../images/search-btn.png) 140px center no-repeat;
+	background:#171717 url(image-path('search-btn.png')) 140px center no-repeat;
 	border:none;
 	height:24px;
 	width:154px;
