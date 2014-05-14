@@ -1,38 +1,77 @@
-<%= render :partial=>"layouts/inner_nav", :locals=>{:current => "subject"} %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_subjects') %>
+<div class="main-content-area wrapper my-subjets-page">
 
-<h1> Subjects </h1>
-</br>
-<%= form_tag update_user_subjects_path do %>
-  <% @subjects.in_groups_of(4, false) do |subj| %>
-    <div class='row-fluid'>
-      <% subj.collect do |s| %>
-        <div class='span3'>
-          <%= check_box_tag "user[subject_ids][]", s.id, current_user.subjects.include?(s), style: "float: left; margin-right: 5px;", class: "subject" %>
-          <%= label_tag s.name, s.name, style: "margin-top: -2px;" %>
+  <h4>Choose My Subjects</h4>
+
+  <div class="row-fluid">
+    <!--Start First Column-->
+    <%= form_tag update_user_subjects_path do %>
+      <% @subjects.in_groups_of(4, false) do |subj| %>
+        <div class='row-fluid'>
+          <% subj.collect do |s| %>
+            <div class='span3'>
+              <div class="btn-group" data-toggle="buttons">
+                <%= label_tag s.name, s.name, class: 'btn'  do %>
+                  <%= s.name %>
+                  <%= check_box_tag "user[subject_ids][]", s.id, current_user.subjects.include?(s) %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-  <% end %>
+        <% end %>
   </br>
   <div class='row-fluid'>
     <div class='span3'>
       <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
     </div>
   </div>
-<% end %>
+  <% end %>
 
-<script>
-function count_subjects()
-{
-	if ($( "input[class='subject']:checked" ).length != 3)
-	{
-		alert("Please select 3 subjects");
-		return false
-	}
-	else
-	{
-		res = confirm("You cannot change your subjects in future! Press ok to confirm?")
-		return res
-	}
-}
+
+    <!--End Fourth Column-->
+
+  </div>    
+
+</div>
+<!--End Main Content Area-->
+    <% if false %>
+      <%= render :partial=>"layouts/inner_nav", :locals=>{:current => "subject"} %>
+
+      <h1> Subjects </h1>
+    </br>
+    <%= form_tag update_user_subjects_path do %>
+    <% @subjects.in_groups_of(4, false) do |subj| %>
+    <div class='row-fluid'>
+      <% subj.collect do |s| %>
+      <div class='span3'>
+        <%= check_box_tag "user[subject_ids][]", s.id, current_user.subjects.include?(s), style: "float: left; margin-right: 5px;", class: "subject" %>
+        <%= label_tag s.name, s.name, style: "margin-top: -2px;" %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </br>
+  <div class='row-fluid'>
+    <div class='span3'>
+      <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+  <script>
+    function count_subjects()
+    {
+     if ($( "input[class='subject']:checked" ).length != 3)
+     {
+      alert("Please select 3 subjects");
+      return false
+    }
+    else
+    {
+      res = confirm("You cannot change your subjects in future! Press ok to confirm?")
+      return res
+    }
+  }
 </script>

@@ -63,10 +63,7 @@ class CoursesController < ApplicationController
   
   def my_courses
     @courses = current_user.courses.page(params[:page])
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    render layout: 'home_new'
   end
 
   # GET /courses/1

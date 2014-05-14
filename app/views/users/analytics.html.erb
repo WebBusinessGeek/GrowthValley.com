@@ -1,21 +1,17 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "analytics" } %>
-
-<%- model_class = Course -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'analytics') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper">
 
 <% if current_user.type == 'Teacher' %>
-  
-  </br></br>
   <% if @courses.present? %>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th><%= model_class.human_attribute_name(:title) %></th>
-          <th><%= model_class.human_attribute_name(:total_learners) %></th>
-          <th><%= model_class.human_attribute_name(:total_passed) %></th>
-          <th><%= model_class.human_attribute_name(:total_failed) %></th>
+          <th><%= Course.human_attribute_name(:title) %></th>
+          <th><%= Course.human_attribute_name(:total_learners) %></th>
+          <th><%= Course.human_attribute_name(:total_passed) %></th>
+          <th><%= Course.human_attribute_name(:total_failed) %></th>
           
         </tr>
       </thead>
@@ -44,14 +40,13 @@
     For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
   <% end %>
   <%= link_to "View more courses", courses_path, class: 'pull-right btn btn-primary' if @courses.present? %>
-  </br></br>
   <% if @courses.present? %>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th><%= model_class.human_attribute_name(:title) %></th>
-          <th><%= model_class.human_attribute_name(:description) %></th>
-          <th><%= model_class.human_attribute_name(:progress) %></th>
+          <th><%= Course.human_attribute_name(:title) %></th>
+          <th><%= Course.human_attribute_name(:description) %></th>
+          <th><%= Course.human_attribute_name(:progress) %></th>
         </tr>
       </thead>
       <tbody>
@@ -103,3 +98,4 @@
     });
   }
 <% end %>
+</div>

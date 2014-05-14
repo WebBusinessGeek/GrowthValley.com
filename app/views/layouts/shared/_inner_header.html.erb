@@ -1,0 +1,70 @@
+    <!--Start Header -->
+    <header class="header-wrap">
+    	<div class="wrapper">
+       <div class="row-fluid">
+        <div class="logo span4">
+          <%= link_to dashboard_path do %>
+            <%= image_tag("profile-page-logo.png") %>
+          <% end %>
+        </div>
+        <!--nav-wrapper start-->
+        <div class="nav-wrap span5">
+          <div class="navbar navbar-inverse">
+            <div class="container">
+              <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+              <div class="nav-collapse collapse">
+                <ul class="nav clearfix">
+                  <li class="<%= ['personal', 'subscriptions', 'analytics','notifications'].include?(yield(:current)) ? 'active' : '' %>">
+                    <%= link_to "My Account", edit_user_registration_path %>
+                    <ul class="submenu">
+                      <li class="<%= 'personal' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Personal", edit_user_registration_path %>
+                      </li>
+                      <li class="<%= 'subscriptions' == yield(:current) ? 'active-submenu' : '' %>">
+                        <a href="#">Subscriptions</a>
+                      </li>
+                      <li class= "<%= 'analytics' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Analytics", course_analytics_path %>
+                      </li>
+                      <li class="<%= 'notifications' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Notifications", notification_path %>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="<%= ['my_subjects', 'my_courses', 'my_bundles','my_classrooms'].include?(yield(:current)) ? 'active' : '' %>">
+                    <%= link_to "My Courses", my_courses_courses_path %>
+                    <ul class="submenu">
+                      <li class="<%= 'my_subjects' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Subjects", user_subjects_path %></li>
+                      <li class="<%= 'my_courses' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Courses", my_courses_courses_path %></li>
+                      <li class="<%= 'my_bundles' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Bundles", my_bundles_bundles_path %></li>
+                      <li class="<%= 'my_classrooms' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Classrooms", classrooms_path %></li>
+                    </ul>
+                  </li>
+                  <li class="<%= ['review_exams', 'reviewed_exames'].include?(yield(:current)) ? 'active' : '' %>">
+                    <%= link_to "Review Exams", review_exams_path %>
+                    <ul class="submenu">
+                      <li class="<%= 'review_exams' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Review Exams", review_exams_path %></li>
+                      <li class="<%= 'reviewed_exames' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Reviewed Exams", reviewed_exams_path %></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--nav-wrapper end --> 
+        <div class="span3 fr">
+          <div class="search-field">
+            <input type="text" value="" placeholder="Search">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <!--End Header -->

@@ -43,7 +43,6 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'numbers_and_words'
 gem 'jquery-ui-rails'
 gem 'kaminari'
-gem 'thin'
 # Blog
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'truncate_html'
@@ -87,6 +86,7 @@ group :development do
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'rack-mini-profiler'
+  gem 'thin'
 end
 
 group :production do

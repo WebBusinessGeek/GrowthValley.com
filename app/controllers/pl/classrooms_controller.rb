@@ -10,6 +10,7 @@ class Pl::ClassroomsController < ApplicationController
     end
     @requests = Pl::ClassroomRequest.where(course_id: current_user.course_ids).incompleted if current_user.type == "Teacher"
     @requests = current_user.classroom_requests.incompleted if current_user.type == "Learner"
+    render layout: 'home_new'
   end
 
   def show

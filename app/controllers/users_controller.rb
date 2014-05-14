@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :check_access, except: [:list_subjects, :update_user_subjects, :subscribe_teacher]
+  before_filter :check_access, except: [:analytics, :list_subjects, :update_user_subjects, :subscribe_teacher]
 
   def list_subjects
     @subjects = Subject.all
+    render layout: 'home_new'
   end
 
   def update_user_subjects
@@ -134,6 +135,7 @@ class UsersController < ApplicationController
      @total_subscriptions=Subscription.where(:user_type=>"Learner").count
      @total_passed=Subscription.where(:final_result=>"passed").count
      @total_failed=Subscription.where(:final_result=>"failed").count
+     render layout: 'home_new'
   end
   private
 

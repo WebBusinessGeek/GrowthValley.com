@@ -1,20 +1,30 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "notification" } %>
+<% content_for(:body_class, "profile-page") %>
+<% content_for(:current, 'notifications') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper">
+	<div class="notifications">
 
-<h1>Whats Going On?</h1>
-</br>
-
-<div class="tab-content">
-  <div id='personal' class='tab-pane fade active in' style="padding-left:50px;padding-top:5px;">
-	<% @notifications.each do |notification| %>
-		<div style="margin-top:20px;">
-			<% user_detail = User.find_by_id(notification["user_id"]) %>
-			<%= image_tag((user_detail.profile_pic_url.present?) ? user_detail.profile_pic_url : "/assets/defaultuser.jpg", class: 'img-small') %>
-			<div>
-			<%=notification["message"].html_safe()%><br>
-			<%= time_ago_in_words(notification.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
-			</div>
-		</div>
-		<div style="clear:both;"></div>
-	<% end %>
+    <!--Start Single Notification-->
+    <% @notifications.each do |n| %>
+    <div class="row-fluid single-notification">
+      <% user_detail = User.find_by_id(n["user_id"]) %>
+      <div class="span1 notification-thumb">
+       <% if user_detail.profile_pic_url.present? %>
+       <%= image_tag(user_detail.profile_pic_url) %>
+       <% else %>
+       <%= image_tag("no-thumbnail.png") %>
+       <% end %>
+     </div>
+     <div class="span11">
+      <h5><%= n["message"].html_safe %></h5>
+      <span class="time">
+      <%= time_ago_in_words(n.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
+      </span>
+    </div>
   </div>
+  <% end %>
+  <!--End Single Notification-->
+  <div class="no-more-notification">No More Notification</div>
 </div>
+</div>
+<!--End Main Content Area-->

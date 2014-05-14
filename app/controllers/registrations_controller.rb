@@ -5,10 +5,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-	redirect_to root_path
-    build_resource({})
-    respond_with self.resource
-  end
+   redirect_to root_path
+   build_resource({})
+   respond_with self.resource
+ end
 
   # POST /resource
   def create
@@ -59,8 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @courses = current_user.courses
-    render :edit
+    render layout: 'home_new'
   end
 
   # PUT /resource
@@ -73,7 +72,7 @@ class RegistrationsController < Devise::RegistrationsController
     if update_resource(resource, account_update_params)
       if is_navigational_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
+        :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource, :bypass => true
@@ -113,8 +112,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_needs_confirmation?(resource, previous)
     resource.respond_to?(:pending_reconfirmation?) &&
-      resource.pending_reconfirmation? &&
-      previous != resource.unconfirmed_email
+    resource.pending_reconfirmation? &&
+    previous != resource.unconfirmed_email
   end
 
   # By default we want to require a password checks on update.

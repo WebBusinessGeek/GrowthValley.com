@@ -5,28 +5,28 @@ class HomesController < ApplicationController
 
   def notification
     @notifications = get_activity_stream(0)
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
 
   def dashboard
-	if current_user.type == "Teacher"
-		redirect_to root_url()
-		return
-	end
+  	# if current_user.type == "Teacher"
+  	# 	redirect_to root_url
+  	# 	return
+  	# end
     @show_top_menu = false
     @notifications = get_activity_stream(10)
     @my_subjects = current_user.subjects
     if current_user.subjects.present?
-    @other_subjects = Subject.where("id not in (?)",current_user.subjects.map(&:id))
+      @other_subjects = Subject.where("id not in (?)",current_user.subjects.map(&:id))
     else
-    @other_subjects = Subject.all
+      @other_subjects = Subject.all
     end
-    render :layout => 'application'
+    render :layout => 'home'
   end
   
   def index
-    if current_user && current_user.type == 'Learner'
-		  redirect_to dashboard_path()
+    if user_signed_in?
+		  redirect_to dashboard_path
 		  return
     else
   		@current_menu = "home"

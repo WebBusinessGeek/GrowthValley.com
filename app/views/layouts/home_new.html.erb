@@ -30,9 +30,12 @@
 </head>
 <body class=<%= content_for?(:body_class) ? yield(:body_class) : "" %>>
 <div id="container-fluid">
-
     <!--Start Header -->
-    <%= render 'layouts/shared/header' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/shared/inner_header' %>
+    <% else %>
+      <%= render 'layouts/shared/header' %>
+    <% end %>
     <!--End Header -->
     
     <%= yield %>

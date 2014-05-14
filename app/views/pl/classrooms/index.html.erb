@@ -1,11 +1,73 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_classrooms') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper my-classrooms-page">
+  <div class="welcome-classrooms">
+    <ul id="active_classrooms" data-update-url="<%= sort_classrooms_path %>">
+      <% @classrooms.each do |classroom| %>
+        <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
+          <%= render classroom.classroom %>
+        <% end %>
+      <% end %>
+     </ul>
+  </div>
+  <!--End Welcome Classrooms Area-->
+  
+  <!--Start Classrooms Table Area-->
+  <div class="my-classrooms-table">
+    <h4><%= t '.requested.title', default: "Classrooms waiting for approval" %></h4>
+    <h5>
+      <%= t '.requested.instructions', default: "Below are classrooms waiting for approval" %>
+    </h5>
+    </div>
+    <table id="classroom_requested" class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t '.requested.table.course', default: "Course" %></th>
+          <th><%= t '.requested.table.learner', default: "Learner" %></th>
+          <th><%= t '.requested.table.learner', default: "Bid" %></th>
+          <th><%= t '.requested.table.status', default: "Status" %></th>
+          <th><%= t '.requested.table.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @requests.present? %>
+          <% @requests.each do |request| %>
+            <tr id="<%= dom_id(request) %>">
+              <td><%= request.course.title %></td>
+              <td><%= request.learner.full_name %></td>
+              <td><%= number_to_currency request.amount %></td>
+              <td><%= request.status %></td>
+              <td>
+                <% if request.awaiting_payment? && current_user.type == "Learner" %>
+                  <%# link_to(t('.requested.table.pay', default: "Pay"), pay_classroom_request_path(request), method: :post) %>
+                  <%= link_to 'Pay', new_transaction_path(resource_type: request.class, resource_id: request.id) %> |
+                <% end %>
+                <%= link_to t('.requested.table.negotiate', default: "Negotiate"), edit_classroom_request_path(request), remote: true %> |
+                <% if request.quick_approvable?(current_user.type) && !request.awaiting_payment? %>
+                  <%= link_to t('.requested.table.approve', default: "Approve"), approve_classroom_request_path(request), method: :post %> |
+                <% end %>
+                <%= link_to classroom_request_path(request), method: :delete, remote: true do %>
+                  <% if current_user.type == "Teacher" %>
+                    <%= t('.requested.table.reject', default: "Reject") %>
+                  <% else %>
+                    <%= t('.requested.table.cancel', default: "Cancel Request") %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          <% else %>
+          <tr><td></td><td></td><td>No Classroom Requests</td><td></td><td></td></tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% if false %>
 <%= render :partial => "layouts/inner_nav", :locals => { :current => "classrooms" } %>
 <div class="main-content courses">
-  <div>
-    <div style="float:left;">
-      <%- model_class = Pl::Classroom -%>
-      <div class="page-header">
-        <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-      </div>
+
       <ul id="active_classrooms" data-update-url="<%= sort_classrooms_path %>">
         <% @classrooms.each do |classroom| %>
           <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
@@ -16,12 +78,11 @@
       <hr>
     </div>
   </div>
-  <div style="clear:both;">
-    <div class="pagination-centered">
-    <h2><%= t '.requested.title', default: "Classrooms waiting for approval" %></h2>
-    <p>
+  
+    <h4><%= t '.requested.title', default: "Classrooms waiting for approval" %></h2>
+    <h5>
       <%= t '.requested.instructions', default: "Below are classrooms waiting for approval" %>
-    </p>
+    </h5>
     </div>
     <table id="classroom_requested" class="table table-striped">
       <thead>
@@ -75,3 +136,4 @@
   <div class="modal-body">
   </div>
 </div>
+<% end %>
