@@ -46,7 +46,7 @@ GrowthValley::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( home_new.js home_new.css home_new/ie6.js home_new/belated.js home_new/modernizr.min.js home_new/ie.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

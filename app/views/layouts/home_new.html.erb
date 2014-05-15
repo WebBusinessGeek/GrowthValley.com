@@ -18,13 +18,13 @@
 <%= csrf_meta_tags %>
 <%= stylesheet_link_tag "home_new", :media => "all" %>
 <!--[if lte IE 8]>
-    <link type="text/css" rel="stylesheet" href="css/ie.css" />
-    <script type="text/javascript" src="js/modernizr.min.js"></script>
+    <%= stylesheet_link_tag "home_new/ie" %>
+    <%= javascript_include_tag "home_new/modernizr.min" %>
 <![endif]-->
         
 <!--[if lte IE 6]>
-    <script src="js/belated.js" type="text/javascript"></script>
-    <script src="js/ie6.js" type="text/javascript"></script>
+    <%= javascript_include_tag "home_new/belated" %>
+    <%= javascript_include_tag "home_new/ie6" %>
 <![endif]-->
 <%= javascript_include_tag "home_new" %>
 </head>
