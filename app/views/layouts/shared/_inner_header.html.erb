@@ -44,12 +44,12 @@
                         <%= link_to "Classrooms", classrooms_path %></li>
                     </ul>
                   </li>
-                  <li class="<%= ['review_exams', 'reviewed_exames'].include?(yield(:current)) ? 'active' : '' %>">
+                  <li class="<%= ['review_exams', 'reviewed_exams'].include?(yield(:current)) ? 'active' : '' %>">
                     <%= link_to "Review Exams", review_exams_path %>
                     <ul class="submenu">
                       <li class="<%= 'review_exams' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Review Exams", review_exams_path %></li>
-                      <li class="<%= 'reviewed_exames' == yield(:current) ? 'active-submenu' : '' %>">
+                      <li class="<%= 'reviewed_exams' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Reviewed Exams", reviewed_exams_path %></li>
                     </ul>
                   </li>
@@ -61,7 +61,9 @@
         <!--nav-wrapper end --> 
         <div class="span3 fr">
           <div class="search-field">
-            <input type="text" value="" placeholder="Search">
+            <%= form_tag(courses_path, method: :get) do %>
+              <input name="search" id="Search" type="text" maxlength="100" value="<%=(params[:search].present?) ? params[:search] : 'search'%>" onfocus="if (this.value=='Search') this.value = ''" onblur="if (this.value=='') this.value = 'Search'" />
+            <% end %>
           </div>
         </div>
       </div>

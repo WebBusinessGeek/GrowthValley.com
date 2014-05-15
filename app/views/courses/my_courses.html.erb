@@ -12,24 +12,7 @@
           <h4 class="modal-title" id="myModalLabel">New Courses</h4>
         </div>
         <div class="modal-body">
-          <input type="text" value="" placeholder="Title of Courses" class="course-title-field">
-          <input type="file" id="choose-course-cover-pic" value="">
-          <label for="choose-course-cover-pic">+ Choose course cover pic</label>
-          <div class="options">
-            <h5>Is it a Paid Course?</h5>
-            <input type="checkbox" value="" id="yes-paid">
-            <label for="yes-paid">Yes, it is paid</label>
-
-            <input type="checkbox" value="" id="not-paid">
-            <label for="not-paid">No</label>
-
-            <h5>Classroom settings (optional)</h5>
-            <input type="checkbox" value="" id="accept-requests">
-            <label for="accept-requests">Accept Requests</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
+          <%= render 'form' %>
         </div>
       </div>
     </div>

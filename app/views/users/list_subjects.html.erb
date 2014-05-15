@@ -14,26 +14,21 @@
               <div class="btn-group" data-toggle="buttons">
                 <%= label_tag s.name, s.name, class: 'btn'  do %>
                   <%= s.name %>
-                  <%= check_box_tag "user[subject_ids][]", s.id, current_user.subjects.include?(s) %>
+                  <%= check_box_tag "user[subject_ids][]", s.id, @current_subjects.include?(s.id), class: "subject" %>
                 <% end %>
               </div>
             </div>
           <% end %>
         </div>
         <% end %>
-  </br>
-  <div class='row-fluid'>
-    <div class='span3'>
-      <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
-    </div>
-  </div>
-  <% end %>
-
-
-    <!--End Fourth Column-->
-
+    </br>
+      <div class='row-fluid'>
+        <div class='span3'>
+          <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
+        </div>
+      </div>
+      <% end %>
   </div>    
-
 </div>
 <!--End Main Content Area-->
     <% if false %>

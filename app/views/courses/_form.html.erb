@@ -1,7 +1,8 @@
-<%= simple_form_for @course, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+<%= simple_form_for @course, html: {multipart: true } do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :title %>
+  <%= f.input :title, class: "course-title-field", placeholder: "Title of Course" %>
+
   <% if !@course.new_record? && @course.course_cover_pic.present? %>
     <%= f.input :course_cover_pic, required: false %>
     <div class="control-group file optional existing_course_course_cover_pic">
@@ -15,13 +16,13 @@
   <% else %>
     <%= f.input :course_cover_pic, required: true %>
   <% end %>
-  <%# if current_user.subscription_type.downcase == 'paid' %>
-    <%= f.input :is_paid, label: 'Is it a paid course', as: :radio_buttons %>
-  <%# end %>
-  <p>Classroom settings (optional)</p>
-  <%= f.input :classroom_enabled, label: "Accept Requests" %>
-  <div class="form-actions">
+    <div class="options">
+      <h5>Is it a Paid Course?</h5>
+      <%= f.input :is_paid, label: 'Yes, It is paid.', as: :radio_buttons %>
+
+      <h5>Classroom settings (optional)</h5>
+      <%= f.input :classroom_enabled, label: "Accept Requests" %>
+    </div>
     <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, style: 'margin-left: 5px;' %>
   </div>
 <% end %>

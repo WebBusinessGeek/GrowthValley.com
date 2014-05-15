@@ -55,10 +55,7 @@ class BundlesController < ApplicationController
     else
       @bundles = current_user.bundles.active_bundles.page(params[:page])
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    render layout: 'home_new'
   end
 
   def make_active

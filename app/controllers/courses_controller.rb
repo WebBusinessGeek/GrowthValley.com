@@ -62,6 +62,9 @@ class CoursesController < ApplicationController
   end
   
   def my_courses
+    @course = current_user.courses.build
+    @course.sections.build
+
     @courses = current_user.courses.page(params[:page])
     render layout: 'home_new'
   end

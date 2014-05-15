@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def list_subjects
     @subjects = Subject.all
+    @current_subjects = current_user.subject_ids
     render layout: 'home_new'
   end
 
@@ -26,17 +27,13 @@ class UsersController < ApplicationController
   def review_exams
     @learners_exams = Subscription.where(progress: 'exam given', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id)).page(params[:page])
 
-    respond_to do |format|
-      format.html
-    end
+    render layout: 'home_new'
   end
 
   def reviewed_exams
     @learners_exams = Subscription.where(progress: 'exam reviewed', user_type: 'Learner', course_id: current_user.subscriptions.where(user_type: 'Teacher').map(&:course_id)).page(params[:page])
 
-    respond_to do |format|
-      format.html
-    end
+    render layout: 'home_new'
   end
 
   def exam_review

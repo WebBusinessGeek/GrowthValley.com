@@ -1,38 +1,45 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "reviewed_exam" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'reviewed_exams') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper">
+  <div class="notifications">
+    <!--Start Review Exams Area-->
+    <div class="row-fluid review-exams">
+      <h4>Exams Pending for Review</h4>
+      <% if @learners_exams.present? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Exam Name</th>
+              <th>Learner Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% count = 0 %>
+            <% @learners_exams.each do |le| %>
+              <% count = count + 1 %>
+              <% exam ||= le.course.exam %>
+              <% exam_learner = le.user %>
+              <tr>
+                <td><%= "#{exam.title.titleize}" %></td>
+                <td><%= exam_learner.full_name.titleize %></td>
+                <td>
+                  <%= link_to 'View Result', review_exam_path(exam_id: exam.id, user_id: exam_learner.id) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-<div class="page-header">
-  <h1><%=t '.title', :default => "Exams Reviewed" %></h1>
-</div>
-
-<% if @learners_exams.present? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Exam Name</th>
-        <th>Learner Name</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% count = 0 %>
-      <% @learners_exams.each do |le| %>
-        <% count = count + 1 %>
-        <% exam ||= le.course.exam %>
-        <% exam_learner = le.user %>
-        <tr>
-          <td><%= "#{exam.title.titleize}" %></td>
-          <td><%= exam_learner.full_name.titleize %></td>
-          <td>
-            <%= link_to 'View Result', review_exam_path(exam_id: exam.id, user_id: exam_learner.id) %>
-          </td>
-        </tr>
+        <%= paginate @learners_exams %>
+      <% else %>
+        <p class="no-pending">
+          No exams reviewed yet...
+        </p>
       <% end %>
-    </tbody>
-  </table>
-
-  <%= paginate @learners_exams %>
-<% else %>
-  <p>
-    No exams reviewed yet...
-  </p>
-<% end %>
+    </div>
+    <!--End Review Exams Area-->
+  </div>
+</div>
+<!--End Main Content Area-->
