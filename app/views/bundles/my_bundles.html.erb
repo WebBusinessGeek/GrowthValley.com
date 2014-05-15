@@ -1,5 +1,6 @@
 <% content_for(:body_class, 'profile-page') %>
 <% content_for(:current, 'my_bundles') %>
+<% content_for(:title, 'GrowthValley > My Account > Personal') %>
 <!--Start Main Content Area-->
 <div class="main-content-area wrapper">
   <div class="notifications">
@@ -103,14 +104,7 @@
         <h4 class="modal-title" id="myModalLabel">New Bundle</h4>
       </div>
       <div class="modal-body">
-        <input type="text" value="" placeholder="Name" class="course-title-field">
-        <input type="text" value="" placeholder="Price" class="course-title-field">
-        <input type="file" id="choose-course-cover-pic" value="">
-        <label for="choose-course-cover-pic">+ Choose course cover pic</label>
-        <div class="options">
-          <input type="checkbox" value="" id="web-design-course">
-          <label for="web-design-course">Web design course</label>
-        </div>
+        <%= render 'form' %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>

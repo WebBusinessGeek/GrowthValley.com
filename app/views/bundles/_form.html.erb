@@ -1,11 +1,4 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "bundle" } %>
-
-<%- model_class = Bundle -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => "#{ @bundle.new_record? ? 'New' : 'Edit' } #{ model_class.model_name.human.titleize }" %></h1>
-</div>
-
-<%= simple_form_for @bundle, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+<%= simple_form_for @bundle, html: {multipart: true } do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :name %>
@@ -24,9 +17,5 @@
     <%= f.input :bundle_pic, required: true %>
   <% end %>
   <%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes %>
-
-  <div class="form-actions">
-    <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_bundles_bundles_path, style: 'margin-left: 5px;' %>
-  </div>
+    <%= f.button :submit, 'Submit', class: 'btn btn-primary', data: {dismiss: "modal"} %>
 <% end %>

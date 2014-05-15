@@ -50,6 +50,8 @@ class BundlesController < ApplicationController
   end
 
   def my_bundles
+    @courses = current_user.courses.where(:is_published => 'true')
+    @bundle = current_user.bundles.build
     if current_user.type == 'Teacher'
       @bundles = current_user.bundles.page(params[:page])
     else
