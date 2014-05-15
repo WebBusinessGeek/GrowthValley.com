@@ -1,7 +1,7 @@
 # config/puma.rb
 threads Integer(ENV['MIN_THREADS']  || 1), Integer(ENV['MAX_THREADS'] || 16)
 
-workers Integer(ENV['PUMA_WORKERS'] || 3)
+workers Integer(ENV['PUMA_WORKERS'] || 1)
 
 rackup DefaultRackup
 port ENV['PORT'] || 3000
@@ -14,7 +14,7 @@ on_worker_boot do
   end
 
    if defined?(Sidekiq)
-    Resque.redis = ENV["REDISTOGO_URL"] || "redis://127.0.0.1:6379"
+    Sidekiq.redis = ENV["REDISTOGO_URL"] || "redis://127.0.0.1:6379"
     Rails.logger.info('Connected to Redis')
   end
 end
