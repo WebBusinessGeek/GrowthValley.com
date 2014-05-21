@@ -29,10 +29,10 @@
         <% else %>
           <li><a href="javascript:void(0);">Teach Online</a></li>
           <li>
-            <%= link_to "Login", (params[:controller] == "homes" and params[:action] == "index") ? "javascript:login();" : root_path+"?login=1" %>
+            <%= link_to "Login", new_user_session_path %>
           </li>
           <li>
-            <%= link_to "Signup", (params[:controller] == "homes" and params[:action] == "index") ? "javascript:signup();" : root_path %>
+            <%= link_to "Signup", new_user_registration_path %>
           </li>
         <% end %>
       </ul>

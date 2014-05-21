@@ -1,14 +1,14 @@
-<%= simple_form_for(resource, url: user_registration_path, method: :post, format: :json, remote: true) do |f| %>
+<%= simple_form_for(resource, url: user_registration_path, method: :post) do |f| %>
   <p style="margin-left: 70px;">
-    <%= f.radio_button :type, 'Learner', checked: true, class: 'sprite name usertype', style: "float: left;" %>
+    <%= f.radio_button :type, 'Learner', checked: true, class: 'name usertype', style: "float: left;" %>
     <%= f.label :type, 'Learner', style: "float: left; margin: -2px 20px 0px 5px;" %>
-    <%= f.radio_button :type, 'Teacher', class: 'sprite name usertype', style: "float: left;" %>
+    <%= f.radio_button :type, 'Teacher', class: 'name usertype', style: "float: left;" %>
     <%= f.label :type, 'Teacher', style: "float: left; margin: -2px 20px 0px 5px;" %>
   </p>
   <p style="margin-bottom: 10px;">&nbsp;</p>
   <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Learner"), :id=>"facebook_Learner", :class=>"login_with_facebook", :style=>"display:block;" %>
   <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Teacher"), :id=>"facebook_Teacher", :class=>"login_with_facebook", :style=>"display:none;" %>
-  <h2>OR</h2>
+  <!-- <h2>OR</h2> -->
   <p class="m15">Sign Up with your email:</p>
 
   <div class='error' style='color: red; margin: 2ex; display: none;'></div>
@@ -22,7 +22,7 @@
     <%= f.password_field :password, placeholder: 'Password', class: 'sprite pass', required: true %>
   </p>
   <span class="login-info">
-    <span class="fleft m1">Already have an account?&nbsp;&nbsp; <%= link_to "LOGIN", "javascript:login();" %></span>
+    <span class="fleft m1">Already have an account? <%= link_to "LOGIN", new_user_session_path %></span>
     <%= f.submit 'SIGN UP', class: 'sprite fright sml-btn' %>
   </span>
 <% end %>
@@ -31,8 +31,8 @@
 <script>
 $(function() {
   $('.usertype').click(function(){
-    $(".login_with_facebook").hide()
-    $("#facebook_"+$(this).val()).show()
+    $(".login_with_facebook").hide();
+    $("#facebook_"+$(this).val()).show();
   });
 });
 </script>
