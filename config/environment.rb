@@ -5,11 +5,11 @@ require File.expand_path('../application', __FILE__)
 GrowthValley::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['MAILER_USERNAME'],
-  :password => ENV['MAILER_PWD'],
-  :address => ENV['MAILER_ADDRESS'],
-  :port => 587,
-  :authentication => :plain,
-  :domain => ENV['MAILER_DOMAIN'],
-  :enable_starttls_auto => true
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
 }
+ActionMailer::Base.delivery_method = :smtp

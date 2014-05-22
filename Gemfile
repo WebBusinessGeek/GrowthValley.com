@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 def darwin_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /darwin/ && require_as
@@ -62,6 +62,7 @@ gem 'slim'
 
 # Heroku
 gem 'newrelic_rpm'
+gem 'mandrill-api'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
