@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
    build_resource({})
-   # respond_with self.resource
  end
 
   # POST /resource
@@ -136,7 +135,8 @@ class RegistrationsController < Devise::RegistrationsController
   # The path used after sign up. You need to overwrite this method
   # in your own RegistrationsController.
   def after_sign_up_path_for(resource)
-    after_sign_in_path_for(resource)
+    # after_sign_in_path_for(resource)
+    root_path
   end
 
   # The path used after sign up for inactive accounts. You need to overwrite
