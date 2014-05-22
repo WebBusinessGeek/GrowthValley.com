@@ -65,13 +65,12 @@ GrowthValley::Application.routes.draw do
     get "*post_url" => "posts#show", as:  "post"
   end
 
-  devise_for :users, controllers: {:omniauth_callbacks => "users/omniauth_callbacks" }
-  # # , registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations', passwords: 'passwords'
+  devise_for :users, controllers: {:omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations', passwords: 'passwords'}
 
-  # devise_scope :user do
-  #   post 'user/upload_profile_pic' => 'registrations#upload_profile_pic', as: 'upload_profile_pic'
-  #   get 'user/inactive' => 'sessions#inactive'
-  # end
+  devise_scope :user do
+    post 'user/upload_profile_pic' => 'registrations#upload_profile_pic', as: 'upload_profile_pic'
+    get 'user/inactive' => 'sessions#inactive'
+  end
 
   get 'user/subjects' => 'users#list_subjects', as: 'user_subjects'
   post 'user/update_user_subjects' => 'users#update_user_subjects', as: 'update_user_subjects'

@@ -8,7 +8,7 @@ class ContactUsMailer < ActionMailer::Base
     @name = name
     @email = email
 
-    mail(:from => email_with_name, :to => "Jony Malhotra <jony@idifysolutions.com>", :subject => "Feedback from GrowthValley") do |format|
+    mail(:from => email_with_name, :to => "Adam Robbie <adam.robbie@gmail.com>", :subject => "Feedback from GrowthValley") do |format|
       format.html
     end
   end
