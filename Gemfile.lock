@@ -60,6 +60,9 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
+    bugsnag (2.0.1)
+      httparty (>= 0.6, < 1.0)
+      multi_json (~> 1.0)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (1.1.4)
@@ -151,6 +154,9 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     hirb (0.7.1)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -212,6 +218,7 @@ GEM
       subexec (~> 0.2.1)
     mini_portile (0.5.2)
     multi_json (1.8.4)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     newrelic_rpm (3.7.2.192)
     nokogiri (1.6.1)
@@ -434,6 +441,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
+  bugsnag
   cancan
   capybara (~> 1.1.4)
   capybara-webkit

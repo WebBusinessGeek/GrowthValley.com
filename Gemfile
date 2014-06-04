@@ -63,6 +63,7 @@ gem 'slim'
 # Heroku
 gem 'newrelic_rpm'
 gem 'mandrill-api'
+gem 'bugsnag'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.8'
