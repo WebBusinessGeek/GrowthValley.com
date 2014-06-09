@@ -13,17 +13,17 @@
 
   <div class='error' style='color: red; margin: 2ex; display: none;'></div>
   <p>
-    <%= f.text_field :full_name, placeholder: 'Full Name', class: 'sprite name', required: true %>
+    <%= f.text_field :full_name, placeholder: 'Full Name', class: 'name', required: true %>
   </p>
   <p>
-    <%= f.email_field :email, placeholder: 'E-mail', class: 'sprite email', required: true %>
+    <%= f.email_field :email, placeholder: 'E-mail', class: 'email', required: true %>
   </p>
   <p>
-    <%= f.password_field :password, placeholder: 'Password', class: 'sprite pass', required: true %>
+    <%= f.password_field :password, placeholder: 'Password', class: 'pass', required: true %>
   </p>
   <span class="login-info">
     <span class="fleft m1">Already have an account? <%= link_to "LOGIN", new_user_session_path %></span>
-    <%= f.submit 'SIGN UP', class: 'sprite fright sml-btn' %>
+    <%= f.submit 'SIGN UP' %>
   </span>
 <% end %>
 <p class="sml-font">By signing up, you agree to our <a href="<%= terms_homes_path %>">Terms of Use and Privacy Policy</a></p>
