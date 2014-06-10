@@ -14,6 +14,7 @@ gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem "sass", "~> 3.2.13"
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -30,6 +31,7 @@ gem 'devise'
 gem 'wicked'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'fog'
 gem 'figaro'
 gem 'activeadmin', '~> 0.6.0'
 gem 'cancan'
