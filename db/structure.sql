@@ -621,7 +621,8 @@ CREATE TABLE notifications (
     user_id integer,
     message text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    read boolean DEFAULT false
 );
 
 
@@ -2214,3 +2215,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140210183840');
 INSERT INTO schema_migrations (version) VALUES ('20140212192252');
 
 INSERT INTO schema_migrations (version) VALUES ('20140212225929');
+
+INSERT INTO schema_migrations (version) VALUES ('20140611175538');

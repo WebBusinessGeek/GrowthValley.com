@@ -4,7 +4,7 @@ class HomesController < ApplicationController
   layout :set_layout
 
   def notification
-    @notifications = get_activity_stream(0)
+    @notifications = get_activity_stream(10)
     render :layout => 'home_new'
   end
 

@@ -57,10 +57,12 @@
   			    <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
 			    <% end %>
 			  <% end %>
-			  <strong>
-			    </br></br>
-			    Course completion progress: <%= @progress_percentage %>%
-			  </strong>
+			  <% unless current_user == @course.teacher %>
+				  <strong>
+				    </br></br>
+				    Course completion progress: <%= @progress_percentage %>%
+				  </strong>
+			  <% end %>
 			<% else %>
 		      <% if ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid') %>
 			  <% if @course.is_paid %>

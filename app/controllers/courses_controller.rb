@@ -133,7 +133,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.save
         current_user.courses << @course
-        Subscription.where(course_id: @course.id, user_id: current_user.id).first.update_attribute(:user_type, 'Teacher')
+        Subscription.where(course_id: @course.id, user_id: current_user.id).first.update_attributes(user_type: 'Teacher', paid: true)
         session[:course_id] = @course.id
         format.html { redirect_to course_steps_path }
       else
