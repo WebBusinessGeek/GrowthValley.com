@@ -89,6 +89,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'quiet_assets'
+  gem 'switch_user'
   gem 'rack-mini-profiler'
   gem 'thin'
 end

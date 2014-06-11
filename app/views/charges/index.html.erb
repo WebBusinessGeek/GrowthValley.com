@@ -1,50 +1,53 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "subscription" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'subscriptions') %>
+<% content_for(:title, 'GrowthValley > Courses > Subscriptions/Payments') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper subscriptions-page">
 
-<%- model_class = Course -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => "Premium Subscriptions" %></h1>
-</div>
-<% if false %>
-  <% if current_user.subscription_type.downcase == "free" %>
-    You are currently registered under <b>"Free Membership"</b>
-    <% if current_user.type == "Learner" %>
-      <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_learner"), class: 'btn btn-primary pull-right' %>
-    <% else %>
-      <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_teacher"), class: 'btn btn-primary pull-right' %>
+  <p>Work is still being done on the subscription model from the clients, so this page not be 
+  full functioning at this point.</p>
+  <%# if false %>
+    <% if current_user.subscription_type.downcase == "free" %>
+      You are currently registered under <b>"Free Membership"</b>
+      <% if current_user.type == "Learner" %>
+        <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_learner"), class: 'btn btn-primary pull-right' %>
+      <% else %>
+        <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_teacher"), class: 'btn btn-primary pull-right' %>
+      <% end %>
+    <% elsif current_user.subscription_type.downcase == "paid" %>
+      You are currently registered under <b>"Premium Membership"</b>
     <% end %>
-  <% elsif current_user.subscription_type.downcase == "paid" %>
-    You are currently registered under <b>"Premium Membership"</b>
-  <% end %>
-<% end %>
+  <%# end %>
 
-<% if current_user.type == 'Learner' %>
-  <% if current_user.premium_courses.present? %>
-    <table style='width: 100%; margin-top: 3em;'>
-      <thead class="table table-striped">
-        <tr>
-          <th><%= model_class.human_attribute_name(:user) %></th>
-          <th><%= model_class.human_attribute_name(:course) %></th>
-          <th><%= model_class.human_attribute_name(:amount) %></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% current_user.premium_courses.each do |subscription| %>
+  <% if current_user.type == 'Learner' %>
+    <% if current_user.premium_courses.present? %>
+      <table style='width: 100%; margin-top: 3em;'>
+        <thead class="table table-striped">
           <tr>
-            <td>
-              <%= subscription.user.full_name.titleize if subscription.user.present? %>
-            </td>
-            <td>
-              <%= subscription.course.title.titleize if subscription.course.present? %>
-            </td>
-            <td>
-              <%= number_to_currency(subscription.amount) %>
-            </td>
+            <th><%= Course.human_attribute_name(:user) %></th>
+            <th><%= Course.human_attribute_name(:course) %></th>
+            <th><%= Course.human_attribute_name(:amount) %></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p style='margin-top: 3em;'>You have not subscribed to any premium courses yet...</p>
+        </thead>
+
+        <tbody>
+          <% current_user.premium_courses.each do |subscription| %>
+            <tr>
+              <td>
+                <%= subscription.user.full_name.titleize if subscription.user.present? %>
+              </td>
+              <td>
+                <%= subscription.course.title.titleize if subscription.course.present? %>
+              </td>
+              <td>
+                <%= number_to_currency(subscription.amount) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p style='margin-top: 3em;'>You have not subscribed to any premium courses yet...</p>
+    <% end %>
   <% end %>
-<% end %>
+</div>

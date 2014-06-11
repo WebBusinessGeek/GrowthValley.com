@@ -1,5 +1,10 @@
 class ChargesController < ApplicationController
   before_filter :authenticate_user!
+
+  def index
+    render layout: 'home_new'
+  end
+  
   def new
   end
 

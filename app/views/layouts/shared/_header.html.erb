@@ -21,6 +21,7 @@
       <div class="create-account-login-links">
         <%= link_to "Create my account", new_user_registration_path %>
         <%= link_to "Login", new_user_session_path, class: "login-btn green-button" %>
+        <%= switch_user_select  if Rails.env == 'development' %>
       </div>
     </div>
   </div>

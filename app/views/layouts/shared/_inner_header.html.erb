@@ -21,7 +21,7 @@
                         <%= link_to "Personal", edit_user_registration_path %>
                       </li>
                       <li class="<%= 'subscriptions' == yield(:current) ? 'active-submenu' : '' %>">
-                        <a href="#">Subscriptions</a>
+                        <%= link_to "Subscriptions/Payment", charges_path %>
                       </li>
                       <li class= "<%= 'analytics' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Analytics", course_analytics_path %>
