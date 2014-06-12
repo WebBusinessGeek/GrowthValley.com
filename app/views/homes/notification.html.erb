@@ -7,7 +7,7 @@
 
     <!--Start Single Notification-->
     <% @notifications.each do |n| %>
-    <div class="row-fluid single-notification">
+    <div id=<%= dom_id(n) %> class="row-fluid single-notification">
       <% user_detail = User.find_by_id(n["user_id"]) %>
       <div class="span1 notification-thumb">
        <% if user_detail.profile_pic_url.present? %>
@@ -18,14 +18,15 @@
      </div>
      <div class="span11">
       <h5><%= n["message"].html_safe %></h5>
+      <span class="pull-right"><%= link_to "X", toggle_notification_path(n), method: :post, remote: true %></span>
       <span class="time">
-      <%= time_ago_in_words(n.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
+        <%= time_ago_in_words(n.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
       </span>
     </div>
   </div>
   <% end %>
   <!--End Single Notification-->
-  <div class="no-more-notification">No More Notification</div>
+  <div class="<%= @notifications.any? ? 'hide' : '' %> no-more-notification">No More Notification</div>
 </div>
 </div>
 <!--End Main Content Area-->

@@ -1,0 +1,4 @@
+$('#<%= dom_id(@notification)%>').fadeOut().remove()
+if($('.single-notification').length == 0) {
+	$('.no-more-notification').show()
+}

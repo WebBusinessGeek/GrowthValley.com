@@ -1,5 +1,10 @@
 GrowthValley::Application.routes.draw do
 
+  resources :notifications, only: [:toggle] do
+    member do
+      post :toggle
+    end
+  end
   resources :transactions do
     collection do
       get :paid

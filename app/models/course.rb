@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :bundles
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
-  belongs_to :subject
+  belongs_to :subject, counter_cache: true
   has_many :sections, dependent: :destroy
   has_one :exam, dependent: :destroy
   has_many :premium_courses, dependent: :destroy

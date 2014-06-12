@@ -1171,7 +1171,8 @@ CREATE TABLE subjects (
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    slug character varying(255)
+    slug character varying(255),
+    courses_count integer DEFAULT 0
 );
 
 
@@ -2217,3 +2218,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140212192252');
 INSERT INTO schema_migrations (version) VALUES ('20140212225929');
 
 INSERT INTO schema_migrations (version) VALUES ('20140611175538');
+
+INSERT INTO schema_migrations (version) VALUES ('20140612115107');

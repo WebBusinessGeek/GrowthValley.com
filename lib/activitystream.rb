@@ -35,9 +35,9 @@ module Activitystream
 	def get_activity_stream(no_of_records)
 	  if current_user.type.to_s == "Teacher"
 		  if no_of_records > 0
-		    user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records, :order=>"created_at desc")
+		    user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and read = 'f' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :limit => no_of_records, :order=>"created_at desc")
 		  else
-		    user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :order=>"created_at desc")
+		    user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Teacher' and read = 'f' and module_id IN (?)", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id)], :order=>"created_at desc")
 		  end
 	  else #learner
       course_ids = Array.new
@@ -48,9 +48,9 @@ module Activitystream
       end
 
 		  if no_of_records > 0
-        user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)) or module_id IN (?))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id), course_ids], :limit => no_of_records, :order=>"created_at desc")
+        user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and read = 'f' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)) or module_id IN (?))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id), course_ids], :limit => no_of_records, :order=>"created_at desc")
 		  else
-        user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)) or module_id IN (?))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id), course_ids], :order=>"created_at desc")
+        user_notifications = Notification.find(:all, :conditions => ["notification_for = 'Learner' and read = 'f' and ((module_id IN (?) and action = 'published') or (action = 'updated' and module_id IN (?)) or module_id IN (?))", Course.where("subject_id IN (?)", current_user.subjects.map( &:id)).map( &:id), current_user.subscriptions.map( &:course_id), course_ids], :order=>"created_at desc")
 		  end
 	  end
 	end
