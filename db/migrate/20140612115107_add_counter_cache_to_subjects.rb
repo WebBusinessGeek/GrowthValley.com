@@ -1,4 +1,7 @@
 class AddCounterCacheToSubjects < ActiveRecord::Migration
+  class Subject < ActiveRecord::Base
+    has_many :courses
+  end
   def up
   	add_column :subjects, :courses_count, :integer, default: 0
   	Subject.reset_column_information
