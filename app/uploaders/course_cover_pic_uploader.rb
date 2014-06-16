@@ -17,8 +17,6 @@ class CourseCoverPicUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process :resize_to_fit => [100, 100]
-
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     # For Rails 3.1+ asset pipeline compatibility:
@@ -35,7 +33,7 @@ class CourseCoverPicUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :cover do
-    process :resize_to_fill => [225, 135, gravity = 'Center']
+    process :resize_to_fill => [225, 135]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

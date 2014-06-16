@@ -133,7 +133,7 @@ class Course < ActiveRecord::Base
 
   def sections_count_range
     arr = Array.new
-    upper_limit = (5 - self.sections.count)
+    upper_limit = (20 - self.sections.count)
 
     if sections.count == 0 # new_record
       1.upto(upper_limit).each do |v|
