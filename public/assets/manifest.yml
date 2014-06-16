@@ -251,8 +251,8 @@ blog/admin/application.js: blog/admin/application-4848c824033b2b7de0d3ad4f801959
 blog/admin/application/index.js: blog/admin/application-4848c824033b2b7de0d3ad4f80195905.js
 blog/application.js: blog/application-122004704e0ae5bb4542a34f691957b3.js
 blog/application/index.js: blog/application-122004704e0ae5bb4542a34f691957b3.js
-home_new.js: home_new-0e16f3b67087554e1327aa72ef49c4eb.js
-home_new/index.js: home_new-0e16f3b67087554e1327aa72ef49c4eb.js
+home_new.js: home_new-408225ccf772b08fd75470256ea61e24.js
+home_new/index.js: home_new-408225ccf772b08fd75470256ea61e24.js
 home_new/belated.js: home_new/belated-dd5866df1e0d401b9b181bf14cf8288f.js
 home_new/belated/index.js: home_new/belated-dd5866df1e0d401b9b181bf14cf8288f.js
 home_new/ie6.js: home_new/ie6-8ae84b7d925c245df390b2b096867b48.js
@@ -267,8 +267,8 @@ blog/admin/application.css: blog/admin/application-7a7093221c3df017087b103027b65
 blog/admin/application/index.css: blog/admin/application-7a7093221c3df017087b103027b653bc.css
 blog/application.css: blog/application-9dce4bf94238c1e6d7f1bf66528ca129.css
 blog/application/index.css: blog/application-9dce4bf94238c1e6d7f1bf66528ca129.css
-home_new.css: home_new-492498c8a1bf847bb72fbbc4d28cc9f9.css
-home_new/index.css: home_new-492498c8a1bf847bb72fbbc4d28cc9f9.css
+home_new.css: home_new-936d1540ae7b49866119c6ec2d18d939.css
+home_new/index.css: home_new-936d1540ae7b49866119c6ec2d18d939.css
 home_new/ie.css: home_new/ie-416c2229ae61d9ca4589e74c7431fe51.css
 home_new/ie/index.css: home_new/ie-416c2229ae61d9ca4589e74c7431fe51.css
 blog/foundation_icons/social_foundicons.eot: blog/foundation_icons/social_foundicons-a393e2c5fc066b0cc8384cca651648b0.eot

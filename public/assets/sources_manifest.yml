@@ -125,7 +125,7 @@ active_admin.js: a3c7708afd3b3b1873f36a9df056681f
 application.js: ac22c89c5a94ee1d55f8c17e99423b6c
 blog/admin/application.js: 5e34d7be1098d4ad02e7e396244ef146
 blog/application.js: d31734dd5328863c8f325d2161ccab37
-home_new.js: e8101db78c4463ff69494a7e6855fe36
+home_new.js: 6dfce48de9065709c69469aaf0030ab4
 home_new/belated.js: 6c8cce6aca748a09fe15b6768b615009
 home_new/ie6.js: 6be8271095f7cb3a63476d87ae30210c
 home_new/modernizr.min.js: 170a523198c858995497ffc19e9c3446
@@ -133,7 +133,7 @@ active_admin.css: 3b674a43bf9c4a63f7f30405a4a366b8
 application.css: 23ed1e0dfa9bf8ac20502a75927b9ce4
 blog/admin/application.css: 033924391eb8e6f08b2f4595af06c15d
 blog/application.css: acd54adb9c17959a0cab770acee692ee
-home_new.css: 7d4f6904903161e1c69c27499a878682
+home_new.css: bba117ece8eb4856a302d2b3f0ebd00f
 home_new/ie.css: df14d7c486d0fec6a41f9473d7d212e2
 blog/foundation_icons/social_foundicons.eot: a393e2c5fc066b0cc8384cca651648b0
 blog/foundation_icons/social_foundicons.svg: e50549ee3f490404d640489c6753776c

@@ -30,6 +30,7 @@
 </head>
 <body class=<%= content_for?(:body_class) ? yield(:body_class) : "" %>>
 <div id="container-fluid">
+    <%= render partial: "layouts/shared/flash_messages", flash: flash %> 
     <!--Start Header -->
     <% if user_signed_in? %>
       <%= render 'layouts/shared/inner_header' %>
@@ -37,7 +38,6 @@
       <%= render 'layouts/shared/header' %>
     <% end %>
     <!--End Header -->
-    <%= render partial: "layouts/shared/flash_messages", flash: flash %> 
     <%= yield %>
     <!--Start Footer-->
     <%= render 'layouts/shared/footer' %>

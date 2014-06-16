@@ -25,7 +25,7 @@
     </br>
       <div class='row-fluid'>
         <div class='span3'>
-          <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
+          <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" %>
         </div>
       </div>
       <% end %>
@@ -59,15 +59,10 @@
   <script>
     function count_subjects()
     {
-     if ($( "input[class='subject']:checked" ).length != 3)
+     if ($( "input[class='subject']:checked" ).length < 3)
      {
-      alert("Please select 3 subjects");
+      alert("Please select at least 3 subjects");
       return false
-    }
-    else
-    {
-      res = confirm("You cannot change your subjects in future! Press ok to confirm?")
-      return res
     }
   }
 </script>

@@ -16,3 +16,18 @@
 //= require paypal-button.min
 //= require home_new/bootstrap
 //= require_self
+
+$(document).ready(function(){
+
+  function fadeAlert(){
+    $('.alert').removeClass('in');
+  }
+
+  function removeAlert(){
+    $('.alert').remove();
+  }
+
+  window.setTimeout(fadeAlert,5000);
+  window.setTimeout(removeAlert,6000);
+
+});
