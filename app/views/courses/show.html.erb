@@ -1,32 +1,7 @@
 <div class="main-content courses">
   <div>
 	  <div style="float:left;">
-	  <ul class="courses-box">
-		<li style="width:100%">
-		  <div class="box">
-			<span class="cource-img box-grn">
-			  <%= image_tag(@course.course_cover_pic.url(:cover)) %>
-			</span>
-			<span class="cource-disc">
-			  <ol class="cource-dtl">
-				<li>Price<br />
-				  <span><%= @course.is_paid ? number_to_currency(@course.price, precision: 0) : 'Free' %></span>
-				</li>
-				<li><%= @course.ratings.count %> Reviews<br/>
-				  <% if @course.ratings.present? && @course.ratings.find_by_ip_address(request.remote_ip).present? %>
-					<div id="course_<%= @course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= @course.avg_rating(@course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="true" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
-				  <% else %>
-					<div id="course_<%= @course.id %>_rating" class="rateit" data-rateit-resetable="false" data-rateit-value="<%= @course.avg_rating(@course.id) %>" data-rateit-ispreset="true" data-rateit-readonly="false" data-rateit-max="5" data-rateit-min="0" data-rateit-step="1"></div>
-				  <% end %>
-				</li>
-				<li>Students<br />
-				  <span class="sprite students"></span><%= @course.users.where(type: 'Learner').count %>
-				</li>
-			  </ol>
-			</span>
-		  </div>
-		</li>
-	  </ul>
+	  	<%= render 'courses/show/course_box' %>
 	  </div>
 	  <div style="margin:12px;">
 		  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @course.title.titleize %></div>
@@ -80,99 +55,7 @@
 	  </div>
   </div>
   <%= render 'courses/classroom_links' %>
-  <div style="clear:both;">
-	  <% if current_user.courses.include?(@course) %>
-	  <h2>Course Sections:</h2>
-	  </br>
-	  <ul class="nav nav-tabs">
-		<% section_counter=1 %>
-		<% classname = 'active' %>
-		<% @course.sections.each do |section| %>
-			<% if @current_subscription.current_section.present? %>
-				<% if @current_subscription.current_section.to_i == section_counter.to_i %>
-					<% classname = 'active' %>
-				<% else %>
-					<% classname = '' %>
-				<% end %>
-			<% end %>
-			<li class="<%=classname %>">
-				<a href="#section_<%= section.id %>" data-toggle="tab">
-				  Section <%=section_counter%><%#= section.title.titleize %>
-				</a>
-			</li>
-			<% classname = '' %>
-			<% section_counter=section_counter + 1 %>
-		<% end %>
-	  </ul>
-
-	  <% classname="active" %>
-	  <div class='tab-content'>
-		<% unlock_counter = 1 %>
-		<% unlock = true %>
-		<% @course.sections.each_with_index do |section, index| %>
-			<% if @current_subscription.current_section.present? %>
-				<% if @current_subscription.current_section.to_i == unlock_counter.to_i %>
-					<% classname = 'active' %>
-				<% else %>
-					<% classname = '' %>
-				<% end %>
-			<% end %>
-
-		  <div class="tab-pane <%=classname %>" id="section_<%= section.id %>">
-			<ul>
-			  <li style="padding-left:20px;">
-				<%= section.title.titleize %>
-			  </li>
-			  </br>
-			  <li class='pull-right' style='margin-left: 1em;'>
-				<% if unlock and @current_subscription.user_type == "Learner" %>
-			    <li style="padding-left:20px;">
-			      <%= link_to 'Download', section.attachment.url %>
-			    </li>
-			    </br>
-				  <b>
-					<% if section.quiz_completed?(current_user.id) %>
-					  <li style="padding-left:20px;">
-					    <p>Result: You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
-					    </br>
-				    </li>
-					<% else %>
-					  <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right', target: '_blank' %>
-					<% end %>
-				  </b>
-				<% end %>
-			  </li>
-			</ul>
-			  <% if (unlock && @current_subscription.paid?) || index == 0 %>
-			  <div style="text-align:center;margin-top:10px;">
-			    <% if File.extname(section.attachment.url) != '.pdf' %>
-			      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
-			      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
-
-			      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
-		      <% else %>
-		        <object data="<%= section.attachment.url %>" width="800" height="1000">
-		          <embed src="<%= section.attachment.url %>" width="800" height="1000">
-		        </object>
-		      <% end %>
-			  </div>
-			  <% else %>
-			  <div style="text-align:center;margin-top:10px;">
-                <% unless @current_subscription.paid? %>
-				  Submit a payment to unlock more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
-                <% else %>
-                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
-                <% end %>
-			  </div>
-			  <% end %>
-		  </div>
-			<% classname = '' %>
-		  <% unlock_counter = unlock_counter + 1 %>
-		  <% unlock = false if (@current_subscription.user_type == "Learner" and unlock_counter > @current_subscription.current_section) %>
-		<% end %>
-	  </div>
-	  <% end %>
-  </div>
+  <%= render 'courses/show/course_sections' %>
 </div>
 
 <div id='exam_result_dialog' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>

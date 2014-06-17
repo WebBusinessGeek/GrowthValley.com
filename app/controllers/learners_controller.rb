@@ -11,14 +11,14 @@ class LearnersController < ApplicationController
   def subscribe_course
     @course = Course.all_published_courses_for_subjects(current_user.subjects).find_by_slug(params[:id])
     if @course.present? and ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid')
-    current_user.courses << @course unless current_user.courses.include?(@course)
-    @course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
-	  add_activity_stream('COURSE', @course, 'subscribe')
+      current_user.courses << @course unless current_user.courses.include?(@course)
+      @course.subscriptions.where(user_id: current_user.id).first.update_attributes(user_type: 'Learner', current_section: 1, progress: 'course started')
+	    add_activity_stream('COURSE', @course, 'subscribe')
 
-    redirect_to course_path(@course), notice: 'Course subscribed successfully!'
+      redirect_to course_path(@course), notice: 'Course subscribed successfully!'
     else
-		@course = Course.find_by_slug(params[:id])
-		redirect_to course_path(@course), notice: 'Subscribe the subject first!'
+		  @course = Course.find_by_slug(params[:id])
+		  redirect_to course_path(@course), notice: 'Subscribe the subject first!'
     end
   end
 
