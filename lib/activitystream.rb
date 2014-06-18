@@ -3,6 +3,11 @@ module Activitystream
 		if modulename.to_s == 'COURSE'
 			#coursedetail = Course.find_by_id(moduleid)
 			coursedetail = moduleid
+			if actionname.to_s == "requested"
+				notification_for = "Teacher"
+				message = "A new user has requested a private classroom '<a href='"+ classrooms_path+"'>My Classrooms</a>'" + "for "+ coursedetail.title.capitalize + "."
+			end
+
 			if actionname.to_s == "published"
 				notification_for = "Learner"
 				message = "A new course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>' has been published under "+coursedetail.subject.name.capitalize+"."
@@ -18,7 +23,7 @@ module Activitystream
 				message = "Exam result has been announced for your course named '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'. <a href='"+course_path(coursedetail)+"'>Click Here</a> to view result."
 			end
 
-			if actionname.to_s == "subscribe"
+			if actionname.to_s == "subscribed"
 				notification_for = "Teacher"
 				message = "A new user has subsribed for your course '<a href='"+course_path(coursedetail)+"'>"+coursedetail.title.capitalize+"</a>'."
 			end

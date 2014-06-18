@@ -10,6 +10,7 @@ class Pl::ClassroomRequestsController < ApplicationController
   def create
     @request = Pl::ClassroomRequest.new(params[:pl_classroom_request])
     if @request.save
+      add_activity_stream('COURSE', @request.course, 'requested')
       redirect_to course_path(@request.course), notice: "Request sent successfully."
     else
       render action: :new
