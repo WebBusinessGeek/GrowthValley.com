@@ -1,1 +1,2 @@
+$('.quiz_options input').prop("disabled", true);
 $('#result').html('<%= escape_javascript (@quiz_answer.correct_answer ? 'Correct Answer!' : 'Wrong Answer!') %>  <%= link_to 'click here to go to next question', take_test_learners_path(section: @section, course: @section.course) %>')
