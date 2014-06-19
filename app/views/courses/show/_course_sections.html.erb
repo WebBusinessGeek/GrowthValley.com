@@ -61,30 +61,32 @@
 				<% end %>
 			  </li>
 			</ul>
-			  <% if (unlock && @current_subscription.paid?) || index == 0 %>
-			  <div style="text-align:center;margin-top:10px;">
-			    <% if File.extname(section.attachment.url) != '.pdf' %>
-			      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
-			      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
+			  <% if (unlock && @current_subscription.paid?) && index == 0 %>
+				  <div style="text-align:center;margin-top:10px;">
+				    <% if File.extname(section.attachment.url) != '.pdf' %>
+				      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
+				      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
 
-			      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
-		      <% else %>
-		        <object data="<%= section.attachment.url %>" width="800" height="1000">
-		          <embed src="<%= section.attachment.url %>" width="800" height="1000">
-		        </object>
-		      <% end %>
-			  </div>
+				      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
+			      <% else %>
+			        <object data="<%= section.attachment.url %>" width="800" height="1000">
+			          <embed src="<%= section.attachment.url %>" width="800" height="1000">
+			        </object>
+			      <% end %>
+				  </div>
 			  <% else %>
-			  <div style="text-align:center;margin-top:10px;">
-                <% unless @current_subscription.paid? || !@course.is_paid? %>
-				  Submit a payment to unlock more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
-                <% else %>
-                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
-                <% end %>
-			  </div>
+				  <div style="text-align:center;margin-top:10px;">
+				    <% unless unlock %>
+		                <% unless @current_subscription.paid? || !@course.is_paid? %>
+						  Submit a payment to unlock more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
+		                <% else %>
+		                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
+		                <% end %>
+	                <% end %>
+				  </div>
 			  <% end %>
 		  </div>
-			<% classname = '' %>
+		  <% classname = '' %>
 		  <% unlock_counter = unlock_counter + 1 %>
 		  <% unlock = false if (@current_subscription.user_type == "Learner" and unlock_counter > @current_subscription.current_section) %>
 		<% end %>

@@ -7,4 +7,5 @@ class LearnersExam < ActiveRecord::Base
   belongs_to :course
 
   scope :for_courses, ->(course_ids) { where(course_id: course_ids) }
+
 end
