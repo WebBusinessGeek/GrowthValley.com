@@ -68,6 +68,7 @@ class SectionsController < ApplicationController
       if @section.update_attributes(params[:section])
         format.html { redirect_to section_quizzes_path(@section), notice: 'Section was successfully updated.' }
       else
+        @section.errors.inspect
         format.html { render action: "edit" }
       end
     end

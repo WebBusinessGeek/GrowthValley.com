@@ -19,7 +19,7 @@ class Section < ActiveRecord::Base
 
   default_scope { order("id asc") }
 
-  after_save :convert_videos
+  # after_save :convert_videos
 
   def complete?
     if self.quizzes.present?
