@@ -2,130 +2,179 @@
 <% content_for(:current, 'my_courses') %>
 <% content_for(:title, 'GrowthValley > Courses > My Courses') %>
 <!--Start Main Content Area-->
-<div class="main-content-area wrapper my-courses-table">
+<div class="main-content-area my-courses-table">
 
-  <!-- Start Modal -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">New Courses</h4>
-        </div>
-        <div class="modal-body">
-          <%= render 'form' %>
+    <!-- Start Modal -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">New Courses</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'form' %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- End Modal -->
+    <!-- End Modal -->
+
+
 <% if current_user.type == 'Teacher' %>
-<% if current_user.subjects.present? %>
-<a href="#" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="plus">+</span> <span class="add-new-courses">Add New Courses</span></a></th>
-<% else %>
-For adding courses, first <%= link_to "Add Subjects", user_subjects_path %>
-<% end %>
-<% if @courses.present? %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= Course.human_attribute_name(:title) %></th>
-      <th><%= Course.human_attribute_name(:is_published?) %></th>
-      <th><%= Course.human_attribute_name(:is_live?) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-    <tr>
-      <td><%= link_to course.title.titleize, course_path(course) %></td>
-      <td>
-        <% if course.is_published %>
-        <%= check_box_tag :is_published, true, true, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
-        <% else %>
-        <%= check_box_tag :is_published, false, false, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
+    
+
+    <% if @courses.present? %>
+      <!--Start mycourses Page Area-->
+      <div class="table-responsive">
+        <table class="table table-striped" id="courses_requested">
+          <thead>
+            <tr>
+              <th><%= Course.human_attribute_name(:title) %></th>
+              <th><%= Course.human_attribute_name(:is_published?) %></th>
+              <th><%= Course.human_attribute_name(:is_live?) %></th>
+              <th>
+                <span><%=t '.actions', :default => t("helpers.actions") %></span>
+                <div class="actions-courses">
+                    <span class="plus-sign"><img src="/assets/plus-icon.png" alt=""></span>
+                    <% if current_user.subjects.present? %>
+                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" class="btn btn-green" >
+                          Add New Courses
+                        </a>
+                    <% else %>
+                        For adding courses, first <%= link_to "Add Subjects", user_subjects_path %>
+                    <% end %>
+                    <a class="btn btn-gray" href="javascript:void(0)">View All Course</a>
+                </div>
+
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @courses.each do |course| %>
+                <tr class="manage-coloumn">
+                  <td><%= link_to course.title.titleize, course_path(course) %></td>
+
+                  <td>
+                    <% if course.is_published %>
+                      <%= check_box_tag :is_published, true, true, { id: "#{course.id}", class: 'is_published pub', onChange: "javascript:toggle_publish('#{course.id}')" } %>
+                      <img src="/assets/green-tick.png" alt=""  style="cursor: pointer;">
+                      <% else %>
+                      <%= check_box_tag :is_published, false, false, { id: "#{course.id}", class: 'is_published', onChange: "javascript:toggle_publish('#{course.id}')" } %>
+                    <% end %>
+                  </td>
+
+                  <td><%= course.isCourseLive? %></td>
+
+                  
+                    <% unless course.has_active_learners? %>
+
+                      <td>
+                      <%= link_to 'Manage Sections', sections_course_path(course)  if course.teacher == current_user %>
+                      </td>
+
+                      <td>
+                      <%= link_to t('.view', :default => 'Manage Exams'), course_exams_path(course), style: 'margin-left: 5px;'  if course.teacher == current_user %>
+                      </td>
+
+                      <td>
+                      <%= link_to t('.edit', :default => 'Edit Course'), edit_course_path(course), style: 'margin-left: 5px;'  if course.teacher == current_user %>
+                      </td>
+
+                      <td>
+                      <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(course), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;'  if course.teacher == current_user %>
+                      </td>
+
+                    <% end %>
+                  
+
+                  <td><%= link_to "Manage Classroom settings", classroom_settings_course_path(course) if course.teacher == current_user%>
+                  </td>
+
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+        <% if current_user.subjects.present? %>
+          You haven't added any courses yet...
         <% end %>
-      </td>
-      <td><%= course.isCourseLive? %></td>
-      <td>
-        <% unless course.has_active_learners? %>
-        <%= link_to 'Manage Sections', sections_course_path(course)  if course.teacher == current_user %>
-        <%= link_to t('.view', :default => 'Manage Exams'), course_exams_path(course), style: 'margin-left: 5px;'  if course.teacher == current_user %>
-        <%= link_to t('.edit', :default => 'Edit Course'), edit_course_path(course), style: 'margin-left: 5px;'  if course.teacher == current_user %>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(course), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;'  if course.teacher == current_user %>
-        <% end %>
-      </td>
-      <td><%= link_to "Manage Classroom settings", classroom_settings_course_path(course) if course.teacher == current_user%></td>
-    </tr>
     <% end %>
-  </tbody>
-</table>
+
 <% else %>
-  <% if current_user.subjects.present? %>
-    You haven't added any courses yet...
-  <% end %>
-<% end %>
-<% else %>
-  <% unless current_user.subjects.present? %>
-    For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
-  <% end %>
-  <%= link_to "View more courses", courses_path, class: 'pull-right btn btn-primary' if @courses.present? %>
-  <% if @courses.present? %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= Course.human_attribute_name(:title) %></th>
-      <th><%= Course.human_attribute_name(:description) %></th>
-      <th><%= Course.human_attribute_name(:progress) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-    <tr>
-      <td><%= link_to course.title.titleize, course_path(course) %></td>
-      <td><%= course.description %></td>
-      <% current_subscription = course.subscriptions.where("user_id = ?", current_user.id).first %>
-      <% progress_percentage = current_subscription.present? ? current_subscription.progress_percentage : "0" %>
-      <td><%= progress_percentage %>% completed</td>
-    </tr>
+
+    <% unless current_user.subjects.present? %>
+      For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
     <% end %>
-  </tbody>
-</table>
-<% else %>
-<% if current_user.subjects.present? %>
-You haven't subscribed for any courses yet...
-<%= link_to "Click here to view courses", courses_path %>
-<% end %>
-<% end %>
+
+    <% if @courses.present? %>
+        <div class="table-responsive">
+          <table class="table table-striped" id="courses_requested">
+            <thead>
+              <tr>
+                <th><%= Course.human_attribute_name(:title) %></th>
+                <th><%= Course.human_attribute_name(:description) %></th>
+                <th><%= Course.human_attribute_name(:progress) %></th>
+                <th>
+                  <%= link_to "View more courses", courses_path, class: 'pull-right btn btn-gray' if @courses.present? %>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @courses.each do |course| %>
+              <tr>
+                <td><%= link_to course.title.titleize, course_path(course) %></td>
+                <td><%= course.description %></td>
+                <% current_subscription = course.subscriptions.where("user_id = ?", current_user.id).first %>
+                <% progress_percentage = current_subscription.present? ? current_subscription.progress_percentage : "0" %>
+                <td><%= progress_percentage %>% completed</td>
+                <td></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    <% else %>
+          <% if current_user.subjects.present? %>
+                You haven't subscribed for any courses yet...
+            <%= link_to "Click here to view courses", courses_path %>
+          <% end %>
+    <% end %>
 <% end %>
 
 <%= paginate @courses %>
 
 <%= javascript_tag do %>
 function toggle_publish(course_id) {
-$.ajax({
-url: "/courses/" + course_id + "/publish_unpublish",
-cache: false,
-success: function(resp) {
-if(resp.status == 'success') {
-$('#'+course_id).val(resp.data);
-$('#'+course_id).attr('checked', resp.data);
-$('#'+course_id).parent().next().text(resp.data);
+  $.ajax({
+  url: "/courses/" + course_id + "/publish_unpublish",
+  cache: false,
+  success: function(resp) {
+  if(resp.status == 'success') {
+  $('#'+course_id).val(resp.data);
+  $('#'+course_id).attr('checked', resp.data);
+  $('#'+course_id).parent().next().text(resp.data);
+  }
+  else if(resp.errorCode == 1) {
+  $('#'+course_id).val("false");
+  $('#'+course_id).removeAttr('checked');
+  alert(resp.data);
+  }
+  else if(resp.errorCode == 2) {
+  $('#'+course_id).prop('checked', true);
+  alert(resp.data);
+  }
+  else {
+  alert(resp.data);
+  }
+  }
+  });
 }
-else if(resp.errorCode == 1) {
-$('#'+course_id).val("false");
-$('#'+course_id).removeAttr('checked');
-alert(resp.data);
-}
-else if(resp.errorCode == 2) {
-$('#'+course_id).prop('checked', true);
-alert(resp.data);
-}
-else {
-alert(resp.data);
-}
-}
-});
+if($(".is_published").hasClass("pub")){
+  var id= $(".is_published").attr("id");
+  $(".is_published").parent().find("img").attr("onclick","javascript:toggle_publish('"+id+"')");
+  $(".is_published").hide();
 }
 <% end %>
 </div>
