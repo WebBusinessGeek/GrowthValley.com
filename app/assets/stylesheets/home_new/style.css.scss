@@ -966,12 +966,47 @@ ul,li{
 .middle { vertical-align:middle }
 
 /*---------------------All pages css on 22 july, 2014----------------------------*/
+
 /*accounts subscriptions page*/
 
 .user-subscriptions{width:570px; margin:0px auto;}
 .user-subscriptions p{font-size:16px; color:#2a2a2a; text-align:center;}
 .user-subscriptions span{color:#028d96; font-weight:bold;}
 
+/*bundles page*/
+.profile-page .my-bundles-page .breadcrumb {background:none; border-radius:0; border-bottom:solid 1px #ededed; padding:0px 0px 10px 0px; margin-bottom:36px;}
+.profile-page .my-bundles-page .breadcrumb li{text-shadow:none;}
+.profile-page .my-bundles-page .breadcrumb li a{color:#028d96; font-size:20px; text-decoration:none; font-weight:bold;}
+.profile-page .my-bundles-page .breadcrumb li a:hover{text-decoration:underline;}
+.profile-page .my-bundles-page .breadcrumb > li > .divider{background-image:url(../../images/breadcrumb-arrow.png); background-repeat:no-repeat; background-position:center 0px; padding:0px 16px;}
+.profile-page .bundles h6{color:#797979; font-size:14px; font-weight:bold; font-family:"Trebuchet MS"; margin-bottom:36px;}
+.my-bundles-page .btn{background:none; border:none; box-shadow:none; text-decoration:none; border-radius:3px; text-shadow:none; color:#fff; font-size:12px; padding:6px 16px; margin-left:10px;}
+.btn:first-child{margin-left:0px;}
+.my-bundles-page .btn-green{background-color:#028d96;}
+.my-bundles-page .btn-gray{background-color:#707070;}
+.my-bundles-page .btn:hover{opacity:0.9;}
+#bundles_requested.table td {
+    color: #A0A0A0;
+    font-style: italic;
+}
+#bundles_requested.table th, #bundles_requested.table td {
+    padding: 10px 8px;
+    text-align: center;
+}
+#bundles_requested.table a{color:#028d96;text-decoration:none;}
+#bundles_requested.table a:hover{color:#028d96;text-decoration:underline;}
+.modal .form-footer{background: #2b2b2b; margin-bottom:0px;border-radius: 0 0 6px 6px;text-align:center;}
+.profile-page .modal-body{padding:0px;}
+.profile-page .modal-body form .control-group {padding: 0 50px 15px;}
+.profile-page .modal-body form.new_bundle{padding-bottom:0px;margin-bottom:0px;}  
+.modal .form-footer input.btn{
+background:none;
+color:#ffffff;
+border-radius: 0 0 0 0;
+box-shadow:none;
+border:none;
+padding:10px 0px;
+}
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
@@ -1117,6 +1152,10 @@ ul,li{
 	.personal-setting-form .span9 .current-password-field{
 		padding:10px 0;
 	}
+
+	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
+	.user-subscriptions{width:94%;}
+	.my-bundles-page .bundles{padding:0px 10px;}
 }
 
 @media (max-width: 870px) {
