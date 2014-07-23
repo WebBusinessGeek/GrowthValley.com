@@ -512,12 +512,17 @@ ul,li{
 .login-form-page {
 	background: #2b2b2b;
 }
+
+.login-form-page .header-wrap {
+ top: 0px;
+}
+
 .login-form {
 	width: 430px;
 	background: white;
 	border-radius: 8px;
 	margin: 0 auto;
-	margin-top: 80px;
+	margin-top: 120px;
 	padding-bottom:25px;
 }
 .login-form .logo-area {
@@ -565,6 +570,8 @@ ul,li{
 	border-radius: 3px;
 	margin-top: 25px;
 	color: white;
+	font-family: arvo, Verdana, Geneva;
+	font-size: 16px;
 }
 .login-form #logo {
 	background: url(image-path("logo-white.png")) no-repeat center;
@@ -652,6 +659,16 @@ ul,li{
 	padding:210px 0 20px;
 	font-size:14px;
 }
+/* ---------------------------------------My Account page by deependra 22-7-2014 ---------------------------*/
+/*update button hover*/
+.personal-setting-form .span9 input, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
+	color:#a4a4a4;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	line-height:26px;
+	width:185px;
+}
+.personal-setting-form .span9 .update-button .btn:hover{background-color:#35c4cb; color:#fff;}
+.personal-setting-form .span3 a{text-decoration: none;}
 /* -------------------------------------- Notification Page --------------------------------------*/
 .profile-page .notifications .notification-thumb img{
 	border:1px solid #cacaca;
@@ -903,7 +920,7 @@ ul,li{
 .personal-setting-form .span9 input, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
 	color:#a4a4a4;
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	height:26px;
+	/*height:26px;*/
 	line-height:26px;
 	width:185px;
 }
