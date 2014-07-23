@@ -2,16 +2,14 @@
 <% content_for(:current, 'my_classrooms') %>
 <% content_for(:title, 'GrowthValley > Courses > Classrooms') %>
 <!--Start Main Content Area-->
-<div class="main-content-area wrapper my-classrooms-page">
-  <div class="welcome-classrooms">
-    <ul id="active_classrooms" data-update-url="<%= sort_classrooms_path %>">
-      <% @classrooms.each do |classroom| %>
-        <%= content_tag_for :li, classroom, class: 'ui-state-default', style: "width:200px;padding:3px;text-align:center;min-height:200px;float:left;margin:3px 3px 3px 3px 0" do %>
+<div class="main-content-area my-classrooms-page">
+    
+      <% @classrooms.each do |classroom| %>       
           <%= render classroom.classroom %>
         <% end %>
-      <% end %>
-     </ul>
-  </div>
+    
+    
+  
   <!--End Welcome Classrooms Area-->
   
   <!--Start Classrooms Table Area-->
@@ -58,7 +56,7 @@
               </td>
             </tr>
             <% end %>
-          <% else %>
+          <% else %>         
           <tr><td></td><td></td><td>No Classroom Requests</td><td></td><td></td></tr>
           <% end %>
       </tbody>

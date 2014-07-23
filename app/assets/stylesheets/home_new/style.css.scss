@@ -1025,6 +1025,16 @@ border:none;
 padding:10px 0px;
 }
 
+/*classrooms page*/
+.my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
+.my-course-classrooms h4 span{color:#028d96;}
+#classroom_requested.table th, #classroom_requested.table td{text-align:center; padding:10px 8px;}
+#classroom_requested.table td{color:#a0a0a0; font-style:italic;}
+.gray-bg{background-color:#f9f9f9; border-top:solid 1px #ddd; border-bottom:1px solid #dddddd; margin-bottom:40px;}
+.tl-name{padding:10px 0px 4px 0px;}
+.tl-name p{margin-bottom:6px; font-size:16px;}
+.my-course-classrooms a{color:#028d96;}
+
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
 	.nav-wrap li{ padding:30px 10px; font-size:14px; }
@@ -1173,6 +1183,8 @@ padding:10px 0px;
 	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
 	.user-subscriptions{width:94%;}
 	.my-bundles-page .bundles{padding:0px 10px;}
+	.my-course-classrooms{padding:0px 10px;}
+	.tl-name{padding:0px 10px;}
 }
 
 @media (max-width: 870px) {
