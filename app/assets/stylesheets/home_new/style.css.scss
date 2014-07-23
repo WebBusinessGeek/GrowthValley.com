@@ -512,12 +512,17 @@ ul,li{
 .login-form-page {
 	background: #2b2b2b;
 }
+
+.login-form-page .header-wrap {
+ top: 0px;
+}
+
 .login-form {
 	width: 430px;
 	background: white;
 	border-radius: 8px;
 	margin: 0 auto;
-	margin-top: 80px;
+	margin-top: 120px;
 	padding-bottom:25px;
 }
 .login-form .logo-area {
@@ -565,6 +570,8 @@ ul,li{
 	border-radius: 3px;
 	margin-top: 25px;
 	color: white;
+	font-family: arvo, Verdana, Geneva;
+	font-size: 16px;
 }
 .login-form #logo {
 	background: url(image-path("logo-white.png")) no-repeat center;
