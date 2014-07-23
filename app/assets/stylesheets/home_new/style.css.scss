@@ -512,12 +512,15 @@ ul,li{
 .login-form-page {
 	background: #2b2b2b;
 }
+.login-form-page .header-wrap {
+	top: 0px;
+}
 .login-form {
 	width: 430px;
 	background: white;
 	border-radius: 8px;
 	margin: 0 auto;
-	margin-top: 80px;
+	margin-top: 120px;
 	padding-bottom:25px;
 }
 .login-form .logo-area {
@@ -1382,6 +1385,7 @@ p{
 	padding:0;
 }
 
+/******************************login page ************************************/
 .login-form{
 	width:auto;
 	margin:10px;
@@ -1395,6 +1399,7 @@ p{
 	margin-top:10px;
 	height:40px;
 }
+
 
 .profile-page .table th{
 	padding:2px;
@@ -1412,3 +1417,4 @@ p{
   margin-left:20px;
   margin-right:20px;
 }
+
