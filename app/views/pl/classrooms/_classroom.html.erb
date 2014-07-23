@@ -1,13 +1,17 @@
-<ul>
-  <li>
-      <h3><%= link_to classroom.title, classroom_path(classroom) %></h3>
-      <h4><%= t '.for', default: "for" %> <%= classroom.course.title %></h4>
-      <p><%= classroom.description %></p>
-      <p><%= t '.teacher', default: "teacher" %> <%= classroom.teacher.full_name %></p>
-      <p><%= t '.learner', default: 'learner' %> <%= classroom.learner.full_name %></p>
-      <% if current_user.type == "Teacher" %>
-        <%= link_to "Approve", classroom_approve_path(classroom_id: classroom.id), method: :post, class: 'btn btn-primary' if classroom.state == 'requested' %>
-        <%= link_to "Deny", classroom_deny_path(classroom_id: classroom.id), class: 'btn btn-primary' if classroom.state == 'requested'%>
-      <% end %>
-  </li>
-</ul>
+ <div class="my-course-classrooms wrapper"> 
+     <!-- <h3><%= link_to classroom.title, classroom_path(classroom) %></h3>-->
+      <h4>Hi, Welcome to <span><%= link_to classroom.title, classroom_path(classroom) %> </span> <%= t '.for', default: "for" %> <span> <%= classroom.course.title %></span> <%= t '.course', default: "course" %></h4>     
+  </div>
+    <div class="gray-bg">
+          <div class="wrapper">
+              <div class="tl-name">
+                 <p><%= t '.Teacher', default: "Teacher:" %> <%= classroom.teacher.full_name %></p>
+                 <p><%= t '.Learner', default: 'Learner:' %> <%= classroom.learner.full_name %></p>
+                 <% if current_user.type == "Teacher" %>           
+                  <%= link_to "Approve", classroom_approve_path(classroom_id: classroom.id), method: :post, class: 'btn btn-primary' if classroom.state == 'requested' %>
+                 <%= link_to "Deny", classroom_deny_path(classroom_id: classroom.id), class: 'btn btn-primary' if classroom.state == 'requested'%>
+                 <% end %>
+              </div>
+            </div>
+        </div>
+ 
