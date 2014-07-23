@@ -3,19 +3,19 @@
 <% content_for(:title, 'GrowthValley > Courses > Subscriptions/Payments') %>
 <!--Start Main Content Area-->
 <div class="main-content-area wrapper subscriptions-page">
-
+<div class="user-subscriptions">
   <p>Work is still being done on the subscription model from the clients, so this page not be 
   full functioning at this point.</p>
   <%# if false %>
     <% if current_user.subscription_type.downcase == "free" %>
-      You are currently registered under <b>"Free Membership"</b>
+      <p><em>You are currently registered under</em> <span>"Free Membership"</span></p>
       <% if current_user.type == "Learner" %>
         <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_learner"), class: 'btn btn-primary pull-right' %>
       <% else %>
         <%= link_to "Upgrade to Premium Membership", new_charge_path(subscription_type: "premium_teacher"), class: 'btn btn-primary pull-right' %>
       <% end %>
     <% elsif current_user.subscription_type.downcase == "paid" %>
-      You are currently registered under <b>"Premium Membership"</b>
+     <p><em> You are currently registered under</em><span>"Premium Membership"</span></p>
     <% end %>
   <%# end %>
 
@@ -50,4 +50,5 @@
       <p style='margin-top: 3em;'>You have not subscribed to any premium courses yet...</p>
     <% end %>
   <% end %>
+</div>
 </div>

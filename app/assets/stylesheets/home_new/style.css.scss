@@ -965,6 +965,15 @@ ul,li{
 .top {vertical-align:top }
 .middle { vertical-align:middle }
 
+/*---------------------All pages css on 22 july, 2014----------------------------*/
+/*accounts subscriptions page*/
+
+.user-subscriptions{width:570px; margin:0px auto;}
+.user-subscriptions p{font-size:16px; color:#2a2a2a; text-align:center;}
+.user-subscriptions span{color:#028d96; font-weight:bold;}
+
+
+/*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
 	.nav-wrap li{ padding:30px 10px; font-size:14px; }
 	.create-account-login-links a{ font-size:14px;}
