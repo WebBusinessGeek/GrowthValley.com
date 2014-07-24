@@ -542,7 +542,7 @@ ul,li{
 	width: 85%;
 	margin: 0 auto;
 }
-.login-form form input {
+.login-form form input[type = 'text'],.login-form form input[type = 'email'] ,.login-form form input[type = 'password']  {
 	width: 87%;
 	height: 45px;
 	border: 1px solid #DBD9D9;
@@ -578,6 +578,20 @@ ul,li{
 	height: 89px;
 }
 
+.login-form form input[type = 'radio'] {
+	border: 1px solid #DBD9D9;
+	border-radius: 3px;
+	padding: 0px 23px;
+	color: #434343;
+	font-weight: 300;
+	outline: medium none;
+	box-shadow: none;
+	-moz-box-sizing: border-box;
+	transition: 0.4s;
+}
+.login-form-page .help-block{
+	padding:30px 30px 0px 30px;
+}
 /* -------------------------------------- Profile Pages --------------------------------------*/
 .profile-page{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -984,9 +998,9 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
-<<<<<<< HEAD
+
 /*----------------------------------------All Course page -----------------------------------------*/
-=======
+
 .profile-page .modal-footer input.btn{
 	background:#2b2b2b;
 	color:#fff;
@@ -1209,10 +1223,6 @@ border:none;
 padding:10px 0px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1271,10 +1281,6 @@ padding:10px 0px;
 .profile-page .course-section-tabs h4{color:#028d96;}
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1285,7 +1291,7 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
-<<<<<<< HEAD
+
 /*manage section*/
 .profile-page .mycourse-section-table h4{color: #028d96;  font-family: "Trebuchet MS"; text-align: center;}
 .profile-page #courses_manageExams.table td a.btn{color:#fff;}
@@ -1306,8 +1312,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .ui-radio input[type="radio"] + span:before {background:#ffffff; border:none; border-radius:3px; content: "";display: inline-block; height: 18px; margin-left: -20px; margin-right: 10px; vertical-align: middle; width: 18px;}
 .ui-radio input[type="radio"]:checked + span:after {background:url(../../assets/input-checkbox.png) no-repeat; height: 12px; left:-18px; margin-top: 0; position: absolute; top:5px; content:""; width:13px;}
 .ui-radio input[type="radio"] + span { font-weight: normal;}
-=======
-<<<<<<< HEAD
+
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1372,9 +1377,6 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
-=======
->>>>>>> ac9d1d706e9386f235893f346873644c21fc5824
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
@@ -1527,18 +1529,17 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
 	.user-subscriptions{width:94%;}
 	.my-bundles-page .bundles{padding:0px 10px;}
-<<<<<<< HEAD
+
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
-=======
+
 
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
 
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 }
 
 @media (max-width: 870px) {
