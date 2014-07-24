@@ -17,8 +17,10 @@
        <% end %>
      </div>
      <div class="span11">
-      <h5><%= n["message"].html_safe %></h5>
-      <span class="pull-right"><%= link_to "X", toggle_notification_path(n), method: :post, remote: true %></span>
+      <h5><%= n["message"].html_safe %>
+        <span class="pull-right toggle-delete"><%= link_to "x", toggle_notification_path(n), method: :post, remote: true %></span>
+      </h5>
+      
       <span class="time">
         <%= time_ago_in_words(n.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
       </span>
