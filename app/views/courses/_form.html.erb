@@ -1,27 +1,47 @@
-<%= simple_form_for @course, html: {multipart: true } do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @course, html: {multipart: true , class:"simple_form_new_question" , id:"add_questions" } do |f| %>
+    <div class="modal-body">
+      <%= f.error_notification %>
 
-  <%= f.input :title, class: "course-title-field", placeholder: "Title of Course" %>
+          <%= f.text_field :title, :class => 'course-title-field' ,placeholder:"Title of Courses", :required => true %>
 
-  <% if !@course.new_record? && @course.course_cover_pic.present? %>
-    <%= f.input :course_cover_pic, required: false %>
-    <div class="control-group file optional existing_course_course_cover_pic">
-      <label class="file optional control-label">
-        <b>Existing course cover pic</b>
-      </label>
-      <div class="controls">
-        <%= image_tag(@course.course_cover_pic_url, class: 'img-rounded') %>
-      </div>
+      <% if !@course.new_record? && @course.course_cover_pic.present? %>
+        <%= f.input :course_cover_pic, required: false %>
+        <div class="control-group file optional existing_course_course_cover_pic">
+          <label class="file optional control-label">
+            <b>Existing course cover pic</b>
+          </label>
+          <div class="controls">
+            <%= image_tag(@course.course_cover_pic_url, class: 'img-rounded') %>
+          </div>
+        </div>
+      <% else %>
+        <div class="image_upload">
+        <span> <img src="/assets/white-plus-icon.png" alt=""> Choose Cover pic</span>
+         <%= f.file_field :course_cover_pic, required: true, id:"fileupload", class:"upload" %>
+        <!-- <input id="fileupload"  type="file" name="file[]" class="upload" > -->
+        </div>
+       
+      <% end %>
+      <p>Is it a Paid Course?</p>
+      <label class="ui-radio">
+        <%= f.radio_button :is_paid, "true"  %>
+
+            <span>Yes, it is paid</span>
+        </label>
+       <label class="ui-radio">
+           <%= f.radio_button :is_paid, "false" %>
+
+            <span>No</span>
+        </label> 
+        <p>Classroom settings (optional)</p>
+        <label class="ui-checkbox">
+          <%= f.check_box :classroom_enabled, {} %>
+            <span>Accept Requests</span>
+        </label>
     </div>
-  <% else %>
-    <%= f.input :course_cover_pic, required: true %>
-  <% end %>
-    <div class="options">
-      <h5>Is it a Paid Course?</h5>
-      <%= f.input :is_paid, label: 'Yes, It is paid.', as: :radio_buttons %>
-
-      <h5>Classroom settings (optional)</h5>
-      <%= f.input :classroom_enabled, label: "Accept Requests" %>
+    
+    <div class="modal-footer">
+    <%= f.button :submit, 'Continue' %>
     </div>
-    <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>
+    
 <% end %>
