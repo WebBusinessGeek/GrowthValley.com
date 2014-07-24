@@ -9,7 +9,7 @@ class ExamsController < ApplicationController
     @exam = @course.exam
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html{ render :layout => 'home_new'} # index.html.erb
     end
   end
 
