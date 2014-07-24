@@ -1114,7 +1114,10 @@ margin:0px; color:#d1d1d1;
 
 /*accounts subscriptions page*/
 
-.user-subscriptions{width:570px; margin:0px auto;}
+.user-subscriptions{
+width:570px; 
+margin:0px auto;
+}
 .user-subscriptions p{font-size:16px; color:#2a2a2a; text-align:center;}
 .user-subscriptions span{color:#028d96; font-weight:bold;}
 
@@ -1153,7 +1156,7 @@ border:none;
 padding:10px 0px;
 }
 
-
+/*---------------------All pages css on 24 july, 2014----------------------------*/
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1167,8 +1170,6 @@ padding:10px 0px;
 .btn-gray{background-color:#707070;}
 .btn-green:hover{opacity:0.9; background-color:#028d96; color:#fff;}
 .btn-gray:hover{opacity:0.9; background-color:#707070; color:#fff;}
-
-
 
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
@@ -1179,23 +1180,6 @@ padding:10px 0px;
 .tl-name{padding:10px 0px 4px 0px;}
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
-
-<<<<<<< HEAD
-/*courses page*/
-.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
-.profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
-.profile-page #courses_requested.table tr.manage-coloumn td:last-child{border-left:solid 3px #e5e5e5;}
-.profile-page #courses_requested.table td{color:#028d96;}
-.profile-page #courses_requested.table td a{color:#028d96; text-decoration:none;}
-.profile-page .actions-courses{float:right;}
-.profile-page #courses_requested.table th.action-th .actions-courses span{padding-top:0;}
-.btn{background:none; border:none; box-shadow:none; text-decoration:none; border-radius:3px; text-shadow:none; color:#fff; font-weight:normal; font-size:12px; padding:6px 16px; margin-left:10px;}
-.btn-green{background-color:#028d96;}
-.btn-gray{background-color:#707070;}
-.btn-green:hover{opacity:0.9; background-color:#028d96; color:#fff;}
-.btn-gray:hover{opacity:0.9; background-color:#707070; color:#fff;}
-
-
 
 
 /*courses-allcourses page*/
@@ -1245,14 +1229,15 @@ padding:10px 0px;
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
-=======
->>>>>>> ac9d1d706e9386f235893f346873644c21fc5824
+
+
+
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
 	.nav-wrap li{ padding:30px 10px; font-size:14px; }
 	.create-account-login-links a{ font-size:14px;}
-/*-----------------------------------------------------Accounts pages css on 22 july, 2014-----------------------------------------------------*/
+/*---------------------Accounts pages css on 22 july, 2014---------------------------------*/
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.profile-page #courses_manageExams.table th, #courses_manageExams.table td{padding:10px 8px;}	
 }
