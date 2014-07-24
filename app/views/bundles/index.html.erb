@@ -1,1 +1,23 @@
-<%= render partial: "bundles/listing" %>
+
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_bundles') %>
+<% content_for(:title, 'GrowthValley > My Account > Personal') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper all-bundles-page">
+  <div class="bundles">
+    <ul class="breadcrumb">
+      <li><a href="javascript:void(0)">My Bundles</a> 
+        <span class="divider"></span></li>
+        <li><a href="javascript:void(0)">All Bundles</a></li>
+    </ul>
+    <div class="all-bundles-filter">
+      <form action="" method="" name="">
+        <select id="sory-by" name="sort">
+          <option value="latest" selected="selected">Sort By Latest</option>
+          <option value="name">Sort By Name</option>
+        </select>
+      </form>
+    </div>
+    <%= render partial: "bundles/listing" %>
+  </div>
+</div>

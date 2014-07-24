@@ -2,9 +2,10 @@ class BundlesController < ApplicationController
   before_filter :authenticate_user!
 	def index
     @current_menu = "bundles"
-    @show_top_menu = true
+    #@show_top_menu = true
 
     @bundles = Bundle.active_and_available_bundles.page(params[:page])
+    render layout: 'home_new'
 	end
 
 	def new
@@ -21,7 +22,9 @@ class BundlesController < ApplicationController
       redirect_to my_bundles_bundles_path
 	  else
       render :new
+      render layout: 'home_new'
 	  end
+
 	end
 
 	def edit

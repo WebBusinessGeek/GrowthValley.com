@@ -1,13 +1,8 @@
 <div class="main-content bundles">
-  <div id="filter" style="border-bottom:2px ridge #BBBBBB;padding-bottom:5px;">
-    <h1 class="fleft">
-      All Bundles
-    </h1>
+  
 
-    <div class="clear"></div>
-  </div>
-
-  <ul class="courses-box">
+  
+    <ul class="course-panel">
     <% if @bundles.count > 0 %>
       <% @bundles.each do |bundle| %>
         <%= render partial: "bundles/single_bundle", :locals => { :bundle => bundle } %>
@@ -16,13 +11,13 @@
       <%= paginate @bundles %>
     <% else %>
       </br>
-	    No bundles available yet!
+      <h6>No bundles avaliable yet !</h6>
     <% end %>
   </ul>
 
-  <div class="btn1">
+  <div class="add-new-bundle-btn">
     <form action="<%= bundles_path %>" method="get">
-      <input type="submit" value="Discover Bundles" class="sprite" />
+      <input type="submit" value="Discover Bundles" class="btn btn-green" />
     </form>
   </div>
 </div>

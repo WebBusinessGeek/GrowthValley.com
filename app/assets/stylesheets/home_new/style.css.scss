@@ -659,7 +659,7 @@ ul,li{
 	padding:210px 0 20px;
 	font-size:14px;
 }
-/* ---------------------------------------My Account page by deependra 22-7-2014 ---------------------------*/
+/* ----------------------------------My Account page  23-7-2014 ---------------------------*/
 /*update button hover*/
 .personal-setting-form .span9 input, .personal-setting-form .span9 select, .personal-setting-form .span9 textarea{
 	color:#a4a4a4;
@@ -669,6 +669,134 @@ ul,li{
 }
 .personal-setting-form .span9 .update-button .btn:hover{background-color:#35c4cb; color:#fff;}
 .personal-setting-form .span3 a{text-decoration: none;}
+
+/*---------------------------------------All bundles page 23-7-2014 ------------------------*/
+.all-bundles-page .breadcrumb {
+background:none; 
+border-radius:0; 
+padding:0px 0px 10px 0px;
+display:inline-block; 
+margin-bottom:36px;
+}
+.all-bundles-page .breadcrumb li{text-shadow:none;}
+.all-bundles-page .breadcrumb li a{
+color:#028d96; font-size:20px; 
+text-decoration:none; 
+font-weight:bold;
+}
+.all-bundles-page .breadcrumb li a:hover{text-decoration:underline;}
+.all-bundles-page .breadcrumb > li > .divider{
+background-image:url(/assets/breadcrumb-arrow.png); 
+background-repeat:no-repeat; 
+background-position:center 0px; 
+padding:0px 16px;
+}
+
+.title a{
+color: #494949;
+text-decoration: none;
+}
+.title a:hover{
+	text-decoration: underline;
+}
+
+.bundles h6{
+color:#797979; 
+font-size:14px; 
+font-weight:bold; 
+
+font-family:"Trebuchet MS"; margin-bottom:36px;
+}
+
+.all-bundles-page .btn{
+background:none; 
+border:none; 
+box-shadow:none; 
+text-decoration:none; 
+border-radius:3px; 
+text-shadow:none; 
+color:#fff; 
+font-size:12px; 
+padding:6px 16px; 
+margin-left:10px;
+}
+.btn:first-child{margin-left:0px;}
+
+.all-bundles-page .btn-green{background-color:#028d96;}
+
+.all-bundles-page .btn-gray{background-color:#707070;}
+
+.all-bundles-page .btn:hover{opacity:0.9;}
+
+.profile-page .course-panel {
+list-style: none outside none;  
+margin: 0 auto 40px auto;  
+overflow: hidden;
+}
+
+.profile-page .all-bundles-filter{display:inline-block;}
+
+.profile-page .all-bundles-filter select{
+border:none; -webkit-appearance: none; 
+ -moz-appearance: none;  
+ appearance: none; 
+ background:url(/assets/drop-down-icon.png) no-repeat 98% center #fff; 
+ text-indent:0.01px; 
+ text-overflow: "";
+  width:auto; 
+  color:#767676; 
+  font-weight:bold; 
+  font-size:12px;
+   margin:0; 
+   height:auto;
+    padding:4px 10px;
+}
+
+.profile-page .course-panel li {
+float: left;  
+overflow: hidden; 
+width:30%; 
+margin:12px 18px;
+}
+
+.profile-page .course-panel li p{
+margin-bottom:15px; 
+color:#494949;
+}
+.profile-page .course-panel li:first-child{margin-left:0px;}
+
+.profile-page .course-panel li:nth-child(4n){margin-left:0px;}
+
+.profile-page .course-panel li:nth-child(3n){margin-right:0px;}
+
+.profile-page .course-panel li .course-panel-box {position: relative; }
+
+.profile-page .course-panel li .course-panel-box .green-panel {background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
+display:block;
+text-align:center;
+}
+
+.profile-page .course-panel li .course-panel-box .course-panel-disc { 
+background:#2a2a2a;  
+color: #d1d1d1; 
+display: block; 
+padding: 15px 10px;
+}
+
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {
+list-style: none outside none;
+margin: 0; 
+overflow: hidden; 
+padding:0;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 
+border-left: 1px solid #252525; 
+font-size: 12px;  padding: 0 20px; 
+text-align: center; 
+width: auto !important; 
+margin:0px; color:#d1d1d1;
+}
+
 /* -------------------------------------- Notification Page --------------------------------------*/
 .profile-page .notifications .notification-thumb img{
 	border:1px solid #cacaca;
@@ -1025,6 +1153,23 @@ border:none;
 padding:10px 0px;
 }
 
+
+/*courses page*/
+.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
+.profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
+.profile-page #courses_requested.table tr.manage-coloumn td:last-child{border-left:solid 3px #e5e5e5;}
+.profile-page #courses_requested.table td{color:#028d96;}
+.profile-page #courses_requested.table td a{color:#028d96; text-decoration:none;}
+.profile-page .actions-courses{float:right;}
+.profile-page #courses_requested.table th.action-th .actions-courses span{padding-top:0;}
+.btn{background:none; border:none; box-shadow:none; text-decoration:none; border-radius:3px; text-shadow:none; color:#fff; font-weight:normal; font-size:12px; padding:6px 16px; margin-left:10px;}
+.btn-green{background-color:#028d96;}
+.btn-gray{background-color:#707070;}
+.btn-green:hover{opacity:0.9; background-color:#028d96; color:#fff;}
+.btn-gray:hover{opacity:0.9; background-color:#707070; color:#fff;}
+
+
+
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1035,6 +1180,7 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
+<<<<<<< HEAD
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1099,11 +1245,16 @@ padding:10px 0px;
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
+=======
+>>>>>>> ac9d1d706e9386f235893f346873644c21fc5824
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
 	.nav-wrap li{ padding:30px 10px; font-size:14px; }
 	.create-account-login-links a{ font-size:14px;}
+/*-----------------------------------------------------Accounts pages css on 22 july, 2014-----------------------------------------------------*/
+	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
+	.profile-page #courses_manageExams.table th, #courses_manageExams.table td{padding:10px 8px;}	
 }
 
 @media (max-width: 979px) {
@@ -1248,8 +1399,12 @@ padding:10px 0px;
 	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
 	.user-subscriptions{width:94%;}
 	.my-bundles-page .bundles{padding:0px 10px;}
+
+	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
+
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
+
 }
 
 @media (max-width: 870px) {
