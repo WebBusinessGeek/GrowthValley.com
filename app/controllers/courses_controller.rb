@@ -56,9 +56,10 @@ class CoursesController < ApplicationController
 		end
 	end
 =end
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    
+     respond_to do |format|
+       format.html{render layout:'home_new'} # index.html.erb
+     end
   end
   
   def my_courses

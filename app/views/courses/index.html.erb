@@ -1,1 +1,15 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Account > Personal') %>
+<!--Start Main Content Area-->
+<div class="main-content-area wrapper all-bundles-page">
+  <div class="bundles">
+    <ul class="breadcrumb">
+      <li><a href="javascript:void(0)">My Courses</a> 
+        <span class="divider"></span></li>
+        <li><a href="javascript:void(0)">All Courses</a></li>
+    </ul>
+    
 <%= render partial: "courses/listing" %>
+</div>
+</div>

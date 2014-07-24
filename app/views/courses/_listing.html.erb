@@ -1,17 +1,5 @@
-<div class="main-content courses">
-  <div id="filter" style="border-bottom:2px ridge #BBBBBB;padding-bottom:5px;">
-    <h1 class="fleft">
-    <% if params[:controller] == "homes" %>
-		Most popular courses
-    <% else %>
-		<% if params[:search].present? %>
-			Course Search Result
-		<% else %>
-			All Courses
-		<% end %>
-	<% end %>
-	</h1>
-    <div class="courses-filter fright"><span class="sprite fliterby fright">
+  <div id="filter" class="all-bundles-filter">
+    <div class="all-bundles-filter">
       <%= form_tag(courses_path, :name=>"frmsort", :method=>"get") do %>
       <input name="search" id="Search" type="hidden" value="<%=params[:search]%>" />
       <% if params[:subject].present? %>
@@ -19,11 +7,24 @@
       <% end %>
       <%=select_tag("order", options_for_select([["Latest","latest"],["Name","name"]], params[:order]), :prompt => "Sort By", :onchange=>"document.frmsort.submit();") %>
       <% end %>
-      </span></div>
+    </div>
     <div class="clear"></div>
   </div>
-
-  <ul class="courses-box">
+   
+ <!-- <h1 class="fleft">
+    <% #if params[:controller] == "homes" %>
+    Most popular courses
+    <% #else %>
+    <% #if params[:search].present? %>
+      Course Search Result
+    <% #else %>
+      All Courses
+    <% #end %>
+  <% #end %>
+  </h1> -->
+    
+<div class="main-content bundles">
+  <ul class="course-panel">
   <% if @courses.count > 0 %>
     <% @courses.each do |course| %>
       <%= render partial: "courses/single_course", :locals=>{:course => course} %>
@@ -31,17 +32,19 @@
 
     <%= paginate @courses %>
   <% else %>
+  <h6>
 	  No Courses available for your search
+  </h6>
   <% end %>
   </ul>
 
-  <div class="btn1">
+  <div class="text-center">
     <form action="<%= courses_path %>" method="get">
-      <input type="submit" value="Discover Courses" class="sprite" />
+      <input type="submit" value="Discover Courses" class="btn btn-green" />
     </form>
   </div>
-</div>
 
+</div>
 <%= javascript_tag do %>
   $(".rateit").bind('rated', function() {
     obj = $(this);

@@ -1,32 +1,45 @@
+<% content_for(:body_class, "login-form-page") %>
+<div class="login-form">
+    <div class="logo-area">
+    <div id="logo"> </div>
+  </div>
+   <h5>Register on Growth Valley</h5>
 <%= simple_form_for(resource, url: user_registration_path, method: :post) do |f| %>
-  <p style="margin-left: 70px;">
-    <%= f.radio_button :type, 'Learner', checked: true, class: 'name usertype', style: "float: left;" %>
-    <%= f.label :type, 'Learner', style: "float: left; margin: -2px 20px 0px 5px;" %>
-    <%= f.radio_button :type, 'Teacher', class: 'name usertype', style: "float: left;" %>
-    <%= f.label :type, 'Teacher', style: "float: left; margin: -2px 20px 0px 5px;" %>
-  </p>
+ <p style="margin-bottom: 10px;">&nbsp;</p>
+<label class="radio inline">
+  <%= f.radio_button :type, 'Learner', checked: true %> Learner
+</label>
+<label class="radio inline">
+  <%= f.radio_button :type, 'Teacher'%> Teacher
+</label>
+  <!-- 
   <p style="margin-bottom: 10px;">&nbsp;</p>
   <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Learner"), :id=>"facebook_Learner", :class=>"login_with_facebook", :style=>"display:block;" %>
-  <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Teacher"), :id=>"facebook_Teacher", :class=>"login_with_facebook", :style=>"display:none;" %>
-  <!-- <h2>OR</h2> -->
-  <p class="m15">Sign Up with your email:</p>
-
-  <div class='error' style='color: red; margin: 2ex; display: none;'></div>
-  <p>
-    <%= f.text_field :full_name, placeholder: 'Full Name', class: 'name', required: true %>
-  </p>
-  <p>
-    <%= f.email_field :email, placeholder: 'E-mail', class: 'email', required: true %>
-  </p>
-  <p>
-    <%= f.password_field :password, placeholder: 'Password', class: 'pass', required: true %>
-  </p>
+  <%= link_to "<span class='sprite fblogin'></span>".html_safe(), omniauth_authorize_path('user', 'facebook', :as=>"Teacher"), :id=>"facebook_Teacher", :class=>"login_with_facebook", :style=>"display:none;" %> -->
+  <!-- <h2>OR</h2> 
+  <label>Sign Up with your email:</label>
+ -->
+  <div class="control-group">
+    <div class="controls">
+      <%= f.text_field :full_name, placeholder: 'Full Name', class: 'name', required: true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+     <%= f.email_field :email, placeholder: 'E-mail', class: 'email', required: true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+       <%= f.password_field :password, placeholder: 'Password', class: 'pass', required: true %>
+    </div>
+  </div>
   <span class="login-info">
     <span class="fleft m1">Already have an account? <%= link_to "LOGIN", new_user_session_path %></span>
-    <%= f.submit 'SIGN UP' %>
+    <%= f.submit 'SIGN UP', class: '"btn btn-default form-btn' %>
   </span>
 <% end %>
-<p class="sml-font">By signing up, you agree to our <a href="<%= terms_homes_path %>">Terms of Use and Privacy Policy</a></p>
+ <span class="help-block">By signing up, you agree to our <a href="<%= terms_homes_path %>">Terms of Use and Privacy Policy</a> </span>
 
 <script>
 $(function() {
@@ -36,3 +49,4 @@ $(function() {
   });
 });
 </script>
+</div>
