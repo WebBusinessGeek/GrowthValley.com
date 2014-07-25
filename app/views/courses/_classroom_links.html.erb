@@ -1,37 +1,75 @@
-<div class="well">
-  <div style="clear:both;">
-    <h3>Explore example classrooms being utilized by other users</h3>
-    <%= format_learner_names(@course) %>
-  </div>
-  <br>
+
+    <!-- <h3>Explore example classrooms being utilized by other users</h3> -->
+    <%= 
+=begin
+format_learner_names(@course) 
+=end
+%>
+
   <% if current_user.courses.include?(@course) %>
   <% if current_user.type == "Teacher" %>
     <% if @course.classroom_enabled? %>
-      <%= link_to "Manage classrooms for this course", classrooms_path(course: @course.slug), class: 'btn btn-primary' %>
-      <%= link_to 'Manage classroom settings', edit_course_path(@course) %>
+      <%= link_to "Manage classrooms for this course", classrooms_path(course: @course.slug), class: 'btn btn-green' %>
+      <%= link_to 'Manage classroom settings', edit_course_path(@course), class: ' btn btn-gray' %>
     <% else %>
-      <%= link_to "Enable Classroom feature", edit_course_path(@course), class: 'btn btn-primary' %>
+      <%= link_to "Enable Classroom feature", edit_course_path(@course), class: 'btn btn-green' %>
     <% end %>
   <% elsif current_user.type == "Learner" %>
     <% if @course.classroom_enabled? %>
       <% if (@classroom = current_user.has_classroom_for(@course)) %>
-        <%= link_to "My Classroom", classroom_path(@classroom), class: 'btn btn-primary' %>
+        <%= link_to "My Classroom", classroom_path(@classroom), class: 'btn btn-green' %>
       <% else %>
-        <p style="width:40%">Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
+        <p>Classrooms are for those wishing for a more intimate teaching experience with private one on one lessons.</p>
         <% if @classroom_request = current_user.has_classroomrequest_for(@course) %>
-          <%= link_to @classroom_request.status, "javascript:void(0);", class: "btn btn-primary disabled" %>
+          <%= link_to @classroom_request.status, "javascript:void(0);", class: "btn btn-info disabled" %>
         <% else %>
-          <%= link_to 'Request a classroom', new_classroom_request_path(course_id: @course.id), remote: :true, class: 'btn btn-primary' %>
+          <%= link_to 'Request a classroom', new_classroom_request_path(course_id: @course.id), remote: :true, class: 'btn btn-green' %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
+
+<!-- Learner -->
+<% if current_user.type == 'Learner' %>
+  <span style='margin-left: 1em;'>
+    <% unless current_user.teacher_subscribed?(@course.teacher) %>
+      <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@course.teacher), :method => :post, class: 'btn btn-green' %>
+    <% end %>
+  </span>
+<% end %>
+<!-- Learner Ends -->
+
+<!-- Subscription -->
+<div class='course-subscribe'>
+<% if current_user.courses.include?(@course) %>
+  <% if @progress == "exam given" %>
+    <%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn btn-green', :'data-toggle' => 'modal' %>
+  <% elsif @progress == "exam reviewed" %>
+    <%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn btn-green', :'data-toggle' => 'modal' %>
+  <% else %>
+    <% if @exam_active %>
+      <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-green') %>
+    <% end %>
+  <% end %>
+  <% unless current_user == @course.teacher %>
+    <strong>
+      </br></br>
+      Course completion progress: <%= @progress_percentage %>%
+    </strong>
+  <% end %>
+<% else %>
+    <% if ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid') %>
+  <% if @course.is_paid %>
+    <%= link_to 'Subscribe Course', new_premium_course_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-green' %>
+  <% else %>
+    <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-green' %>
+  <% end %>
+  <% end %>
+  <br>
+  Total Sections: <%=@total_section%>
+<% end %>
 </div>
-<div id="classroom_request_modal" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  </div>
-  <div class="modal-body">
-  </div>
-</div>
+<!-- Subscription Ends -->
+
+

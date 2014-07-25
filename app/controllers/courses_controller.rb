@@ -84,6 +84,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find_by_slug(params[:id])
+
     @current_subscription = @course.subscriptions.where("user_id = ?", current_user.id).first
 	  @total_section = @course.sections.count
 	  @learners_exams = LearnersExam.where(user_id: current_user.id, course_id: @course.id)
@@ -98,12 +99,12 @@ class CoursesController < ApplicationController
 	  
 	  if @course.is_published?	
 		  respond_to do |format|
-		    format.html # show.html.erb
+		    format.html{render layout: 'home_new' } # show.html.erb
 		  end
 	  else
 		  if @current_subscription.present? and @current_subscription.user_type == "Teacher"
 			  respond_to do |format|
-			    format.html # show.html.erb
+			    format.html{render layout: 'home_new'}# show.html.erb
 			  end		
 		  else
 			  redirect_to :dashboard, :notice => "The desired course is un-published."
@@ -223,6 +224,7 @@ class CoursesController < ApplicationController
 
   def classroom_settings
     @course = Course.find(params[:id])
+    render layout:"home_new"
   end
 
   def update_classroom_settings
