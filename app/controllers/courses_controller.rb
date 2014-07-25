@@ -76,7 +76,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.find_by_slug(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+          format.html{ render :layout => 'home_new'}  # show.html.erb
     end
   end
 

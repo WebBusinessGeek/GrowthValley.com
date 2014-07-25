@@ -542,7 +542,7 @@ ul,li{
 	width: 85%;
 	margin: 0 auto;
 }
-.login-form form input {
+.login-form form input[type = 'text'],.login-form form input[type = 'email'] ,.login-form form input[type = 'password']  {
 	width: 87%;
 	height: 45px;
 	border: 1px solid #DBD9D9;
@@ -578,6 +578,14 @@ ul,li{
 	height: 89px;
 }
 
+.login-form form input[type = 'radio'] {
+	padding: 0px 23px;
+	color: #434343;
+}
+
+.login-form-page .help-block{
+	padding:30px 30px 0px 30px;
+}
 /* -------------------------------------- Profile Pages --------------------------------------*/
 .profile-page{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -1028,7 +1036,11 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26ff0072e88335230a2462cca6e4ba4938f20562
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /* -------------------------------------- My Classrooms Page --------------------------------------*/
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -1206,7 +1218,10 @@ height:8px;
 
 /*accounts subscriptions page*/
 
-.user-subscriptions{width:570px; margin:0px auto;}
+.user-subscriptions{
+width:570px; 
+margin:0px auto;
+}
 .user-subscriptions p{font-size:16px; color:#2a2a2a; text-align:center;}
 .user-subscriptions span{color:#028d96; font-weight:bold;}
 
@@ -1246,7 +1261,16 @@ border:none;
 padding:10px 0px;
 }
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+/*---------------------All pages css on 24 july, 2014----------------------------*/
+
+=======
+>>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1260,6 +1284,7 @@ padding:10px 0px;
 .btn-gray{background-color:#707070;}
 .btn-green:hover{opacity:0.9; background-color:#028d96; color:#fff;}
 .btn-gray:hover{opacity:0.9; background-color:#707070; color:#fff;}
+
 
 /*courses-allcourses page*/
 .profile-page .mycourses-all .breadcrumb {background:none; border-radius:0; padding:0px 0px 10px 0px; margin-bottom:36px; display:inline-block;}
@@ -1304,6 +1329,10 @@ padding:10px 0px;
 .profile-page .course-name li a{color:#fff; font-weight:normal; font-size:12px;}
 .profile-page .course-section-tabs h4{color:#028d96;}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1314,7 +1343,14 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*manage section*/
 .profile-page .mycourse-section-table h4{color: #028d96;  font-family: "Trebuchet MS"; text-align: center;}
 .profile-page #courses_manageExams.table td a.btn{color:#fff;}
@@ -1400,13 +1436,20 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
 	.nav-wrap li{ padding:30px 10px; font-size:14px; }
 	.create-account-login-links a{ font-size:14px;}
-/*-----------------------------------------------------Accounts pages css on 22 july, 2014-----------------------------------------------------*/
+/*---------------------Accounts pages css on 22 july, 2014---------------------------------*/
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.profile-page #courses_manageExams.table th, #courses_manageExams.table td{padding:10px 8px;}	
 }
@@ -1557,6 +1600,10 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 
