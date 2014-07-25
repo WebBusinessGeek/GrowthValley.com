@@ -1,25 +1,84 @@
-<%= simple_form_for @course, url: update_classroom_settings_course_path, method: :put, html: {class: 'form-horizontal'} do |f| %>
-  <%= f.error_notification %>
-  <legend>Classroom settings. (optional)</legend>
+
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Account > Personal') %>
+  
+ <div class="main-content-area wrapper my-courses-table">
+  <div class="mycourses-all">
+    <ul class="breadcrumb">
+      <li><a href="javascript:void(0)">Courses</a> 
+        <span class="divider"></span></li>
+        <li><a href="javascript:void(0)">Manage Classroom Settings (optional)</a></li>
+    </ul>
+     <%= form_for @course, url: update_classroom_settings_course_path, method: :put, html: {class: 'simple_manage_form form-horizontal'} do |f| %>
+   
+
+
   <div class="control-group">
-      <%= f.input :classroom_enabled, label: "Accept Requests" %>
-      <div class="controls">
-        <span class="help-block">Disabling this feature will prevent future all classroom requests.</span>
-      </div>
-  </div>
-  <div class="control-group">
-    <%= f.input :minimum_price, label: "Minimum Price", as: :decimal %>
+    <%= f.label :Accept_Requests, :class => 'control-label'  %>
     <div class="controls">
-      <span class="help-block">Set a minimum asking price for classroom requests.</span>
+      <label class="ui-checkbox">
+      <%= f.check_box:classroom_enabled ,class: "style-checkbox",style:"border: 3px solid #028d96;
+    border-radius: 4px;" %>
+    
+    <span class="click-check"><em>Disabling this feature will prevent future all classroom requests.</em></span>
+    </label>
     </div>
-  </div>
+  </div> 
+
   <div class="control-group">
-    <%= f.input :private_classroom, label: "Classroom Privacy", as: :boolean %>
+    <%= f.label :Minimum_Price, :class => 'control-label'  %>
     <div class="controls">
-      <span class="help-block">By default, other users can view an overview of your classrooms, you can set your classrooms to full privacy.</span>
+      <label class="ui-checkbox">
+      <%= f.number_field :minimum_price, as: :decimal %>
+    
+    <span ><em>Set a minimum asking price for classroom requests.</em></span>
+    </label>
     </div>
-  </div>
-  <div class="form-actions">
-      <%= f.submit "Update" %>
+  </div> 
+  <div class="control-group">
+    <%= f.label :Classroom_Privacy, :class => 'control-label'  %>
+    <div class="controls">
+      <label class="ui-checkbox">
+      <%= f.check_box :private_classroom, as: :boolean ,class: "style-checkbox1" %>
+    
+    <span class="click-check1"><em>By default, other users can view an overview of your classrooms, you can set your classrooms to full privacy.</em></span>
+    </label>
+    </div>
+  </div> 
+  <br/>
+  <div class="control-group">
+      <%= f.submit "Update", class:"btn btn-gray" %>
+      <a class="btn btn-green" href="javascript:void(0)">Back to my courses</a>
+
   </div>
 <% end %>
+</div>
+</div>
+
+
+<%= javascript_tag do %>
+  $(".click-check").click(function(){
+      if($(this).parent().find(".style-checkbox[type='checkbox']").is(":checked")){
+         
+          $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', false);
+      }
+      else{
+         
+          $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', true);
+      }
+
+  });
+   $(".click-check1").click(function(){
+      if($(this).parent().find(".style-checkbox1[type='checkbox']").is(":checked")){
+         
+          $(this).parent().find(".style-checkbox1[type='checkbox']").prop('checked', false);
+      }
+      else{
+         
+          $(this).parent().find(".style-checkbox1[type='checkbox']").prop('checked', true);
+      }
+
+  });
+<% end %>
+

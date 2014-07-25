@@ -223,6 +223,7 @@ class CoursesController < ApplicationController
 
   def classroom_settings
     @course = Course.find(params[:id])
+    render layout:"home_new"
   end
 
   def update_classroom_settings
