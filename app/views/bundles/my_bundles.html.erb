@@ -10,8 +10,10 @@
               </ul>
 
   <% if current_user.type == 'Teacher' %>
-  <% if current_user.courses.present? %>      
-      <h6>You haven't added any bundles yet...</h6>      
+  <% if current_user.courses.present? %>   
+      <% unless @bundles.present? %>   
+      <h6>You haven't added any bundles yet...</h6>  
+      <% end %>    
       <div class="add-new-bundle-btn"><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Add New Bundle</a></div>
   <!--<%= link_to "Add New Bundle", new_bundle_path, :class => 'btn pull-right btn-green' %>-->
     <% else %>
@@ -37,14 +39,14 @@
         <td><%= link_to bundle.name.titleize, bundle_path(bundle) %></td>
         <td>
           <% if bundle.active %>
-          <%= check_box_tag "bundle_active_#{ bundle.id }", bundle.active, bundle.active, { :disabled => true } %>
+          <%= check_box_tag "bundle_active_#{ bundle.id }", bundle.active, bundle.active, { :disabled => true } %>          
           <% else %>
           <%= check_box_tag "bundle_active_#{ bundle.id }", bundle.active, bundle.active, { :data => { :confirm => "This action cannot be undone! Are you sure you want to continue?", :remote => true, url: make_active_bundle_path(bundle) } } %>
           <% end %>
         </td>
         <td>
           <% if bundle.active %>
-          <%= check_box_tag "bundle_available_#{ bundle.id }", bundle.available, bundle.available, { :data => { :remote => true, url: toggle_available_bundle_path(bundle) } } %>
+          <%= check_box_tag "bundle_available_#{ bundle.id }", bundle.available, bundle.available, { :data => { :remote => true, url: toggle_available_bundle_path(bundle) } } %>          
           <% else %>
           <%= check_box_tag "bundle_available_#{ bundle.id }", bundle.available, bundle.available, { :disabled => true, :data => { :remote => true, url: toggle_available_bundle_path(bundle) } } %>
           <% end %>

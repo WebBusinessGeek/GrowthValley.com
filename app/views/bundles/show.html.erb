@@ -1,14 +1,20 @@
-<div class="main-content courses">
-  <div>
-	  <div style="float:left;">
-	    <ul class="courses-box">
-		    <li style="width:100%">
-		      <div class="box">
-			      <span class="cource-img box-grn">
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_bundles') %>
+<% content_for(:title, 'GrowthValley > My Courses > Bundles') %>
+<div class="main-content-area wrapper my-bundles-table">
+  <div class="mybundles-all">
+  	<ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Bundles</a> <span class="divider"></span></li>
+	<li><a href="javascript:void(0)"><%= @bundle.name.titleize %></a></li>
+    </ul>
+	<ul class="courses-box bundle-panel bundle-name">
+		    <li>
+		      <div class="bundle-panel-box">
+			      <span class="cource-img box-grn green-panel">
 			        <%= image_tag(@bundle.bundle_pic.url(:cover)) %>
 			      </span>
-			      <span class="cource-disc">
-			        <ol class="cource-dtl">
+			      <span class="bundle-panel-disc">
+			        <ol class="bundle-dtl">
 				        <li>Price<br />
 				          <span><%= number_to_currency(@bundle.price) %></span>
 				        </li>
@@ -16,46 +22,40 @@
 			      </span>
 		      </div>
 		    </li>
-	    </ul>
-	  </div>
-
-	  <div style="margin:12px;">
-		  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @bundle.name.titleize %></div>
-		  <div class="course-instructor">
-			  <% if @bundle.present? && @bundle.teacher.present? %>
-			    By <%= @bundle.teacher.full_name.titleize %>
-			  <% end %>
-
+            <li> 	  
+				 <p class="t-name"><%= @bundle.name.titleize %></p>
+		 		 <p><% if @bundle.present? && @bundle.teacher.present? %>
+			    	By <%= @bundle.teacher.full_name.titleize %>
+			  		<% end %>
+			  	</p>
         <% if current_user.type == 'Learner' %>
-          <span style='margin-left: 1em;'>
+          <p>
             <% unless current_user.teacher_subscribed?(@bundle.teacher) %>
-              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@bundle.teacher), :method => :post, class: 'btn' %>
+              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@bundle.teacher), :method => :post, class: 'btn btn-green' %>
             <% end %>
-          </span>
-        <% end %>
-		  </div>
-		  </br>
+          </p>
+        <% end %>	
+		  
 		  <% if @bundle.purchased?(current_user.id) %>
-		    <div id="download_bundle">
-		      <%= link_to "Download Bundle", @bundle.download_link, :class => "btn btn-primary" %>
-		    </div>
+		    <p id="download_bundle">
+		      <%= link_to "Download Bundle", @bundle.download_link, :class => "btn btn-green" %>
+		    </p>
 	    <% else %>
-		    <div id="buy_bundle">
-		      <%= link_to "Buy Bundle", new_transaction_path(resource_type: @bundle.class.to_s, resource_id: @bundle.id), :class => "btn btn-primary" %>
-		    </div>
-	    <% end %>
-	  </div>
-  </div>
+		    <p id="buy_bundle">
+		      <%= link_to "Buy Bundle", new_transaction_path(resource_type: @bundle.class.to_s, resource_id: @bundle.id), :class => "btn btn-green" %>
+		    </p>
+	    <% end %>	  
+	  </li>      
+</ul>  
 
-  <div style="clear:both;">
-    <h2>Bundle Courses:</h2>
-    </br>
-    <ul class="courses-box">
+  <div class="bundle-courses-tabs">
+    <h4>Bundle Courses:</h4>    
+    <ul class="courses-box bundle-panel bundle-name">
 		  <% @bundle.courses.each do |course| %>
 		    <%= render partial: "courses/single_course", :locals=>{ :course => course } %>
 		  <% end %>
 	  </ul>
-
+  </div>
   </div>
 </div>
 

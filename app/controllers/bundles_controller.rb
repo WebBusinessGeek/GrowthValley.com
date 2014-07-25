@@ -50,6 +50,7 @@ class BundlesController < ApplicationController
 
   def show
     @bundle = Bundle.find(params[:id])
+    render layout: 'home_new'
   end
 
   def my_bundles
