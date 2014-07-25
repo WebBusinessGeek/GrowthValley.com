@@ -56,9 +56,10 @@ class CoursesController < ApplicationController
 		end
 	end
 =end
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    
+     respond_to do |format|
+       format.html{render layout:'home_new'} # index.html.erb
+     end
   end
   
   def my_courses
@@ -75,7 +76,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.find_by_slug(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+          format.html{ render :layout => 'home_new'}  # show.html.erb
     end
   end
 
@@ -223,6 +224,7 @@ class CoursesController < ApplicationController
 
   def classroom_settings
     @course = Course.find(params[:id])
+    render layout:"home_new"
   end
 
   def update_classroom_settings
