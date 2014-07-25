@@ -670,6 +670,34 @@ ul,li{
 .personal-setting-form .span9 .update-button .btn:hover{background-color:#35c4cb; color:#fff;}
 .personal-setting-form .span3 a{text-decoration: none;}
 
+/*-------------------------------------Manage classroom setting -----------------------------*/
+
+.profile-page .mycourses-all .simple_manage_form .control-label {
+    color: #3f3f3f;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 0;
+    text-align: left;
+}
+.profile-page .mycourses-all .simple_manage_form span.help-request {
+    color: #808080;
+    padding-left: 30px;
+}
+.profile-page .mycourses-all .simple_manage_form .ui-checkbox input[type="checkbox"] + span:before {
+    background: none repeat scroll 0 0 #ffffff;
+    border: 3px solid #028d96;
+    border-radius: 4px;
+    content: "";
+    display: inline-block;
+    height: 14px;
+    margin-left: -20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 14px;
+}
+
+
+
 /*---------------------------------------All bundles page 23-7-2014 ------------------------*/
 .profile-page .all-bundles-page .breadcrumb {
 background:none; 
@@ -797,7 +825,7 @@ padding:0;
 }
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 
 border-left: 1px solid #252525; 
-font-size: 12px;  padding: 0 20px; 
+font-size: 12px;  padding: 0 19px; 
 text-align: center; 
 width: auto !important; 
 margin:0px; color:#d1d1d1;
@@ -984,9 +1012,9 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
-<<<<<<< HEAD
+
 /*----------------------------------------All Course page -----------------------------------------*/
-=======
+
 .profile-page .modal-footer input.btn{
 	background:#2b2b2b;
 	color:#fff;
@@ -1000,7 +1028,7 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
->>>>>>> 26ff0072e88335230a2462cca6e4ba4938f20562
+
 /* -------------------------------------- My Classrooms Page --------------------------------------*/
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -1040,6 +1068,15 @@ height:8px;
 	font-style:italic;
 	text-align:center;
 }
+/*-------------------------------------Class room settings page ---------------------------------*/
+
+.bundles .breadcrumbs legend {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    display: block;
+    }
 /* -------------------------------------- My Subjects Page --------------------------------------*/
 .profile-page .my-subjets-page h4{
 	 padding-bottom:20px;
@@ -1209,10 +1246,7 @@ border:none;
 padding:10px 0px;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1245,7 +1279,7 @@ padding:10px 0px;
 .profile-page .course-panel li .course-panel-box .green-panel {background:url(../../images/courses-bg.jpg) no-repeat #0b919a; display:block; height:120px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc { background:#2a2a2a;  color: #d1d1d1; display: block; padding: 15px 10px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {list-style: none outside none;  margin: 0; overflow: hidden; padding:0;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { border-left: 1px solid #252525; font-size: 12px;  padding: 0 20px; text-align: center; width: auto !important; margin:0px; color:#d1d1d1;}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { border-left: 1px solid #252525; font-size: 12px;  padding: 0 19px; text-align: center; width: auto !important; margin:0px; color:#d1d1d1;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {border-left: 0 solid #cdcece;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{background:url(../../images/user-icon.png) no-repeat; display:inline-block; width:12px; height:12px; margin-right:3px; margin-bottom:-1px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{color:#a7a7a7;}
@@ -1270,11 +1304,6 @@ padding:10px 0px;
 .profile-page .course-name li a{color:#fff; font-weight:normal; font-size:12px;}
 .profile-page .course-section-tabs h4{color:#028d96;}
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1285,7 +1314,7 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
-<<<<<<< HEAD
+
 /*manage section*/
 .profile-page .mycourse-section-table h4{color: #028d96;  font-family: "Trebuchet MS"; text-align: center;}
 .profile-page #courses_manageExams.table td a.btn{color:#fff;}
@@ -1306,8 +1335,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .ui-radio input[type="radio"] + span:before {background:#ffffff; border:none; border-radius:3px; content: "";display: inline-block; height: 18px; margin-left: -20px; margin-right: 10px; vertical-align: middle; width: 18px;}
 .ui-radio input[type="radio"]:checked + span:after {background:url(../../assets/input-checkbox.png) no-repeat; height: 12px; left:-18px; margin-top: 0; position: absolute; top:5px; content:""; width:13px;}
 .ui-radio input[type="radio"] + span { font-weight: normal;}
-=======
-<<<<<<< HEAD
+
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1325,7 +1353,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 
 
 
-/*courses-allcourses page*/
+/*courses-allcourses page-*/
 .profile-page .mycourses-all .breadcrumb {background:none; border-radius:0; padding:0px 0px 10px 0px; margin-bottom:36px; display:inline-block;}
 .profile-page .mycourses-all .breadcrumb li{text-shadow:none;}
 .profile-page .mycourses-all .breadcrumb li a{color:#028d96; font-size:20px; text-decoration:none; font-weight:bold;}
@@ -1343,7 +1371,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-panel li .course-panel-box .green-panel {background:url(/assets/courses-bg.jpg) no-repeat #0b919a; display:block; height:120px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc { background:#2a2a2a;  color: #d1d1d1; display: block; padding: 15px 10px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {list-style: none outside none;  margin: 0; overflow: hidden; padding:0;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { border-left: 1px solid #252525; font-size: 12px;  padding: 0 20px; text-align: center; width: auto !important; margin:0px; color:#d1d1d1;}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { border-left: 1px solid #252525; font-size: 12px;  padding: 0 19px; text-align: center; width: auto !important; margin:0px; color:#d1d1d1;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {border-left: 0 solid #cdcece;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{background:url(/assets/user-icon.png) no-repeat; display:inline-block; width:12px; height:12px; margin-right:3px; margin-bottom:-1px;}
 .profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{color:#a7a7a7;}
@@ -1372,9 +1400,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
-=======
->>>>>>> ac9d1d706e9386f235893f346873644c21fc5824
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
+
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
@@ -1527,18 +1553,16 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
 	.user-subscriptions{width:94%;}
 	.my-bundles-page .bundles{padding:0px 10px;}
-<<<<<<< HEAD
+
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
-=======
 
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
 
->>>>>>> a4110ed3a828863b9e46b5865addad0fdaf0dd2c
 }
 
 @media (max-width: 870px) {
