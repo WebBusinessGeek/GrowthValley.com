@@ -1,63 +1,35 @@
-<div class="main-content courses">
-  <div>
-	  <div style="float:left;">
-	  	<%= render 'courses/show/course_box' %>
-	  </div>
-	  <div style="margin:12px;">
-		  <div class="course-title" style="font-weight: bold; font-size: 12pt;padding-top:20px;"><%= @course.title.titleize %></div>
-		  <div class="course-instructor">
-			  <% if @course.present? && @course.teacher.present? %>
-			    By <%= @course.teacher.full_name.titleize %>
-			  <% end %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > Courses > My Courses') %>
+<div class="main-content-area wrapper my-courses-table">
+  <div class="mycourses-all">
+    <ul class="breadcrumb">
+        <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+        <li><a href="javascript:void(0)"><%= @course.title.titleize %></a></li>
+    </ul>
+    <ul class="course-panel course-name">
+        <%= render 'courses/show/course_box' %>
 
-        <% if current_user.type == 'Learner' %>
-          <span style='margin-left: 1em;'>
-            <% unless current_user.teacher_subscribed?(@course.teacher) %>
-              <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@course.teacher), :method => :post, class: 'btn' %>
-            <% end %>
-          </span>
-        <% end %>
-		  </div><br>
-		  <div class="course-instructor">
-			  Subject: <%= @course.subject.name %>
-		  </div><br>
-		  <div class='course-subscribe'>
-			<% if current_user.courses.include?(@course) %>
-			  <% if @progress == "exam given" %>
-  				<%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
-			  <% elsif @progress == "exam reviewed" %>
-  				<%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn', :'data-toggle' => 'modal' %>
-			  <% else %>
-			    <% if @exam_active %>
-  			    <%= link_to("Take Exam", new_learners_exam_path(course_id: @course.slug), class: 'btn btn-primary') %>
-			    <% end %>
-			  <% end %>
-			  <% unless current_user == @course.teacher %>
-				  <strong>
-				    </br></br>
-				    Course completion progress: <%= @progress_percentage %>%
-				  </strong>
-			  <% end %>
-			<% else %>
-		      <% if ((current_user.subjects.include?(@course.subject) and current_user.subscription_type == 'free') or current_user.subscription_type == 'paid') %>
-			  <% if @course.is_paid %>
-				  <%= link_to 'Subscribe Course', new_premium_course_path(course_id: @course.id, subscription_type: "course_subscription"), class: 'btn btn-primary' %>
-			  <% else %>
-				  <%= link_to 'Subscribe Course', subscribe_course_learner_path(@course), class: 'btn btn-primary' %>
-			  <% end %>
-			  <% end %>
-			  <br>
-			  Total Sections: <%=@total_section%>
-			<% end %>
-		  </div>
-		  <div class="course-description" style="text-align:justify;margin-top:10px;"><%= raw(@course.description) %></div>
-		  </br>
-	  </div>
+        <li>
+            <p class="t-name"><%= @course.title.titleize %></p>
+              <p>
+                <% if @course.present? && @course.teacher.present? %>
+                  By <%= @course.teacher.full_name.titleize %>
+                <% end %>
+              </p>
+              <p>Subject: <span><%= @course.subject.name %></span></p>
+              <p>
+              <%= render 'courses/classroom_links' %>  
+            </p>
+        </li>
+    </ul>
+    <%= render 'courses/show/course_sections' %>
   </div>
-  <%= render 'courses/classroom_links' %>
-  <%= render 'courses/show/course_sections' %>
+  <div id="classroom_request_modal" class="modal hide fade bs-example-modal-sm">
+  </div>
 </div>
 
+<!-- Take exam modal -->
 <div id='exam_result_dialog' class='modal hide fade' tabindex='-1' role='dialog' aria-hidden='true'>
   <div class='modal-header'>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
