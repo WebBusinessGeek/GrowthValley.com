@@ -2,11 +2,11 @@
 <% content_for(:current, 'analytics') %>
 <% content_for(:title, 'GrowthValley > My Account > Anaylytics') %>
 <!--Start Main Content Area-->
-<div class="main-content-area wrapper">
+<div class="main-content-area">
 
 <% if current_user.type == 'Teacher' %>
   <% if @courses.present? %>
-    <table class="table table-striped">
+    <table class="table table-striped all-analytics">
       <thead>
         <tr>
           <th><%= Course.human_attribute_name(:title) %></th>
@@ -42,7 +42,7 @@
   <% end %>
   <%= link_to "View more courses", courses_path, class: 'pull-right btn btn-primary' if @courses.present? %>
   <% if @courses.present? %>
-    <table class="table table-striped">
+    <table class="table table-striped all-analytics">
       <thead>
         <tr>
           <th><%= Course.human_attribute_name(:title) %></th>

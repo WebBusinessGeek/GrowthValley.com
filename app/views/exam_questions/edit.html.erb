@@ -1,22 +1,31 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Courses > Courses') %>
 <%- model_class = ExamQuestion -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
-
+<div class="main-content-area my-courses-table">
+<div class="wrapper">
+     <div class="mycourses-all">
+    <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+  <li><a href="javascript:void(0)">Manage Exams</a><span class="divider"></span></li>
+   <li><a href="javascript:void(0)">Edit Question</a></li>
+    </ul>
+  
 <%= simple_form_for [@exam.course, @exam, @exam_question], :html => { :class => 'form-horizontal' } do |f| %>
-  <div id="exam_questions_content">
+  <div id="exam_questions_content" class="edit-content">
   <div class="singlequestion">
     <%= f.error_notification %>
-
     <%= f.input :question, required: true %>
   </div>
   </div>
-  <div class="form-actions">
+  <p class="sub-edit">
     <% if @exam_question.new_record? %>
-      <%= f.button :submit, 'Create Exam Question', :class => 'btn-primary' %>
+      <%= f.button :submit, 'Create Exam Question', :class => 'btn-green' %>
     <% else %>
-      <%= f.button :submit, 'Update Exam Question', :class => 'btn-primary' %>
+      <%= f.button :submit, 'Update Exam Question', :class => 'btn-green' %>
     <% end %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), style: 'margin-left: 5px;' %>
-  </div>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), :class => 'btn btn-cancel' %>
+  </p>
 <% end %>
+  </div>
+</div>

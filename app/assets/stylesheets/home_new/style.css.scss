@@ -675,8 +675,13 @@ ul,li{
 	line-height:26px;
 	width:185px;
 }
-.personal-setting-form .span9 .update-button .btn:hover{background-color:#35c4cb; color:#fff;}
-.personal-setting-form .span3 a{text-decoration: none;}
+.personal-setting-form .span9 .update-button .btn:hover{
+	background-color:#35c4cb; 
+	color:#fff;
+}
+.personal-setting-form .span3 a{
+	text-decoration: none;
+}
 
 /*-------------------------------------Manage classroom setting -----------------------------*/
 
@@ -703,140 +708,93 @@ ul,li{
     vertical-align: middle;
     width: 14px;
 }
-
-
-
 /*---------------------------------------All bundles page 23-7-2014 ------------------------*/
 .profile-page .all-bundles-page .breadcrumb {
-background:none; 
-border-radius:0; 
-padding:0px 0px 10px 0px;
-margin-bottom:36px;
-display:inline-block;
+	background:none; 
+	border-radius:0; 
+	padding:0px 0px 10px 0px;
+	margin-bottom:36px;
+	display:inline-block;
 }
-.profile-page .all-bundles-page .breadcrumb li{text-shadow:none;}
-
+.profile-page .all-bundles-page .breadcrumb li{
+	text-shadow:none;
+}
 .all-bundles-page .breadcrumb li a{
-color:#028d96; 
-font-size:20px; 
-text-decoration:none; 
-font-weight:bold;
+	color:#028d96; 
+	font-size:20px; 
+	text-decoration:none; 
+	font-weight:bold;
 }
-.profile-page .all-bundles-page .breadcrumb li a:hover{text-decoration:underline;}
-
-.profile-page .all-bundles-page .breadcrumb > li > .divider{background-image:url(/assets/breadcrumb-arrow.png); 
-background-repeat:no-repeat; 
-background-position:center 0px; 
-padding:0px 8px; 
-width:13px; 
-height:16px; 
-display:inline-block;
+.profile-page .all-bundles-page .breadcrumb li a:hover{
+	text-decoration:underline;
 }
 
-
+.profile-page .all-bundles-page .breadcrumb > li > .divider{
+	background-image:url(/assets/breadcrumb-arrow.png); 
+	background-repeat:no-repeat; 
+	background-position:center 0px; 
+	padding:0px 8px; 
+	width:13px; 
+	height:16px; 
+	display:inline-block;
+}
 .title a{
-color: #494949;
-text-decoration: none;
+	color: #494949;
+	text-decoration: none;
 }
 .title a:hover{
 	text-decoration: underline;
 }
-
 .bundles h6{
-color:#797979; 
-font-size:14px; 
-font-weight:bold; 
-
-font-family:"Trebuchet MS"; margin-bottom:36px;
+	color:#797979; 
+	font-size:14px; 
+	font-weight:bold;
+	font-family:"Trebuchet MS"; 
+	margin-bottom:36px;
 }
-
 .all-bundles-page .btn{
-background:none; 
-border:none; 
-box-shadow:none; 
-text-decoration:none; 
-border-radius:3px; 
-text-shadow:none; 
-color:#fff; 
-font-size:12px; 
-padding:6px 16px; 
-margin-left:10px;
+	background:none; 
+	border:none; 
+	box-shadow:none; 
+	text-decoration:none; 
+	border-radius:3px; 
+	text-shadow:none; 
+	color:#fff; 
+	font-size:12px; 
+	padding:6px 16px; 
+	margin-left:10px;
 }
-.btn:first-child{margin-left:0px;}
-
-.all-bundles-page .btn-green{background-color:#028d96;}
-
-.all-bundles-page .btn-gray{background-color:#707070;}
-
-.all-bundles-page .btn:hover{opacity:0.9;}
-
-.profile-page .course-panel {
-list-style: none outside none;  
-margin: 0 auto 40px auto;  
-overflow: hidden;
+.btn:first-child{
+	margin-left:0px;
+}
+.all-bundles-page .btn-green{
+	background-color:#028d96;
+}
+.all-bundles-page .btn-gray{
+	background-color:#707070;
+}
+.all-bundles-page .btn:hover{
+	opacity:0.9;
 }
 
-.profile-page .all-bundles-filter{display:inline-block;}
-
+.profile-page .all-bundles-filter{
+	display:inline-block;
+}
 .profile-page .all-bundles-filter select{
-border:none; -webkit-appearance: none; 
- -moz-appearance: none;  
- appearance: none; 
- background:url(/assets/drop-down-icon.png) no-repeat 98% center #fff; 
- text-indent:0.01px; 
- text-overflow: "";
-  width:auto; 
-  color:#767676; 
-  font-weight:bold; 
-  font-size:12px;
-   margin:0; 
-   height:auto;
+	border:none; 
+ 	-webkit-appearance: none; 
+ 	-moz-appearance: none;  
+ 	appearance: none; 
+ 	background:url(/assets/drop-down-icon.png) no-repeat 98% center #fff; 
+ 	text-indent:0.01px; 
+ 	text-overflow: "";
+  	width:auto; 
+  	color:#767676; 
+  	font-weight:bold; 
+  	font-size:12px;
+   	margin:0; 
+   	height:auto;
     padding:4px 10px;
-}
-
-.profile-page .course-panel li {
-float: left;  
-overflow: hidden; 
-width:30%; 
-margin:12px 18px;
-}
-
-.profile-page .course-panel li p{
-margin-bottom:15px; 
-color:#494949;
-}
-.profile-page .course-panel li:first-child{margin-left:0px;}
-
-.profile-page .course-panel li:nth-child(4n){margin-left:0px;}
-
-.profile-page .course-panel li:nth-child(3n){margin-right:0px;}
-
-.profile-page .course-panel li .course-panel-box {position: relative; }
-
-.profile-page .course-panel li .course-panel-box .green-panel {background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
-display:block;
-text-align:center;
-}
-
-.profile-page .course-panel li .course-panel-box .course-panel-disc { 
-background:#2a2a2a;  
-color: #d1d1d1; 
-display: block; 
-padding: 15px 10px;
-}
-
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {
-list-style: none outside none;
-margin: 0; 
-overflow: hidden; 
-padding:0;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 
-border-left: 1px solid #252525; 
-font-size: 12px;  padding: 0 19px; 
-text-align: center; 
-width: auto !important; 
-margin:0px; color:#d1d1d1;
 }
 
 /* -------------------------------------- Notification Page --------------------------------------*/
@@ -874,6 +832,7 @@ margin:0px; color:#d1d1d1;
 	padding:10px 0;
 	text-align:center;
 }
+
 /* -------------------------------------- Review Exams Page --------------------------------------*/
 .profile-page .review-exams h4{
 	border-bottom:1px solid #ededed;
@@ -887,38 +846,6 @@ margin:0px; color:#d1d1d1;
 	font-weight:bold;
 	font-size:14px;
 }
-/*-----------------------------------------All courses page ------------------------------------*/
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {
-border-left: 0 solid #cdcece;
-}
-
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li {
-    color: #d1d1d1;
-    font-size: 12px;
-    text-align: center;
-}
-
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{
-background:url(/assets/user-icon.png) no-repeat; 
-display:inline-block; 
-width:12px; 
-height:12px; 
-margin-right:3px; 
-margin-bottom:-1px;
-}
-
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{color:#a7a7a7;}
-
-.rateit-range {
-background: url(/assets/star.png) repeat; 
-display: inline-block; 
-height: 16px; 
-position: relative; 
-width:55px; 
-height:8px;
-}
-
-.text-center{text-align:center;}
 /* -------------------------------------- My Courses Page --------------------------------------*/
 .profile-page .my-courses-table td{
 	color:#028d96;
@@ -1020,24 +947,8 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
+/* ---------------------------------- My Classrooms Page --------------------------------------*/
 
-/*----------------------------------------All Course page -----------------------------------------*/
-
-.profile-page .modal-footer input.btn{
-	background:#2b2b2b;
-	color:#fff;
-	font-weight:bold;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	display:block;
-	width:100%;
-	padding:10px;
-	text-shadow:none;
-	border-radius:0 0 0 0;
-	-webkit-border-radius:0 0 0 0;
-	box-shadow:none;
-}
-
-/* -------------------------------------- My Classrooms Page --------------------------------------*/
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -1086,6 +997,7 @@ height:8px;
     display: block;
     }
 /* -------------------------------------- My Subjects Page --------------------------------------*/
+
 .profile-page .my-subjets-page h4{
 	 padding-bottom:20px;
 }
@@ -1123,6 +1035,7 @@ height:8px;
     top: 10px;
 }
 /* -------------------------------------- Profile Page --------------------------------------*/
+
 .personal-setting-form{
 	width:610px;
 	margin:auto;
@@ -1324,7 +1237,6 @@ height:8px;
 	padding:10px 0px;
 }
 
-
 /*---------------------All pages css on 24 july, 2014----------------------------*/
 
 /*courses page*/
@@ -1383,200 +1295,8 @@ height:8px;
     color:#fff;
   }
 
-
-.profile-page .mycourses-all .breadcrumb {
-	background:none; 
-	border-radius:0; 
-	padding:0px 0px 10px 0px; 
-	margin-bottom:36px; 	
-	display:inline-block;
-}
-.profile-page .mycourses-all .breadcrumb li{
-	text-shadow:none;
-}
-.profile-page .mycourses-all .breadcrumb li a{
-	color:#028d96; 
-	font-size:20px; 
-	text-decoration:none; 
-	font-weight:bold;
-}
-.profile-page .mycourses-all .breadcrumb li a:hover{
-	text-decoration:underline;
-}
-.profile-page .mycourses-all .breadcrumb > li > .divider{
-	background-image:url(/assets/breadcrumb-arrow.png); 
-	background-repeat:no-repeat; 
-	background-position:center 0px; 
-	padding:0px 8px; 
-	width:13px;
- 	height:16px;
-  	display:inline-block;
-  }
-.profile-page .mycourses-all-filter{
-	display:inline-block;
-}
-.profile-page .mycourses-all-filter select{
-	border:none;
-	-webkit-appearance: none;  
-	-moz-appearance: none;  
-	appearance: none; 
-	background:url(/assets/drop-down-icon.png) no-repeat 98% center #fff; 
-	text-indent:0.01px; 
-	text-overflow: ""; 
-	width:auto; 
-	color:#767676; 
-	font-weight:bold; 
-	font-size:12px; 
-	margin:0; 
-	height:auto; 
-	padding:4px 10px;
-}
-.profile-page .course-panel {
-	list-style: none outside none;  
-	margin: 0 auto 40px auto;  
-	overflow: hidden;
-}
-.profile-page .course-panel li {
-	float: left;  
-	overflow: hidden; 
-	width:30%; 
-	margin:12px 18px;
-}
-.profile-page .course-panel li p{
-	margin-bottom:15px; 
-	color:#494949;
-}
-.profile-page .course-panel li:first-child{
-	margin-left:0px;
-}
-.profile-page .course-panel li:nth-child(4n){
-	margin-left:0px;
-}
-.profile-page .course-panel li:nth-child(3n){
-	margin-right:0px;
-}
-.profile-page .course-panel li .course-panel-box{
-	position: relative; 
-}
-.profile-page .course-panel li .course-panel-box .green-panel{
-	background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
-	display:block; 
-
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc{ 						background:#2a2a2a;  
-	color: #d1d1d1; 
-	display: block; 
-	padding: 15px 10px;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl{
-	list-style: none outside none;  
-	margin: 0; 
-	overflow: hidden; 
-	padding:0;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 		border-left: 1px solid #252525; 
-	font-size: 12px;  
-	padding: 0 20px; 
-	text-align: center; 
-	width: auto !important; 
-	margin:0px; 
-	color:#d1d1d1;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {
-	border-left: 0 solid #cdcece;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{
-	background:url(/assets/user-icon.png) no-repeat; 
-	display:inline-block; 
-	width:12px; 
-	height:12px; 
-	margin-right:3px; 
-	margin-bottom:-1px;
-}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{
-	color:#a7a7a7;
-}
-.rateit-range {
-	background: url(/assets/star.png) repeat; 
-	display: inline-block; 
-	height: 16px; 
-	position: relative; 
-	width:66px; 
-	height:8px;
-}
-.text-center{
-	text-align:center;
-}
-.profile-page #courses_manageExams.table td a{
-	color:#028d96; 
-	text-decoration:none;
-}
-.profile-page #courses_manageExams.table td{
-	color:#3f3f3f; 
-	font-weight:bold;
-}
-.profile-page #courses_manageExams.table th, #courses_manageExams.table td{
-	padding:10px 30px;
-}
-.profile-page #courses_manageExams.table td span.pencil-icon{
-	margin-left:10px;
-}
-.back-course-btn{
-	padding:0px 30px;
-}
-.profile-page .my-courses-table .modal-header{
-	padding:20px 30px 5px 30px;
-}
-.profile-page .my-courses-table .modal-header h4{
-	margin-bottom:10px;
-}
-.profile-page .my-courses-table .modal-header .close{
-	line-height:0px; 
-	margin-top:0; 
-	height:21px;
-}
-.profile-page .my-courses-table .modal-body{
-	padding:0px 30px 15px 30px;
-}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question textarea{
-	width:90%; 
-	padding:10px 15px; 
-	border:none;
-}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question a{
-	text-decoration:none; 
-	color:#fff;
-}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question span{
-	margin-right:10px;
-}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question{
-	margin-bottom:0;
-}
-.profile-page .course-name li {
-	width:auto;
-}
-.profile-page .course-name li p.t-name{
-	text-decoration:none; 
-	font-size:18px; 
-	color:#028d96; 
-	font-weight:bold;
-}
-.profile-page .course-name li p{
-	font-size:16px; 
-	font-weight:600; 
-	color:#585858;
-}
-.profile-page .course-name li a{
-	color:#fff; 
-	font-weight:normal; 
-	font-size:12px;
-}
-.profile-page .course-section-tabs h4{
-	color:#028d96;
-}
-
 /*---------------classrooms page--------------------*/
+
 .my-course-classrooms h4{
 	font-family:"Trebuchet MS"; 
 	font-weight:bold; 
@@ -1609,8 +1329,6 @@ height:8px;
 .my-course-classrooms a{
 	color:#028d96;
 }
-
-
 
 /*-----------------------------manage section---------------------------*/
 .profile-page .mycourse-section-table h4{
@@ -1734,6 +1452,7 @@ div.exam-name h4{
 }
 
 /*------------------tabs-----------------------*/
+
 .profile-page .course-section-tabs .nav-tabs > li > a{
 	text-decoration:none; 
 	border:none; 
@@ -1748,7 +1467,6 @@ div.exam-name h4{
 .profile-page .course-section-tabs .nav-tabs{
 	border:none;
 }
-
 
 /*----------------------Single Bundle Page(25-07-2014)-------------------------------*/
 
@@ -1866,55 +1584,345 @@ div.exam-name h4{
     }
 .profile-page .mybundles-all .course-dtl li{
   width:auto;    
-    }
+ }
 
 /*---------------------courses-allcourses page-----------------------------*/
-.profile-page .mycourses-all .breadcrumb {background:none; border-radius:0; padding:0px 0px 10px 0px; margin-bottom:36px; display:inline-block;}
-.profile-page .mycourses-all .breadcrumb li{text-shadow:none;}
-.profile-page .mycourses-all .breadcrumb li a{color:#028d96; font-size:20px; text-decoration:none; font-weight:bold;}
-.profile-page .mycourses-all .breadcrumb li a:hover{text-decoration:underline;}
-.profile-page .mycourses-all .breadcrumb > li > .divider{background-image:url(/assets/breadcrumb-arrow.png); background-repeat:no-repeat; background-position:center 0px; padding:0px 8px; width:13px; height:16px; display:inline-block;}
-.profile-page .mycourses-all-filter{display:inline-block;}
-.profile-page .mycourses-all-filter select{border:none; -webkit-appearance: none;  -moz-appearance: none;  appearance: none; background:url(../../images/drop-down-icon.png) no-repeat 98% center #fff; text-indent:0.01px; text-overflow: ""; width:auto; color:#767676; font-weight:bold; font-size:12px; margin:0; height:auto; padding:4px 10px;}
-.profile-page .course-panel {list-style: none outside none;  margin: 0 auto 40px auto;  overflow: hidden;}
-.profile-page .course-panel li {float: left;  overflow: hidden; width:30%; margin:12px 18px;}
-.profile-page .course-panel li p{margin-bottom:15px; color:#494949;}
-.profile-page .course-panel li:first-child{margin-left:0px;}
-.profile-page .course-panel li:nth-child(4n){margin-left:0px;}
-.profile-page .course-panel li:nth-child(3n){margin-right:0px;}
-.profile-page .course-panel li .course-panel-box {position: relative; }
-.profile-page .course-panel li .course-panel-box .green-panel {background:url(/assets/courses-bg.jpg) no-repeat #0b919a; display:block; height:120px;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc { background:#2a2a2a;  color: #d1d1d1; display: block; padding: 15px 10px;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {list-style: none outside none;  margin: 0; overflow: hidden; padding:0;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { border-left: 1px solid #252525; font-size: 12px;  padding: 0 20px; text-align: center; width: auto !important; margin:0px; color:#d1d1d1;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {border-left: 0 solid #cdcece;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{background:url(/assets/user-icon.png) no-repeat; display:inline-block; width:12px; height:12px; margin-right:3px; margin-bottom:-1px;}
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{color:#a7a7a7;}
-.rateit-range {background: url(/assets/star.png) repeat; display: inline-block; height: 16px; position: relative; width:66px; height:8px;}
-.text-center{text-align:center;}
-.profile-page #courses_manageExams.table td a{color:#028d96; text-decoration:none;}
-.profile-page #courses_manageExams.table td{color:#3f3f3f; font-weight:bold;}
-.profile-page #courses_manageExams.table th, #courses_manageExams.table td{padding:10px 30px;}
-.profile-page #courses_manageExams.table td span.pencil-icon{margin-left:10px;}
-.back-course-btn{padding:0px 30px;}
-.profile-page .my-courses-table .modal-header{padding:20px 30px 5px 30px;}
-.profile-page .my-courses-table .modal-header h4{margin-bottom:10px;}
-.profile-page .my-courses-table .modal-header .close{line-height:0px; margin-top:0; height:21px;}
-.profile-page .my-courses-table .modal-body{padding:0px 30px 15px 30px;}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question textarea{width:90%; padding:10px 15px; border:none;}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question a{text-decoration:none; color:#fff;}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question span{margin-right:10px;}
-.profile-page .my-courses-table .modal-body form.simple_form_new_question{margin-bottom:0;}
 
+.profile-page .mycourses-all .breadcrumb {
+	background:none; 
+	border-radius:0; 
+	padding:0px 0px 10px 0px; 
+	margin-bottom:36px; 
+	display:inline-block;
+}
+.profile-page .mycourses-all .breadcrumb li{
+	text-shadow:none;
+}
+.profile-page .mycourses-all .breadcrumb li a{
+	color:#028d96; 
+	font-size:20px; 
+	text-decoration:none; 
+	font-weight:bold;
+}
+.profile-page .mycourses-all .breadcrumb li a:hover{
+	text-decoration:underline;
+}
+.profile-page .mycourses-all .breadcrumb > li > .divider{
+	background-image:url(/assets/breadcrumb-arrow.png); 
+	background-repeat:no-repeat; 
+	background-position:center 0px; 
+	padding:0px 8px; 
+	width:13px; 
+	height:16px; 
+	display:inline-block;
+}
+.profile-page .mycourses-all-filter{
+	display:inline-block;
+}
+.profile-page .mycourses-all-filter select{
+	border:none; -webkit-appearance: none;  
+	-moz-appearance: none;  
+	appearance: none; 
+	background:url(/assets/drop-down-icon.png) no-repeat 98% center #fff; 
+	text-indent:0.01px; 
+	text-overflow: ""; 
+	width:auto; 
+	color:#767676; 
+	font-weight:bold; 
+	font-size:12px; 
+	margin:0; 
+	height:auto; 
+	padding:4px 10px;
+}
+.profile-page .course-panel {
+	list-style: none outside none;  
+	margin: 0 auto 40px auto;  
+	overflow: hidden;
+}
+.profile-page .course-panel li {
+	float: left;  
+	overflow: hidden; 
+	width:30%; 
+	margin:12px 18px;
+}
+.profile-page .course-panel li p{
+	margin-bottom:15px; 
+	color:#494949;
+}
+.profile-page .course-panel li:first-child{
+	margin-left:0px;
+}
+.profile-page .course-panel li:nth-child(4n){
+	margin-left:0px;
+}
+.profile-page .course-panel li:nth-child(3n){
+	margin-right:0px;
+}
+.profile-page .course-panel li .course-panel-box {
+	position: relative; 
+}
+.profile-page .course-panel li .course-panel-box .green-panel {
+	background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
+	display:block; 
+	height:120px;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc { 
+	background:#2a2a2a;  
+	color: #d1d1d1; 
+	display: block; 
+	padding: 15px 10px;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {
+	list-style: none outside none;  
+	margin: 0; 
+	overflow: hidden; 
+	padding:0;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 
+border-left: 1px solid #252525; 
+font-size: 12px;  padding: 0 19px; 
+text-align: center; 
+width: auto !important; 
+margin:0px; color:#d1d1d1;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {
+	border-left: 0 solid #cdcece;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{
+	background:url(/assets/user-icon.png) no-repeat; 
+	display:inline-block; 
+	width:12px; 
+	height:12px; 
+	margin-right:3px; 
+	margin-bottom:-1px;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{
+	color:#a7a7a7;
+}
+.rateit-range {
+	background: url(/assets/star.png) repeat; 
+	display: inline-block; 
+	height: 16px; 
+	position: relative; 
+	width:66px; 
+	height:8px;
+}
+.text-center{
+	text-align:center;
+}
+.profile-page #courses_manageExams.table td a{
+	color:#028d96; 
+	text-decoration:none;
+}
+.profile-page #courses_manageExams.table td{
+	color:#3f3f3f; 
+	font-weight:bold;
+}
+.profile-page #courses_manageExams.table th, #courses_manageExams.table td{
+	padding:10px 30px;
+}
+.profile-page #courses_manageExams.table td span.pencil-icon{
+	margin-left:10px;
+}
+.back-course-btn{
+	padding:0px 30px;
+}
+.profile-page .my-courses-table .modal-header{
+	padding:20px 30px 5px 30px;
+}
+.profile-page .my-courses-table .modal-header h4{
+	margin-bottom:10px;
+}
+.profile-page .my-courses-table .modal-header .close{
+	line-height:0px; 
+	margin-top:0; 
+	height:21px;
+}
+.profile-page .my-courses-table .modal-body{
+	padding:0px 30px 15px 30px;
+}
+.profile-page .my-courses-table .modal-body form.simple_form_new_question textarea{
+	width:90%; 
+	padding:10px 15px; 
+	border:none;
+}
+.profile-page .my-courses-table .modal-body form.simple_form_new_question a{
+	text-decoration:none; 
+	color:#fff;
+}
+.profile-page .my-courses-table .modal-body form.simple_form_new_question span{
+	margin-right:10px;
+}
+.profile-page .my-courses-table .modal-body form.simple_form_new_question{
+	margin-bottom:0;
+}
+.profile-page .course-name li {
+	width:auto;
+}
+.profile-page .course-name li p.t-name{
+	text-decoration:none; 
+	font-size:18px; 
+	color:#028d96; 
+	font-weight:bold;
+}
+.profile-page .course-name li p{
+	font-size:16px; 
+	font-weight:600; 
+	color:#585858;
+}
+.profile-page .course-name li a{
+	color:#fff; 
+	font-weight:normal; 
+	font-size:12px;
+}
+.profile-page .course-section-tabs h4{
+	color:#028d96;
+} 
 
+/** form popup bundles page**/
+.profile-page .form.simple_form_new_question .modal-body .image_upload{
+	cursor: pointer; 
+	display: inline-block; 
+	margin-bottom:16px; 
+	overflow: hidden; 
+	position: relative; 
+	overflow:hidden; 
+	text-align: center; 
+	border:none; 
+	padding:5px 1px; 
+	vertical-align:top;
+}
+.profile-page form.simple_form_new_question .modal-body .image_upload span{
+	display:inline; 
+	padding:0px; 
+	vertical-align:top;
+}
+.profile-page form.simple_form_new_question .modal-body .image_upload input.upload {
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	left:0; 
+	margin: 0; 
+	padding:0px; 
+	width:100%; 
+	cursor: pointer; 
+	opacity: 0; 
+	filter: alpha(opacity=0);
+}
+.profile-page form.simple_form_new_question .modal-body .image_upload span img{
+	margin-right:6px;
+}
+.profile-page form.simple_form_new_question{
+	margin-bottom:0
+}
+.profile-page form.simple_form_new_question .modal-body .ui-checkbox input{
+	width:auto;
+}
+.profile-page form.simple_form_new_question .modal-body p{
+	margin-bottom:8px;
+}
+.profile-page .modal-body{
+	padding:0px 30px 15px 30px;
+}
+.profile-page .modal-body form.simple_form_new_question textarea{
+	width:90%; 
+	padding:10px 15px; 
+	border:none;
+}
+.profile-page .modal-body form.simple_form_new_question a{
+	text-decoration:none; 
+	color:#fff;
+}
+.profile-page .modal-body form.simple_form_new_question span{
+	margin-right:10px;
+}
+.profile-page .modal-body form.simple_form_new_question{
+	margin-bottom:0;
+}
+/***alert***/
+.alert{
+  left:0;
+  position:absolute;
+  z-index:10000;
+  width:100%;
+  margin-left:20px;
+  margin-right:20px;
+}
 
-.profile-page .course-name li {width:auto;}
-.profile-page .course-name li p.t-name{text-decoration:none; font-size:18px; color:#028d96; font-weight:bold;}
-.profile-page .course-name li p{font-size:16px; font-weight:600; color:#585858;}
-.profile-page .course-name li a{color:#fff; font-weight:normal; font-size:12px;}
-.profile-page .course-section-tabs h4{color:#028d96;} 
+h5 a{
+	text-decoration:none;
+	color:#028D96;
+}
+h5 a:hover{	
+	color:#028D96;
+}
 
-    /*---------------------Media screen----------------------------*/
+/*analytics page*/
+.profile-page .all-analytics a{	
+color:#028D96
+}
+
+/*question-edit page*/
+
+.my-courses-table .edit-content textarea{
+	height:120px;
+	width:345px;
+}
+.my-courses-table .edit-content abbr[title], abbr[data-original-title]{
+	border-bottom:none;
+	color:#FF0000;
+}
+.my-courses-table .sub-edit input.btn[type="submit"]{
+	padding:9px 16px;
+}
+.my-courses-table .sub-edit .btn-cancel{
+	background-color:#e6e6e6;
+	color:#333;
+}
+.edit-content .control-label{
+	text-align:left;
+	width:100px;
+}
+.edit-content .controls{
+	margin-left:0px;
+}
+.edit-content{
+	margin-bottom:40px;
+}
+
+/*  question add page*/
+
+.my-courses-table .add-content textarea{
+	height:120px;
+	width:345px;
+}
+.my-courses-table .add-content abbr[title], abbr[data-original-title]{
+	border-bottom:none;
+	color:#FF0000;
+}
+.my-courses-table .sub-add input.btn[type="submit"]{
+	padding:9px 16px;
+}
+.my-courses-table .sub-add .btn-cancel{
+	background-color:#e6e6e6;
+	color:#333;
+}
+.my-courses-table .delete-exam-question{
+	color:#028D96;
+}
+.add-content .control-label{
+	text-align:left;
+	width:100px;
+}
+.add-content .controls{
+	margin-left:0px;
+}
+.sub-add{
+	margin-top:40px;
+}
+
+/*---------------------Media screen----------------------------*/
+
 @media (max-width: 1200px) {
 	.nav-wrap li{
 	 padding:30px 10px;
@@ -1924,7 +1932,7 @@ div.exam-name h4{
 		font-size:14px;
 	}
 
-/*---------------------Accounts pages css on 22 july, 2014---------------------------------*/
+/*-------------Accounts pages css on 22 july, 2014------------------*/
 	.profile-page #courses_requested.table th, #courses_requested.table td{
 		padding:10px 8px;
 	}
@@ -2073,18 +2081,31 @@ div.exam-name h4{
 	}
 
 	/*---------------------Accounts pages css on 22 july, 2014------------------------------*/
-	.user-subscriptions{width:94%;}
-	.my-bundles-page .bundles{padding:0px 10px;}
-
-	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
-	.my-course-classrooms{padding:0px 10px;}
-	.tl-name{padding:0px 10px;}
-
-
-	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
-
-	.my-course-classrooms{padding:0px 10px;}
-	.tl-name{padding:0px 10px;}
+	.user-subscriptions{
+		width:94%;
+	}
+	.profile-page .my-bundles-page .bundles{
+		padding:0px 10px;
+	}
+    .profile-page .my-course-classrooms{
+    	padding:0px 10px;
+    }
+    .profile-page .tl-name{
+    	padding:0px 10px;
+    }
+	.profile-page #courses_requested.table th, #courses_requested.table td{
+		padding:10px 8px;
+	}
+	.profile-page .mycourses-all{
+		padding:0px 10px;
+	}
+	.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li{
+		padding:0px 6px;
+	}
+	.profile-page #courses_requested.table th, #courses_requested.table td{
+		padding:10px 8px;
+	}
+	/*Single Bundle Page*/
 
 	.profile-page .mybundles-all {
 		padding:0px 10px;
@@ -2092,6 +2113,7 @@ div.exam-name h4{
 	.profile-page .bundle-panel li {	  
 	  margin-left:0px;
 	}
+
 
 }
 
@@ -2117,7 +2139,14 @@ div.exam-name h4{
 	.profile-page .bundle-panel .course-dtl li{
 		padding:0px 6px;
 		margin:0px;
-}
+	}
+ /*-------------Accounts pages css on 22 july, 2014-----------------------------*/	
+	/*manage classroom edit setting*/
+
+	.profile-page .mycourses-all .edit-course-section_1{
+		width:100%;
+	}
+
 }
 
 @media (max-width: 767px) {
@@ -2229,6 +2258,8 @@ p{
 .my-subjets-page .btn-group label.btn{
 	width:93%;
 }
+
+/*------------CSS Changes-----------------*/
 .profile-page .bundle-panel li{
 	margin:12px 8px;
 }
@@ -2239,6 +2270,32 @@ p{
 	padding:0px 3px;
 	margin:0px;
 }
+/*courses page*/
+.profile-page .course-panel li{
+	width:30%; 
+	margin:12px 8px;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc{
+	padding:15px 4px;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li{
+	padding:0px 4px;
+}
+.profile-page .table-responsive {
+ 	border: 1px solid #ddd; 
+ 	margin-bottom: 15px; 
+ 	overflow-x: auto; 
+ 	overflow-y: hidden; 
+ 	width: 100%;
+ }
+.profile-page .course-name li{
+	width:auto;
+}
+/*manage classroom edit setting*/
+	.profile-page .mycourses-all .edit-course-section_1{
+	width:100%;
+	}
+
 
 }
 
@@ -2304,9 +2361,36 @@ p{
 	.profile-page .my-courses-table th.add-new-courses-btn a span.add-new-courses{
 		padding:4px 5px;
 	}
+/*------------------CSS Changes------------------------*/	
+
 	.profile-page .bundle-panel li {	  
 	  width:100%;
 	}
+	/*courses page*/
+
+	.profile-page .course-panel li{
+		width:100%; 
+		margin:12px 0px;
+	}	
+
+	/*manage classroom setting*/
+
+	.profile-page .mycourses-all .simple_manage_form .ui-checkbox span em{
+		margin-left:0;
+	}
+	.profile-page .mycourses-all .simple_manage_form .controls span.help-request{
+		display:block; padding-left:0px; margin-top:10px;
+	}
+
+	/*manage classroom edit setting*/
+	.profile-page .mycourses-all .edit-course-section_1{
+		width:100%;
+	}
+	.profile-page .mycourses-all .edit-course-section_2{
+		width:100%;
+	}	
+
+
 }
 @media (max-width: 479px) {
 body{
@@ -2397,24 +2481,62 @@ p{
 .profile-page .modal .close{
 	font-size:28px;
 }
-/*----bundles page(25/07/2014)-----*/
+/*----------------CSS Changes-----------------------------*/
+
+/*bundles page(25/07/2014)*/
+
 .profile-page .bundle-panel li{
 	margin-left:0px;
 }
+/*courses page*/
 
-
-
+.profile-page .mycourses-all .breadcrumb{
+	margin-bottom:10px;
 }
-.alert{
-  left:0;
-  position:absolute;
-  z-index:10000;
-  width:100%;
-  margin-left:20px;
-  margin-right:20px;
+.profile-page .course-panel li{
+	width:100%; 
+	margin:12px 0px;
+}
+.profile-page #courses_manageExams.table td span.pencil-icon{
+	margin-left:0px;
+}
+.btn{
+	margin-left:0; 
+	margin-bottom:10px;
 }
 
-h5 span.toggle-delete{
-	text-decoration:none;
-	color:#028D96;
+/*tabs*/
+
+.profile-page .course-section-tabs .nav-tabs > li{
+	margin-right:2px;
+}	
+
+/*manage classroom setting*/
+
+.profile-page .mycourses-all .simple_manage_form .ui-checkbox span em{
+	margin-left:0;
+}
+.profile-page .mycourses-all .simple_manage_form .controls span.help-request{
+	display:block;
+ 	padding-left:0px;
+  	margin-top:10px;
+}
+
+/*manage classroom edit setting*/
+
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .course-submit-btn{
+	float:none;
+}
+/* edit question*/
+.my-courses-table .edit-content textarea{
+	height:75px;
+	width:206px;
+}
+
+/* add question*/
+.my-courses-table .add-content textarea{
+	height:75px;
+	width:206px;
+}
+
 }
