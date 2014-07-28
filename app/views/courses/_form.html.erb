@@ -1,4 +1,4 @@
-<%= simple_form_for @course, html: {multipart: true , class:"simple_form_new_question" , id:"add_questions" } do |f| %>
+  <%= simple_form_for @course, html: {multipart: true , class:"simple_form_new_question" , id:"add_questions" } do |f| %>
     <div class="modal-body">
       <%= f.error_notification %>
 
@@ -35,8 +35,8 @@
         </label> 
         <p>Classroom settings (optional)</p>
         <label class="ui-checkbox">
-          <%= f.check_box :classroom_enabled, {} %>
-            <span>Accept Requests</span>
+          <%= f.check_box :classroom_enabled,  class:"style-checkbox" %>
+            <span class='click-check'>Accept Requests</span>
         </label>
     </div>
     
@@ -44,4 +44,14 @@
     <%= f.button :submit, 'Continue' %>
     </div>
     
+<% end %>
+<%= javascript_tag do %>
+  $(".click-check").click(function(){
+    if($(this).parent().find(".style-checkbox[type='checkbox']").is(":checked")){
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', false);
+    }
+    else{
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', true);
+    }
+});
 <% end %>
