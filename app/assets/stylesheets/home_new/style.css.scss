@@ -1036,11 +1036,6 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 26ff0072e88335230a2462cca6e4ba4938f20562
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /* -------------------------------------- My Classrooms Page --------------------------------------*/
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -1261,16 +1256,9 @@ border:none;
 padding:10px 0px;
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
 
 /*---------------------All pages css on 24 july, 2014----------------------------*/
 
-=======
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1329,10 +1317,6 @@ padding:10px 0px;
 .profile-page .course-name li a{color:#fff; font-weight:normal; font-size:12px;}
 .profile-page .course-section-tabs h4{color:#028d96;}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1343,14 +1327,6 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*manage section*/
 .profile-page .mycourse-section-table h4{color: #028d96;  font-family: "Trebuchet MS"; text-align: center;}
 .profile-page #courses_manageExams.table td a.btn{color:#fff;}
@@ -1371,6 +1347,20 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .ui-radio input[type="radio"] + span:before {background:#ffffff; border:none; border-radius:3px; content: "";display: inline-block; height: 18px; margin-left: -20px; margin-right: 10px; vertical-align: middle; width: 18px;}
 .ui-radio input[type="radio"]:checked + span:after {background:url(../../assets/input-checkbox.png) no-repeat; height: 12px; left:-18px; margin-top: 0; position: absolute; top:5px; content:""; width:13px;}
 .ui-radio input[type="radio"] + span { font-weight: normal;}
+
+.profile-page form.simple_form_new_question .modal-body .image_upload{cursor: pointer; display: inline-block; margin-bottom:16px; overflow: hidden; position: relative; overflow:hidden; text-align: center; border:none; padding:5px 1px; vertical-align:top;}
+.profile-page form.simple_form_new_question .modal-body .image_upload span{display:inline; padding:0px; vertical-align:top;}
+.profile-page form.simple_form_new_question .modal-body .image_upload input.upload {position: absolute; top: 0; right: 0; left:0;  margin: 0; padding:0px; width:100%; cursor: pointer; opacity: 0; filter: alpha(opacity=0);}
+.profile-page form.simple_form_new_question .modal-body .image_upload span img{margin-right:6px;}
+.profile-page form.simple_form_new_question{margin-bottom:0}
+.profile-page form.simple_form_new_question .modal-body  .ui-checkbox input{width:auto;}
+.profile-page form.simple_form_new_question .modal-body   p{margin-bottom:8px;}
+
+.profile-page  .modal-body{padding:0px 30px 15px 30px;}
+.profile-page  .modal-body form.simple_form_new_question textarea{width:90%; padding:10px 15px; border:none;}
+.profile-page  .modal-body form.simple_form_new_question a{text-decoration:none; color:#fff;}
+.profile-page  .modal-body form.simple_form_new_question span{margin-right:10px;}
+.profile-page  .modal-body form.simple_form_new_question{margin-bottom:0;}
 
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
@@ -1426,6 +1416,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .my-courses-table .modal-body form.simple_form_new_question a{text-decoration:none; color:#fff;}
 .profile-page .my-courses-table .modal-body form.simple_form_new_question span{margin-right:10px;}
 .profile-page .my-courses-table .modal-body form.simple_form_new_question{margin-bottom:0;}
+
 .profile-page .course-name li {width:auto;}
 .profile-page .course-name li p.t-name{text-decoration:none; font-size:18px; color:#028d96; font-weight:bold;}
 .profile-page .course-name li p{font-size:16px; font-weight:600; color:#585858;}
@@ -1436,14 +1427,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
@@ -1600,10 +1584,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
-<<<<<<< HEAD
-=======
 
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 
