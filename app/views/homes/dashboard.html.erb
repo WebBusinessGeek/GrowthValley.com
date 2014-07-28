@@ -1,81 +1,60 @@
-
-<div class="main-content courses">
-  <div id="filter">
-    <div class='row-fluid'>
-		<div class='span2'><h1>Resources</h1></div>
-		<div class='span10'style="border-left:1px solid black;">
-			<div class='row-fluid' style="margin-bottom:20px;">
-				<div class="span6">
-					<div style="margin-top:5px;margin-left:5px"><br>
-					<u><h3>Whats going on?</h3></u>
-					<br>
-					<ul>
-					<% if @notifications.count > 0 %>
-					<% @notifications.each do |notification| %>
-						<li>
-						  <%= notification["message"].html_safe() %>
-							(<%= time_ago_in_words(notification.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago)
-						</li>
-					<% end %>
-					<% if @notifications.present? %>
-						<li class="pull-right"><%=link_to("View All", notification_path)%></li>
-					<% end %>
-					<% else %>
-						<li style="text-align:center;">No notifications!!</li>
-					<% end %>
-					</ul>
-					</div>
-				</div>
-				<div class="span5 offset1" style="margin-top:5px;"><br>
-					<h3>Course Subscriptions</h3>
-					<div class='row-fluid' style="padding-top:5px;">
-						<% if @my_subjects.count == 0 %>
-							<div>You have not subscribed any subject yet.</div>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'dashboard') %>
+<% content_for(:title, 'GrowthValley > Home > Dashboard') %>
+<div class="main-content-area wrapper my-dashboard">
+   <div class="dashboard-wrapper">
+   		<div class="course-description">
+            	<div class="c-desp">
+                <span class="c-desp-title">Course Subscriptions:</span> 
+                <div class="c-desp-course">
+                <% if @my_subjects.count == 0 %>
+						<span>You have not subscribed any subject yet.</span>
 						<% else %>
-							<% @my_subjects.each do |subject| %>
-							<div class="span4">
-							<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>
-							</div>
+						<span>
+							<% @my_subjects.each do |subject| %>					
+							<%=link_to(subject.name, courses_path(:subject=>subject.slug))%>							
 							<% end %>
+						</span>
 						<% end %>
 						<% if @my_subjects.count < 3 %>
-						<div style="text-align:center;"><%=link_to("Add a subscription", user_subjects_path)%></div>
+						<span class="add_subscriptions"><%=link_to("Add a subscription", user_subjects_path)%></span>
 						<% end %>
-					</div><br>
-					<% if current_user.type == "Learner" %>
-						<h3>Courses Completed</h3>
-						<div class='row-fluid' style="text-align:center;padding-top:5px">
-							<span style="font-size:25px;font-weight:bold"><%=current_user.subscriptions.where("user_type = ? and complete = true",current_user.type).count()%></span><br>
-							<%=link_to "View Courses", my_courses_courses_path()%>
-						</div>
-						<br>
-						<h3>Courses Unfinished</h3>
-						<div class='row-fluid' style="text-align:center;padding-top:5px;">
-							<span style="font-size:25px;font-weight:bold"><%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%></span><br>
-							<%=link_to "Go finish", my_courses_courses_path()%>
-						</div>
-						<br>
-					<% else %>
-						<h3>Courses Published</h3>
-						<div class='row-fluid' style="text-align:center;padding-top:5px">
-							<span style="font-size:25px;font-weight:bold"><%=current_user.courses.where("is_published = true").count()%></span><br>
-							<%=link_to "View Courses", my_courses_courses_path()%>
-						</div>
-						<br>
-						<h3>Courses Un-Published</h3>
-						<div class='row-fluid' style="text-align:center;padding-top:5px;">
-							<span style="font-size:25px;font-weight:bold"><%=current_user.courses.where("is_published = false").count()%></span><br>
-							<%=link_to "Publish Courses", my_courses_courses_path()%>
-						</div>
-						<br>
-					<% end %>
-				</div>
-			</div>	
-			<% @my_subjects.each do |subject| %>
+				</div>		
+                </div>
+                <% if current_user.type == "Learner" %>
+                <p class="c-publish">
+                <span class="c-desp-title">Course Completed:</span> 
+                <span class="t-view-course"><%=current_user.subscriptions.where("user_type = ? and complete = true",current_user.type).count()%>
+                </span>
+                <%=link_to "View Courses", my_courses_courses_path()%>
+                </p>
+                <p class="c-publish">
+                <span class="c-desp-title">Course Unfinished:</span> 
+                <span class="t-view-course"><%=current_user.subscriptions.where("user_type = ? and complete = false",current_user.type).count()%>
+                </span>
+                <%=link_to "Go finish", my_courses_courses_path()%>
+                </p>
+                <% else %>
+                      <p class="c-publish">
+                <span class="c-desp-title">Course Published:</span> 
+                <span class="t-view-course"><%=current_user.courses.where("is_published = true").count()%>
+                </span>
+               <%=link_to "View Courses", my_courses_courses_path()%>
+                </p>
+                <p class="c-publish">
+                <span class="c-desp-title">Course Un-Published:</span> 
+                <span class="t-view-course"><%=current_user.courses.where("is_published = false").count()%>
+                </span>
+                <%=link_to "Publish Courses", my_courses_courses_path()%>
+                </p>
+           <% end %>
+            </div>
+            
+            <% @my_subjects.each do |subject| %>
 			<% if subject.courses.all_published.count > 0 %>
 			<div class="row-fluid">
-				<h3><%=subject.name.capitalize%> Courses</h3>
-				<ul class="courses-box dashboard">
+				<h4><%=subject.name.capitalize%> Courses</h4>
+				<ul class="dashboard-course-panel">
 				<% subject.courses.all_published.order("created_at desc").limit(3).each do |course| %>
 					<%= render partial: "courses/single_course", :locals=>{:course => course} %>
 				<% end %>
@@ -86,16 +65,39 @@
 			<% @other_subjects.each do |subject| %>
 			<% if subject.courses.all_published.count > 0 %>
 			<div class="row-fluid">
-				<h3><%=subject.name.capitalize%> Courses</h3>
-				<ul class="courses-box dashboard">
+				<h4><%=subject.name.capitalize%> Courses</h4>
+				<ul class="dashboard-course-panel">
 				<% subject.courses.all_published.order("created_at desc").limit(3).each do |course| %>
 					<%= render partial: "courses/single_course", :locals=>{:course => course} %>
 				<% end %>
 				</ul>
 			</div>		
 			<% end %>		
-			<% end %>		
-		</div>
-    </div>
+			<% end %>   
   </div>
 </div>
+<!--End Main Content Area-->
+<!--Start dashboard-notification Area-->
+		<div class="dashboard-notification">
+        	<div class="dashboard-notification-wrapper">
+    		<h4>Whats going on?</h4>
+            	<% if @notifications.count > 0 %>
+					<% @notifications.each do |notification| %>
+						<p>
+							<span class="date"><%= time_ago_in_words(notification.created_at.strftime("%d-%m-%Y %H:%M %z")) %> ago
+							</span>
+						  	<span class="notification-content">
+						  		<em><%= notification["message"].html_safe() %></em>
+						  	</span>		
+						</p>
+					<% end %>
+					<% if @notifications.present? %>
+						<p class="view-all-btn"><%=link_to("View All", notification_path)%></p>
+					<% end %>
+					<% else %>
+						<p style="text-align:center;">No notifications!!</p>
+					<% end %>            
+            </div>
+    	</div>
+<!--Start dashboard-notification Area-->
+

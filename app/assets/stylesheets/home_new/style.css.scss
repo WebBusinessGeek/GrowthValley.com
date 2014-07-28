@@ -1921,6 +1921,178 @@ color:#028D96
 	margin-top:40px;
 }
 
+/*Dashboard Page*/
+
+.profile-page .dashboard-wrapper .dashboard-course-panel {
+	list-style: none outside none;  
+	margin: 0 auto 40px auto;  
+	overflow: hidden;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li {
+	float: left;  
+	overflow: hidden; 
+	width:30%; 
+	margin:12px 18px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:first-child{
+	margin-left:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:nth-child(4n){
+	margin-left:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:nth-child(3n){
+	margin-right:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li a{
+	color:#494949; 
+	font-weight:bold; 
+	text-decoration:none; 
+	margin-bottom:16px; 	
+	display:block;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li a:hover{
+	text-decoration:underline;
+}
+.profile-page .dashboard-wrapper .course-description span.c-desp-title{
+	width:162px; 
+	font-weight:bold; 
+	font-style:italic; 
+	color:#494949; 
+	display:inline-block;
+	vertical-align:top;
+}
+.profile-page .dashboard-wrapper .course-description .c-desp a{
+	padding:4px 8px; 
+	background-color:#028d96; 
+	color:#fff; 
+	font-size:14px; 
+	font-weight:bold; 
+	border-radius:3px; 
+	text-decoration:none;
+	display:inline-block;
+	margin-bottom:10px;
+}
+.profile-page .dashboard-wrapper .course-description{
+	margin-bottom:40px;
+}
+.profile-page .dashboard-wrapper .course-description a:hover{
+	opacity:0.9;
+}
+.profile-page .dashboard-wrapper .course-description .c-publish .t-view-course{
+	padding:2px 8px; 
+	background-color:#028d96; 
+	color:#fff; 
+	font-size:14px; 
+	font-weight:bold; 
+	border-radius:3px; 
+	text-decoration:none;
+}
+.profile-page .dashboard-wrapper .course-description .c-publish a{
+	color:#028d96; 
+	font-size:12px; 
+	font-weight:bold; 
+	text-decoration:none; 
+	padding:0px 10px;
+}
+.profile-page .dashboard-wrapper .row-fluid h4{
+ 	font-family: "Trebuchet MS"; 
+}
+
+.profile-page .dashboard-notification{
+	background-color:#f0f0f0; 
+	padding:34px 10px;
+ }
+.profile-page .dashboard-notification .date{
+	color:#7e7e7e; 
+	font-size:10px;
+	padding-right:10px; 
+	display:inline-block; 
+	text-align:left;
+} 
+.profile-page .dashboard-notification a{
+	color:#028d96; 
+	font-size:12px; 
+	font-weight:bold; 
+	text-decoration:none;
+}
+.profile-page .dashboard-notification p{
+	color:#2a2a2a; 
+	font-size:12px; 
+	border-bottom:solid 1px #d7d7d7; 
+	margin-bottom:0px;
+}
+.profile-page .dashboard-notification .dashboard-notification-wrapper{
+	width:470px; 
+	margin:0px auto;
+}
+.profile-page .dashboard-notification .dashboard-notification-wrapper h4{
+	color: #494949;  
+	font-family: "Trebuchet MS"; 
+	font-size:14px; 
+	text-align:center;
+}
+.profile-page .dashboard-notification .dashboard-notification-wrapper .view-all-btn a{
+	background-color:#2a2a2a; 
+	font-style:italic; 
+	color:#fff; 
+	text-decoration:none; 
+	border-radius:3px; 
+	padding:4px 8px; 
+	font-weight:normal;
+}
+.profile-page .dashboard-notification .dashboard-notification-wrapper .view-all-btn a:hover{
+	opacity:0.9;
+}
+.profile-page .dashboard-notification .dashboard-notification-wrapper .view-all-btn{
+	text-align:center; 
+	border-bottom:none; 
+	margin-top:16px;
+}
+.profile-page .c-desp .c-desp-course{
+	display:inline-block;
+	width:750px;
+}
+.profile-page .dashboard-wrapper .course-description .c-desp .add_subscriptions a{
+	background:none;
+	color:#028D96;
+	text-decoration:underline;
+}
+.profile-page .dashboard-wrapper .course-description .c-desp .add_subscriptions a:hover{
+	text-decoration:none;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li p.title a{
+	 color: #028D96;    
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box{
+	position:relative;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .green-panel{
+	 background: url("/assets/courses-bg.jpg") repeat scroll 0 0 #0B919A;
+    display: block;
+    text-align: center;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .green-panel a{
+	margin-bottom:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-panel-disc{
+   	background: none repeat scroll 0 0 #2A2A2A;
+    color: #D1D1D1;
+    display: block;
+    padding: 5px 10px;
+ }
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl{
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li{
+	width:auto;
+}
+.notification-content{
+	display:inline-block;
+}
 /*---------------------Media screen----------------------------*/
 
 @media (max-width: 1200px) {
@@ -2113,6 +2285,14 @@ color:#028D96
 	.profile-page .bundle-panel li {	  
 	  margin-left:0px;
 	}
+	/*Dashboard Page*/	
+
+	.profile-page .dashboard-wrapper{
+		padding:0px 10px;
+	}	
+	.profile-page .dashboard-notification .dashboard-notification-wrapper{
+		width:auto;
+	}
 
 
 }
@@ -2295,6 +2475,10 @@ p{
 	.profile-page .mycourses-all .edit-course-section_1{
 	width:100%;
 	}
+/* Dashboard CSS*/
+.profile-page .dashboard-wrapper .dashboard-course-panel li{
+	margin:12px 8px;
+}
 
 
 }
@@ -2366,6 +2550,12 @@ p{
 	.profile-page .bundle-panel li {	  
 	  width:100%;
 	}
+
+	/*Dashboard Page*/
+   .profile-page .dashboard-wrapper .dashboard-course-panel li{
+      width:100%;
+   }
+
 	/*courses page*/
 
 	.profile-page .course-panel li{
@@ -2488,6 +2678,11 @@ p{
 .profile-page .bundle-panel li{
 	margin-left:0px;
 }
+/*Dashboard page*/
+.profile-page .dashboard-wrapper .dashboard-course-panel li{
+	margin-left:0px;
+}
+
 /*courses page*/
 
 .profile-page .mycourses-all .breadcrumb{
