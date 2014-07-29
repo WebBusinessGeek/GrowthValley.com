@@ -55,7 +55,7 @@ class QuizzesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html{render layout:'home_new'} # new.html.erb
     end
   end
 

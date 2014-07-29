@@ -1,3 +1,13 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > Courses > My Courses') %>
+
+<div class="main-content-area wrapper my-courses-table"> 
+   <div class="mycourses-all">
+  <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+    <li><a href="javascript:void(0)">Quiz</a></li>
+</ul>
 <% if @edit == false %>
   <% min_check = 3 %>
   <% quiz_questions_count = 0 %>
@@ -28,16 +38,19 @@
         <% quiz_questions_count = quiz_questions_count + 1 %>
       <% end %>
     <% end %>
-  </div>
+</div>
 
-  <%= link_to "Add More".html_safe(), "#add", :id => "add-another-question", :class=>"btn" %>
+  <%= link_to "Add More".html_safe(), "#add", :id => "add-another-question", :class=>"btn btn-gray" %>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Add these questions', :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), section_quizzes_path(@section), :class => 'btn' %>
+  <p>
+    <div class="controls">
+    <%= f.button :submit, 'Add these questions', :class => 'btn-green' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), section_quizzes_path(@section), :class => 'btn btn-gray' %>
   </div>
+  </p>
 <% end %>
-
+</div>
+</div>
 <script>
   function remove_button()
   {
