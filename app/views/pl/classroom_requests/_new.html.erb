@@ -1,16 +1,44 @@
-<p class="lead">Classroom Request</legend>
-<p>GrowthValley offers a pay what you want model between the teacher and
-the learner. Begin by offering a price you are willing to pay for private lessons
-with this teacher for this course.</p>
-<%= simple_form_for @request, url: classroom_requests_path do |f| %>
-  <%= f.input :course_id, as: :hidden, input_html: {value: @course.id } %>
-  <%= f.input :learner_id, as: :hidden, input_html: {value: current_user.id } %>
-  <%= f.input :amount, as: :decimal, label: "Amount" %>
-  <%= f.input :learner_approved, label: "Send for final approval?" %>
-  <%= f.simple_fields_for :comments do |fc| %>
-    <%= fc.input :user_id, as: :hidden, input_html: {value: current_user.id } %>
-    <%= fc.input :body, as: :text, label: "Attach a message for explain what you'd wish to get
-from these lessons.", input_html: {style: "height:100px;width:50%"} %>
-  <% end %>
-  <%= f.submit "Send Request" %>
+<div class="modal-dialog modal-sm">
+	<div class="modal-content">
+		<div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		      <h4 class="lead">Classroom Request</h4>
+		</div>
+		<%= simple_form_for @request ,html: {class:"simple_form_new_question" },  url: classroom_requests_path do |f| %>
+		<div class="modal-body">
+
+		<p>GrowthValley offers a pay what you want model between the teacher and
+		the learner. Begin by offering a price you are willing to pay for private lessons
+		with this teacher for this course.</p>
+
+		  <%= f.input :course_id, as: :hidden, input_html: {value: @course.id } %>
+		  <%= f.input :learner_id, as: :hidden, input_html: {value: current_user.id } %>
+		  <%= f.input :amount, as: :decimal, label: "Amount" %>
+	  	<label class="ui-checkbox">
+          <%= f.check_box :learner_approved, class: "style-checkbox" %>
+            <span class='click-check'>Send for final approval?</span>
+    	</label>
+		  <%= f.simple_fields_for :comments do |fc| %>
+		    <%= fc.input :user_id, as: :hidden, input_html: {value: current_user.id } %>
+		    <%= fc.input :body, as: :text, label: "Attach a message for explain what you'd wish to get
+		from these lessons.", input_html: {style: "height:100px;width:50%"} %>
+		  <% end %>
+		</div>
+		<div class="modal-footer">
+		    <%= f.submit "Send Request" , class: "btn" %>
+		</div>
+		  
+		<% end %>
+	</div>
+</div>
+
+<%= javascript_tag do %>
+  $(".click-check").click(function(){
+  	if($(this).parent().find(".style-checkbox[type='checkbox']").is(":checked")){
+  		$(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', false);
+  	}
+  	else{
+  		$(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', true);
+  	}
+});
 <% end %>

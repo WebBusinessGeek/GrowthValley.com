@@ -1,10 +1,10 @@
 <%= simple_form_for [@course, @exam], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
-
-  <%= f.input :title, required: true %>
-
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exams_path(@course), style: 'margin-left: 5px;' %>
-  </div>
+  <div class="control-group">
+  <%= f.text_area :title, required: true, placeholder:"Title", rows:"5"%>
+</div>
+  <p>
+    <%= f.button :submit, :class => 'btn btn-green' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exams_path(@course), style: 'margin-left: 5px;',:class => 'btn btn-gray' %>
+  </p>
 <% end %>

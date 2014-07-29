@@ -21,7 +21,7 @@ class HomesController < ApplicationController
     else
       @other_subjects = Subject.all
     end
-    render :layout => 'home'
+    render :layout => 'home_new'
   end
   
   def index

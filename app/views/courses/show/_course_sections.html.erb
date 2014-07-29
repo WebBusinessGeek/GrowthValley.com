@@ -1,11 +1,11 @@
-<div style="clear:both;">
-	  <% if current_user.courses.include?(@course) %>
-	  <h2>Course Sections:</h2>
-	  </br>
-	  <ul class="nav nav-tabs">
-		<% section_counter=1 %>
-		<% classname = 'active' %>
-		<% @course.sections.each do |section| %>
+<div class="course-section-tabs">
+		<% if current_user.courses.include?(@course) %>
+    	<h4>Course Sections</h4>
+
+        <ul id="myTab" class="nav nav-tabs">
+        	<% section_counter=1 %>
+			<% classname = 'active' %>
+			<% @course.sections.each do |section| %>
 			<% if @current_subscription.current_section.present? %>
 				<% if @current_subscription.current_section.to_i == section_counter.to_i %>
 					<% classname = 'active' %>
@@ -21,13 +21,14 @@
 			<% classname = '' %>
 			<% section_counter=section_counter + 1 %>
 		<% end %>
-	  </ul>
+        </ul>
 
-	  <% classname="active" %>
-	  <div class='tab-content'>
-		<% unlock_counter = 1 %>
-		<% unlock = true %>
-		<% @course.sections.each_with_index do |section, index| %>
+        <% classname="active" %>
+	 	<div id="myTabContent" class="tab-content">
+
+	 		<% unlock_counter = 1 %>
+			<% unlock = true %>
+			<% @course.sections.each_with_index do |section, index| %>
 			<% if @current_subscription.current_section.present? %>
 				<% if @current_subscription.current_section.to_i == unlock_counter.to_i %>
 					<% classname = 'active' %>
@@ -36,60 +37,66 @@
 				<% end %>
 			<% end %>
 
-		  <div class="tab-pane <%=classname %>" id="section_<%= section.id %>">
-			<ul>
-			  <li style="padding-left:20px;">
-				<%= section.title.titleize %>
-			  </li>
-			  </br>
-			  <li class='pull-right' style='margin-left: 1em;'>
-				<% if unlock and @current_subscription.user_type == "Learner" %>
-			    <li style="padding-left:20px;">
-			      <%= link_to 'Download', section.attachment.url %>
-			    </li>
-			    </br>
-				  <b>
-					<% if section.quiz_completed?(current_user.id) %>
-					  <li style="padding-left:20px;">
-					    <p>Result: You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
-					    </br>
-				    </li>
-					<% else %>
-					  <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right', target: '_blank' %>
-					<% end %>
-				  </b>
-				<% end %>
-			  </li>
-			</ul>
-			  <% if (unlock && @current_subscription.paid?) && index == 0 %>
-				  <div style="text-align:center;margin-top:10px;">
-				    <% if File.extname(section.attachment.url) != '.pdf' %>
-				      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
-				      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
+	          <div class="tab-pane fade in <%=classname %>" id="section_<%= section.id %>">
+	            
 
-				      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
-			      <% else %>
-			        <object data="<%= section.attachment.url %>" width="800" height="1000">
-			          <embed src="<%= section.attachment.url %>" width="800" height="1000">
-			        </object>
-			      <% end %>
-				  </div>
-			  <% else %>
-				  <div style="text-align:center;margin-top:10px;">
-				    <% unless unlock %>
-		                <% unless @current_subscription.paid? || !@course.is_paid? %>
-						  Submit a payment to unlock more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-primary' %>
-		                <% else %>
-		                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
-		                <% end %>
-	                <% end %>
-				  </div>
-			  <% end %>
-		  </div>
-		  <% classname = '' %>
-		  <% unlock_counter = unlock_counter + 1 %>
-		  <% unlock = false if (@current_subscription.user_type == "Learner" and unlock_counter > @current_subscription.current_section) %>
-		<% end %>
-	  </div>
-	  <% end %>
-  </div>
+	            <ul>
+				  	<li style="padding-left:20px;">
+						<%= section.title.titleize %>
+				  	</li>
+				  	</br>
+				  	<li class='pull-right' style='margin-left: 1em;'>
+						<% if unlock and @current_subscription.user_type == "Learner" %>
+					    <li style="padding-left:20px;">
+					      <%= link_to 'Download', section.attachment.url, class: "btn btn-green" %>
+					    </li>
+					    </br>
+					  	<b>
+						<% if section.quiz_completed?(current_user.id) %>
+						  	<li style="padding-left:20px;">
+							    <p>Result: You correctly answered <%= section.correct_answers_count(current_user.id) %> out of <%= section.total_no_of_quizzes %> questions</p>
+							    </br>
+						    </li>
+							<% else %>
+							  <%= link_to 'Take test', take_test_learners_path(section: section, course: section.course), class: 'pull-right btn btn-green' , target: '_blank' %>
+							<% end %>
+						  </b>
+						<% end %>
+				  	</li>
+				</ul>
+
+			  	<% if (unlock && @current_subscription.paid?) && index == 0 %>
+						  <div style="text-align:center;margin-top:10px;">
+						    <% if File.extname(section.attachment.url) != '.pdf' %>
+						      <% webm_url = "#{section.attachment.url.gsub(/\.\w+$/, '.webm')}" %>
+						      <% ogg_url = "#{section.attachment.url.gsub(/\.\w+$/, '.ogg')}" %>
+
+						      <%= video_tag([webm_url, ogg_url], { controls: true, autobuffer: true, width: 'auto', height: 'auto' }) %>
+					      <% else %>
+					        <object data="<%= section.attachment.url %>" width="800" height="1000">
+					          <embed src="<%= section.attachment.url %>" width="800" height="1000">
+					        </object>
+					      <% end %>
+						  </div>
+				  <% else %>
+						  <div style="text-align:center;margin-top:10px;">
+						    <% unless unlock %>
+				                <% unless @current_subscription.paid? || !@course.is_paid? %>
+								  Submit a payment to unlock more sections. <%= link_to "Make a payment", new_transaction_path(resource_type: @course.class, resource_id: @course.id), class: 'btn btn-green' %>
+				                <% else %>
+				                  This section is currently locked. To unlock it kindly study previous sections and give associated test.
+				                <% end %>
+			                <% end %>
+						  </div>
+			  	<% end %>
+
+
+	          </div>
+             <% classname = '' %>
+			  <% unlock_counter = unlock_counter + 1 %>
+			  <% unlock = false if (@current_subscription.user_type == "Learner" and unlock_counter > @current_subscription.current_section) %>
+			<% end %> 
+              
+        </div>	
+        <% end %>
+</div>

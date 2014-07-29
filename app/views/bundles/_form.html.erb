@@ -1,8 +1,10 @@
-<%= simple_form_for @bundle, html: {multipart: true } do |f| %>
+<%= simple_form_for @bundle, html: {multipart: true ,class:"simple_form_new_question" , id:"add_questions" } do |f| %>
+<div class="modal-body">
   <%= f.error_notification %>
 
-  <%= f.input :name %>
-  <%= f.input :price %>
+  <%= f.text_field :name, :class => 'course-title-field' ,placeholder:"Name", :required => true %>
+  <%= f.number_field :price, :class => 'course-title-field' ,placeholder:"Price", :required => true %>
+
   <% if !@bundle.new_record? && @bundle.bundle_pic_url.present? %>
     <%= f.input :bundle_pic, required: false %>
     <div class="control-group file optional existing_bundle_bundle_pic">
@@ -14,8 +16,28 @@
       </div>
     </div>
   <% else %>
-    <%= f.input :bundle_pic, required: true %>
+    <div class="image_upload">
+        <span> <img src="/assets/white-plus-icon.png" alt=""> Choose Cover pic</span>
+         <%= f.file_field :bundle_pic, required: true, id:"fileupload", class:"upload" %>
+        <!-- <input id="fileupload"  type="file" name="file[]" class="upload" > -->
+    </div>
   <% end %>
-  <%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes %>
+  
+  <%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes ,class:"style-checkbox" %>
+  
+</div>
+
+  <div class="modal-footer">
    <p class="form-footer"> <%= f.button :submit, 'Submit', class: 'btn', data: {dismiss: "modal"} %></p>
+ </div>
+<% end %>
+<%= javascript_tag do %>
+  $(".click-check").click(function(){
+    if($(this).parent().find(".style-checkbox[type='checkbox']").is(":checked")){
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', false);
+    }
+    else{
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', true);
+    }
+});
 <% end %>

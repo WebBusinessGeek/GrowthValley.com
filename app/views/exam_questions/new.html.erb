@@ -1,3 +1,6 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Courses > Courses') %>
 <% if @edit == false %>
 <% exam_questions_count = 0 %>
 <% min_check = 3 %>
@@ -7,13 +10,17 @@
 <% total_questions_count = @exam.exam_questions.count%>
 <% end %>
 <%- model_class = ExamQuestion -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
-
+<div class="main-content-area my-courses-table">
+<div class="wrapper">
+     <div class="mycourses-all">
+    <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+  <li><a href="javascript:void(0)">Manage Exams</a><span class="divider"></span></li>
+   <li><a href="javascript:void(0)">Add New Question</a></li>
+</ul>
 <%= simple_form_for [@exam.course, @exam], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
-  <div id="exam_questions_content">
+  <div id="exam_questions_content" class="add-content">
   <%= f.simple_fields_for :exam_questions do |q| %>
   <% if (q.object.new_record? and @edit == true) or @edit == false %>
     <div class="singlequestion">
@@ -27,13 +34,14 @@
   <% end %>
   <% end %>
   </div>
-  <%= link_to "Add More".html_safe(), "#add", :id => "add-another-question", :class=>"btn" %>
-  <div class="form-actions">
-    <%= f.button :submit, 'Create Exam Question(s)', :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), style: 'margin-left: 5px;' %>
-  </div>
+  <%= link_to "Add More".html_safe(), "#add", :id => "add-another-question", :class=>"btn btn-gray" %>
+  <p class="sub-add">
+    <%= f.button :submit, 'Create Exam Question(s)', :class => 'btn-green' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), course_exam_exam_questions_path(@exam.course, @exam), :class => 'btn btn-cancel' %>
+  </p>
 <% end %>
-
+</div>
+</div>
 
 <script>
 function remove_button()
