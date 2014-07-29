@@ -2243,6 +2243,22 @@ color:#028D96
 	height:100px;
 }
 
+.edit_quiz textarea{
+	height:100px;
+}
+
+.profile-page .my-courses-table form.simple_form select{
+	-moz-appearance: none;
+    background: url("/assets/green-dd-icon.png") no-repeat scroll 94% center #FFFFFF;
+    color: #858585;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 10px;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
 /*---------------------Media screen----------------------------*/
 
 @media (max-width: 1200px) {
@@ -2999,5 +3015,9 @@ p{
 	font-size:14px; 
 	font-weight:bold;
 }
+/* quiz page*/ 
+.profile-page .my-courses-table form.simple_form .sub-edit .btn{
+	margin-bottom:0px;
+}	
 
 }

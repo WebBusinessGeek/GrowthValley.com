@@ -62,10 +62,10 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     if params[:section_id].present?
-      @section = Section.find_by_slug(params[:section_id])
+      @section = Section.find_by_slug(params[:section_id])      
     end
-
     @quiz = Quiz.find(params[:id])
+    render layout:'home_new'
   end
 
   # POST /quizzes
