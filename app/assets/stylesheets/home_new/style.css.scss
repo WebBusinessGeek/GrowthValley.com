@@ -2180,6 +2180,14 @@ color:#028D96
     width: 12px;
 }
 
+
+/*----------My subjects Page --------------------------*/
+.profile-page .my-subjets-page .btn-group img{
+    position: absolute;
+    right: -30px;
+    top: 10px;
+}
+
 /*---------------------Media screen----------------------------*/
 
 @media (max-width: 1200px) {
@@ -2431,6 +2439,29 @@ color:#028D96
     	width: 100%;
 	}
 
+	/*subjects*/
+	.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
+		margin-left:0;
+	}
+	.profile-page .my-subjets-page form .row-fluid .span3{
+		width:21%; 
+		margin-left:4%; 
+		float:left;
+	}
+	.profile-page .my-subjets-page .btn-group label.btn{
+		width:100%; 
+		font-size:12px; 
+		font-weight:normal;
+	}
+	.profile-page .my-subjets-page .btn-group img{
+		right:-22px;
+	}
+	.profile-page .my-subjets-page form .row-fluid .span3 .btn-group{
+		display:block;
+	}
+	
+
+
 }
 
 @media (max-width: 767px) {
@@ -2579,6 +2610,24 @@ p{
 	.profile-page .mycourses-all .edit-course-section_1{
 	width:100%;
 	}
+/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
+	margin-left:0;
+}
+.profile-page .my-subjets-page form .row-fluid .span3{
+	width:21%; 
+	margin-left:4%; 
+	float:left;
+}
+.profile-page .my-subjets-page .btn-group label.btn{
+	width:100%; 
+	font-size:12px; 
+	font-weight:normal;
+}
+.profile-page .my-subjets-page .btn-group img{
+	right:-22px;
+}
+
 
 }
 
@@ -2696,6 +2745,24 @@ p{
 	}
 	.profile-page .mycourses-all .edit-course-section_2{
 		width:100%;
+	}
+
+			/*subjects*/
+	.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
+		margin-left:0;
+	}
+	.profile-page .my-subjets-page form .row-fluid .span3{
+		width:90%; 
+		margin-left:0; 
+		float:none;
+	}
+	.profile-page .my-subjets-page .btn-group label.btn{
+		width:100%; 
+		font-size:14px; 
+		font-weight:bold;
+	}
+	.profile-page .my-subjets-page .btn-group img{
+		right:-30px;
 	}	
 
 
@@ -2858,6 +2925,21 @@ p{
 .my-courses-table .add-content textarea{
 	height:75px;
 	width:206px;
+}
+
+	/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
+	margin-left:0;
+}
+.profile-page .my-subjets-page form .row-fluid .span3{
+	width:90%; 
+	margin-left:0; 
+	float:none;
+}
+.profile-page .my-subjets-page .btn-group label.btn{
+	width:100%; 
+	font-size:14px; 
+	font-weight:bold;
 }
 
 }
