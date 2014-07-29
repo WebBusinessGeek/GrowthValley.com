@@ -1,32 +1,47 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Courses > Courses') %>
 <%- model_class = ExamQuestion -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-
+<div class="main-content-area my-courses-table">
+<div class="wrapper">
+     <div class="mycourses-all">
+    <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+  <li><a href="javascript:void(0)">Manage Exams</a><span class="divider"></span></li>
+   <li><a href="javascript:void(0)">Manage Exams Questions</a></li>
+    </ul>
+    </div>
+    <div class="exam-name">
+        <h4>Exam Name: <%= @exam_questions.first.exam.title %></h4>
+      </div>
+    </div>
 <% if @exam_questions.present? %>
-  <div>
-    <h3>Exam Name: <%= @exam_questions.first.exam.title %></h3><br>
-  </div>
-  <table class="table table-striped">
+ <div class="table-responsive">
+ <table id="courses_manageExams" class="table table-striped">
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:question) %></th>
-        <th style="text-align:right"><%=t '.actions', :default => t("helpers.actions") %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
     <tbody>
       <% @exam_questions.each do |exam_question| %>
         <tr>
-          <td><%= link_to exam_question.question, course_exam_exam_question_path(@exam.course, @exam, exam_question) %></td>
-          <td style="text-align:right">
-            <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_course_exam_exam_question_path(@exam.course, @exam, exam_question) %>
+          <td><%= link_to exam_question.question, course_exam_exam_question_path(@exam.course, @exam, exam_question) %>
+             <%= link_to edit_course_exam_exam_question_path(@exam.course, @exam, exam_question) do %>
+    <span class="pencil-icon"><img src="/assets/pencil-icon.png" alt=""></span>
+     <% end %> 
+          </td>
+          <td>           
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")), course_exam_exam_question_path(@exam.course, @exam, exam_question), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, style: 'margin-left: 5px;' %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
 <% end %>
 
-<%= link_to t('.new', :default => t("helpers.links.add_question")), new_course_exam_exam_question_path(@exam.course, @exam), :class=>"btn btn-primary" %>
-<%= link_to t('.back', :default => 'Back to courses'), my_courses_courses_path, style: 'margin-left: 5px;', :class=>"btn" %>
+<%= link_to t('.new', :default => t("helpers.links.add_question")), new_course_exam_exam_question_path(@exam.course, @exam), :class=>"btn btn-green" %>
+<%= link_to t('.back', :default => 'Back to my courses'), my_courses_courses_path, style: 'margin-left: 5px;', :class=>"btn btn-gray" %>
+</div>

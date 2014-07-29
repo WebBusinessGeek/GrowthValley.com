@@ -16,6 +16,7 @@
                 <%= label_tag s.name, s.name, class: 'btn'  do %>
                   <%= s.name %>
                   <%= check_box_tag "user[subject_ids][]", s.id, @current_subjects.include?(s.id), class: "subject" %>
+                   
                 <% end %>
               </div>
             </div>
@@ -25,7 +26,7 @@
     </br>
       <div class='row-fluid'>
         <div class='span3'>
-          <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" %>
+          <%= submit_tag 'Add Subjects', class: 'btn btn-green', onclick: "return count_subjects();" %>
         </div>
       </div>
       <% end %>
