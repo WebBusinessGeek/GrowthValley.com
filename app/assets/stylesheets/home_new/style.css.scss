@@ -1295,6 +1295,61 @@ ul,li{
     color:#fff;
   }
 
+ .profile-page .all-bundles-page li p.title a{
+ 	color: #028D96;
+    font-weight: bold;
+ }
+
+ .profile-page  .all-bundles-page li .bundle-panel-box .green-panel{
+ 	  background: url("assets/courses-bg.jpg") repeat scroll 0 0 #0B919A;
+    display: block;
+    text-align: center;
+ }
+ .profile-page .course-panel li .bundle-panel-box .course-panel-disc{
+      background: none repeat scroll 0 0 #2A2A2A;
+    color: #D1D1D1;
+    display: block;
+    padding: 15px 10px;
+ }
+
+.profile-page .all-bundles-page .bundle-panel-box .course-panel-disc .course-dtl {
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.profile-page .course-panel li .bundle-panel-box .course-panel-disc .course-dtl li:first-child{
+	 border-left: 0 solid #CDCECE;	
+}
+.profile-page .course-panel li .bundle-panel-box .course-panel-disc .course-dtl li{
+	border-left: 1px solid #252525;
+    color: #D1D1D1;
+    font-size: 12px;
+    margin: 0;
+    padding: 0 19px;
+    text-align: center;
+    width: auto !important;
+}
+
+.profile-page .all-bundles-page .course-panel-box .course-panel-disc .course-dtl {
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li:first-child{
+	 border-left: 0 solid #CDCECE;	
+}
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li{
+	border-left: 1px solid #252525;
+    color: #D1D1D1;
+    font-size: 12px;
+    margin: 0;
+    padding: 0 19px;
+    text-align: center;
+    width: auto !important;
+}
+
 /*---------------classrooms page--------------------*/
 
 .my-course-classrooms h4{
@@ -1467,6 +1522,22 @@ div.exam-name h4{
 .profile-page .course-section-tabs .nav-tabs{
 	border:none;
 }
+.profile-page .course-name li:last-child{
+	width:60%;
+}
+.profile-page .course-name li:last-child a{
+	margin-left:0px;
+}
+.profile-page .course-name li .course-subscribe{
+	margin-top:10px;
+}
+
+.profile-page .course-section-tabs .tab-content {
+    background-color: #B7B7B7;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
 
 /*----------------------Single Bundle Page(25-07-2014)-------------------------------*/
 
@@ -1664,7 +1735,7 @@ div.exam-name h4{
 .profile-page .course-panel li .course-panel-box .green-panel {
 	background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
 	display:block; 
-	height:120px;
+	text-align:center;
 }
 .profile-page .course-panel li .course-panel-box .course-panel-disc { 
 	background:#2a2a2a;  
@@ -1672,31 +1743,32 @@ div.exam-name h4{
 	display: block; 
 	padding: 15px 10px;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl {
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl {
 	list-style: none outside none;  
 	margin: 0; 
 	overflow: hidden; 
 	padding:0;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li { 
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li { 
 border-left: 1px solid #252525; 
 font-size: 12px;  padding: 0 19px; 
 text-align: center; 
 width: auto !important; 
 margin:0px; color:#d1d1d1;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li:first-child {
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li:first-child {
 	border-left: 0 solid #cdcece;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li .students{
-	background:url(/assets/user-icon.png) no-repeat; 
-	display:inline-block; 
-	width:12px; 
-	height:12px; 
-	margin-right:3px; 
-	margin-bottom:-1px;
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li 
+.students{
+    background: url("/assets/user-icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 12px;
+    margin-bottom: -1px;
+    margin-right: 3px;
+    width: 12px;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li span{
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li span{
 	color:#a7a7a7;
 }
 .rateit-range {
@@ -1704,7 +1776,7 @@ margin:0px; color:#d1d1d1;
 	display: inline-block; 
 	height: 16px; 
 	position: relative; 
-	width:66px; 
+	width:55px; 
 	height:8px;
 }
 .text-center{
@@ -1780,7 +1852,7 @@ margin:0px; color:#d1d1d1;
 } 
 
 /** form popup bundles page**/
-.profile-page .form.simple_form_new_question .modal-body .image_upload{
+.profile-page form.simple_form_new_question .modal-body .image_upload{
 	cursor: pointer; 
 	display: inline-block; 
 	margin-bottom:16px; 
@@ -2088,11 +2160,26 @@ color:#028D96
     padding: 0;
 }
 .profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li{
-	width:auto;
+    border-left: 1px solid #252525;
+    color: #D1D1D1;
+    font-size: 12px;
+    margin: 0;
+    padding: 0 16px;
+    text-align: center;
+    width: auto !important;
 }
 .notification-content{
 	display:inline-block;
 }
+.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li .students{
+    background: url("/assets/user-icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 12px;
+    margin-bottom: -1px;
+    margin-right: 3px;
+    width: 12px;
+}
+
 /*---------------------Media screen----------------------------*/
 
 @media (max-width: 1200px) {
@@ -2271,7 +2358,7 @@ color:#028D96
 	.profile-page .mycourses-all{
 		padding:0px 10px;
 	}
-	.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li{
+	.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li{
 		padding:0px 6px;
 	}
 	.profile-page #courses_requested.table th, #courses_requested.table td{
@@ -2289,12 +2376,15 @@ color:#028D96
 
 	.profile-page .dashboard-wrapper{
 		padding:0px 10px;
-	}	
-	.profile-page .dashboard-notification .dashboard-notification-wrapper{
-		width:auto;
 	}
+    .profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li{
+    	padding:0px 10px;
+    }
 
-
+    /* all page*/
+    .profile-page .all-bundles-page .bundles{
+      padding:0px 10px;
+    }
 }
 
 @media (max-width: 870px) {
@@ -2325,6 +2415,20 @@ color:#028D96
 
 	.profile-page .mycourses-all .edit-course-section_1{
 		width:100%;
+	}
+
+	/* Dashboard CSS*/
+	.profile-page .dashboard-wrapper .dashboard-course-panel li{
+		margin:12px 4px;
+	}
+	.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-panel-disc{
+		padding:4px;
+	}
+	.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li{
+	    padding:0px 2px;
+	}
+	.profile-page .c-desp .c-desp-course {  
+    	width: 100%;
 	}
 
 }
@@ -2458,7 +2562,7 @@ p{
 .profile-page .course-panel li .course-panel-box .course-panel-disc{
 	padding:15px 4px;
 }
-.profile-page .course-panel li .course-panel-box .course-panel-disc .cource-dtl li{
+.profile-page .course-panel li .course-panel-box .course-panel-disc .course-dtl li{
 	padding:0px 4px;
 }
 .profile-page .table-responsive {
@@ -2475,11 +2579,6 @@ p{
 	.profile-page .mycourses-all .edit-course-section_1{
 	width:100%;
 	}
-/* Dashboard CSS*/
-.profile-page .dashboard-wrapper .dashboard-course-panel li{
-	margin:12px 8px;
-}
-
 
 }
 
@@ -2555,12 +2654,31 @@ p{
    .profile-page .dashboard-wrapper .dashboard-course-panel li{
       width:100%;
    }
+   .profile-page .dashboard-wrapper .course-description span.c-desp-title{
+		margin-bottom: 10px;
+    	width: 100%;
+	}
+	.profile-page .c-desp .c-desp-course {  
+    	width: 100%;
+	}	
+	.profile-page .dashboard-wrapper .dashboard-course-panel li{
+		margin:12px 8px;
+	}
+	.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-panel-disc{
+		padding:5px 10px;
+	}
+	.profile-page .dashboard-notification .dashboard-notification-wrapper{
+		width:90%;
+	}
 
 	/*courses page*/
 
 	.profile-page .course-panel li{
 		width:100%; 
 		margin:12px 0px;
+	}
+	.profile-page .course-name li:last-child{
+		width:100%;
 	}	
 
 	/*manage classroom setting*/
@@ -2681,6 +2799,14 @@ p{
 /*Dashboard page*/
 .profile-page .dashboard-wrapper .dashboard-course-panel li{
 	margin-left:0px;
+}
+
+.profile-page .dashboard-wrapper .course-description span.c-desp-title{
+	margin-bottom: 10px;
+    width: 100%;
+}
+.profile-page .c-desp .c-desp-course {  
+    width: 100%;
 }
 
 /*courses page*/
