@@ -1919,6 +1919,7 @@ color:#028D96
 }
 .sub-add{
 	margin-top:40px;
+<<<<<<< HEAD
 }
 
 /*Dashboard Page*/
@@ -1961,6 +1962,50 @@ color:#028D96
 	display:inline-block;
 	vertical-align:top;
 }
+=======
+}
+
+/*Dashboard Page*/
+
+.profile-page .dashboard-wrapper .dashboard-course-panel {
+	list-style: none outside none;  
+	margin: 0 auto 40px auto;  
+	overflow: hidden;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li {
+	float: left;  
+	overflow: hidden; 
+	width:30%; 
+	margin:12px 18px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:first-child{
+	margin-left:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:nth-child(4n){
+	margin-left:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li:nth-child(3n){
+	margin-right:0px;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li a{
+	color:#494949; 
+	font-weight:bold; 
+	text-decoration:none; 
+	margin-bottom:16px; 	
+	display:block;
+}
+.profile-page .dashboard-wrapper .dashboard-course-panel li a:hover{
+	text-decoration:underline;
+}
+.profile-page .dashboard-wrapper .course-description span.c-desp-title{
+	width:162px; 
+	font-weight:bold; 
+	font-style:italic; 
+	color:#494949; 
+	display:inline-block;
+	vertical-align:top;
+}
+>>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 .profile-page .dashboard-wrapper .course-description .c-desp a{
 	padding:4px 8px; 
 	background-color:#028d96; 
@@ -2555,6 +2600,7 @@ p{
    .profile-page .dashboard-wrapper .dashboard-course-panel li{
       width:100%;
    }
+<<<<<<< HEAD
    .profile-page .dashboard-wrapper .course-description span.c-desp-title{
 	margin-bottom: 10px;
     width: 100%;
@@ -2562,6 +2608,8 @@ p{
 .profile-page .c-desp .c-desp-course {  
     width: 100%;
 }
+=======
+>>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 
 	/*courses page*/
 
@@ -2690,6 +2738,7 @@ p{
 	margin-left:0px;
 }
 
+<<<<<<< HEAD
 .profile-page .dashboard-wrapper .course-description span.c-desp-title{
 	margin-bottom: 10px;
     width: 100%;
@@ -2698,6 +2747,8 @@ p{
     width: 100%;
 }
 
+=======
+>>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 /*courses page*/
 
 .profile-page .mycourses-all .breadcrumb{
