@@ -2,7 +2,7 @@
     <div class="course-panel-box">
       <span class="green-panel"><%= image_tag(@course.course_cover_pic.url(:cover)) %></span>
         <span class="course-panel-disc">
-          <ol class="cource-dtl">
+          <ol class="course-dtl">
               <li>
                 Price<br>
                 <span><em><%= @course.is_paid ? number_to_currency(@course.price, precision: 0) : 'Free' %></em></span>

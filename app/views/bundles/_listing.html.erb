@@ -1,8 +1,5 @@
-<div class="main-content bundles">
-  
-
-  
-    <ul class="course-panel">
+<div class="main-content bundles">  
+    <ul class="course-panel bundle-panel bundle-name">
     <% if @bundles.count > 0 %>
       <% @bundles.each do |bundle| %>
         <%= render partial: "bundles/single_bundle", :locals => { :bundle => bundle } %>
@@ -15,7 +12,7 @@
     <% end %>
   </ul>
 
-  <div class="add-new-bundle-btn">
+  <div class="text-center">
     <form action="<%= bundles_path %>" method="get">
       <input type="submit" value="Discover Bundles" class="btn btn-green" />
     </form>

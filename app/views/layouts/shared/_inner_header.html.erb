@@ -22,7 +22,7 @@
                         <%= link_to "Dashboard", root_path %>
                       </li>
                       <li class="<%= 'blog' == yield(:current) ? 'active-submenu' : '' %>">
-                        <%= link_to "Blog", blog_homes_path %>
+                        <%= link_to "Blog", blog_path %>
                       </li>
                       <li class= "<%= 'contact' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Contact", contact_homes_path  %>
@@ -32,7 +32,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="<%= ['personal', 'subscriptions', 'analytics','notifications'].include?(yield(:current)) ? 'active' : '' %>">
+                  <li class="<%= ['personal', 'subscriptions','notifications'].include?(yield(:current)) ? 'active' : '' %>">
                     <%= link_to "My Account", edit_user_registration_path %>
                     <ul class="submenu">
                       <li class="<%= 'personal' == yield(:current) ? 'active-submenu' : '' %>">
@@ -40,16 +40,13 @@
                       </li>
                       <li class="<%= 'subscriptions' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Subscriptions/Payment", charges_path %>
-                      </li>
-                      <li class= "<%= 'analytics' == yield(:current) ? 'active-submenu' : '' %>">
-                        <%= link_to "Analytics", course_analytics_path %>
-                      </li>
+                      </li>                     
                       <li class="<%= 'notifications' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Notifications", notification_path %>
                       </li>
                     </ul>
                   </li>
-                  <li class="<%= ['my_subjects', 'my_courses', 'my_bundles','my_classrooms'].include?(yield(:current)) ? 'active' : '' %>">
+                  <li class="<%= ['my_subjects', 'my_courses', 'my_bundles','my_classrooms','analytics'].include?(yield(:current)) ? 'active' : '' %>">
                     <%= link_to "My Courses", my_courses_courses_path %>
                     <ul class="submenu">
                       <li class="<%= 'my_subjects' == yield(:current) ? 'active-submenu' : '' %>">
@@ -60,6 +57,9 @@
                         <%= link_to "Bundles", my_bundles_bundles_path %></li>
                       <li class="<%= 'my_classrooms' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Classrooms", classrooms_path %></li>
+                      <li class= "<%= 'analytics' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Analytics", course_analytics_path %>
+                      </li> 
                     </ul>
                   </li>
                   <li class="<%= ['review_exams', 'reviewed_exams'].include?(yield(:current)) ? 'active' : '' %>">
