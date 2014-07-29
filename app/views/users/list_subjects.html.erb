@@ -12,10 +12,25 @@
         <div class='row-fluid'>
           <% subj.collect do |s| %>
             <div class='span3'>
-              <div class="btn-group" data-toggle="buttons">
-                <%= label_tag s.name, s.name, class: 'btn'  do %>
+              <div class="btn-group" >
+                <% if @current_subjects.include?(s.id) %>
+                <%= label_tag s.name, s.name, class: 'btn active', onclick:'change_class(this);' do %>
                   <%= s.name %>
+<<<<<<< HEAD
+                  <%= check_box_tag "user[subject_ids][]", s.id, @current_subjects.include?(s.id), class: "subject",style:"display:none" ,class:"subject"%> 
+                  <img src="/../../assets/green-tick.png" onclick="change_check2();">
+                  <% end %>
+
+                  <% else %>
+                  <%= label_tag s.name, s.name, class: 'btn' ,onclick:'change_class(this);' do %>
+                  <%= s.name %>
+                   <%= check_box_tag "user[subject_ids][]", s.id, @current_subjects.include?(s.id) ,class:'subject',onclick:"change_check(this);" %>
+                   <img src="/../../assets/green-tick.png" class="subjects" style="display:none" onclick="change_check2(this);" > 
+               <% end %>
+=======
                   <%= check_box_tag "user[subject_ids][]", s.id, @current_subjects.include?(s.id), class: "subject" %>
+                   
+>>>>>>> f8481535797dbf8f5cede9b01932e27c7e0eec10
                 <% end %>
               </div>
             </div>
@@ -25,7 +40,11 @@
     </br>
       <div class='row-fluid'>
         <div class='span3'>
+<<<<<<< HEAD
+          <%= submit_tag 'Add Subjects', class: 'btn btn-gray', onclick: "return count_subjects();" %>
+=======
           <%= submit_tag 'Add Subjects', class: 'btn btn-green', onclick: "return count_subjects();" %>
+>>>>>>> f8481535797dbf8f5cede9b01932e27c7e0eec10
         </div>
       </div>
       <% end %>
@@ -51,7 +70,7 @@
   </br>
   <div class='row-fluid'>
     <div class='span3'>
-      <%= submit_tag 'Add Subjects', class: 'btn btn-primary', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
+      <%= submit_tag 'Add Subjects', class: 'btn btn-gray', onclick: "return count_subjects();" unless current_user.subjects.count == 3 %>
     </div>
   </div>
   <% end %>
@@ -62,7 +81,45 @@
      if ($( "input[class='subject']:checked" ).length < 3)
      {
       alert("Please select at least 3 subjects");
-      return false
+      return false;
     }
   }
+
+function change_check(ids)
+  {
+   $(ids).css("display","none");
+  var res=$(ids).parent().find("img").css("display","block");
+}
+ function change_check2(imag)
+  {
+
+  var res=$(imag).parent().find("input[type='checkbox']").css("display","block");
+  $(imag).parent().find("input[type='checkbox']").attr("checked",false);
+   $(imag).css("display","none");
+}
+function change_class(res){
+
+
+  if($(res).hasClass("btn active"))
+  {
+    $(res).removeClass("btn active");
+     $(res).addClass("btn");
+      $(res).find("img").css("display","none");
+    $(res).find("input[type='checkbox']").css("display","block");
+    $(res).find("input[type='checkbox']").attr("checked",false);
+    
+    
+  }
+  else if($(res).hasClass("btn"))
+    {
+      $(res).removeClass("btn");
+     $(res).addClass("btn active");
+     $(res).find("img").css("display","block");
+    $(res).find("input[type='checkbox']").css("display","none");
+    $(res).find("input[type='checkbox']").attr("checked",true);
+
+    }
+}
+
+
 </script>
