@@ -1,5 +1,6 @@
+
 <%= sidebar_section_for(t(".title")) do %>
-   <ul>
+   <ul class="latest_post">
      <% @tags.each do |tag| %>
        <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", blog_tags_page_path(tag: tag.name) %> </li>
      <% end %>

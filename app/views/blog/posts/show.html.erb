@@ -1,24 +1,50 @@
-<% content_for :title do %>
-  <%= @post.title %>
-<% end %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'blog') %>
+<% content_for(:title, 'GrowthValley > Home > Blog') %>
+<div class="main-content-area wrapper my-dashboard"> 
+    <!--Start blog Page Area-->
+    <div class="dashboard-wrapper">
+      <div class="growthvalley-blog">
+        <!-- <h1><a href=<%= blog_path %>><%= Settings.blog.site_name %></a></h1> -->
+        <h1><%= Settings.blog.site_name %></h1>
+        <h2><%= Settings.blog.site_subtitle %></h2>
+        <div class="row-fluid"> 
+          <!--left side bar-->
+          <div class="span8">
+            <% content_for :title do %>
+              <%= @post.title %>
+            <% end %>
 
-<% content_for :meta_description do %>
-  <%= truncate(strip_tags(@post.content), length: 155) %>
-<% end %>
+            <% content_for :meta_description do %>
+              <%= truncate(strip_tags(@post.content), length: 155) %>
+            <% end %>
 
-<article>
-  <%= render partial: 'blog/posts/post_header', locals: {post: @post }%>
-  <div class="content" data-blog="content">
-    <%= raw @post.content %>
-  </div>
+            <article>
+              <%= render partial: 'blog/posts/post_header', locals: {post: @post }%>
+              <div class="content" data-blog="content">
+                <%= raw @post.content %>
+              </div>
 
-        <div class="tags" data-blog="tags">
-    <%= render @post.tags %>
-  </div>
+                    <div class="tags" data-blog="tags">
+                <%= render @post.tags %>
+              </div>
 
-  <%= render "blog/posts/social_sharing" %>
+              <%= render "blog/posts/social_sharing" %>
 
-  <div id="disqus_thread"></div>
-  <%= render 'layouts/blog/application/disqus_embed' %>
-  <noscript>Please enable JavaScript to view the comments.</noscript>
-</article>
+              <div id="disqus_thread"></div>
+              <%= render 'layouts/blog/application/disqus_embed' %>
+              <noscript>Please enable JavaScript to view the comments.</noscript>
+            </article>
+          </div>
+          <!--left side bar end--> 
+          <!--right side bar-->
+          <div class="sidebar span4">
+              
+              <%= render 'layouts/blog/application/sidebar' %>
+          </div>
+          <!--right side bar end--> 
+        </div>
+      </div>
+    </div>
+    <!--End blog Page Area--> 
+</div>
