@@ -1780,7 +1780,7 @@ margin:0px; color:#d1d1d1;
 } 
 
 /** form popup bundles page**/
-.profile-page .form.simple_form_new_question .modal-body .image_upload{
+.profile-page form.simple_form_new_question .modal-body .image_upload{
 	cursor: pointer; 
 	display: inline-block; 
 	margin-bottom:16px; 
@@ -1801,11 +1801,11 @@ margin:0px; color:#d1d1d1;
 	position: absolute; 
 	top: 0; 
 	right: 0; 
-	left:0; 
+	left:0;  
 	margin: 0; 
 	padding:0px; 
 	width:100%; 
-	cursor: pointer; 
+	cursor:pointer; 
 	opacity: 0; 
 	filter: alpha(opacity=0);
 }
@@ -1919,7 +1919,6 @@ color:#028D96
 }
 .sub-add{
 	margin-top:40px;
-<<<<<<< HEAD
 }
 
 /*Dashboard Page*/
@@ -1962,8 +1961,6 @@ color:#028D96
 	display:inline-block;
 	vertical-align:top;
 }
-=======
-}
 
 /*Dashboard Page*/
 
@@ -2005,7 +2002,6 @@ color:#028D96
 	display:inline-block;
 	vertical-align:top;
 }
->>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 .profile-page .dashboard-wrapper .course-description .c-desp a{
 	padding:4px 8px; 
 	background-color:#028d96; 
@@ -2600,7 +2596,6 @@ p{
    .profile-page .dashboard-wrapper .dashboard-course-panel li{
       width:100%;
    }
-<<<<<<< HEAD
    .profile-page .dashboard-wrapper .course-description span.c-desp-title{
 	margin-bottom: 10px;
     width: 100%;
@@ -2608,8 +2603,6 @@ p{
 .profile-page .c-desp .c-desp-course {  
     width: 100%;
 }
-=======
->>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 
 	/*courses page*/
 
@@ -2738,7 +2731,6 @@ p{
 	margin-left:0px;
 }
 
-<<<<<<< HEAD
 .profile-page .dashboard-wrapper .course-description span.c-desp-title{
 	margin-bottom: 10px;
     width: 100%;
@@ -2747,8 +2739,6 @@ p{
     width: 100%;
 }
 
-=======
->>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
 /*courses page*/
 
 .profile-page .mycourses-all .breadcrumb{

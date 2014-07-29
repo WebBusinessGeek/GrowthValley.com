@@ -1,15 +1,10 @@
 <%= simple_form_for @bundle, html: {multipart: true ,class:"simple_form_new_question" , id:"add_questions" } do |f| %>
 <div class="modal-body">
   <%= f.error_notification %>
-<<<<<<< HEAD
 
   <%= f.text_field :name, :class => 'course-title-field' ,placeholder:"Name", :required => true %>
   <%= f.number_field :price, :class => 'course-title-field' ,placeholder:"Price", :required => true %>
 
-=======
-  <%= f.input :name %>
-  <%= f.input :price %>
->>>>>>> 8a1b0063b93f0398223ecab60570f2ce86963d53
   <% if !@bundle.new_record? && @bundle.bundle_pic_url.present? %>
     <%= f.input :bundle_pic, required: false %>
     <div class="control-group file optional existing_bundle_bundle_pic">
@@ -25,7 +20,7 @@
         <span> <img src="/assets/white-plus-icon.png" alt=""> Choose Cover pic</span>
          <%= f.file_field :bundle_pic, required: true, id:"fileupload", class:"upload" %>
         <!-- <input id="fileupload"  type="file" name="file[]" class="upload" > -->
-        </div>
+    </div>
   <% end %>
   
   <%= f.association :courses, :collection => current_user.courses.all_published, as: :check_boxes ,class:"style-checkbox" %>
