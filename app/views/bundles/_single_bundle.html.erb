@@ -1,21 +1,22 @@
 <li>
-  <div class="box">
-    <span class="cource-img box-grn">
-	  <% if current_user && current_user.type == "Learner" %>
-	    <%= link_to image_tag(bundle.bundle_pic.url(:cover)), bundle_path(bundle) %>
-	  <% else %>
-	    <%= image_tag(bundle.bundle_pic.url(:cover)) %>
-	  <% end %>
-    </span>
-    <span class="cource-disc">
-	    <p class="title">
+	<p class="title">
 	      <% if current_user && current_user.type == "Learner" %>
 		      <%= link_to bundle.name.titleize, bundle_path(bundle) %>
 	      <% else %>
 		      <%= bundle.name.titleize %>
 	      <% end %>
 	    </p>
-	    <ol class="cource-dtl">
+  <div class="box">
+    <span class="course-img box-grn">
+	  <% if current_user && current_user.type == "Learner" %>
+	    <%= link_to image_tag(bundle.bundle_pic.url(:cover)), bundle_path(bundle) %>
+	  <% else %>
+	    <%= image_tag(bundle.bundle_pic.url(:cover)) %>
+	  <% end %>
+    </span>
+    <span class="course-disc">
+	    
+	    <ol class="course-dtl">
 	      <li>
 	        Price<br />
 		      <span>
