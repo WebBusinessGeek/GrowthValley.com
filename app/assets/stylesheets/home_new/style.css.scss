@@ -1020,6 +1020,12 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
+/*------------------------------------- My subjects Page --------------------------------------*/
+.profile-page .my-subjets-page .btn-group img{
+	position: absolute;
+    right: -25px;
+    top: 10px;
+}
 
 /*----------------------------------------All Course page -----------------------------------------*/
 
@@ -1036,11 +1042,7 @@ height:8px;
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 26ff0072e88335230a2462cca6e4ba4938f20562
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /* -------------------------------------- My Classrooms Page --------------------------------------*/
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -1261,16 +1263,10 @@ border:none;
 padding:10px 0px;
 }
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 
 /*---------------------All pages css on 24 july, 2014----------------------------*/
 
-=======
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*courses page*/
 .profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 30px; vertical-align:middle;}
 .profile-page #courses_requested.table th.action-th span{vertical-align:middle; padding-top:8px;}
@@ -1329,10 +1325,7 @@ padding:10px 0px;
 .profile-page .course-name li a{color:#fff; font-weight:normal; font-size:12px;}
 .profile-page .course-section-tabs h4{color:#028d96;}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*classrooms page*/
 .my-course-classrooms h4{font-family:"Trebuchet MS"; font-weight:bold; margin-bottom:8px;}
 .my-course-classrooms h4 span{color:#028d96;}
@@ -1343,14 +1336,7 @@ padding:10px 0px;
 .tl-name p{margin-bottom:6px; font-size:16px;}
 .my-course-classrooms a{color:#028d96;}
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 /*manage section*/
 .profile-page .mycourse-section-table h4{color: #028d96;  font-family: "Trebuchet MS"; text-align: center;}
 .profile-page #courses_manageExams.table td a.btn{color:#fff;}
@@ -1436,14 +1422,6 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 .profile-page .course-section-tabs .nav-tabs > .active > a, .profile-page .course-section-tabs .nav-tabs > .active > a:hover{background-color:#028d96; color:#fff;}
 .profile-page .course-section-tabs .nav-tabs{border:none;}
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 45cb3778f8b1200b0c49a1137d09cd320feb6970
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 /*---------------------Media screen----------------------------*/
 @media (max-width: 1200px) {
@@ -1600,10 +1578,7 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 	.my-course-classrooms{padding:0px 10px;}
 	.tl-name{padding:0px 10px;}
-<<<<<<< HEAD
-=======
 
->>>>>>> 26851b222b34e384f113abf35baa85c407834b35
 
 	.profile-page #courses_requested.table th, #courses_requested.table td{padding:10px 8px;}
 
@@ -1630,6 +1605,12 @@ profile-page .my-courses-table form.simple_form_new_question .modal-body input{w
 		background-color:#000;
 		color:#009999;
 	}
+		/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{margin-left:0;}
+.profile-page .my-subjets-page form .row-fluid .span3{width:21%; margin-left:4%; float:left;}
+.profile-page .my-subjets-page .btn-group label.btn{width:100%; font-size:12px; font-weight:normal;}
+.profile-page .my-subjets-page .btn-group label.active .y-select-subject{right:-22px;}
+.profile-page .my-subjets-page form .row-fluid .span3 .btn-group{display:block;}
 }
 
 @media (max-width: 767px) {
@@ -1741,6 +1722,11 @@ p{
 .my-subjets-page .btn-group label.btn{
 	width:93%;
 }
+/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{margin-left:0;}
+.profile-page .my-subjets-page form .row-fluid .span3{width:21%; margin-left:4%; float:left;}
+.profile-page .my-subjets-page .btn-group label.btn{width:100%; font-size:12px; font-weight:normal;}
+.profile-page .my-subjets-page .btn-group label.active .y-select-subject{right:-22px;}
 
 }
 
@@ -1805,6 +1791,11 @@ p{
 	.profile-page .my-courses-table th.add-new-courses-btn a span.add-new-courses{
 		padding:4px 5px;
 	}
+		/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{margin-left:0;}
+.profile-page .my-subjets-page form .row-fluid .span3{width:90%; margin-left:0; float:none;}
+.profile-page .my-subjets-page .btn-group label.btn{width:100%; font-size:14px; font-weight:bold;}
+.profile-page .my-subjets-page .btn-group label.active .y-select-subject{right:-30px;}
 }
 @media (max-width: 479px) {
 body{
@@ -1895,6 +1886,10 @@ p{
 .profile-page .modal .close{
 	font-size:28px;
 }
+	/*subjects*/
+.profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{margin-left:0;}
+.profile-page .my-subjets-page form .row-fluid .span3{width:90%; margin-left:0; float:none;}
+.profile-page .my-subjets-page .btn-group label.btn{width:100%; font-size:14px; font-weight:bold;}
 
 }
 .alert{
