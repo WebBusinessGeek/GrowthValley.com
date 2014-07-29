@@ -16,7 +16,7 @@ module Blog
     end
 
     def googleplus_icon
-      social_icon("google-plus", Settings.blog.google_plus_account_url, Settings.blog.google_plus_account_url)
+      social_icon("gplus", Settings.blog.google_plus_account_url, Settings.blog.google_plus_account_url)
     end
 
     def facebook_icon
@@ -30,8 +30,8 @@ module Blog
 
     def social_icon(foundicon, url, setting)
       return if setting.nil? || !setting
-      content_tag :a, href: url, class: "social", target: "_blank" do
-        content_tag :i, class: "foundicon-#{foundicon}" do # using an empty content tag for foundicons to appear. TODO: try to do otherwise and use only tag method
+      content_tag :li do
+        content_tag :a, href: url, target: "_blank", class: "s-icons #{foundicon}" do # using an empty content tag for foundicons to appear. TODO: try to do otherwise and use only tag method
         end
       end
     end

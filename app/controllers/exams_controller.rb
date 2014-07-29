@@ -20,7 +20,7 @@ class ExamsController < ApplicationController
     @exam = @course.exam
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html{render layout:'home_new'}# show.html.erb
     end
   end
 
@@ -39,6 +39,7 @@ class ExamsController < ApplicationController
   def edit
     @course = Course.find_by_slug(params[:course_id])
     @exam = @course.exam
+    render layout:'home_new'
   end
 
   # POST /exams

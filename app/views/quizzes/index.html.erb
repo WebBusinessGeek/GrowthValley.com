@@ -1,13 +1,20 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Courses > Courses') %>
 <%- model_class = Quiz -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-
-<div>
-  <h3>Section Name: <%= @section.title %></h3></br>
-</div>
-
-<table class="table table-striped">
+<div class="main-content-area my-courses-table">
+  <div class="wrapper">
+     <div class="mycourses-all">
+    <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+     <li><a href="javascript:void(0)">Manage Sections</a> <span class="divider"></span></li>
+    <li><a href="javascript:void(0)"><%= model_class.model_name.human.pluralize.titleize %></a></li>
+    </ul>
+    </div>
+    <p>Section Name: <b><%= @section.title %></b> </p>
+    </div>
+<div class="table-responsive">
+<table class="table table-striped" id="courses_manageExams">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:question) %></th>
@@ -22,20 +29,27 @@
   <tbody>
     <% @quizzes.each do |quiz| %>
       <tr>
-        <td><%= link_to quiz.question, section_quiz_path(@section, quiz) %></td>
+          <td><%= link_to quiz.question, section_quiz_path(@section, quiz) %>
+                 <%= link_to edit_section_quiz_path(@section, quiz) do %>
+    <span class="pencil-icon"><img src="/assets/pencil-icon.png" alt=""></span>
+     <% end %>
+
+        </td>
         <td><%= quiz.option1 %></td>
         <td><%= quiz.option2 %></td>
         <td><%= quiz.option3 %></td>
         <td><%= quiz.option4 %></td>
         <td><%= quiz.correct_answer %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_section_quiz_path(@section, quiz), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), section_quiz_path(@section, quiz), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' %>
+        <td>         
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), section_quiz_path(@section, quiz), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => '' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.add_question")), new_section_quiz_path(@section), :class => 'btn btn-primary' %>
-<%= link_to t('.back', :default => 'Back to course overview'), sections_course_path(@section.course), :class => 'btn' %>
+<p class="back-course-btn">
+<%= link_to t('.new', :default => t("helpers.links.add_question")), new_section_quiz_path(@section), :class => 'btn btn-green' %>
+<%= link_to t('.back', :default => 'Back to course overview'), sections_course_path(@section.course), :class => 'btn btn-gray' %>
+  </p>
+  </div>
+</div>

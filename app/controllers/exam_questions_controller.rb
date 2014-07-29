@@ -20,7 +20,7 @@ class ExamQuestionsController < ApplicationController
     @exam_question = @exam.exam_questions.find_by_id(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html{ render :layout => 'home_new'} # show.html.erb
     end
   end
 

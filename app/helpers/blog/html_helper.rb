@@ -12,7 +12,7 @@ module Blog
 
     def sidebar_section_for(title, &block)
        content_tag(:section, class: 'widget') do
-         content_tag(:header, content_tag(:h1, title)) +
+         content_tag(:div, content_tag(:h1, title), class: 'blog-header') +
              capture(&block)
        end
      end

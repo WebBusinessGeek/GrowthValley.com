@@ -1,21 +1,35 @@
 <li>
+<<<<<<< HEAD
 	<p class="title">
 	      <% if current_user && current_user.type == "Learner" %>
+=======
+	   <p class="title">
+	      <% if current_user && ['Learner', 'Teacher'].include?(current_user.type) %>
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 		      <%= link_to bundle.name.titleize, bundle_path(bundle) %>
 	      <% else %>
 		      <%= bundle.name.titleize %>
 	      <% end %>
 	    </p>
+<<<<<<< HEAD
   <div class="box">
     <span class="course-img box-grn">
+=======
+  <div class="bundle-panel-box">
+    <span class="course-img box-grn green-panel">
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 	  <% if current_user && current_user.type == "Learner" %>
 	    <%= link_to image_tag(bundle.bundle_pic.url(:cover)), bundle_path(bundle) %>
 	  <% else %>
 	    <%= image_tag(bundle.bundle_pic.url(:cover)) %>
 	  <% end %>
     </span>
+<<<<<<< HEAD
     <span class="course-disc">
 	    
+=======
+    <span class="course-panel-disc">	 
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 	    <ol class="course-dtl">
 	      <li>
 	        Price<br />

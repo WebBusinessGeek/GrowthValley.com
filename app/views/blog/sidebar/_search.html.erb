@@ -1,8 +1,8 @@
 <%= sidebar_section_for(t(".title")) do  %>
     <%= form_for blog_search_path, method: :get do %>
-      <p>
+      <div class="control-group">
         <%= text_field_tag :query, params[:query] %>
-        <%= submit_tag "Search", name: nil %>
-      </p>
+        <%= submit_tag "Search", name: nil ,class:"btn btn-green"%>
+      </div>
     <% end %>
 <% end %>

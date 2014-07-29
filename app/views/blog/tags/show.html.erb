@@ -1,4 +1,30 @@
-<div class="tag-search">
-  <%= t(".showing_post_with_tag")%> <strong>'<%= @tag.name %>'</strong>. <%=link_to t(".show_all_posts"),blog_path %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'blog') %>
+<% content_for(:title, 'GrowthValley > Home > Blog') %>
+<div class="main-content-area wrapper my-dashboard"> 
+    <!--Start blog Page Area-->
+    <div class="dashboard-wrapper">
+      <div class="growthvalley-blog">
+        <!-- <h1><a href=<%= blog_path %>><%= Settings.blog.site_name %></a></h1> -->
+        <h1><%= Settings.blog.site_name %></h1>
+        <h2><%= Settings.blog.site_subtitle %></h2>
+        <div class="row-fluid"> 
+          <!--left side bar-->
+          <div class="span8">
+          	<div class="tag-search">
+			  <%= t(".showing_post_with_tag")%> <strong>'<%= @tag.name %>'</strong>. <%=link_to t(".show_all_posts"),blog_path ,class:"btn btn-green" %>
+			</div>
+			<%= render @posts %>
+          </div>
+          <!--left side bar end--> 
+          <!--right side bar-->
+          <div class="sidebar span4">
+          		
+	          	<%= render 'layouts/blog/application/sidebar' %>
+          </div>
+          <!--right side bar end--> 
+        </div>
+      </div>
+    </div>
+    <!--End blog Page Area--> 
 </div>
-<%= render @posts %>
