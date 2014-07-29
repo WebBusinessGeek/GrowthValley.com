@@ -1,5 +1,14 @@
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > Courses > My Courses') %>
+<div class="main-content-area wrapper my-courses-table">
+	<div class="mycourses-all">
+    <ul class="breadcrumb">
+        <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+        <li><a href="javascript:void(0)">New Exam</a></li>
+    </ul>
+
 <%- model_class = Exam -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
 <%= render :partial => 'form' %>
+	</div>
+</div>
