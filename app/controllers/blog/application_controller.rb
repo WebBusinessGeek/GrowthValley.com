@@ -1,7 +1,7 @@
 class Blog::ApplicationController < ApplicationController
   include Blog::ControllerHelpers::User
   skip_before_filter :authenticate_user!
-  layout "layouts/blog/application"
+  layout "layouts/home_new"
 
   before_filter :recent_posts, :all_tags
 
