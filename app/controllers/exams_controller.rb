@@ -52,7 +52,7 @@ class ExamsController < ApplicationController
       if @exam.save
         format.html { redirect_to course_exam_path(@course, @exam), notice: 'Exam was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new" ,layout:'home_new'}
       end
     end
   end
@@ -67,7 +67,7 @@ class ExamsController < ApplicationController
       if @exam.update_attributes(params[:exam])
         format.html { redirect_to course_exam_path(@course, @exam), notice: 'Exam was successfully updated.' }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit" ,layout:'home_new' }
       end
     end
   end

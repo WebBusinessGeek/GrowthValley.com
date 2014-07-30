@@ -1,27 +1,31 @@
-<div class="course-title" style="font-weight: bold; font-size: 12pt;">Course: <%= @course.title.titleize %></div>
-<div class="course-description">Exam: <%= raw(@course.exam.title.titleize) %></div>
-
-<div>
-	<br>
-	<br>
-  Question <%= @question_count %>: <%= raw(@exam_question.question) %>
-</div>
-</br>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > My Courses > Courses') %>
+<div class="main-content-area my-courses-table">
+<div class="wrapper">
+     <div class="mycourses-all">
+    <ul class="breadcrumb">
+    <li><a href="javascript:void(0)">Courses</a> <span class="divider"></span></li>
+  <li><a href="javascript:void(0)">Exams</a></li>
+    </ul>
+   
+  <p class="course-title">Course: <b><%= @course.title.titleize %></b></p>
+  <p class="exam-title">Exam: <b><%= raw(@course.exam.title.titleize) %></b></p>
+  <p>Question <%= @question_count %>: <b><%= raw(@exam_question.question) %></b>
+  </p>
 <%= simple_form_for @exam_answer do |f| %>
   <%= f.error_notification %>
-
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :course_id %>
   <%= f.hidden_field :exam_id %>
   <%= f.hidden_field :exam_question_id %>
-  <%= f.text_area :user_input, required: true, autofocus: true %>
+  <%= f.text_area :user_input, required: true, autofocus: true , rows: '5' , class: 'exam-ans' , placeholder: 'Answer Here' %> 
 
-  </br>
-  </br>
-
-  <%= f.button :submit, 'Continue', class: 'btn btn-primary', disabled: true %>
+  <p><%= f.button :submit, 'Continue', class: 'btn-green', disabled: false %></p>
 <% end %>
-
+  </div>
+</div>
+ </div>
 <%= javascript_tag do %>
   $(function() {
     $("#learners_exam_user_input").change(function() {

@@ -19,12 +19,13 @@ class LearnersExamsController < ApplicationController
 
         if @exam_question.present?
           @exam_answer = current_user.learners_exams.build(user_id: current_user.id, course_id: @course.id, exam_id: @course.exam.id, exam_question_id: @exam_question.id)
+         render layout:'home_new'
         else
-          redirect_to course_path(@course), notice: 'Exam completed successfully!'
+          redirect_to course_path(@course), notice: 'Exam completed successfully!' ,layout:'home_new'
         end
       end
+    end       
     end
-  end
 
   def create
     if params[:learners_exam].present?
