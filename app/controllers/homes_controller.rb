@@ -66,9 +66,10 @@ class HomesController < ApplicationController
   end
   
   def contact
+      
     @current_menu = "contact"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def terms

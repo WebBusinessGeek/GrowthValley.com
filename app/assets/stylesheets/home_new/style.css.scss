@@ -796,6 +796,44 @@ ul,li{
    	height:auto;
     padding:4px 10px;
 }
+/*-------------------------------------- contact page ---------------------------------------*/
+.profile-page .dashboard-wrapper .dashboard-contact h4 {
+    color: #2a2a2a;
+    font-family: "Trebuchet MS";
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.profile-page .dashboard-wrapper .contact-details {
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea {
+    height: 150px;
+    width: 400px;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form input[type="text"] {
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form input[type="email"] {
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .dashboard-contact p {
+    color: #767676;
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form .send-btn {
+    background-color: #028d96;
+    border: medium none;
+    border-radius: 3px;
+    box-shadow: 0 -5px rgba(0, 0, 0, 0.3) inset;
+    color: #fff;
+    padding: 11px 20px;
+}
 
 /* -------------------------------------- Notification Page --------------------------------------*/
 .profile-page .notifications .notification-thumb img{
@@ -1020,19 +1058,21 @@ ul,li{
 	display:block;
 	-webkit-border-radius: 2px 2px 2px 2px;
 	border-radius: 2px 2px 2px 2px;
-	cursor:auto;
+	cursor:pointer;
 	position:relative;
 }
 
 .profile-page .my-subjets-page .btn-group label.btn.active{
 	background:#028d96;
 	color:#fff;
+	cursor:pointer;
 }
 
 .profile-page .my-subjets-page .btn-group label.btn input{
     position: absolute;
     right: -20px;
     top: 10px;
+    cursor:pointer;
 }
 /* -------------------------------------- Profile Page --------------------------------------*/
 
@@ -2237,6 +2277,10 @@ color:#028D96
     position: absolute;
     right: -30px;
     top: 10px;
+<<<<<<< HEAD
+    cursor:pointer;
+=======
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 }
 /*---------------- Quizzes Page ----------------------- */
 .single_question textarea{
@@ -2534,7 +2578,11 @@ color:#028D96
 	}
 
 	/* Dashboard CSS*/
+<<<<<<< HEAD
+	ccourse-panel li{
+=======
 	.profile-page .dashboard-wrapper .dashboard-course-panel li{
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 		margin:12px 4px;
 	}
 	.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-panel-disc{
@@ -2731,10 +2779,19 @@ p{
 	width:100%; 
 	font-size:12px; 
 	font-weight:normal;
+<<<<<<< HEAD
+}
+.profile-page .my-subjets-page .btn-group img{
+	right:-22px;
+=======
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 }
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
 }
+
+/*blog*/
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{margin-top:30px;}
 
 /*blog*/
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{margin-top:30px;}
@@ -2830,6 +2887,12 @@ p{
 	.profile-page .dashboard-notification .dashboard-notification-wrapper{
 		width:90%;
 	}
+<<<<<<< HEAD
+	/*contact*/
+.profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
+=======
+>>>>>>> 6d71e086ed969c7fd4021992fdba0e683ff8cec3
 
 	/*courses page*/
 
@@ -3003,6 +3066,9 @@ p{
 	margin-left:0; 
 	margin-bottom:10px;
 }
+/* ---contact ---*/
+.profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
 /*tabs*/
 
