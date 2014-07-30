@@ -621,7 +621,7 @@ ul,li{
 
 .profile-page .nav-wrap .nav li ul.submenu li {
 	display:inline-block;
-	padding:30px 70px;
+	padding:30px 33px;
 }
 
 .profile-page .nav-wrap li{
@@ -2259,6 +2259,33 @@ color:#028D96
     text-indent: 0.01px;
     text-overflow: "";
 }
+
+/*custom header*/
+.profile-page .nav-wrap .nav li.active ul.dropdown-list{
+	display:block;
+}
+.profile-page .nav-wrap .nav li ul.submenu li.logout{
+	
+	border-left:2px solid #00747c;
+	padding-top:10px;
+	padding-bottom:10px; 
+}
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{
+	background:none;
+
+}
+.profile-page .nav-wrap .nav li .dropdown-menu{
+	background-color: #028D96;
+	border:none;
+	border-radius:0px;
+	padding:0px;
+	box-shadow:none;
+	top:80%;
+}
+.profile-page .nav-wrap .nav ul.submenu li.open a{
+	color:#ffffff!important;
+}
+
 /*---------------------Media screen----------------------------*/
 
 @media (max-width: 1200px) {
@@ -2464,6 +2491,16 @@ color:#028D96
     .profile-page .all-bundles-page .bundles{
       padding:0px 10px;
     }
+
+    /*header*/
+    .profile-page .nav-wrap .nav li ul.submenu li.logout{
+		border-left:none;
+	}
+	.profile-page .nav-wrap .nav li .dropdown-menu{
+	   background:none;
+	   display:block;
+	}
+
 }
 
 @media (max-width: 870px) {
