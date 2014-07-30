@@ -985,6 +985,150 @@ ul,li{
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
+/*-------------------------------- cources edit page -----------------------------------------*/
+.profile-page .mycourses-all .edit-course-section_1 {
+    float: left;
+    width: 520px;
+}
+
+.profile-page .mycourses-all .edit-course-section_1 .simple_manage_edit_form .control-label {
+    color: #3f3f3f;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    width: 162px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .image_upload span img {
+    margin-right: 10px;
+}
+
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .image_upload input.upload {
+    cursor: pointer;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+.profile-page .display-t {
+    display: table;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group .existing-pic {
+    float: left;
+    width: auto;
+}
+
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group .existing-msg {
+    color: #808080;
+    display: table-cell;
+    font-size: 12px;
+    padding-left: 16px;
+    vertical-align: middle;
+}
+
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group p {
+    color: #4c4c4c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .ui-radio input[type="radio"] + span:before {
+    background: none repeat scroll 0 0 #028d96;
+    border: medium none;
+    border-radius: 3px;
+    content: "";
+    display: inline-block;
+    height: 18px;
+    margin-left: -20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 18px;
+}
+.profile-page .ui-radio input[type="radio"] + span:before {
+    background: none repeat scroll 0 0 #ffffff;
+    border: medium none;
+    border-radius: 3px;
+    content: "";
+    display: inline-block;
+    height: 18px;
+    margin-left: -20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 18px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form input[type="radio"]:checked + span:after {
+    background: url("/assets/input-checkbox-white.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: "";
+    height: 12px;
+    left: -18px;
+    margin-top: 0;
+    position: absolute;
+    top: 5px;
+    width: 13px;
+}
+.ui-radio input[type="radio"]:checked + span:after {
+    background: url("/assets/input-checkbox.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: "";
+    height: 12px;
+    left: -18px;
+    margin-top: 0;
+    position: absolute;
+    top: 5px;
+    width: 13px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .ui-checkbox input[type="checkbox"] + span:before {
+    background: none repeat scroll 0 0 #028d96;
+    border: medium none;
+    border-radius: 4px;
+    content: "";
+    display: inline-block;
+    height: 18px;
+    margin-left: -20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 18px;
+}
+.profile-page .ui-checkbox input[type="checkbox"] + span:before {
+    background: none repeat scroll 0 0 #ffffff;
+    border: medium none;
+    border-radius: 4px;
+    content: "";
+    display: inline-block;
+    height: 18px;
+    margin-left: -20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 18px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .ui-checkbox input[type="checkbox"]:checked + span:after {
+    background: url("/assets/input-checkbox-white.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: "";
+    height: 12px;
+    left: -1px;
+    margin-top: 0;
+    position: absolute;
+    top: 5px;
+    width: 13px;
+}
+.profile-page .ui-checkbox input[type="checkbox"]:checked + span:after {
+    background: url("/assets/images/input-checkbox.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    content: "";
+    height: 12px;
+    left: -1px;
+    margin-top: 0;
+    position: absolute;
+    top: 5px;
+    width: 13px;
+}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group p {
+    color: #4c4c4c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 /* ---------------------------------- My Classrooms Page --------------------------------------*/
 
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
@@ -1991,6 +2135,10 @@ color:#028D96
 	background-color:#e6e6e6;
 	color:#333;
 }
+.profile-page .btn-cancel{
+	background-color:#e6e6e6;
+	color:#333;
+}
 .edit-content .control-label{
 	text-align:left;
 	width:100px;
@@ -2612,6 +2760,9 @@ color:#028D96
 		display:block;
 	}
 
+	/*manage classroom edit setting*/
+	.profile-page .mycourses-all .edit-course-section_1{width:100%;}
+
 
 
 }
@@ -2762,6 +2913,7 @@ p{
 	.profile-page .mycourses-all .edit-course-section_1{
 	width:100%;
 	}
+
 /*subjects*/
 .profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
 	margin-left:0;
@@ -2931,7 +3083,10 @@ p{
 	}
 	.profile-page .my-subjets-page .btn-group img{
 		right:-30px;
-	}	
+	}
+	/*manage classroom edit setting*/
+	.profile-page .mycourses-all .edit-course-section_1{width:100%;}
+	.profile-page .mycourses-all .edit-course-section_2{width:100%;}	
 
 
 }
@@ -3115,6 +3270,9 @@ p{
 /* quiz page*/ 
 .profile-page .my-courses-table form.simple_form .sub-edit .btn{
 	margin-bottom:0px;
-}	
+}
+/*manage classroom edit setting*/
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .course-submit-btn{float:none;}
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group p.course-submit-btn .btn-cancel{margin-bottom:0px;}	
 
 }

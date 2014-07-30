@@ -1,7 +1,20 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "course" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<% content_for(:title, 'GrowthValley > Courses > Edit') %>
+<div class="main-content-area wrapper my-courses-table">
+ <div class="mycourses-all">
+    <ul class="breadcrumb">
+      <li><a href="javascript:void(0)">Courses</a> 
+        <span class="divider"></span></li>
+        <li><a href="javascript:void(0)">Edit</a></li>
+    </ul>
 
 <%- model_class = Course -%>
-<div class="page-header">
+<!-- <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
+</div> -->
+<div class="row-fluid">
 <%= render :partial => 'form' %>
+</div>
+</div>
+</div>
