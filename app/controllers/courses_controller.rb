@@ -127,6 +127,7 @@ class CoursesController < ApplicationController
   def edit
     @course = current_user.courses.find(params[:id])
     @course.sections.build
+    render layout:'home_new'
   end
 
   # POST /courses
