@@ -1,26 +1,27 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "review_exam" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'review_exams') %>
+<% content_for(:title, 'GrowthValley > My Courses > Review Exams') %>
+<div class="main-content-area wrapper">
+  <div class="notifications">
+      <div class="row-fluid review-exams review-scr"> 
+        <h4>Exams Reviewed</h4>
 
 <% if @learners_exam.present? %>
   <%= simple_form_for :submit_review, url: submit_review_path do |f| %>
     <%= f.error_notification %>
 
-    <div id='exam_question'>
-      <b>Question: </b>
-      <%= label_tag raw(@learners_exam.exam_question.question) %>
-    </div>
-    </br>
-    <div id='exam_answer'>
-      <b>Answer: </b>
-      <%= label_tag raw(@learners_exam.user_input) %>
-    </div>
-    </br>
-    <div id='score'>
-      <b>Score: </b>
+    <p><span>Question:</span>  <b><%= @learners_exam.exam_question.question %></b></p>
+    <p><span>Answer:</span> <b><%= @learners_exam.user_input %></b></p>
+   
+    <p>
+      <span>Score: </span>
       <%= select_tag :score, options_for_select((0..10).collect { |i| [i] }, @learners_exam.score), required: true %>
-    </div>
-    <%= hidden_field_tag :learners_exam_id, @learners_exam.id %>
-    </br>
-    <%= f.button :submit, 'Continue', class: 'btn btn-primary' %>
+    </p>
+    <%= hidden_field_tag :learners_exam_id, @learners_exam.id %> 
+    <%= f.button :submit, 'Continue', class: 'btn btn-green' %>
   <% end %>
 <% end %>
+</div>
+     </div>
+  </div>
 </div>

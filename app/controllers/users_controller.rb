@@ -35,9 +35,10 @@ class UsersController < ApplicationController
   def exam_review
     if params[:exam_id].present? && params[:user_id].present?
       @learners_exam = LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id], score: nil).order('id asc').first
-
+      
       unless @learners_exam.present?
-        redirect_to exam_result_path(exam_id: params[:exam_id], user_id: params[:user_id]), alert: 'All questions have already been reviewed'
+        redirect_to exam_result_path(exam_id: params[:exam_id], user_id: params[:user_id]) ,layout: 'home_new', alert: 'All questions have already been reviewed'
+  
       end
     end
   end
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
       learners_exam = LearnersExam.find_by_id(params[:learners_exam_id])
       if learners_exam.present?
         learners_exam.score = params[:score]
-
+      
         if learners_exam.save
           remaining_questions = LearnersExam.where(exam_id: learners_exam.exam_id, user_id: learners_exam.user_id, score: nil).order('id asc')
 
@@ -69,7 +70,7 @@ class UsersController < ApplicationController
       @total_exam_count=LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).count
       @total_exam_score=LearnersExam.where(exam_id: params[:exam_id], user_id: params[:user_id]).sum('score')
       @total_score_cgpa=@total_exam_score/@total_exam_count
-      if(@total_score_cgpa >= "5")
+      if(@total_score_cgpa >= 6 )
           final_result="passed"
       else
           final_result="failed"
@@ -80,7 +81,8 @@ class UsersController < ApplicationController
       @exam_reviewed[:final_result]=final_result
       @exam_reviewed.save
       @suggested_courses = current_user.courses.all_published - Subscription.where(user_type: 'Learner').collect { |s| s.course }
-    end
+   render layout: 'home_new'
+    end 
   end
 
   def submit_result

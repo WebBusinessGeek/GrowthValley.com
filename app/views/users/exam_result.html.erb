@@ -1,17 +1,13 @@
-<% if @exam_reviewed %>
-  <%= render :partial => "layouts/inner_nav", :locals => { :current => "reviewed_exam" } %>
-<% else %>
-  <%= render :partial => "layouts/inner_nav", :locals => { :current => "review_exam" } %>
-<% end %>
-
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'review_exams') %>
+<% content_for(:title, 'GrowthValley > My Courses > Review Exams') %>
 <% if @learners_exams.present? %>
-  <div class="page-header">
-    <h1><%=t '.title', :default => "Exam (#{@learners_exams.first.exam.title}) Results" %></h1>
-  </div>
-
+<div class="main-content-area wrapper">
+  <div class="notifications">
+      <div class="row-fluid review-exams review-scr"> 
+     <h4><%=t '.title', :default => "Exam (#{@learners_exams.first.exam.title}) Results" %></h4>
   <%= "#{@learners_exams.first.user.full_name} scored #{@learners_exams.sum('score')} out of #{10 * @learners_exams.size}" %>
   </br></br>
-
   <%= form_tag submit_result_path do %>
     <% if @exam_reviewed %>
       <h6>Courses suggested to learner - (<%= @learners_exams.first.user.full_name.titleize %>)</h6>
@@ -24,7 +20,9 @@
     <%= hidden_field_tag :exam_id, @learners_exams.first.exam.id %>
     <%= hidden_field_tag :course_id, @learners_exams.first.course.id %>
     <%= hidden_field_tag :learner_id, @learners_exams.first.user.id %>
-
-    <%= submit_tag 'Submit', class: 'btn btn-primary' unless @exam_reviewed %>
+    <%= submit_tag 'Submit', class: 'btn btn-green top-review' unless @exam_reviewed %>
   <% end %>
 <% end %>
+</div>
+</div>
+</div>

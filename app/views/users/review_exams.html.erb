@@ -1,13 +1,15 @@
 <% content_for(:body_class, 'profile-page') %>
 <% content_for(:current, 'review_exams') %>
 <% content_for(:title, 'GrowthValley > My Courses > Review Exams') %>
-<div class="main-content-area wrapper">
-  <div class="notifications">
+<div class="main-content-area ">
+  <div class="notifications wrapper">
       <div class="row-fluid review-exams"> 
         <h4>Exams Reviewed</h4>
-        
+     </div>
+  </div>
+       
         <% if @learners_exams.present? %>
-          <table class="table table-striped">
+          <table class="table table-striped" id="review-table">
             <thead>
               <tr>
                 <th>Exam Name</th>
@@ -34,10 +36,10 @@
 
           <%= paginate @learners_exams %>
         <% else %>
+           <div class="wrapper"> 
           <p class="no-pending">
             No exams pending for review...
           </p>
+        </div>  
         <% end %>
-      </div>
-  </div>
-</div>
+</div>  

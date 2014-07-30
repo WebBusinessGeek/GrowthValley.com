@@ -884,6 +884,35 @@ ul,li{
 	font-weight:bold;
 	font-size:14px;
 }
+
+.profile-page #review-table td a{
+	color:#028d96;
+} 
+
+.profile-page .review-scr form p span{
+   width:58px;
+   padding-right:10px;
+   display:inline-block;
+}
+
+.profile-page .review-scr form select{
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+    background: url("/assets/green-dd-icon.png") no-repeat scroll 94% center #FFFFFF;
+    color: #858585;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 10px;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+.top-review{
+	margin-top:20px;
+}
+
 /* -------------------------------------- My Courses Page --------------------------------------*/
 .profile-page .my-courses-table td{
 	color:#028d96;
@@ -2214,7 +2243,7 @@ color:#028D96
 .notification-content{
 	display:inline-block;
 }
-<<<<<<< HEAD
+
 .profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-dtl li .students{
     background: url("/assets/user-icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     display: inline-block;
@@ -2223,7 +2252,6 @@ color:#028D96
     margin-right: 3px;
     width: 12px;
 }
-=======
 
 /*Blog*/
 .profile-page .dashboard-wrapper .growthvalley-blog h4 {color: #028d96; font-family: "Trebuchet MS"; font-size:18px; font-weight:bold; margin-bottom:10px;}
@@ -2250,9 +2278,10 @@ color:#028D96
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-header {background-color: #028d96;  border-radius: 4px; margin: 10px 0 20px 0px; padding:6px 0px; text-align:center; }
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-header h5{color:#fff; font-size:14px; margin:0px; padding:0px;}
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-header:first-child{margin-top:0px;}
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:84%; border-top:solid 3px #028d96; border-left:solid 3px #028d96; border-bottom:solid 3px #028d96; border-right:none; box-shadow:none; color:#afafaf; font-style:italic;}
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search{position:relative;}
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input.search-btn[type="submit"]{background-image:url(/assets/blog-search-btn.png); background-position:0px 0px; background-repeat:no-repeat; display:block; width:43px; height:43px; position:absolute; top:-5px; right:0px; border:none; border-radius:40px;}
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:82%; border:none; box-shadow:none; color:#afafaf; font-style:italic; margin-bottom:0;}
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search{border-top:solid 3px #028d96; border-left:solid 3px #028d96; border-bottom:solid 3px #028d96; border-right:none; border-radius:4px;}
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input.search-btn[type="submit"]{
+background-image:url(/assets/blog-search-btn.png); background-position:0px 0px; background-repeat:no-repeat; display:block; width:43px; height:43px; float:right; margin-top:-7px; margin-right:-7px; border:none; border-radius:40px}
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .latest_post{margin:0px 0px 0px 30px;}
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .latest_post li{list-style:square; padding-bottom:8px; color:#028d96;}
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .latest_post li:last-child{padding-bottom:0px;}
@@ -2273,18 +2302,12 @@ color:#028D96
 .profile-page .dashboard-wrapper .growthvalley-blog .blog-posted .single-post span.date-time{padding-right:20px;}
 .profile-page .dashboard-wrapper .growthvalley-blog .blog-posted .single-post span.user-name{text-transform:uppercase; border-left: solid 1px #9e9d9d; padding:0px 4px;}
 
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
-
 /*----------My subjects Page --------------------------*/
 .profile-page .my-subjets-page .btn-group img{
     position: absolute;
     right: -30px;
     top: 10px;
     cursor:pointer;
-<<<<<<< HEAD
-
-=======
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
 }
 /*---------------- Quizzes Page ----------------------- */
 .single_question textarea{
@@ -2558,6 +2581,11 @@ color:#028D96
 	   background:none;
 	   display:block;
 	}
+	/*blog*/
+	.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{
+        width:76%;
+
+	}
 
 }
 
@@ -2592,10 +2620,7 @@ color:#028D96
 	}
 
 	/* Dashboard CSS*/
-<<<<<<< HEAD
 
-=======
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
 	.profile-page .dashboard-wrapper .dashboard-course-panel li{
 		margin:12px 4px;
 	}
@@ -2629,7 +2654,6 @@ color:#028D96
 	.profile-page .my-subjets-page form .row-fluid .span3 .btn-group{
 		display:block;
 	}
-
 
 
 }
@@ -2796,25 +2820,15 @@ p{
 }
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
-<<<<<<< HEAD
 
-=======
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
 }
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
 }
-<<<<<<< HEAD
-=======
-
-/*blog*/
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:94%;}
 
 /*blog*/
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{margin-top:30px;}
 
-
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
 }
 
 @media (max-width: 640px) {
@@ -2905,17 +2919,11 @@ p{
 	.profile-page .dashboard-notification .dashboard-notification-wrapper{
 		width:90%;
 	}
-<<<<<<< HEAD
 
 	/*contact*/
 .profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
 .profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
-=======
-	/*contact*/
-.profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
-.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
->>>>>>> bd0b175cb4eec2ab001ada0faa39727a510c2119
 
 	/*courses page*/
 
@@ -2960,10 +2968,7 @@ p{
 	}
 	.profile-page .my-subjets-page .btn-group img{
 		right:-30px;
-	}	
-/*blog*/
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:93%;}
-
+	}
 
 }
 @media (max-width: 479px) {
