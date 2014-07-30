@@ -6,8 +6,8 @@
     <div class="dashboard-wrapper">
       <div class="growthvalley-blog">
         <!-- <h1><a href=<%= blog_path %>><%= Settings.blog.site_name %></a></h1> -->
-        <h1><%= Settings.blog.site_name %></h1>
-        <h2><%= Settings.blog.site_subtitle %></h2>
+        <h4><%= Settings.blog.site_name %></h1>
+        <h5><%= Settings.blog.site_subtitle %></h2>
         <div class="row-fluid"> 
           <!--left side bar-->
           <div class="span8">
@@ -19,22 +19,36 @@
               <%= truncate(strip_tags(@post.content), length: 155) %>
             <% end %>
 
-            <article>
+            <section>
+              <div class="post-content-box single-post-box">
               <%= render partial: 'blog/posts/post_header', locals: {post: @post }%>
-              <div class="content" data-blog="content">
-                <%= raw @post.content %>
+              <div class="blog-content" data-blog="content">
+                  <%= raw @post.content %>
               </div>
 
-                    <div class="tags" data-blog="tags">
+                    <!-- <div class="tags" data-blog="tags">
                 <%= render @post.tags %>
+              </div> -->
+
+              <div class="blog-posted">
+                <div class="single-post">
+                  <span class="date-time">
+                      <img alt="" src="/assets/calender-icon.png">
+                      <time datetime="2014-02-18 00:00:00 UTC"><%= I18n.localize(@post.published_at.to_date, format: :long) %></time>
+                      <span class="user-name"><%= @post.user.name %></span>
+                  </span>
+                  <!-- <span class="comment">
+                    <img alt="" src="assets/comment-icon.png">
+                    <span>3</span>
+                  </span> -->
+                </div>
               </div>
 
-              <%= render "blog/posts/social_sharing" %>
-
-              <div id="disqus_thread"></div>
+              <div id="disqus_thread" class="blog-content"></div>
               <%= render 'layouts/blog/application/disqus_embed' %>
               <noscript>Please enable JavaScript to view the comments.</noscript>
-            </article>
+            </div>
+            </section>
           </div>
           <!--left side bar end--> 
           <!--right side bar-->

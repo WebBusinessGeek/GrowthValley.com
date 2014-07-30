@@ -11,10 +11,14 @@ module Blog
     end
 
     def sidebar_section_for(title, &block)
-       content_tag(:section, class: 'widget') do
-         content_tag(:div, content_tag(:h1, title), class: 'blog-header') +
-             capture(&block)
-       end
+       content_tag(:section, capture(&block) ,class: 'widget') 
      end
+
+   def sidebar_section(title, &block)
+     content_tag(:section, class: 'widget') do
+       content_tag(:div, content_tag(:h5, title), class: "blog-header") +
+           capture(&block)
+     end
+   end
   end
 end
