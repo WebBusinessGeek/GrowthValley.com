@@ -27,12 +27,12 @@
                       <li class= "<%= 'contact' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Contact", contact_homes_path  %>
                       </li>
-                      <li class="<%= 'logout' == yield(:current) ? 'active-submenu' : '' %>">
+                      <li class="logout <%= 'logout' == yield(:current) ? 'active-submenu' : '' %>">
                        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
                       </li>
                     </ul>
                   </li>
-                  <li class="<%= ['personal', 'subscriptions','notifications'].include?(yield(:current)) ? 'active' : '' %>">
+                  <li class="<%= ['personal', 'subscriptions','notifications','logout'].include?(yield(:current)) ? 'active' : '' %>">
                     <%= link_to "My Account", edit_user_registration_path %>
                     <ul class="submenu">
                       <li class="<%= 'personal' == yield(:current) ? 'active-submenu' : '' %>">
@@ -44,9 +44,12 @@
                       <li class="<%= 'notifications' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Notifications", notification_path %>
                       </li>
+                      <li class="logout <%= 'logout' == yield(:current) ? 'active-submenu' : '' %>">
+                       <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+                      </li>
                     </ul>
                   </li>
-                  <li class="<%= ['my_subjects', 'my_courses', 'my_bundles','my_classrooms','analytics'].include?(yield(:current)) ? 'active' : '' %>">
+                  <li class="<%= ['my_subjects', 'my_courses', 'my_bundles','my_classrooms','analytics','review_exams','reviewed_exams','logout'].include?(yield(:current)) ? 'active' : '' %>">
                     <%= link_to "My Courses", my_courses_courses_path %>
                     <ul class="submenu">
                       <li class="<%= 'my_subjects' == yield(:current) ? 'active-submenu' : '' %>">
@@ -59,18 +62,20 @@
                         <%= link_to "Classrooms", classrooms_path %></li>
                       <li class= "<%= 'analytics' == yield(:current) ? 'active-submenu' : '' %>">
                         <%= link_to "Analytics", course_analytics_path %>
-                      </li> 
+                      </li>                        
+                       <li class= "<%= 'review_exams' == yield(:current) ? 'active-submenu' : '' %> dropdown"> 
+                          <%= link_to "Review Exams", review_exams_path ,:data => {:toggle=>"dropdown" , :hover=>"dropdown" ,:delay =>"1000","close-others" => "false"} , :class =>"dropdown-toggle"%>
+                           <ul class="dropdown-menu">
+                              <li class="<%= 'reviewed_exams' == yield(:current) ? 'active-submenu' : '' %>">
+                        <%= link_to "Reviewed Exams", reviewed_exams_path %></li> 
+                           </ul>
+
+                       </li>
+                       <li class="logout <%= 'logout' == yield(:current) ? 'active-submenu' : '' %>">
+                       <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+                      </li>
                     </ul>
-                  </li>
-                  <li class="<%= ['review_exams', 'reviewed_exams'].include?(yield(:current)) ? 'active' : '' %>">
-                    <%= link_to "Review Exams", review_exams_path %>
-                    <ul class="submenu">
-                      <li class="<%= 'review_exams' == yield(:current) ? 'active-submenu' : '' %>">
-                        <%= link_to "Review Exams", review_exams_path %></li>
-                      <li class="<%= 'reviewed_exams' == yield(:current) ? 'active-submenu' : '' %>">
-                        <%= link_to "Reviewed Exams", reviewed_exams_path %></li>
-                    </ul>
-                  </li>
+                  </li>                 
                 </ul>
               </div>
             </div>
@@ -88,3 +93,20 @@
     </div>
   </header>
     <!--End Header -->
+    <script type="text/javascript">
+      $("li.dropdown a").click(function(){     
+             var url = $(this).attr('href');
+             window.location = url;    
+       }); 
+      $("li.dropdown").hover(
+      function () {
+        $(this).addClass('open');
+      },
+      function () {
+        $(this).removeClass('open');
+      }
+
+      
+    );
+
+    </script>
