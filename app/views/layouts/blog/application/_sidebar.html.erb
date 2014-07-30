@@ -1,7 +1,5 @@
 
-<%= render partial: "layouts/blog/application/social_icons" %>	            
-<aside class="sidebar four column">
-   <% ["search", "latest_posts", "categories", "tag_cloud"].each do |ext| %>
-     <%= render partial: "blog/sidebar/#{ext}" %>
-   <% end %>
-</aside>
+<!--<%= render partial: "layouts/blog/application/social_icons" %>	 --> 
+<% ["search", "latest_posts", "categories", "tag_cloud"].each do |ext| %>
+ <%= render partial: "blog/sidebar/#{ext}" %>
+<% end %>

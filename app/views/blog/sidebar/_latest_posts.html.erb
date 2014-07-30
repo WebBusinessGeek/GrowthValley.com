@@ -1,5 +1,5 @@
 
-<%= sidebar_section_for(t(".title")) do  %>
+<%= sidebar_section(t(".title")) do  %>
   <ul class="latest_post">
     <% @recent_posts.each do |post| %>
       <li><%= link_to post.title, post.full_url %></li>
