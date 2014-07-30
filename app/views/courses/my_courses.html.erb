@@ -35,13 +35,13 @@
               <th  colspan="5" class="action-th">
                 <span><%=t '.actions', :default => t("helpers.actions") %></span>
                 <div class="actions-courses">
-                    <span class="plus-sign"><img src="/assets/plus-icon.png" alt=""></span>
+                    <span class="plus-sign" style="margin-right:4px;"><img src="/assets/plus-icon.png" alt=""></span>
                     <% if current_user.subjects.present? %>
                         <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" class="btn btn-green" >
                           Add New Courses
                         </a>
                     <% else %>
-                        For adding courses, first <%= link_to "Add Subjects", user_subjects_path %>
+                        For adding courses, first <%= link_to "Add Subjects", user_subjects_path , class: "btn btn-green" %>
                     <% end %>
                     <!-- <a class="btn btn-gray" href="javascript:void(0)">View All Course</a> -->
                 </div>

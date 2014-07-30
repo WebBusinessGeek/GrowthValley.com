@@ -41,7 +41,7 @@ format_learner_names(@course)
 <!-- Learner Ends -->
 
 <!-- Subscription -->
-<div class='course-subscribe'>
+<div class='course-subscribe'>  
 <% if current_user.courses.include?(@course) %>
   <% if @progress == "exam given" %>
     <%= link_to 'View Exam Result', '#exam_result_dialog', role: 'button', class: 'btn btn-green', :'data-toggle' => 'modal' %>
