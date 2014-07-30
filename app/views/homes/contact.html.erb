@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="main-content courses">
   <div id="filter">
     <h1 class="fleft">Contact</h1>
@@ -16,7 +17,7 @@
 	        <%= text_area_tag :message, '', placeholder: 'message', required: true, id: 'message', class: 'text sprite' %>
 	      </li>
 	      <li>
-	        <%= #recaptcha_tags %>
+	        <%= recaptcha_tags %>
 	      </li>
 	      <li>
 	        </br>
@@ -24,9 +25,38 @@
 	      </li>
 	    </ul>
     
+=======
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'contact') %>
+<% content_for(:title, 'GrowthValley > Home > contact') %>
+<div class="main-content-area wrapper my-dashboard">
+  <div class="dashboard-wrapper">
+  	<div class="dashboard-contact">
+    	<h4>Contact</h4>
+    	<p>Please feel free to get touch with us</p>
+	</div>
+	<div class="contact-details">
+    	<%= form_tag(contact_us_path, method: :post, multipart: true,class:"simple_contact_form form-horizontal") %>
+	    
+	    	<div class="control-group">
+	        	<%= text_field_tag :name, '', placeholder: 'Your Name', required: true, id: 'name', class: 'sprite' %>
+	    	</div>
+	   		 <div class="control-group">
+	        	<%= email_field_tag :email, '', placeholder:'Your E-Mail', required: true, id: 'email', class: 'sprite email' %>
+	    		</div>
+	    	<div class="control-group">
+	        	<%= text_area_tag :message, '', placeholder: 'message', required: true, id: 'message', class: 'text sprite' %>
+	    	</div>
+			<div class="contol-group">
+				 <%= recaptcha_tags  %>
+			</div>
+>>>>>>> 61def748f33529825fbd3ad8144075db50392395
 
-    </div>
-    <div class="clear"></div>
+	    	<div class="control-group">
+		   	 	<input name="OK" type="submit" value="Send Message" class="send-btn"  />
+	    	</div>
+	</div>
+    
   </div>
 </div>
 <%= javascript_tag do %>

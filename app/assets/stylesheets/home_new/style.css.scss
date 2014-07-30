@@ -621,7 +621,7 @@ ul,li{
 
 .profile-page .nav-wrap .nav li ul.submenu li {
 	display:inline-block;
-	padding:30px 70px;
+	padding:30px 33px;
 }
 
 .profile-page .nav-wrap li{
@@ -795,6 +795,44 @@ ul,li{
    	margin:0; 
    	height:auto;
     padding:4px 10px;
+}
+/*-------------------------------------- contact page ---------------------------------------*/
+.profile-page .dashboard-wrapper .dashboard-contact h4 {
+    color: #2a2a2a;
+    font-family: "Trebuchet MS";
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.profile-page .dashboard-wrapper .contact-details {
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea {
+    height: 150px;
+    width: 400px;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form input[type="text"] {
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form input[type="email"] {
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .dashboard-contact p {
+    color: #767676;
+    font-size: 12px;
+    font-weight: bold;
+}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form .send-btn {
+    background-color: #028d96;
+    border: medium none;
+    border-radius: 3px;
+    box-shadow: 0 -5px rgba(0, 0, 0, 0.3) inset;
+    color: #fff;
+    padding: 11px 20px;
 }
 
 /* -------------------------------------- Notification Page --------------------------------------*/
@@ -1020,19 +1058,21 @@ ul,li{
 	display:block;
 	-webkit-border-radius: 2px 2px 2px 2px;
 	border-radius: 2px 2px 2px 2px;
-	cursor:auto;
+	cursor:pointer;
 	position:relative;
 }
 
 .profile-page .my-subjets-page .btn-group label.btn.active{
 	background:#028d96;
 	color:#fff;
+	cursor:pointer;
 }
 
 .profile-page .my-subjets-page .btn-group label.btn input{
     position: absolute;
     right: -20px;
     top: 10px;
+    cursor:pointer;
 }
 /* -------------------------------------- Profile Page --------------------------------------*/
 
@@ -2230,10 +2270,54 @@ color:#028D96
     position: absolute;
     right: -30px;
     top: 10px;
+    cursor:pointer;
 }
 /*---------------- Quizzes Page ----------------------- */
 .single_question textarea{
 	height:100px;
+}
+
+.edit_quiz textarea{
+	height:100px;
+}
+
+.profile-page .my-courses-table form.simple_form select{
+	-moz-appearance: none;
+    background: url("/assets/green-dd-icon.png") no-repeat scroll 94% center #FFFFFF;
+    color: #858585;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 10px;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+
+/*custom header*/
+.profile-page .nav-wrap .nav li.active ul.dropdown-list{
+	display:block;
+}
+.profile-page .nav-wrap .nav li ul.submenu li.logout{
+	
+	border-left:2px solid #00747c;
+	padding-top:10px;
+	padding-bottom:10px; 
+}
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{
+	background:none;
+
+}
+.profile-page .nav-wrap .nav li .dropdown-menu{
+	background-color: #028D96;
+	border:none;
+	border-radius:0px;
+	padding:0px;
+	box-shadow:none;
+	top:80%;
+}
+.profile-page .nav-wrap .nav ul.submenu li.open a{
+	color:#ffffff!important;
 }
 
 /*---------------------Media screen----------------------------*/
@@ -2441,6 +2525,16 @@ color:#028D96
     .profile-page .all-bundles-page .bundles{
       padding:0px 10px;
     }
+
+    /*header*/
+    .profile-page .nav-wrap .nav li ul.submenu li.logout{
+		border-left:none;
+	}
+	.profile-page .nav-wrap .nav li .dropdown-menu{
+	   background:none;
+	   display:block;
+	}
+
 }
 
 @media (max-width: 870px) {
@@ -2675,9 +2769,15 @@ p{
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
 }
+.profile-page .my-subjets-page .btn-group img{
+	right:-22px;
+}
 
 /*blog*/
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:94%;}
+
+/*blog*/
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{margin-top:30px;}
 
 
 }
@@ -2770,6 +2870,9 @@ p{
 	.profile-page .dashboard-notification .dashboard-notification-wrapper{
 		width:90%;
 	}
+	/*contact*/
+.profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
 	/*courses page*/
 
@@ -2945,6 +3048,9 @@ p{
 	margin-left:0; 
 	margin-bottom:10px;
 }
+/* ---contact ---*/
+.profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
+.profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
 /*tabs*/
 
@@ -3006,5 +3112,9 @@ p{
 .profile-page .dashboard-wrapper .growthvalley-blog .blog-content .single-post-content{float:none; padding:0px;}
 .profile-page .dashboard-wrapper .growthvalley-blog .blog-content .single-post-content .sp-italic{padding:0px;}
 .profile-page .dashboard-wrapper .growthvalley-blog .blog-posted .single-post span.date-time{display:block; margin-bottom:10px;}
+/* quiz page*/ 
+.profile-page .my-courses-table form.simple_form .sub-edit .btn{
+	margin-bottom:0px;
+}	
 
 }
