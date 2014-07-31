@@ -1,4 +1,4 @@
-<div id="pagination">
+<div id="pagination" class="pagination">
   <% if @posts.total_pages > 1 && @posts.total_pages != @page.to_i %>
     <%= link_to t(".older_posts"), blog_posts_page_path(@page.to_i+1), class: "older_posts" %>
   <% end %>
