@@ -44,7 +44,7 @@ class HomesController < ApplicationController
   def about_us
     @current_menu = "about_us"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def products
@@ -73,33 +73,39 @@ class HomesController < ApplicationController
   end
   
   def terms
+    @current_menu = "home"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def information
+    @current_menu = "home"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def for_organizations
+    @current_menu = "home"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def for_people
+    @current_menu = "home"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def faq
+    @current_menu = "home"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def how_it_works
     @show_top_menu = true
-    render :layout => 'application'
+    @current_menu = "home"
+    render :layout => 'home_new'
   end
   
   private
