@@ -921,6 +921,11 @@ ul,li{
 	margin-top:20px;
 }
 
+.review-exams h6{
+	color:#028d96;
+	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;    
+}
+
 /* -------------------------------------- My Courses Page --------------------------------------*/
 .profile-page .my-courses-table td{
 	color:#028d96;
@@ -1022,6 +1027,7 @@ ul,li{
 	-webkit-border-radius:0 0 0 0;
 	box-shadow:none;
 }
+
 /*-------------------------------- cources edit page -----------------------------------------*/
 .profile-page .mycourses-all .edit-course-section_1 {
     float: left;
@@ -1166,6 +1172,8 @@ ul,li{
     font-weight: bold;
     margin-bottom: 10px;
 }
+
+
 /* ---------------------------------- My Classrooms Page --------------------------------------*/
 
 .profile-page .my-classrooms-page, .profile-page .my-classrooms-page .welcome-classrooms h4{
@@ -2176,6 +2184,7 @@ color:#028D96
 	background-color:#e6e6e6;
 	color:#333;
 }
+
 .edit-content .control-label{
 	text-align:left;
 	width:100px;
@@ -2779,7 +2788,10 @@ background-image:url(/assets/blog-search-btn.png); background-position:0px 0px; 
 	/* Dashboard CSS*/
 
 	.profile-page .dashboard-wrapper .dashboard-course-panel li{
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 		margin:12px 4px;
 	}
 	.profile-page .dashboard-wrapper .dashboard-course-panel li .course-panel-box .course-panel-disc{
@@ -2811,10 +2823,7 @@ background-image:url(/assets/blog-search-btn.png); background-position:0px 0px; 
 	}
 	.profile-page .my-subjets-page form .row-fluid .span3 .btn-group{
 		display:block;
-	}
-
-	/*manage classroom edit setting*/
-	.profile-page .mycourses-all .edit-course-section_1{width:100%;}
+	}	
 
 
 }
@@ -2962,10 +2971,10 @@ p{
 	width:auto;
 }
 /*manage classroom edit setting*/
-	.profile-page .mycourses-all .edit-course-section_1{
-	width:100%;
+	
+	profile-page .mycourses-all .edit-course-section_1{
+		width:100%;
 	}
-
 /*subjects*/
 .profile-page .my-subjets-page form .row-fluid [class*="span"]:first-child{
 	margin-left:0;
@@ -2979,6 +2988,7 @@ p{
 	width:100%; 
 	font-size:12px; 
 	font-weight:normal;
+<<<<<<< HEAD
 
 
 }
@@ -2986,18 +2996,25 @@ p{
 	right:-22px;
 
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 }
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 }
 .profile-page .my-subjets-page .btn-group img{
 	right:-22px;
 }
 
 /*blog*/
-.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{margin-top:30px;}
+.profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget .blog-s-links{
+	margin-top:30px;
+}
 
 }
 
@@ -3089,16 +3106,22 @@ p{
 	.profile-page .dashboard-notification .dashboard-notification-wrapper{
 		width:90%;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 
 	/*contact*/
 .profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
 .profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
+<<<<<<< HEAD
 	/*contact*/
 .profile-page .dashboard-wrapper .contact-details{margin-left:0px; margin-top:0px;}
 .profile-page .dashboard-wrapper .contact-details .simple_contact_form textarea{width:206px; height:auto;}
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 
 	/*courses page*/
 
@@ -3143,6 +3166,7 @@ p{
 	}
 	.profile-page .my-subjets-page .btn-group img{
 		right:-30px;
+<<<<<<< HEAD
 
 	}
 
@@ -3154,6 +3178,9 @@ p{
 /*blog*/
 .profile-page .dashboard-wrapper .growthvalley-blog .sidebar .widget form .control-search input[type="text"]{width:93%;}
 
+=======
+	}
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 
 }
 @media (max-width: 479px) {
@@ -3307,6 +3334,12 @@ p{
 .profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .course-submit-btn{
 	float:none;
 }
+
+.profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group p.course-submit-btn .btn-cancel{
+	margin-bottom:0px;
+}
+
+
 /* edit question*/
 .my-courses-table .edit-content textarea{
 	height:75px;
@@ -3348,6 +3381,7 @@ p{
 /* quiz page*/ 
 .profile-page .my-courses-table form.simple_form .sub-edit .btn{
 	margin-bottom:0px;
+<<<<<<< HEAD
 
 }
 /*manage classroom edit setting*/
@@ -3355,10 +3389,16 @@ p{
 .profile-page .mycourses-all .edit-course-section_1 form.simple_manage_edit_form .control-group p.course-submit-btn .btn-cancel{margin-bottom:0px;}	
 
 	
+=======
+}	
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 /*Take exam page*/
 .exam-ans{
 	width:90%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4a152b6d9bff2d1e787ca0678aa1504180c9e3b
 
 }

@@ -4,7 +4,7 @@
 <% if @learners_exams.present? %>
 <div class="main-content-area wrapper">
   <div class="notifications">
-      <div class="row-fluid review-exams review-scr"> 
+      <div class="row-fluid review-exams"> 
      <h4><%=t '.title', :default => "Exam (#{@learners_exams.first.exam.title}) Results" %></h4>
   <%= "#{@learners_exams.first.user.full_name} scored #{@learners_exams.sum('score')} out of #{10 * @learners_exams.size}" %>
   </br></br>
