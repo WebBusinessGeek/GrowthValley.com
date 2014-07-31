@@ -1,0 +1,1 @@
+$(function(){$('.row-fluid [class*="span"]:first-child').addClass("first-child"),$(".dropdown-toggle").click(function(){return $(this).hasClass("exp")?($(this).removeClass("exp"),$(this).next().hide()):($(this).addClass("exp"),$(this).next().show()),!1})});
