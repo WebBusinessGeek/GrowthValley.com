@@ -17,9 +17,12 @@
 		    </div>
 		  <% end %>
 
-		  <%= render @posts %>
+		  <%= render @posts %>           
+          
+<% if @page %>
+  <%= render partial: "pagination" %>
+<% end %>
             
-            <div id="pagination" class="pagination"> </div>
           </div>
           <!--left side bar end--> 
           <!--right side bar-->
