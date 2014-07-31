@@ -104,12 +104,11 @@
       </div>
     <% else %>
         <% if current_user.subjects.present? %>
-          You haven't added any courses yet...
+         <div class="wrapper" style="margin-bottom:20px;">You haven't added any courses yet...</div>
         <% end %>
     <% end %>
 
 <% else %>
-
     <% unless current_user.subjects.present? %>
       For subscribing courses, first <%= link_to "Add Subjects", user_subjects_path %>
     <% end %>
