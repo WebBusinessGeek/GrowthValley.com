@@ -50,13 +50,13 @@ class HomesController < ApplicationController
   def products
     @current_menu = "products"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def resources
     @current_menu = "resources"
     @show_top_menu = true
-    render :layout => 'application'
+    render :layout => 'home_new'
   end
   
   def blog

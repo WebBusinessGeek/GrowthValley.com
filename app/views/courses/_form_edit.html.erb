@@ -1,0 +1,72 @@
+<div class="edit-course-section_1">
+  <%= simple_form_for @course, html: {multipart: true , class:"simple_manage_edit_form form-horizontal" , id:"add_questions" } do |f| %>
+    
+      
+        <div class="control-group">
+          <label class="control-label">Title *</label>
+               <div class="controls">
+          <%= f.text_field :title, :class => 'course-title-field' ,placeholder:"Title of Courses", :required => true %>
+        </div>
+      </div>
+
+     <div class="control-group"> 
+     <div class="image_upload">
+      
+        <span> <img src="/assets/plus-icon.png" alt=""> Choose Cover pic</span>
+         <%= f.file_field :course_cover_pic, required: true, id:"fileupload", class:"upload" %>
+        <!-- <input id="fileupload"  type="file" name="file[]" class="upload" > -->
+      </div>
+    </div>
+
+    <div class="control-group display-t">
+
+      <div class="existing-pic">
+        <%= image_tag(@course.course_cover_pic_url, class: 'img-rounded') %>
+    
+       </div>
+       <div class="existing-msg">
+         <span><em>Existing course cover pic</em></span>
+        </div>
+    </div>   
+       <br> 
+       
+      <div class="control-group"> 
+          <p>Is it a Paid Course?</p>
+          <label class="ui-radio">
+             <%= f.radio_button :is_paid, "true"  %>
+              <span>Yes, it is paid</span>
+          </label>
+          <label class="ui-radio">
+            <%= f.radio_button :is_paid, "false" %>
+            <span>No</span>
+          </label>
+      </div>
+      <div class="control-group"> 
+        <p>Classroom settings (optional)</p>
+        <label class="ui-checkbox">
+          <%= f.check_box :classroom_enabled,class:"style-checkbox" %>
+          <span class='click-check'>Accept Requests</span>
+        </label>
+      </div>
+  
+    
+    <div class="control-group">
+      <p class="course-submit-btn">
+      <%= f.button :submit, 'Finish',class:" btn-green" %>
+      <%= f.button :button, 'Cancel',class:" btn-cancel" %>
+    </p>
+    </div>
+    </div>
+    
+<% end %>
+</div>
+<%= javascript_tag do %>
+  $(".click-check").click(function(){
+    if($(this).parent().find(".style-checkbox[type='checkbox']").is(":checked")){
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', false);
+    }
+    else{
+      $(this).parent().find(".style-checkbox[type='checkbox']").prop('checked', true);
+    }
+});
+<% end %>
