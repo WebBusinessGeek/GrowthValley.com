@@ -2,6 +2,7 @@ class CourseStepsController < ApplicationController
   include Wicked::Wizard
   before_filter :authenticate_user!
   prepend_before_filter :set_steps
+  layout 'home_new'
 
   def show
     @course = current_user.courses.find_by_id(session[:course_id])

@@ -1,4 +1,6 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "course" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
+<div class="main-content-area my-courses-table wrapper">
 
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
@@ -9,13 +11,16 @@
     <%= f.input :subject_id, label: 'Subject', collection: Subject.all, include_blank: false, input_html: { required: true, multiple: false } %>
   <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <% if @course.is_paid %>
-      <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn' %>
-    <% else %>
-      <%= link_to t('.back', :default => t("helpers.links.back")), edit_course_path(@course), :class => 'btn' %>
-    <% end %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, :class => 'btn' %>
+  <div class="control-group ">
+    <div class="controls">
+      <%= f.button :submit, 'Continue', :class => 'btn btn-green' %>
+      <% if @course.is_paid %>
+        <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn btn-green' %>
+      <% else %>
+        <%= link_to t('.back', :default => t("helpers.links.back")), edit_course_path(@course), :class => 'btn btn-gray' %>
+      <% end %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, :class => 'btn btn-gray' %>
+    </div>
   </div>
 <% end %>
+</div>

@@ -1953,8 +1953,10 @@ div.exam-name h4{
 }
 .profile-page .course-panel li .course-panel-box .green-panel {
 	background:url(/assets/courses-bg.jpg) no-repeat #0b919a; 
-	display:block; 
-	text-align:center;
+    display: table;
+    height: 110px;
+    text-align: center;
+    width: 100%;
 }
 .profile-page .course-panel li .course-panel-box .course-panel-disc { 
 	background:#2a2a2a;  

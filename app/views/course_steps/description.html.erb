@@ -1,13 +1,18 @@
-<%= render :partial => "layouts/inner_nav", :locals => { :current => "course" } %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_courses') %>
 
+<div class="main-content-area my-courses-table wrapper">
 <%= simple_form_for @course, url: wizard_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :description %>
+  <%= f.input :description, :input_html => {:rows => 5, :class => "span6"} %>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Continue', :class => 'btn-primary' %>
-    <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, :class => 'btn' %>
+   <div class="control-group ">
+   	<div class="controls">
+	    <%= f.button :submit, 'Continue', :class => 'btn btn-green' %>
+	    <%= link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, :class => 'btn btn-gray' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), my_courses_courses_path, :class => 'btn btn-gray' %>
+    </div>
   </div>
 <% end %>
+</div>
