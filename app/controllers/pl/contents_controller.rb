@@ -1,4 +1,5 @@
 class Pl::ContentsController < ApplicationController
+  layout 'home_new'
   def new
     @lesson = Pl::Lesson.find(params[:lesson_id])
     build_content

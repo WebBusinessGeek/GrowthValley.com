@@ -1603,7 +1603,9 @@ ul,li{
 .my-course-classrooms a{
 	color:#028d96;
 }
-
+#lessons li a{ text-decoration:none; 
+	color:#028d96}
+#new_comment, #comment-submit{margin-left:0px;}
 /*-----------------------------manage section---------------------------*/
 .profile-page .mycourse-section-table h4{
 	color: #028d96;  

@@ -1,7 +1,8 @@
-<li class="comment">
-  <p><%= comment.body %></p>
+<li class="comment" style="margin-bottom:5px;">
+  <span><%= comment.body %></span><br>
   <small>
     <%= comment.user.full_name %>
     left at <%= l comment.created_at.localtime, format: :comment %>
   </small>
+  <br>
 </li>

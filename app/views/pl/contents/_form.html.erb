@@ -1,10 +1,17 @@
-<%= simple_form_for content, as: :content, url: url do |f| -%>
+<%= simple_form_for content, as: :content, url: url  , :html => { :class => 'form-horizontal' }  do |f| -%>
   <%= f.hidden_field :teachable_type %>
   <%= f.input :title %>
-  <%= render(
+ <%= render(
     "#{content.teachable.to_partial_path}_form",
     teachable: content.teachable,
     f: f
   ) %>
-  <%= f.submit %>
+  <div class="control-group">
+
+  	 <div class="controls">
+
+  		<%= f.submit nil, :class => 'btn btn-green' %>
+     </div>
+  </div>
+
 <% end -%>

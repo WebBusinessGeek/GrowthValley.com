@@ -1,13 +1,13 @@
-  <div class="well">
-  <ol>
-    <li><strong>Title</strong> <%= @lesson.title %></li>
-    <li><strong>Description </strong><%= @lesson.description %></li>
+  <div >
+  <ol style="margin-left:0px">
+    <li><strong>Title: </strong> <%= @lesson.title %></li>
+    <li><strong >Description:  </strong><%= @lesson.description %></li>
     <% if current_user == @lesson.classroom.learner %>
       <%= link_to "#{@lesson.completed? ? 'Complete lesson' : 'Uncomplete lesson'}", complete_lesson_path(@lesson), method: :post, class: 'btn btn-primary' %>
     <% end %>
     </ol>
     <hr>
-    <h2>Learning Materials</h2>
+    <p><h4>Learning Materials</h4></p>
     <% @lesson.contents.each do |content| %>
       <li><%= render(
         "#{content.teachable.to_partial_path}",
@@ -24,7 +24,7 @@
             new_lesson_content_path(
               @lesson,
               content: { teachable_type: 'Pl::TextTeachable' }
-            ), class: 'btn btn-primary'
+            ), class: 'btn btn-gray'
         %>
       </li>
       <li>
@@ -33,7 +33,7 @@
             new_lesson_content_path(
               @lesson,
               content: { teachable_type: 'Pl::AttachmentTeachable' }
-            ), class: 'btn btn-primary'
+            ), class: 'btn btn-gray'
         %>
       </li>
       <li>
@@ -42,13 +42,13 @@
             new_lesson_content_path(
               @lesson,
               content: { teachable_type: 'Pl::ChecklistTeachable' }
-            ), class: 'btn btn-primary'
+            ), class: 'btn btn-gray'
         %>
       </li>
     </ul>
   <% end %>
   <hr>
-  <h2>Discussion</h2>
+  <h4>Discussion</h4>
   <ul class="unstyled" id="comments">
     <%= render partial: "comments/comment", collection: @comments, as: :comment %>
   </ul>

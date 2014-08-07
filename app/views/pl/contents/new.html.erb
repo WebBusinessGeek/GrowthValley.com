@@ -1,2 +1,10 @@
-<h1>Add Content</h1>
-<%= render 'form', content: @content, url: lesson_contents_path(@lesson) %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_classrooms') %>
+<% content_for(:title, 'GrowthValley > Courses > Classrooms') %>
+
+<div class="main-content-area my-classrooms-page">
+  <div class='my-course-classrooms wrapper'>
+		<h4>Add Content</h4>
+		<%= render 'form', content: @content, url: lesson_contents_path(@lesson) %>
+  </div>
+</div>

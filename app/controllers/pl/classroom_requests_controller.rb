@@ -1,4 +1,5 @@
 class Pl::ClassroomRequestsController < ApplicationController
+  layout 'home_new'
   def index
   end
   def new

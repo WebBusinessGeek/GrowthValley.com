@@ -1,4 +1,9 @@
 <%= simple_form_for Comment.new, url:  lesson_add_comment_path(lesson_id: @commentable.id), remote: true do |f| %>
-  <%= f.input :body, as: :string %>
-  <%= f.submit "Add comment" %>
+  <div class="control-group" style="padding-left:0px;">
+    <label for="comment_body" class="string optional control-label">Add a Comment</label>
+    <div class="controls">
+      <%= f.text_field :body, :class => 'text_field' , :required => true %>
+    </div>
+  </div>
+  <%= f.submit "Add comment" , :class => 'btn btn-gray', :id=> 'comment-submit' %>
 <% end %>

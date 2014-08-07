@@ -1,15 +1,19 @@
-<div class="well">
-<ol>
-  <li><strong>Title</strong> <%= @lesson.title %></li>
-  <li><strong>Description </strong><%= @lesson.description %></li>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_classrooms') %>
+<% content_for(:title, 'GrowthValley > Courses > Classrooms') %>
+<div class="main-content-area my-lesson-page">
+  <div class='my-course-lesson wrapper'>
+<ol style="margin-left:0px;">
+  <li style="font-size:20px;margin-bottom:10px;"><strong >Title: </strong> <%= @lesson.title %></li>
+  <li style="font-size:20px;"><strong  >Description:  </strong><%= @lesson.description %></li>
   <% if current_user == @lesson.classroom.learner %>
     <%= link_to "#{@lesson.completed? ? 'Complete lesson' : 'Uncomplete lesson'}", complete_lesson_path(@lesson), method: :post, class: 'btn btn-primary' %>
   <% end %>
   </ol>
   <hr>
-  <h2>Learning Materials</h2>
+  <h4>Learning Materials</h4>
   <% @lesson.contents.each do |content| %>
-    <li><%= render(
+    <li style="margin-left:25px;"><%= render(
       "#{content.teachable.to_partial_path}",
       content: content
       )
@@ -18,13 +22,13 @@
 </ol>
 <% if @lesson.classroom.teacher == current_user %>
   <ul class="inline">
-    <li>
+    <li >
       <%=
         link_to "Text",
           new_lesson_content_path(
             @lesson,
             content: { teachable_type: 'Pl::TextTeachable' }
-          ), class: 'btn btn-primary'
+          ), class: 'btn btn-green'
       %>
     </li>
     <li>
@@ -33,7 +37,7 @@
           new_lesson_content_path(
             @lesson,
             content: { teachable_type: 'Pl::AttachmentTeachable' }
-          ), class: 'btn btn-primary'
+          ), class: 'btn btn-green'
       %>
     </li>
     <li>
@@ -42,15 +46,16 @@
           new_lesson_content_path(
             @lesson,
             content: { teachable_type: 'Pl::ChecklistTeachable' }
-          ), class: 'btn btn-primary'
+          ), class: 'btn btn-green'
       %>
     </li>
   </ul>
 <% end %>
 <hr>
-<h2>Discussion</h2>
- <ul class="unstyled" id="comments">
+<h4>Discussion</h4>
+ <ul class="unstyled" id="comments"  style="margin-left:25px;">
     <%= render partial: "comments/comment", collection: @comments, as: :comment %>
     <%= render 'comments/form' %>
   </ul>
+  </div>
 </div>

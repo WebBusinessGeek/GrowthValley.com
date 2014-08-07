@@ -23,8 +23,8 @@
     <div class='clearfix'></div>
     </div>
     
-    <div class="well">
-       <div class="wrapper">
+     <div class="gray-bg">
+       <div class="wrapper" style='padding:20px 0px'>
       <% if user_signed_in? %>
         <% if current_user == @classroom.teacher %>
           <% if @classroom.active? && @classroom.payment_inactive? %>
@@ -47,7 +47,7 @@
       <% end %>
     </div>
   </div>
-
+<hr>
   <div style="clear:both;" class='wrapper'>
 
     <h4>Lessons</h4>
@@ -66,14 +66,21 @@
   </div>
 
   <hr>
-  <span><%= link_to "My Classrooms", classrooms_path, class: 'btn btn-primary' %></span>
-  <span><%= link_to "Back to Course page", course_path(@classroom.course), class: 'btn btn-green' %></span>
-  <div id="lesson_modal" class="modal hide fade">
+  <div class='wrapper'>
+    <span><%= link_to "My Classrooms", classrooms_path, class: 'btn btn-green' %></span>
+    <span><%= link_to "Back to Course page", course_path(@classroom.course), class: 'btn btn-green' %></span>
+  </div>
+
+   <div  id="lesson_modal"  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+      <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>Modal header</h3>
+      <h4 class="modal-title" id="myModalLabel">Lesson</h4>
     </div>
     <div class="modal-body"></div>
+    </div>
+    </div>
   </div>
 </div>
 

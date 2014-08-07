@@ -1,5 +1,6 @@
 class Pl::TasksController < ApplicationController
   before_filter :authenticate_user!
+  layout 'home_new'
 
   respond_to :html, :js
 
