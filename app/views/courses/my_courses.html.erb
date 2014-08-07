@@ -19,7 +19,9 @@
     </div>
     <!-- End Modal -->
 
-
+    <ul class="breadcrumb wrapper">
+        <li><a href="javascript:void(0)">My Courses</a></li>
+    </ul>
 <% if current_user.type == 'Teacher' %>
     
 
@@ -143,8 +145,8 @@
     <% else %>
       <div class='wrapper'>
           <% if current_user.subjects.present? %>
-                You haven't subscribed for any courses yet...
-            <%= link_to "Click here to view courses", courses_path %>
+              <h6>  You haven't subscribed for any courses yet... </h6>
+            <p><%= link_to "Click here to view courses", courses_path , class:"btn btn-green" %></p>
           <% end %>
       </div>
     <% end %>

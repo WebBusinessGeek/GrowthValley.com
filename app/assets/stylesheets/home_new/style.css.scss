@@ -1360,23 +1360,23 @@ ul,li{
 }
 
 /*---------------bundles page---------------*/
-.profile-page .my-bundles-page .breadcrumb {
+.profile-page .my-bundles-page .breadcrumb, .my-courses-table .breadcrumb {
 	background:none; 
 	border-radius:0;
  	border-bottom:solid 1px #ededed; 
  	padding:0px 0px 10px 0px; 
  	margin-bottom:36px;
 }
-.profile-page .my-bundles-page .breadcrumb li{
+.profile-page .my-bundles-page .breadcrumb li, .my-courses-table .breadcrumb li{
 	text-shadow:none;
 }
-.profile-page .my-bundles-page .breadcrumb li a{
+.profile-page .my-bundles-page .breadcrumb li a, .my-courses-table .breadcrumb li a{
 	color:#028d96; 
 	font-size:20px; 
 	text-decoration:none; 
 	font-weight:bold;
 }
-.profile-page .my-bundles-page .breadcrumb li a:hover{
+.profile-page .my-bundles-page .breadcrumb li a:hover, .my-courses-table .breadcrumb li a:hover{
 	text-decoration:underline;
 }
 .profile-page .my-bundles-page .breadcrumb > li > .divider{
@@ -1385,11 +1385,10 @@ ul,li{
     background-position:center 0px; 
     padding:0px 16px;
 }
-.profile-page .bundles h6{
+.profile-page .bundles h6, {
 	color:#797979; 
 	font-size:14px; 
 	font-weight:bold; 
-	font-family:"Trebuchet MS"; 
 	margin-bottom:36px;
 }
 .my-bundles-page .btn{
