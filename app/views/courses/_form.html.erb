@@ -16,8 +16,10 @@
         </div>
       <% else %>
         <div class="image_upload">
-        <span> <img src="/assets/white-plus-icon.png" alt=""> Choose Cover pic</span>
+        <span class='control-label'> <img src="/assets/white-plus-icon.png" alt=""> Choose Cover pic</span>
+        <div class="controls">
          <%= f.file_field :course_cover_pic, required: true, id:"fileupload", class:"upload" %>
+         </div>
         <!-- <input id="fileupload"  type="file" name="file[]" class="upload" > -->
         </div>
        
