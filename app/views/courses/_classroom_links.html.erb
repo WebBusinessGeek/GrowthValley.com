@@ -32,7 +32,7 @@ format_learner_names(@course)
 
 <!-- Learner -->
 <% if current_user.type == 'Learner' %>
-  <span style='margin-left: 1em;'>
+  <span>
     <% unless current_user.teacher_subscribed?(@course.teacher) %>
       <%= link_to 'Subscribe Teacher', subscribe_teacher_path(@course.teacher), :method => :post, class: 'btn btn-green' %>
     <% end %>
@@ -54,7 +54,7 @@ format_learner_names(@course)
   <% end %>
   <% unless current_user == @course.teacher %>
     <strong>
-      </br></br>
+      </br>
       Course completion progress: <%= @progress_percentage %>%
     </strong>
   <% end %>
@@ -67,7 +67,7 @@ format_learner_names(@course)
   <% end %>
   <% end %>
   <br>
-  Total Sections: <%=@total_section%>
+  <p>Total Sections: <span><%=@total_section%></span></p>
 <% end %>
 </div>
 <!-- Subscription Ends -->
