@@ -2,6 +2,7 @@ class Pl::LessonsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_classroom, only: [:index, :create]
   before_filter :load_lesson, only: [:show, :edit, :update, :destroy, :complete]
+  layout 'home_new'
 
   respond_to :html, :js
 

@@ -1,5 +1,6 @@
 class Pl::ClassroomsController < ApplicationController
   before_filter :authenticate_user!
+  layout 'home_new'
 
   def index
     if params[:course]

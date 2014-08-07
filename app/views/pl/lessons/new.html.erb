@@ -1,6 +1,27 @@
-<h1>New Lesson</h1>
-<%= simple_form_for [@classroom, @lesson], url: classroom_lessons_path do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.submit %>
-<%  end %>
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_classrooms') %>
+<% content_for(:title, 'GrowthValley > Courses > Classrooms') %>
+<div class="main-content-area my-classrooms-page">
+	 <div class='my-course-classrooms wrapper'>
+		<h3>New Lesson</h3>
+		<%= simple_form_for [@classroom, @lesson], url: classroom_lessons_path , :html => { :class => 'form-horizontal' } do |f| %>
+		  <div class="control-group">
+		    <%= f.label :title, :class => 'control-label required'  %>
+		    <div class="controls">
+		      <%= f.text_field :title, :class => 'text_field' , :required => true %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :description, :class => 'control-label required'  %>
+		    <div class="controls">
+		      <%= f.text_field :description, :class => 'text_field' , :required => true %>
+		    </div>
+		  </div>
+		   <div class="control-group">
+			   <div class="controls">
+			    <%= f.submit nil, :class => 'btn btn-green' %>
+		       </div>
+		  </div>
+		<%  end %>
+	</div>
+</div>

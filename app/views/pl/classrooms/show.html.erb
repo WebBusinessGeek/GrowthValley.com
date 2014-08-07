@@ -1,44 +1,56 @@
-<div class="main-content">
-  <div>
-    <h2>Classroom: <%= @classroom.title.titleize %></h2>
-    <ol style="float:left;">
-      <li>
-        <p>Description: <%= @classroom.description %></p>
-      </li>
-      <li>Teacher: <%= @classroom.teacher.full_name %></li>
-      <li>Learner: <%= @classroom.learner.full_name %></li>
-    </ol>
-    <span style="margin-left:100px;">
+<% content_for(:body_class, 'profile-page') %>
+<% content_for(:current, 'my_classrooms') %>
+<% content_for(:title, 'GrowthValley > Courses > Classrooms') %>
+<div class="main-content-area my-classrooms-page">
+  <div class='my-course-classrooms wrapper'>
+    <h4>Classroom: <%= @classroom.title.titleize %></h4>
+  </div>
+   <div class="gray-bg">
+    <div class="wrapper">
+     <div class='pull-left'>
       <%= image_tag(@classroom.course.course_cover_pic.url(:cover)) %>
-    </span>
-    <h4>Progress: <%= @classroom.progress %>%</h4>
+    </div>
+    <div class='pull-left'>
+      <div class="tl-name">
+        <p>Description: <%= @classroom.description %></p>
+        <p>Teacher: <%= @classroom.teacher.full_name %></p>
+        <p>Learner: <%= @classroom.learner.full_name %></p>
+        <p>Progress: <%= @classroom.progress %>%</p>
+        </div>
+      </div>
+      </dv>
+    </div>
+    <div class='clearfix'></div>
+    </div>
+    
     <div class="well">
+       <div class="wrapper">
       <% if user_signed_in? %>
         <% if current_user == @classroom.teacher %>
           <% if @classroom.active? && @classroom.payment_inactive? %>
-            <%= link_to "Request Classroom Payment", classroom_request_payment_path(@classroom), method: :post, class: 'btn btn-primary' %>
+            <%= link_to "Request Classroom Payment", classroom_request_payment_path(@classroom), method: :post, class: 'btn btn-green' %>
           <% elsif @classroom.active? && @classroom.payment_requested? %>
-            <%= link_to "Payment requested", "javascript:void(0);", class: "btn btn-primary disabled" %>
+            <%= link_to "Payment requested", "javascript:void(0);", class: "btn btn-green disabled" %>
           <% elsif @classroom.active? && @classroom.payment_approved? %>
-            <%= link_to "Payment approved and awaiting transfer", "javascript:void(0);", class: 'btn btn-primary disabled' %>
+            <%= link_to "Payment approved and awaiting transfer", "javascript:void(0);", class: 'btn btn-green disabled' %>
           <% end %>
           <% if @classroom.privacy? %>
-            <%= link_to "Make Classroom Public", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-primary' %>
+            <%= link_to "Make Classroom Public", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-green' %>
           <% else %>
-            <%= link_to "Make Classroom Private", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-primary' %>
+            <%= link_to "Make Classroom Private", toggle_privacy_classroom_path(@classroom), method: :post, class: 'btn btn-green' %>
           <% end %>
         <% elsif current_user == @classroom.learner %>
           <% if @classroom.active? && @classroom.payment_requested? %>
-            <%= link_to "Approve Classroom Payment", classroom_approve_payment_path(@classroom), method: :post, class: "btn btn-primary" %>
+            <%= link_to "Approve Classroom Payment", classroom_approve_payment_path(@classroom), method: :post, class: "btn btn-green" %>
           <% end %>
         <% end %>
       <% end %>
     </div>
   </div>
 
-  <div style="clear:both;width:100%">
-    <hr>
-    <h2>Lessons</h2>
+  <div style="clear:both;" class='wrapper'>
+
+    <h4>Lessons</h4>
     <% if @classroom.users.include?(current_user) && user_signed_in? %>
       <ul id="lessons" data-update-url="<%= sort_lessons_url %>" data-classroom-id="<%= @classroom.id %>" style="padding:3px;min-height:300px;margin:3px 3px 3px 3px 0">
         <%= render partial: "pl/lessons/detailed_lesson", collection: @classroom.lessons, as: :lesson %>
@@ -49,13 +61,13 @@
       </ul>
     <% end %>
     <div style="clear:both;">
-      <%= link_to "Add a lesson", new_classroom_lesson_path(@classroom), class: "btn btn-primary" if @classroom.teacher == current_user %>
+      <%= link_to "Add a lesson", new_classroom_lesson_path(@classroom), class: "btn btn-green" if @classroom.teacher == current_user %>
     </div>
   </div>
 
   <hr>
   <span><%= link_to "My Classrooms", classrooms_path, class: 'btn btn-primary' %></span>
-  <span><%= link_to "Back to Course page", course_path(@classroom.course), class: 'btn btn-primary' %></span>
+  <span><%= link_to "Back to Course page", course_path(@classroom.course), class: 'btn btn-green' %></span>
   <div id="lesson_modal" class="modal hide fade">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
