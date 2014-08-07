@@ -1360,23 +1360,23 @@ ul,li{
 }
 
 /*---------------bundles page---------------*/
-.profile-page .my-bundles-page .breadcrumb, .my-courses-table .breadcrumb {
+.profile-page .my-bundles-page .breadcrumb, .my-courses-table .breadcrumb, .analytics-page .breadcrumb {
 	background:none; 
 	border-radius:0;
  	border-bottom:solid 1px #ededed; 
  	padding:0px 0px 10px 0px; 
  	margin-bottom:36px;
 }
-.profile-page .my-bundles-page .breadcrumb li, .my-courses-table .breadcrumb li{
+.profile-page .my-bundles-page .breadcrumb li, .my-courses-table .breadcrumb li, .analytics-page .breadcrumb li{
 	text-shadow:none;
 }
-.profile-page .my-bundles-page .breadcrumb li a, .my-courses-table .breadcrumb li a{
+.profile-page .my-bundles-page .breadcrumb li a, .my-courses-table .breadcrumb li a, .analytics-page .breadcrumb li a{
 	color:#028d96; 
 	font-size:20px; 
 	text-decoration:none; 
 	font-weight:bold;
 }
-.profile-page .my-bundles-page .breadcrumb li a:hover, .my-courses-table .breadcrumb li a:hover{
+.profile-page .my-bundles-page .breadcrumb li a:hover, .my-courses-table .breadcrumb li a:hover, .analytics-page .breadcrumb li a:hover{
 	text-decoration:underline;
 }
 .profile-page .my-bundles-page .breadcrumb > li > .divider{
