@@ -141,10 +141,12 @@
           </table>
         </div>
     <% else %>
+      <div class='wrapper'>
           <% if current_user.subjects.present? %>
                 You haven't subscribed for any courses yet...
             <%= link_to "Click here to view courses", courses_path %>
           <% end %>
+      </div>
     <% end %>
 <% end %>
 
